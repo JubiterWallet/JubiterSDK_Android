@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.2"
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "",
+                        "-std=c++11",
+                        "-frtti",
+                        "-fexceptions",
+                        "-DDEBUG",
+//                        "-DHC",   // 启用HC代码
+//                        "-DJSON_HAS_INT64",  // JsonCpp 64位库编译失败，启用该标记也失败
+                        "-DHAVE_ENDIAN_H"
+
+                arguments '-DANDROID_TOOLCHAIN=clang',      // 工具链更新，NDK 15c规定不再支持gcc，但gcc暂未移除，现项目改为clang工具链编译
+                        // 相关说明：https://developer.android.com/ndk/downloads/revision_history.html?hl=zh-cn
+                        "-DANDROID_STL=c++_static",      // 使用库: gnustl_static、stlport_static等，详见Android NDK官网。CMake默认使用 gnustl_static
+                        "-DANDROID_ARM_MODE=arm",            // 如果不添加，在编译 polarssl 库里 bignum 中的汇编时会报错 (*)
+                        "-DANDROID_PLATFORM=android-19"
+            }
+
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
+
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('CMakeLists.txt')
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
