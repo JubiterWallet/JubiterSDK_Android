@@ -10,7 +10,7 @@ message(">>>> ndk")
 # **************************************************************************************************
 
 # 引入外部库路径
-set(OUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../../../../cpp/Jub_SDK_CXX)
+set(OUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX)
 message(">>>外部目录： ${OUT_DIRECTORY}")
 
 
