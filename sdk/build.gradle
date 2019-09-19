@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.google.protobuf'
+
 
 android {
     compileSdkVersion 28
@@ -51,7 +53,47 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java', 'generated/main/java']
+            }
+            proto {
+                // proto 文件所在路径
+                srcDir 'protos'
+            }
+        }
+    }
+
 }
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.9.1'
+    }
+    plugins {
+        javalite {
+            // The codegen for lite comes as a separate artifact
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+
+    // 配置生成目录，编译后在 build 目录下生成对应的 java 文件
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                java { }
+            }
+        }
+    }
+
+}
+
+
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -61,5 +103,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.1.1")
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation 'com.google.protobuf:protobuf-java:3.9.1'
 
 }
