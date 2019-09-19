@@ -56,11 +56,12 @@ android {
     sourceSets {
         main {
             java {
-                srcDirs = ['src/main/java', 'generated/main/java']
+//                srcDirs = ['src/main/java', 'generated/main/java']
+//                ...
             }
             proto {
-                // proto 文件所在路径
-                srcDir 'protos'
+                // .proto 文件所在路径
+                srcDir '../cpp/Jub_SDK_CXX/protos'
             }
         }
     }
