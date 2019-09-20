@@ -38,6 +38,29 @@ JavaVM *g_vm = NULL;
 // 是否是多重签名
 bool globalMultiSig = false;
 
+//==================helper=========================
+jstring buildPbRvString(JNIEnv *env,JUB_RV rv,JUB_CHAR_PTR str){
+    JUB::Proto::Common::ResultString resultString;
+    resultString.set_rv(rv);
+    if(JUBR_OK){resultString.set_res(str);}
+
+    JUB_FreeMemory(str);
+    std::string result;
+    resultString.SerializeToString(&result);
+    return env->NewStringUTF(result.c_str());
+}
+
+jstring buildPbRvString(JNIEnv *env,JUB_RV rv,std::string str){
+    JUB::Proto::Common::ResultString resultString;
+    resultString.set_rv(rv);
+    if(JUBR_OK){resultString.set_res(str);}
+
+    std::string result;
+    resultString.SerializeToString(&result);
+    return env->NewStringUTF(result.c_str());
+}
+
+
 //================================== 软件钱包 ===========================================
 
 JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstring param) {
@@ -58,33 +81,13 @@ JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstr
         case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH256:
             jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH256;
             break;
+        default:
+            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH128;
     }
 
     JUB_CHAR_PTR pMnemonic;
     JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &pMnemonic);
-    if (JUBR_OK != rv) {
-        LOG_ERR("JUB_GenerateMnemonic rv: %08x", rv);
-        JUB::Proto::Common::ResultString resultString;
-//        resultString.set_rv((::PROTOBUF_NAMESPACE_ID::uint64)rv);
-        resultString.set_res(nullptr);
-        std::string result;
-        resultString.SerializeToString(&result);
-
-        jstring mnemonicString = env->NewStringUTF(result.c_str());
-        JUB_FreeMemory(pMnemonic);
-        return mnemonicString;
-    }
-
-    JUB::Proto::Common::ResultString resultString;
-//    resultString.set_rv((::PROTOBUF_NAMESPACE_ID::uint64)rv);
-    resultString.set_res(pMnemonic);
-    std::string result;
-    resultString.SerializeToString(&result);
-
-    jstring mnemonicString = env->NewStringUTF(result.c_str());
-    JUB_FreeMemory(pMnemonic);
-
-    return mnemonicString;
+    return buildPbRvString(env,rv,pMnemonic);
 }
 
 
@@ -99,19 +102,30 @@ JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jobject obj, jstring mn
 }
 
 
-JNIEXPORT jobject JNICALL native_GenerateSeed(JNIEnv *env, jobject obj, jstring mnemonic, jstring passphrase) {
+JNIEXPORT jstring JNICALL native_GenerateSeed(JNIEnv *env, jobject obj, jstring mnemonic, jstring passphrase) {
     JUB_CHAR_PTR mnemonicPtr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(mnemonic, NULL));
     JUB_CHAR_PTR passphraseStr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(passphrase, NULL));
     JUB_BYTE seed[64] = {0,};
     JUB_RV rv = JUB_GenerateSeed(mnemonicPtr, passphraseStr, seed, nullptr);
-    if (JUBR_OK != rv) {
-        LOG_ERR("JUB_GenerateSeed rv: %08x", rv);
-        return newJavaObject(env, RESULT_CLASS, rv, nullptr);
-    }
-    jstring seedStr = env->NewStringUTF(reinterpret_cast<const char *>(seed));
-    return newJavaObject(env, RESULT_CLASS, rv, seedStr);
+    std::string strSeed = CharPtr2HexStr(seed,64);
+    return buildPbRvString(env,rv,strSeed);
+
 }
 
+JNIEXPORT jstring JNICALL native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj,jstring seed,jstring curve){
+    char* pParam = const_cast<char *>(env->GetStringUTFChars(curve, NULL));
+    const char* pSeed = env->GetStringUTFChars(seed, NULL);
+    std::string paramString = pParam;
+
+    JUB::Proto::Common::CURVES enum_cure;
+    JUB::Proto::Common::CURVES_Parse(paramString, &enum_cure);
+
+    std::vector<unsigned char> vSeed = HexStr2CharPtr(pSeed);
+
+    JUB_CHAR_PTR xprv = nullptr;
+    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0],vSeed.size(),(JUB_CURVES)enum_cure,&xprv);
+    return buildPbRvString(env,rv,xprv);
+}
 
 
 //================================= 蓝牙 ================================================

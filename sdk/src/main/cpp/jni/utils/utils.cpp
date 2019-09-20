@@ -5,6 +5,8 @@
 #include <utils.h>
 #include <JUB_SDK.h>
 #include <logUtils.h>
+#include <sstream>
+#include <iostream>
 
 
 static JavaVM *jVM = NULL;
@@ -156,14 +158,47 @@ jobject newJavaObject(JNIEnv *env, const char * className, int errorCode, jstrin
     return newObject;
 }
 
-JUB_MNEMONIC_STRENGTH getMnemonic(int mnemonic) {
-    switch (mnemonic) {
-        case 12:
-            return STRENGTH128;
-        case 18:
-            return STRENGTH192;
-        case 24:
-            return STRENGTH256;
+std::string CharPtr2HexStr(std::vector<unsigned char> v) {
+
+    std::stringstream ss;
+    ss << std::hex;
+
+    size_t len = v.size();
+    for (size_t i(0); i < len; ++i) {
+        if (0x0F >= (int)v[i]) {
+            ss << 0;
+        }
+        ss << (int)v[i];
     }
+    return ss.str();
 }
 
+std::string CharPtr2HexStr(unsigned char* data,size_t len){
+    std::vector<unsigned char> v(data,data+len);
+    return CharPtr2HexStr(v);
+}
+
+std::vector<unsigned char> HexStr2CharPtr(std::string str) {
+
+    std::vector<unsigned char> v;
+
+    std::string strHex;
+    auto l = str.size();
+    if (l%2) {
+        strHex = "0";
+    }
+    else {
+        strHex = "";
+    }
+    strHex += str;
+    unsigned int c;
+    std::string sub;
+    for (int i = 0; i < l; i += 2) {
+        sub = strHex.substr(i, 2);
+        std::istringstream hex_chars_stream(sub.c_str());
+        hex_chars_stream >> std::hex >> c;
+        v.push_back(c);
+    }
+
+    return v;
+}
