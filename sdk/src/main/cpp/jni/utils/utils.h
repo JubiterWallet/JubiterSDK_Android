@@ -9,6 +9,8 @@
 #include <jni.h>
 #include <JUB_SDK.h>
 #include <JUB_core.h>
+#include <string>
+#include <vector>
 
 
 #ifndef CHECK_NULL
@@ -35,7 +37,10 @@ JUB_RV jobjectToInitParam(JNIEnv *env, JUB_VOID_PTR javaVM, DEVICE_INIT_PARAM *p
 
 jobject newJavaObject(JNIEnv *env, const char * className, int errorCode, jstring message);
 
-JUB_MNEMONIC_STRENGTH getMnemonic(int mnemonic);
+std::string CharPtr2HexStr(std::vector<unsigned char> v);
+std::string CharPtr2HexStr(unsigned char* data,size_t len);
+
+std::vector<unsigned char> HexStr2CharPtr(std::string str);
 
 
 #endif //JUBITER_UTILS_H
