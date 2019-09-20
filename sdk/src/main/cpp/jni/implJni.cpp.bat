@@ -3,21 +3,20 @@
 //
 
 #include <jni.h>
-#include "utils/logUtils.h"
-#include "utils/utils.h"
+#include <logUtils.h>
+#include <utils.h>
 #include <vector>
 #include <json/json.h>
-#include "implJni.h"
+#include <implJni.h>
 
-#include <cpp/Jub_Common.pb.h>
-#include <cpp/Jub_Bitcoin.pb.h>
-#include <cpp/Jub_Ethereum.pb.h>
+#include <Jub_Bitcoin.pb.h>
+#include <Jub_Common.pb.h>
+#include <Jub_Ethereum.pb.h>
 
 #ifdef HC
 #include <JUB_SDK_Hcash.h>
 #else
 #include <JUB_core.h>
-
 #endif
 
 
@@ -40,51 +39,17 @@ bool globalMultiSig = false;
 
 //================================== 软件钱包 ===========================================
 
-JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstring param) {
-    char* pParam = const_cast<char *>(env->GetStringUTFChars(param, NULL));
-    std::string paramString = pParam;
-
-    JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
-    JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH_Parse(paramString, &strength);
-
-    JUB_MNEMONIC_STRENGTH jubStrength;
-    switch (strength) {
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH128:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH128;
-            break;
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH192:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH192;
-            break;
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH256:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH256;
-            break;
-    }
-
-    JUB_CHAR_PTR pMnemonic;
-    JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &pMnemonic);
+JNIEXPORT jobject JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, int strength) {
+    JUB_MNEMONIC_STRENGTH jubStrength = getMnemonic(strength);
+    JUB_CHAR_PTR mnemonic = nullptr;
+    JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &mnemonic);
     if (JUBR_OK != rv) {
         LOG_ERR("JUB_GenerateMnemonic rv: %08x", rv);
-        JUB::Proto::Common::ResultString resultString;
-//        resultString.set_rv((::PROTOBUF_NAMESPACE_ID::uint64)rv);
-        resultString.set_res(nullptr);
-        std::string result;
-        resultString.SerializeToString(&result);
-
-        jstring mnemonicString = env->NewStringUTF(result.c_str());
-        JUB_FreeMemory(pMnemonic);
-        return mnemonicString;
+        return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
-
-    JUB::Proto::Common::ResultString resultString;
-//    resultString.set_rv((::PROTOBUF_NAMESPACE_ID::uint64)rv);
-    resultString.set_res(pMnemonic);
-    std::string result;
-    resultString.SerializeToString(&result);
-
-    jstring mnemonicString = env->NewStringUTF(result.c_str());
-    JUB_FreeMemory(pMnemonic);
-
-    return mnemonicString;
+    jstring mnemonicString = env->NewStringUTF(mnemonic);
+    JUB_FreeMemory(mnemonic);
+    return newJavaObject(env, RESULT_CLASS,  rv, mnemonicString);
 }
 
 
@@ -1186,192 +1151,192 @@ JNIEXPORT jstring JNICALL native_HCTransaction(JNIEnv *env, jobject obj, jlong c
  */
 static JNINativeMethod gMethods[] = {
 //    {
-//        "nativeInitDevice",
+//        "nativeGetErrorCode",
 //        "()I",
-//        (void *) native_initDevice
-//    },
-//    {
-//        "nativeStartScan",
-////        "(Lcom/legendwd/hyperpay/main/hardwarewallet/jubnative/InnerScanCallback;)I",
-//        "(Lcom/jubiter/jubnative/InnerScanCallback;)I",
-//        (void *) native_startScan
-//    },
-//    {
-//        "nativeStopScan",
-//        "()I",
-//        (void *) native_stopScan
-//    },
-//    {
-//        "nativeConnectDevice",
-////        "(Ljava/lang/String;I[JILcom/legendwd/hyperpay/main/hardwarewallet/jubnative/InnerDiscCallback;)I",
-//        "(Ljava/lang/String;I[JILcom/jubiter/jubnative/InnerDiscCallback;)I",
-//        (void *) native_connectDevice
-//    },
-//    {
-//        "nativeDisconnect",
-//        "(J)I",
-//        (void *) native_disconnectDevice
-//    },
-//    {
-//        "nativeIsConnected",
-//        "(J)I",
-//        (void *) native_isConnectDevice
-//    },
-//    {
-//        "nativeShowVirtualPwd",
-//        "(J)I",
-//        (void *) native_show
-//    },
-//    {
-//        "nativeVerifyPIN",
-//        "(J[B)I",
-//        (void *) native_verifyPIN
-//    },
-//    {
-//        "nativeGetDeviceInfo",
-////        "(Lcom/legendwd/hyperpay/main/hardwarewallet/jubnative/utils/JUB_DEVICE_INFO;J)I",
-//        "(Lcom/jubiter/jubnative/utils/JUB_DEVICE_INFO;J)I",
-//        (void *) native_GetDeviceInfo
-//    },
-//    {
-//        "nativeSendApdu",
-//        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_sendAPDU
-//    },
-//    {
-//        "nativeGetDeviceCert",
-//        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_GetDeviceCert
-//    },
-//    {
-//        "nativeEnumApplets",
-//        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_EnumApplets
-//    },
-//    {
-//        "nativeGetAppletVersion",
-//        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_GetAppletVersion
-//    },
-//    {
-//        "nativeBTCCreateContext",
-//        "([IZLjava/lang/String;J)I",
-//        (void *) native_BTCCreateContext
-//    },
-//    {
-//        "nativeBTCGetAddress",
-//        "(JLjava/lang/String;)[Ljava/lang/String;",
-//        (void *) native_BTCGetAddress
-//    },
-//    {
-//        "nativeBTCGetMainHDNode",
-//        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_BTCGetMainHDNode
-//    },
-//    {
-//        "nativeBTCShowAddress",
-//        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_BTC_ShowAddress
-//    },
-//    {
-//        "nativeBTCSetMyAddress",
-//        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_BTC_SetMyAddress
-//    },
-//    {
-//        "nativeSetTimeOut",
-//        "(JI)I",
-//        (void *) native_SetTimeOut
-//    },
-//    {
-//        "nativeBTCTransaction",
-//        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_BTCTransaction
-//    },
-////    {
-////        "nativeParseTransaction",
-////        "(JLjava/lang/String;)Ljava/lang/String;",
-////        (void *) native_ParseTransactionRaw
-////    },
-//    {
-//        "nativeETHCreateContext",
-//        "([ILjava/lang/String;J)I",
-//        (void *) native_ETHCreateContext
-//    },
-//    {
-//        "nativeETHTransaction",
-//        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_ETH_Transaction
-//    },
-//    {
-//        "nativeETHERC20Transaction",
-//        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_ETH_ERC20_Transaction
-//    },
-//    {
-//        "nativeETHSetERC20ETHToken",
-//        "(JLjava/lang/String;)I",
-//        (void *) native_ETH_Set_ERC20_Token
-//    },
-//    {
-//        "nativeETHShowAddress",
-//        "(JI)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_ETHShowAddress
-//    },
-//    {
-//        "nativeETHGetAddress",
-//        "(JLjava/lang/String;)[Ljava/lang/String;",
-//        (void *) native_ETHGetAddress
-//    },
-//    {
-//        "nativeETHGetMainHDNode",
-//        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_ETHGetMainHDNode
-//    },
-//    {
-//        "nativeEnumSupportCoins",
-//        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_EnumSupportCoins
-//    },
-//    {
-//        "nativeCancelVirtualPwd",
-//        "(J)I",
-//        (void *) native_CancelVirtualPwd
-//    },
-//    {
-//        "nativeClearContext",
-//        "(J)I",
-//        (void *) native_ClearContext
-//    },
-//    {
-//        "nativeQueryBattery",
-//        "(J[I)I",
-//        (void *) native_QueryBattery
-//    },
-//    {
-//        "nativeIsInitialize",
-//        "(J)I",
-//        (void *) native_IsInitialize
-//    },
-//    {
-//        "nativeIsBootLoader",
-//        "(J)I",
-//        (void *) native_IsBootLoader
-//    },
-//    {
-//        "nativeGetVersion",
-//        "()Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_GetVersion
-//    },
-//    {
-//        "nativeETHSetAddress",
-//        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
-//        (void *) native_ETHSetAddress
+//        (void *) native_getErrorCode
 //    },
     {
-        "nativeGenerateMnemonic",
-        "(Ljava/lang/String;)Ljava/lang/String;",
-        (void *) native_GenerateMnemonic
+        "nativeInitDevice",
+        "()I",
+        (void *) native_initDevice
+    },
+    {
+        "nativeStartScan",
+//        "(Lcom/legendwd/hyperpay/main/hardwarewallet/jubnative/InnerScanCallback;)I",
+        "(Lcom/jubiter/jubnative/InnerScanCallback;)I",
+        (void *) native_startScan
+    },
+    {
+        "nativeStopScan",
+        "()I",
+        (void *) native_stopScan
+    },
+    {
+        "nativeConnectDevice",
+//        "(Ljava/lang/String;I[JILcom/legendwd/hyperpay/main/hardwarewallet/jubnative/InnerDiscCallback;)I",
+        "(Ljava/lang/String;I[JILcom/jubiter/jubnative/InnerDiscCallback;)I",
+        (void *) native_connectDevice
+    },
+    {
+        "nativeDisconnect",
+        "(J)I",
+        (void *) native_disconnectDevice
+    },
+    {
+        "nativeIsConnected",
+        "(J)I",
+        (void *) native_isConnectDevice
+    },
+    {
+        "nativeShowVirtualPwd",
+        "(J)I",
+        (void *) native_show
+    },
+    {
+        "nativeVerifyPIN",
+        "(J[B)I",
+        (void *) native_verifyPIN
+    },
+    {
+        "nativeGetDeviceInfo",
+//        "(Lcom/legendwd/hyperpay/main/hardwarewallet/jubnative/utils/JUB_DEVICE_INFO;J)I",
+        "(Lcom/jubiter/jubnative/utils/JUB_DEVICE_INFO;J)I",
+        (void *) native_GetDeviceInfo
+    },
+    {
+        "nativeSendApdu",
+        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_sendAPDU
+    },
+    {
+        "nativeGetDeviceCert",
+        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_GetDeviceCert
+    },
+    {
+        "nativeEnumApplets",
+        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_EnumApplets
+    },
+    {
+        "nativeGetAppletVersion",
+        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_GetAppletVersion
+    },
+    {
+        "nativeBTCCreateContext",
+        "([IZLjava/lang/String;J)I",
+        (void *) native_BTCCreateContext
+    },
+    {
+        "nativeBTCGetAddress",
+        "(JLjava/lang/String;)[Ljava/lang/String;",
+        (void *) native_BTCGetAddress
+    },
+    {
+        "nativeBTCGetMainHDNode",
+        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_BTCGetMainHDNode
+    },
+    {
+        "nativeBTCShowAddress",
+        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_BTC_ShowAddress
+    },
+    {
+        "nativeBTCSetMyAddress",
+        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_BTC_SetMyAddress
+    },
+    {
+        "nativeSetTimeOut",
+        "(JI)I",
+        (void *) native_SetTimeOut
+    },
+    {
+        "nativeBTCTransaction",
+        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_BTCTransaction
+    },
+//    {
+//        "nativeParseTransaction",
+//        "(JLjava/lang/String;)Ljava/lang/String;",
+//        (void *) native_ParseTransactionRaw
+//    },
+    {
+        "nativeETHCreateContext",
+        "([ILjava/lang/String;J)I",
+        (void *) native_ETHCreateContext
+    },
+    {
+        "nativeETHTransaction",
+        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_ETH_Transaction
+    },
+    {
+        "nativeETHERC20Transaction",
+        "(JLjava/lang/String;)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_ETH_ERC20_Transaction
+    },
+    {
+        "nativeETHSetERC20ETHToken",
+        "(JLjava/lang/String;)I",
+        (void *) native_ETH_Set_ERC20_Token
+    },
+    {
+        "nativeETHShowAddress",
+        "(JI)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_ETHShowAddress
+    },
+    {
+        "nativeETHGetAddress",
+        "(JLjava/lang/String;)[Ljava/lang/String;",
+        (void *) native_ETHGetAddress
+    },
+    {
+        "nativeETHGetMainHDNode",
+        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_ETHGetMainHDNode
+    },
+    {
+        "nativeEnumSupportCoins",
+        "(J)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_EnumSupportCoins
+    },
+    {
+        "nativeCancelVirtualPwd",
+        "(J)I",
+        (void *) native_CancelVirtualPwd
+    },
+    {
+        "nativeClearContext",
+        "(J)I",
+        (void *) native_ClearContext
+    },
+    {
+        "nativeQueryBattery",
+        "(J[I)I",
+        (void *) native_QueryBattery
+    },
+    {
+        "nativeIsInitialize",
+        "(J)I",
+        (void *) native_IsInitialize
+    },
+    {
+        "nativeIsBootLoader",
+        "(J)I",
+        (void *) native_IsBootLoader
+    },
+    {
+        "nativeGetVersion",
+        "()Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_GetVersion
+    },
+    {
+        "nativeETHSetAddress",
+        "(JII)Lcom/jubiter/jubnative/utils/JniResult;",
+        (void *) native_ETHSetAddress
     },
 #ifdef HC
     {

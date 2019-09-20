@@ -9,13 +9,23 @@ message(">>>> ndk")
 # 注：因为是分开编译且涉及相互调用，所以需要引入其他库模块中的头文件
 # **************************************************************************************************
 
+# 引入 protobuf 头文件
+set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX/protos/libs/include)
+#set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/protobuf_cpp/protobuf/src)
+include_directories(${PROTOBUF_PATH}/)
+
+
 # 引入外部库路径
 set(OUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX)
 message(">>>外部目录： ${OUT_DIRECTORY}")
 
+#############################################################################################
+
+#############################################################################################
 
 include_directories(${OUT_DIRECTORY}/include)
 include_directories(${OUT_DIRECTORY}/deps/jsoncpp/include)
+include_directories(${OUT_DIRECTORY}/protos)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils)
@@ -26,6 +36,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils)
 # **************************************************************************************************
 
 aux_source_directory(${OUT_DIRECTORY}/deps/jsoncpp/src/lib_json SRC_LIST)
+aux_source_directory(${OUT_DIRECTORY}/protos/cpp SRC_LIST)
 
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils SRC_LIST)
@@ -52,6 +63,7 @@ elseif(CMAKE_BUILD_TYPE MATCHES "Release")
 #    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/release)
 endif()
 
+link_directories(${PROTOBUF_PATH}/../${ANDROID_ABI})
 
 # **************************************************************************************************
 #                                        生成动态库
@@ -73,6 +85,8 @@ target_link_libraries(
                       coreNDK
                       JUB_SDK
                       TrezorCrypto
+                      protobuf
                       BTSDK
+
                       ${libLog}
 )

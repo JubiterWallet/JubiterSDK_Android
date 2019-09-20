@@ -23,7 +23,7 @@ android {
                         "-frtti",
                         "-fexceptions",
                         "-DDEBUG",
-//                        "-DHC",   // 启用HC代码
+//                        "-D__ANDROID__",
 //                        "-DJSON_HAS_INT64",  // JsonCpp 64位库编译失败，启用该标记也失败
                         "-DHAVE_ENDIAN_H"
 
@@ -56,13 +56,12 @@ android {
     sourceSets {
         main {
             java {
-//                srcDirs = ['src/main/java', 'generated/main/java']
-//                ...
+                srcDirs = ['src/main/java', 'generated/main/java']
             }
-            proto {
-                // .proto 文件所在路径
-                srcDir '../cpp/Jub_SDK_CXX/protos'
-            }
+//            proto {
+//                // .proto 文件所在路径
+//                srcDir '../cpp/Jub_SDK_CXX/protos'
+//            }
         }
     }
 
@@ -70,25 +69,26 @@ android {
 
 protobuf {
     // Configure the protoc executable
-    protoc {
-        // Download from repositories
-        artifact = 'com.google.protobuf:protoc:3.9.1'
-    }
-    plugins {
-        javalite {
-            // The codegen for lite comes as a separate artifact
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-        }
-    }
+      // 配置 protobuf 编译器
+//    protoc {
+//        // Download from repositories
+//        artifact = 'com.google.protobuf:protoc:3.5.1'
+//    }
+//    plugins {
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+//    }
 
     // 配置生成目录，编译后在 build 目录下生成对应的 java 文件
-    generateProtoTasks {
-        all().each { task ->
-            task.plugins {
-                java { }
-            }
-        }
-    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.plugins {
+//                java { }
+//            }
+//        }
+//    }
 
 }
 

@@ -38,5 +38,5 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG -s -fvisibility=hidden")
 # **************************************************************************************************
 
 # test.out 自定义值，引入外部目录时传入
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../cpp test.out)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../cpp thirdParty.out)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp)
