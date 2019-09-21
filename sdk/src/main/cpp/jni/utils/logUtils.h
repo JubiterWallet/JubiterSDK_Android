@@ -36,7 +36,6 @@ void LogBinary(const char* msg, const unsigned char *pBuf, unsigned long ulSize)
 
 //**************************************************************************************************
 
-#define DEBUG
 #if defined(DEBUG)
 
 #ifdef __ANDROID__

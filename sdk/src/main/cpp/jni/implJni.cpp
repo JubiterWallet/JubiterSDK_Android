@@ -95,7 +95,7 @@ JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jobject obj, jstring mn
     JUB_CHAR_PTR mnemonicPtr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(mnemonic, NULL));
     JUB_RV rv = JUB_CheckMnemonic(mnemonicPtr);
     if (JUBR_OK != rv) {
-        LOG_ERR("JUB_CheckMnemonic rv: %08x", rv);
+        LOG_ERR("JUB_CheckMnemonic rv: %08lx", rv);
         return rv;
     }
     return rv;
@@ -140,7 +140,7 @@ JNIEXPORT int JNICALL native_initDevice(JNIEnv *env, jobject obj) {
 
     JUB_RV rv = JUB_initDevice(initParam);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_initDevice ret: %08x", rv);
+        LOG_ERR("JUB_initDevice ret: %08lx", rv);
         return rv;
     }
     return rv;
@@ -152,7 +152,7 @@ JNIEXPORT jint JNICALL native_startScan(JNIEnv *env, jobject obj, jobject scanCa
 
     JUB_RV rv = JUB_enumDevices();
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_enumDevices rv: %08x", rv);
+        LOG_ERR("JUB_enumDevices rv: %08lx", rv);
         return rv;
     }
     return rv;
@@ -161,7 +161,7 @@ JNIEXPORT jint JNICALL native_startScan(JNIEnv *env, jobject obj, jobject scanCa
 JNIEXPORT jint JNICALL native_stopScan(JNIEnv *env, jobject obj) {
     JUB_RV rv = JUB_stopEnumDevices();
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_stopEnumDevices rv: %08x", rv);
+        LOG_ERR("JUB_stopEnumDevices rv: %08lx", rv);
         return rv;
     }
     return rv;
@@ -177,7 +177,7 @@ JNIEXPORT jint JNICALL native_connectDevice(JNIEnv *env, jobject obj, jstring ad
 
     JUB_RV rv = JUB_connectDevice(pAddress, devType, pHandle, timeout);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_stopEnumDevices rv: %08x", rv);
+        LOG_ERR("JUB_stopEnumDevices rv: %08lx", rv);
         env->ReleaseLongArrayElements(handle, reinterpret_cast<jlong *>(pHandle), 0);
         return rv;
     }
@@ -191,7 +191,7 @@ JNIEXPORT jint JNICALL native_cancelConnect(JNIEnv *env, jobject obj, jstring ad
 
     JUB_RV rv = JUB_cancelConnect(pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_cancelConnect rv: %08x", rv);
+        LOG_ERR("JUB_cancelConnect rv: %08lx", rv);
         env->ReleaseStringUTFChars(address, reinterpret_cast<const char *>(pAddress));
         return rv;
     }
@@ -204,7 +204,7 @@ JNIEXPORT jint JNICALL native_cancelConnect(JNIEnv *env, jobject obj, jstring ad
 JNIEXPORT jint JNICALL native_disconnectDevice(JNIEnv *env, jobject obj, jlong deviceHandle) {
     JUB_RV rv = JUB_disconnectDevice(deviceHandle);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_disconnectDevice rv: %08x", rv);
+        LOG_ERR("JUB_disconnectDevice rv: %08lx", rv);
     }
     return rv;
 }
@@ -213,7 +213,7 @@ JNIEXPORT jint JNICALL native_disconnectDevice(JNIEnv *env, jobject obj, jlong d
 JNIEXPORT jint JNICALL native_isConnectDevice(JNIEnv *env, jobject obj, jlong deviceHandle) {
     JUB_RV rv = JUB_isDeviceConnect(deviceHandle);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_isDeviceConnect rv: %08x", rv);
+        LOG_ERR("JUB_isDeviceConnect rv: %08lx", rv);
     }
     return rv;
 }
@@ -223,7 +223,7 @@ JNIEXPORT jint JNICALL native_isConnectDevice(JNIEnv *env, jobject obj, jlong de
 JNIEXPORT jint JNICALL native_show(JNIEnv *env, jobject obj, jlong contextID) {
     JUB_RV rv = JUB_ShowVirtualPwd(contextID);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_showVirtualPwd rv: %08x", rv);
+        LOG_ERR("JUB_showVirtualPwd rv: %08lx", rv);
     }
     return rv;
 }
@@ -231,7 +231,7 @@ JNIEXPORT jint JNICALL native_show(JNIEnv *env, jobject obj, jlong contextID) {
 JNIEXPORT jint JNICALL native_CancelVirtualPwd(JNIEnv *env, jobject obj, jlong contextID) {
     JUB_RV rv = JUB_CancelVirtualPwd(contextID);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_CancelVirtualPwd rv: %08x", rv);
+        LOG_ERR("JUB_CancelVirtualPwd rv: %08lx", rv);
     }
     return rv;
 }
@@ -247,7 +247,7 @@ JNIEXPORT jint JNICALL native_verifyPIN(JNIEnv *env, jobject obj, jlong contextI
     JUB_ULONG retry;
     JUB_RV ret = JUB_VerifyPIN(contextID, pPin, &retry);
     if (ret != JUBR_OK) {
-        LOG_ERR("JUB_VerifyPIN: %08x", ret);
+        LOG_ERR("JUB_VerifyPIN: %08lx", ret);
     }
     env->ReleaseByteArrayElements(jPin, (jbyte *) pPin, JNI_ABORT);
     return ret;
@@ -413,7 +413,7 @@ native_BTCCreateContext(JNIEnv *env, jobject obj, jintArray jContextId, jboolean
     }
 
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_CreateContextBTC: %08x", rv);
+        LOG_ERR("JUB_CreateContextBTC: %08lx", rv);
     } else {
         LOG_INF("contextID: %d", *pContextID);
     }
@@ -425,7 +425,7 @@ native_BTCCreateContext(JNIEnv *env, jobject obj, jintArray jContextId, jboolean
 JNIEXPORT jint JNICALL native_ClearContext(JNIEnv *env, jobject obj, jint jContextId) {
     JUB_RV rv = JUB_ClearContext(jContextId);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_ClearContext: %08x", rv);
+        LOG_ERR("JUB_ClearContext: %08lx", rv);
     }
     return rv;
 }
@@ -447,7 +447,7 @@ JNIEXPORT jobject JNICALL native_BTC_ShowAddress(JNIEnv *env, jobject obj, jlong
     JUB_CHAR_PTR pAddress = NULL;
     JUB_RV rv = JUB_GetAddressBTC(static_cast<JUB_UINT16>(contextID), path, BOOL_TRUE, &pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetAddressBTC: %08x", rv);
+        LOG_ERR("JUB_GetAddressBTC: %08lx", rv);
 //        errorCode = static_cast<int>(rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
@@ -465,7 +465,7 @@ JNIEXPORT jobject JNICALL native_BTC_SetMyAddress(JNIEnv *env, jobject obj, jlon
     JUB_CHAR_PTR pAddress = NULL;
     JUB_RV rv = JUB_SetMyAddressBTC(static_cast<JUB_UINT16>(contextID), path, &pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_SetMyAddressBTC: %08x", rv);
+        LOG_ERR("JUB_SetMyAddressBTC: %08lx", rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
     jstring address = env->NewStringUTF(pAddress);
@@ -501,7 +501,7 @@ JNIEXPORT jobjectArray JNICALL native_BTCGetAddress(JNIEnv *env, jobject obj, jl
 
         JUB_RV rv = JUB_GetHDNodeBTC(contextID, path, &xpub);
         if (rv != JUBR_OK) {
-            LOG_ERR("JUB_GetHDNodeBTC: %08x", rv);
+            LOG_ERR("JUB_GetHDNodeBTC: %08lx", rv);
             env->SetObjectArrayElement(array, 2 * i, NULL);
             env->SetObjectArrayElement(array, 2 * i + 1, NULL);
         } else {
@@ -509,7 +509,7 @@ JNIEXPORT jobjectArray JNICALL native_BTCGetAddress(JNIEnv *env, jobject obj, jl
             JUB_CHAR_PTR pAddress = NULL;
             rv = JUB_GetAddressBTC(contextID, path, BOOL_FALSE, &pAddress);
             if (rv != JUBR_OK) {
-                LOG_ERR("JUB_GetAddressBTC: %08x", rv);
+                LOG_ERR("JUB_GetAddressBTC: %08lx", rv);
                 env->SetObjectArrayElement(array, 2 * i, jsXpub);
                 env->SetObjectArrayElement(array, 2 * i + 1, NULL);
             } else {
@@ -533,7 +533,7 @@ JNIEXPORT jobject JNICALL native_BTCGetMainHDNode(JNIEnv *env, jobject obj, jlon
     JUB_CHAR_PTR xpub;
     JUB_RV rv = JUB_GetMainHDNodeBTC(contextID, &xpub);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetHDNodeBTC: %08x", rv);
+        LOG_ERR("JUB_GetHDNodeBTC: %08lx", rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
     jstring mainPub = env->NewStringUTF(xpub);
@@ -551,7 +551,7 @@ JNIEXPORT jobject JNICALL native_BTCGetMainHDNode(JNIEnv *env, jobject obj, jlon
 //    std::vector<OUTPUT_BTC> btcOutputVector;
 //    JUB_RV rv = JUB_ParseTransactionBTC(contextID, pRaw, btcInputVector, btcOutputVector, &lockTime);
 //    if (rv != JUBR_OK) {
-//        LOG_ERR("JUB_ParseTransactionBTC: %08x", rv);
+//        LOG_ERR("JUB_ParseTransactionBTC: %08lx", rv);
 //        errorCode = rv;
 //        return NULL;
 //    }
@@ -680,7 +680,7 @@ JNIEXPORT jint JNICALL native_ETHCreateContext(JNIEnv *env, jobject obj, jintArr
     cfg.chainID = root[CHAIN_ID].asInt();
     int rv = JUB_CreateContextETH(cfg, static_cast<JUB_UINT16>(deviceInfo), pContextID);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetAddressETH: %08x", rv);
+        LOG_ERR("JUB_GetAddressETH: %08lx", rv);
     } else {
         LOG_INF("JUB_GetAddressETH: %d", *pContextID);
     }
@@ -747,7 +747,7 @@ JNIEXPORT jobject JNICALL native_ETH_ERC20_Transaction(JNIEnv *env, jobject obj,
     char *abi = nullptr;
     JUB_RV rv = JUB_BuildERC20AbiETH(contextID, token_to, token_value, &abi);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_BuildERC20AbiETH: %08x", rv);
+        LOG_ERR("JUB_BuildERC20AbiETH: %08lx", rv);
         env->ReleaseStringUTFChars(jJSON, pJSON);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
@@ -780,7 +780,7 @@ JNIEXPORT jint JNICALL native_ETH_Set_ERC20_Token(JNIEnv *env, jobject obj, jlon
 
     JUB_RV rv = 0; // JUB_SetERC20ETHToken(contextID, tokenName, unitDP, contractAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_SetERC20ETHToken: %08x", rv);
+        LOG_ERR("JUB_SetERC20ETHToken: %08lx", rv);
         env->ReleaseStringUTFChars(jJSON, pJSON);
     }
     return rv;
@@ -805,7 +805,7 @@ JNIEXPORT jint JNICALL native_IsInitialize(JNIEnv *env, jobject obj, jlong devic
     JUB_UINT16 deviceId = deviceID;
     JUB_RV rv = JUB_IsInitialize(deviceId);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_IsInitialize rv: %08x", rv);
+        LOG_ERR("JUB_IsInitialize rv: %08lx", rv);
     }
     return rv;
 }
@@ -814,7 +814,7 @@ JNIEXPORT jint JNICALL native_IsBootLoader(JNIEnv *env, jobject obj, jlong devic
     JUB_UINT16 deviceId = deviceID;
     JUB_RV rv = JUB_IsBootLoader(deviceId);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_IsBootLoader rv: %08x", rv);
+        LOG_ERR("JUB_IsBootLoader rv: %08lx", rv);
     }
     return rv;
 }
@@ -823,7 +823,7 @@ JNIEXPORT jstring JNICALL native_EnumSupportCoins(JNIEnv *env, jobject obj, jlon
     JUB_CHAR_PTR pCoinList = NULL;
     JUB_RV rv = Jub_EnumSupportCoins(deviceID, &pCoinList);
     if (rv != JUBR_OK) {
-        LOG_ERR("Jub_EnumSupportCoins rv: %08x", rv);
+        LOG_ERR("Jub_EnumSupportCoins rv: %08lx", rv);
     }
     jstring coinList = env->NewStringUTF(pCoinList);
     JUB_FreeMemory(pCoinList);
@@ -858,7 +858,7 @@ JNIEXPORT jobjectArray JNICALL native_ETHGetAddress(JNIEnv *env, jobject obj, jl
 
         JUB_RV rv = JUB_GetHDNodeETH(contextID, XPUB, path, &xpub);
         if (rv != JUBR_OK) {
-            LOG_ERR("JUB_GetHDNodeBTC: %08x", rv);
+            LOG_ERR("JUB_GetHDNodeBTC: %08lx", rv);
             env->SetObjectArrayElement(array, 2 * i, NULL);
             env->SetObjectArrayElement(array, 2 * i + 1, NULL);
         } else {
@@ -866,7 +866,7 @@ JNIEXPORT jobjectArray JNICALL native_ETHGetAddress(JNIEnv *env, jobject obj, jl
             JUB_CHAR_PTR pAddress = NULL;
             rv = JUB_GetAddressETH(contextID, path, BOOL_FALSE, &pAddress);
             if (rv != JUBR_OK) {
-                LOG_ERR("JUB_GetAddressBTC: %08x", rv);
+                LOG_ERR("JUB_GetAddressBTC: %08lx", rv);
                 env->SetObjectArrayElement(array, 2 * i, jsXpub);
                 env->SetObjectArrayElement(array, 2 * i + 1, NULL);
             } else {
@@ -893,7 +893,7 @@ JNIEXPORT jobject JNICALL native_ETHShowAddress(JNIEnv *env, jobject obj, jlong 
     JUB_CHAR_PTR pAddress = NULL;
     JUB_RV rv = JUB_GetAddressETH(static_cast<JUB_UINT16>(contextID), path, BOOL_TRUE, &pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetAddressBTC: %08x", rv);
+        LOG_ERR("JUB_GetAddressBTC: %08lx", rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
     jstring address = env->NewStringUTF(pAddress);
@@ -916,7 +916,7 @@ JNIEXPORT jobject JNICALL native_ETHSetAddress(JNIEnv *env, jobject obj, jlong c
     JUB_CHAR_PTR pAddress = NULL;
     JUB_RV rv = JUB_SetMyAddressETH(static_cast<JUB_UINT16>(contextID), path, &pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_SetMyAddressETH: %08x", rv);
+        LOG_ERR("JUB_SetMyAddressETH: %08lx", rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
     jstring address = env->NewStringUTF(pAddress);
@@ -929,7 +929,7 @@ JNIEXPORT jobject JNICALL native_ETHGetMainHDNode(JNIEnv *env, jobject obj, jlon
     JUB_CHAR_PTR xpub;
     JUB_RV rv = JUB_GetMainHDNodeETH(contextID, XPUB, &xpub);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetMainHDNodeETH: %08x", rv);
+        LOG_ERR("JUB_GetMainHDNodeETH: %08lx", rv);
         return newJavaObject(env, RESULT_CLASS, rv, nullptr);
     }
     jstring mainPub = env->NewStringUTF(xpub);
@@ -1005,7 +1005,7 @@ JNIEXPORT jint JNICALL native_HCCreateContext(JNIEnv *env, jobject obj, jintArra
     }
 
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_CreateContextBTC: %08x", rv);
+        LOG_ERR("JUB_CreateContextBTC: %08lx", rv);
     } else {
         LOG_INF("contextID: %d", *pContextID);
     }
@@ -1026,7 +1026,7 @@ JNIEXPORT jint JNICALL native_HCCreateContext(JNIEnv *env, jobject obj, jintArra
 //    cfg.mainPath = (char *) root[MAIN_PATH].asCString();
 //    JUB_RV rv = JUB_CreateContextHC(cfg, deviceInfo, pContextID);
 //    if (rv != JUBR_OK) {
-//        LOG_ERR("JUB_CreateContextHC: %08x", rv);
+//        LOG_ERR("JUB_CreateContextHC: %08lx", rv);
 //    } else {
 //        LOG_INF("contextID: %d", *pContextID);
 //    }
@@ -1062,7 +1062,7 @@ JNIEXPORT jobjectArray native_HCGetAddress(JNIEnv *env, jobject obj, jlong conte
 
         JUB_RV rv = JUB_GetHDNodeHC(contextID, path, &xpub);
         if (rv != JUBR_OK) {
-            LOG_ERR("JUB_GetHDNodeHC: %08x", rv);
+            LOG_ERR("JUB_GetHDNodeHC: %08lx", rv);
             env->SetObjectArrayElement(array, 2 * i, NULL);
             env->SetObjectArrayElement(array, 2 * i + 1, NULL);
         } else {
@@ -1070,7 +1070,7 @@ JNIEXPORT jobjectArray native_HCGetAddress(JNIEnv *env, jobject obj, jlong conte
             JUB_CHAR_PTR pAddress = NULL;
             rv = JUB_GetAddressHC(contextID, path, BOOL_FALSE, &pAddress);
             if (rv != JUBR_OK) {
-                LOG_ERR("JUB_GetAddressHC: %08x", rv);
+                LOG_ERR("JUB_GetAddressHC: %08lx", rv);
                 env->SetObjectArrayElement(array, 2 * i, jsXpub);
                 env->SetObjectArrayElement(array, 2 * i + 1, NULL);
             } else {
@@ -1097,7 +1097,7 @@ JNIEXPORT jstring JNICALL native_HCShowAddress(JNIEnv *env, jobject obj, jlong c
     JUB_CHAR_PTR pAddress = NULL;
     JUB_RV rv = JUB_GetAddressHC(static_cast<JUB_UINT16>(contextID), path, BOOL_TRUE, &pAddress);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetAddressHC: %08x", rv);
+        LOG_ERR("JUB_GetAddressHC: %08lx", rv);
         errorCode = static_cast<int>(rv);
         return NULL;
     }
@@ -1116,7 +1116,7 @@ JNIEXPORT jstring native_HCGetMainHDNode(JNIEnv *env, jobject obj, jlong context
     JUB_CHAR_PTR xpub;
     JUB_RV rv = JUB_GetMainHDNodeHC(contextID, &xpub);
     if (rv != JUBR_OK) {
-        LOG_ERR("JUB_GetMainHDNodeHC: %08x", rv);
+        LOG_ERR("JUB_GetMainHDNodeHC: %08lx", rv);
         errorCode = rv;
         return NULL;
     }

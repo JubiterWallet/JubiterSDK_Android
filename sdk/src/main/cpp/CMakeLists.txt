@@ -10,9 +10,11 @@ message(">>>> ndk")
 # **************************************************************************************************
 
 # 引入 protobuf 头文件
-set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX/protos/libs/include)
-#set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/protobuf_cpp/protobuf/src)
+set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX/protos/protobuf_java/src)
+#set(PROTOBUF_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/protobuf/protobuf_java/src)
 include_directories(${PROTOBUF_PATH}/)
+
+message(">>> protobuf 头文件: ${PROTOBUF_PATH}")
 
 
 # 引入外部库路径
@@ -63,7 +65,7 @@ elseif(CMAKE_BUILD_TYPE MATCHES "Release")
 #    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/release)
 endif()
 
-link_directories(${PROTOBUF_PATH}/../${ANDROID_ABI})
+#link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX/protos/cpp/libs/${ANDROID_ABI})
 
 # **************************************************************************************************
 #                                        生成动态库
@@ -85,8 +87,7 @@ target_link_libraries(
                       coreNDK
                       JUB_SDK
                       TrezorCrypto
-                      protobuf
                       BTSDK
-
+        libprotobuf
                       ${libLog}
 )
