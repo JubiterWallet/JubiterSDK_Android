@@ -17,7 +17,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 
 
 # 编译器编译时产生调试信息(保证 RELEASE 版中没有 -g，否则会让最终的库变大)
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
+#set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 
 # 只有在 RELEASE 版时才有效
@@ -25,7 +25,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g")
 # -DNDEBUG 不DEBUG
 # -s 移除符号表（减小 .so 体积）
 # -fvisibility=hidden 隐藏符号表（与‘-s’有何区别？是否有冲突）
-set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG -s -fvisibility=hidden")
+#set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG -s -fvisibility=hidden")
 
 # 修改生成的so位置， libs/armeabi/libNDK.so
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${ANDROID_ABI}/libs)
