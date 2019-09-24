@@ -61,38 +61,44 @@ jstring buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
 jstring buildPbRvUInt(JNIEnv *env,JUB_RV rv,uint32_t res){
     JUB::Proto::Common::ResultInt resultInt;
     resultInt.set_rv(rv);
-    if(JUBR_OK){resultInt.set_res(res);}
+    if(JUBR_OK == rv){resultInt.set_res(res);}
 
     std::string result;
     resultInt.SerializeToString(&result);
     return env->NewStringUTF(result.c_str());
 }
+std::string jstring2stdString(JNIEnv *env,jstring jstr){
+    char *pStr = const_cast<char *>(env->GetStringUTFChars(jstr, NULL));
+    std::string stdString = pStr;
+    env->ReleaseStringUTFChars(jstr, pStr);
+    return stdString;
+}
 
 template <typename T>
 bool parseFromJString(JNIEnv *env ,jstring jstr,T* pb){
-    JUB_CHAR_PTR pStr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(jstr, NULL));
+    auto pStr = jstring2stdString(env,jstr);
     return pb->ParseFromString(pStr);
 }
 
 bool parseBip32Path(JNIEnv *env,jstring jstr,BIP32_Path* bip32Path){
     JUB::Proto::Common::Bip32Path pbBip32Path;
     bool rv = parseFromJString(env,jstr,&pbBip32Path);
-    if(rv == JUBR_OK){
+    if(rv){
         bip32Path->addressIndex = pbBip32Path.addressindex();
         bip32Path->change = (JUB_ENUM_BOOL)pbBip32Path.change();
     }
     return rv;
 }
 
+
+
 //================================== 软件钱包 ===========================================
 
 JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstring param) {
-    char *pParam = const_cast<char *>(env->GetStringUTFChars(param, NULL));
-    std::string paramString = pParam;
+    std::string paramString = jstring2stdString(env,param);
 
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH_Parse(paramString, &strength);
-    env->ReleaseStringUTFChars(param, pParam);
 
     JUB_MNEMONIC_STRENGTH jubStrength;
     switch (strength) {
@@ -116,45 +122,39 @@ JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstr
 
 
 JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jobject obj, jstring mnemonic) {
-    JUB_CHAR_PTR mnemonicPtr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(mnemonic, NULL));
-    JUB_RV rv = JUB_CheckMnemonic(mnemonicPtr);
+    std::string strMnemonic = jstring2stdString(env,mnemonic);
+    JUB_RV rv = JUB_CheckMnemonic(strMnemonic.c_str());
     if (JUBR_OK != rv) {
         LOG_ERR("JUB_CheckMnemonic rv: %08lx", rv);
-        env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
         return rv;
     }
-    env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
     return rv;
 }
 
 
 JNIEXPORT jstring JNICALL
 native_GenerateSeed(JNIEnv *env, jobject obj, jstring mnemonic, jstring passphrase) {
-    JUB_CHAR_PTR mnemonicPtr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(mnemonic, NULL));
-    JUB_CHAR_PTR passphraseStr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(passphrase, NULL));
+    std::string strMnemonic = jstring2stdString(env,mnemonic);
+    std::string strPassphrase = jstring2stdString(env,passphrase);
     JUB_BYTE seed[64] = {0,};
-    JUB_RV rv = JUB_GenerateSeed(mnemonicPtr, passphraseStr, seed, nullptr);
+    JUB_RV rv = JUB_GenerateSeed(strMnemonic.c_str(), strPassphrase.c_str(), seed, nullptr);
     std::string strSeed = CharPtr2HexStr(seed, 64);
-    env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
-    env->ReleaseStringUTFChars(passphrase, passphraseStr);
     return buildPbRvString(env, rv, strSeed);
 
 }
 
 JNIEXPORT jstring JNICALL
 native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj, jstring seed, jstring curve) {
-    char *pParam = const_cast<char *>(env->GetStringUTFChars(curve, NULL));
-    const char *pSeed = env->GetStringUTFChars(seed, NULL);
-    std::string paramString = pParam;
+    std::string strCurve = jstring2stdString(env,curve);
+    std::string strSeed = jstring2stdString(env,seed);
 
-    JUB::Proto::Common::CURVES enum_cure;
-    JUB::Proto::Common::CURVES_Parse(paramString, &enum_cure);
+    JUB::Proto::Common::CURVES enum_curve;
+    JUB::Proto::Common::CURVES_Parse(strCurve, &enum_curve);
 
-    std::vector<unsigned char> vSeed = HexStr2CharPtr(pSeed);
+    std::vector<unsigned char> vSeed = HexStr2CharPtr(strSeed);
 
     JUB_CHAR_PTR xprv = nullptr;
-    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_CURVES) enum_cure, &xprv);
-    env->ReleaseStringUTFChars(curve, pParam);
+    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_CURVES) enum_curve, &xprv);
     return buildPbRvString(env, rv, xprv);
 }
 
@@ -281,11 +281,10 @@ JNIEXPORT jstring JNICALL native_GetDeviceCert(JNIEnv *env, jobject obj, jlong d
     return buildPbRvString(env,rv,cert);
 }
 
-JNIEXPORT jstring JNICALL native_SendAPDU(JNIEnv *env, jobject obj, jlong deviceID,
-                                          jstring jApdu) {
-    JUB_CHAR_PTR pApdu = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(jApdu, NULL));
+JNIEXPORT jstring JNICALL native_SendAPDU(JNIEnv *env, jobject obj, jlong deviceID,jstring jApdu) {
+    auto strAPDU = jstring2stdString(env,jApdu);
     JUB_CHAR_PTR response = nullptr;
-    JUB_RV rv = JUB_SendOneApdu((JUB_UINT16) deviceID, pApdu, &response);
+    JUB_RV rv = JUB_SendOneApdu((JUB_UINT16) deviceID, (JUB_CHAR_PTR)strAPDU.c_str(), &response);
     return buildPbRvString(env,rv,response);
 }
 
@@ -317,9 +316,9 @@ JNIEXPORT jstring JNICALL native_EnumSupportCoins(JNIEnv *env, jobject obj, jlon
 }
 
 JNIEXPORT jstring JNICALL native_GetAppletVersion(JNIEnv *env, jobject obj, jlong deviceID, jstring appID) {
-    JUB_CHAR_PTR pAppID = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(appID, NULL));
+    auto strAppID = jstring2stdString(env,appID);
     JUB_CHAR_PTR appVersion = NULL;
-    JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, pAppID, &appVersion);
+    JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR)strAppID.c_str(), &appVersion);
     return buildPbRvString(env,rv,appVersion);
 }
 
@@ -343,9 +342,9 @@ JNIEXPORT jint JNICALL native_CancelVirtualPwd(JNIEnv *env, jobject obj, jint co
 }
 
 JNIEXPORT jstring JNICALL native_VerifyPIN(JNIEnv *env, jobject obj, jlong contextID, jstring jPin) {
-    JUB_CHAR_PTR pin = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(jPin, NULL));
+    auto strPin = jstring2stdString(env,jPin);
     JUB_ULONG retry;
-    JUB_RV rv = JUB_VerifyPIN(contextID, pin, &retry);
+    JUB_RV rv = JUB_VerifyPIN(contextID, (JUB_CHAR_PTR)strPin.c_str(), &retry);
     return buildPbRvUInt(env,rv,retry);
 }
 
@@ -353,14 +352,14 @@ JNIEXPORT jstring JNICALL native_VerifyPIN(JNIEnv *env, jobject obj, jlong conte
 
 JNIEXPORT jstring JNICALL native_CreateContextBTC_soft(JNIEnv *env, jobject obj,jstring jcfg, jstring xprv) {
     JUB::Proto::Bitcoin::ContextCfgBTC pbCfg;
-    JUB_CHAR_PTR _xprv = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(xprv, NULL));
+    auto strXprv = jstring2stdString(env,xprv);
     if(parseFromJString(env,jcfg,&pbCfg)){
         CONTEXT_CONFIG_BTC cfg;
         cfg.mainPath = (JUB_CHAR_PTR)pbCfg.main_path().c_str();
         cfg.coinType = (JUB_ENUM_COINTYPE_BTC)pbCfg.coin_type();
         cfg.transType = (JUB_BTC_TRANS_TYPE)pbCfg.trans_type();
         JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextBTC_soft(cfg,_xprv,&contextID);
+        JUB_RV rv = JUB_CreateContextBTC_soft(cfg,(JUB_CHAR_PTR)strXprv.c_str(),&contextID);
         return buildPbRvUInt(env,rv,contextID);
     }else{
         return buildPbRvUInt(env,JUBR_ARGUMENTS_BAD,0);
@@ -479,22 +478,22 @@ JNIEXPORT jstring JNICALL native_SignTransactionBTC(JNIEnv *env, jobject obj, ji
 
 JNIEXPORT jint JNICALL native_SetUnitBTC(JNIEnv *env, jobject obj, jint contextID,jstring junit ){
 
-    char* pParam = const_cast<char *>(env->GetStringUTFChars(junit, NULL));
-    std::string paramString = pParam;
+    auto strUnit = jstring2stdString(env,junit);
 
     JUB::Proto::Bitcoin::BTC_UNIT_TYPE unit;
-    JUB::Proto::Bitcoin::BTC_UNIT_TYPE_Parse(paramString,&unit);
+    JUB::Proto::Bitcoin::BTC_UNIT_TYPE_Parse(strUnit,&unit);
     JUB_RV rv = JUB_SetUnitBTC(contextID,(JUB_BTC_UNIT_TYPE)unit);
     return rv;
 }
 
 JNIEXPORT jstring JNICALL native_BuildUSDTOutputs(JNIEnv *env, jobject obj, jint contextID,jstring USDTTO,jlong amount) {
 
-    char* pUSDTTO = const_cast<char *>(env->GetStringUTFChars(USDTTO, NULL));
+
+    auto strUSDTTO = jstring2stdString(env,USDTTO);
 
     JUB::Proto::Common::ResultAny resultOutputs;
     OUTPUT_BTC USDT_outputs[2] = {};
-    JUB_RV rv = JUB_BuildUSDTOutputs(contextID,pUSDTTO,amount,USDT_outputs);
+    JUB_RV rv = JUB_BuildUSDTOutputs(contextID,(JUB_CHAR_PTR)strUSDTTO.c_str(),amount,USDT_outputs);
     resultOutputs.set_rv(rv);
     if(rv == JUBR_OK){
         //first output is return0,second is standard
@@ -547,14 +546,14 @@ JNIEXPORT jstring JNICALL native_CreateContextETH(JNIEnv *env, jobject obj, jstr
 
 JNIEXPORT jstring JNICALL native_CreateContextETH_soft(JNIEnv *env, jobject obj, jstring jcfg, jstring xprv) {
 
-    JUB_CHAR_PTR _xprv = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(xprv, NULL));
+    auto strXPRV = jstring2stdString(env,xprv);
     JUB::Proto::Ethereum::ContextCfgETH pbCfg;
     if(parseFromJString(env,jcfg,&pbCfg)){
         CONTEXT_CONFIG_ETH cfg;
         cfg.mainPath = (JUB_CHAR_PTR)pbCfg.main_path().c_str();
         cfg.chainID = pbCfg.chainid();
         JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextETH_soft(cfg,_xprv,&contextID);
+        JUB_RV rv = JUB_CreateContextETH_soft(cfg,(JUB_CHAR_PTR)strXPRV.c_str(),&contextID);
         return buildPbRvUInt(env,rv,contextID);
     }else{
         return buildPbRvUInt(env,JUBR_ARGUMENTS_BAD,0);
@@ -563,9 +562,9 @@ JNIEXPORT jstring JNICALL native_CreateContextETH_soft(JNIEnv *env, jobject obj,
 
 
 JNIEXPORT jstring JNICALL native_GetMainHDNodeETH(JNIEnv *env, jobject obj, jint contextID,jstring format) {
-    JUB_CHAR_PTR pFormat = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(format, NULL));
+    auto strFormat = jstring2stdString(env,format);
     JUB::Proto::Ethereum::ENUM_PUB_FORMAT _format;
-    JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(pFormat,&_format);
+    JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(strFormat,&_format);
 
     JUB_CHAR_PTR xpub;
     JUB_RV rv = JUB_GetMainHDNodeETH(contextID, (JUB_ETH_PUB_FORMAT)_format, &xpub);
@@ -574,9 +573,9 @@ JNIEXPORT jstring JNICALL native_GetMainHDNodeETH(JNIEnv *env, jobject obj, jint
 
 JNIEXPORT jstring JNICALL native_GetHDNodeETH(JNIEnv *env, jobject obj, jint contextID,jstring format,jstring bip32) {
 
-    JUB_CHAR_PTR pFormat = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(format, NULL));
+    auto strFormat = jstring2stdString(env,format);
     JUB::Proto::Ethereum::ENUM_PUB_FORMAT _format;
-    JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(pFormat,&_format);
+    JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(strFormat,&_format);
 
     BIP32_Path bip32Path;
     if(parseBip32Path(env,bip32,&bip32Path)){
@@ -612,10 +611,10 @@ JNIEXPORT jstring JNICALL native_SetMyAddressETH(JNIEnv *env, jobject obj, jint 
 
 
 JNIEXPORT jstring JNICALL native_BuildERC20AbiETH(JNIEnv *env, jobject obj, jint contextID, jstring address,jstring amountInWei){
-    char* pAddress = const_cast<char *>(env->GetStringUTFChars(address, NULL));
-    char* pAmount  = const_cast<char *>(env->GetStringUTFChars(amountInWei, NULL));
+    auto strAddress = jstring2stdString(env,address);
+    auto strAmount  = jstring2stdString(env,amountInWei);
     JUB_CHAR_PTR abi;
-    JUB_RV rv = JUB_BuildERC20AbiETH(contextID,pAddress,pAmount,&abi);
+    JUB_RV rv = JUB_BuildERC20AbiETH(contextID,(JUB_CHAR_PTR)strAddress.c_str(),(JUB_CHAR_PTR)strAmount.c_str(),&abi);
 
     return buildPbRvString(env,rv,abi);
 }
