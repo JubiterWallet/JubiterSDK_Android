@@ -16,6 +16,7 @@
 #ifdef HC
 #include <JUB_SDK_Hcash.h>
 #else
+
 #include <JUB_core.h>
 
 #endif
@@ -23,7 +24,7 @@
 
 #ifndef HC
 // 标准钱包的 class path
-#define NATIVE_API_CLASS "com/jubiter/jubnative/NativeApi"
+#define NATIVE_API_CLASS "com/jubiter/sdk/jni/NativeApi"
 // jn 接口返回的结果
 #define RESULT_CLASS     "com/jubiter/jubnative/utils/JniResult"
 #else
@@ -36,21 +37,21 @@
 JavaVM *g_vm = NULL;
 
 //==================helper=========================
-jstring buildPbRvString(JNIEnv *env,JUB_RV rv,JUB_CHAR_PTR str){
+jstring buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
     JUB::Proto::Common::ResultString resultString;
     resultString.set_rv(rv);
-    if(JUBR_OK){resultString.set_res(str);}
+    if (JUBR_OK == rv) { resultString.set_res(str); }
 
-    JUB_FreeMemory(str);
     std::string result;
     resultString.SerializeToString(&result);
+    JUB_FreeMemory(str);
     return env->NewStringUTF(result.c_str());
 }
 
-jstring buildPbRvString(JNIEnv *env,JUB_RV rv,std::string str){
+jstring buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
     JUB::Proto::Common::ResultString resultString;
     resultString.set_rv(rv);
-    if(JUBR_OK){resultString.set_res(str);}
+    if (JUBR_OK == rv) { resultString.set_res(str); }
 
     std::string result;
     resultString.SerializeToString(&result);
@@ -86,11 +87,12 @@ bool parseBip32Path(JNIEnv *env,jstring jstr,BIP32_Path* bip32Path){
 //================================== 软件钱包 ===========================================
 
 JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstring param) {
-    char* pParam = const_cast<char *>(env->GetStringUTFChars(param, NULL));
+    char *pParam = const_cast<char *>(env->GetStringUTFChars(param, NULL));
     std::string paramString = pParam;
 
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH_Parse(paramString, &strength);
+    env->ReleaseStringUTFChars(param, pParam);
 
     JUB_MNEMONIC_STRENGTH jubStrength;
     switch (strength) {
@@ -109,7 +111,7 @@ JNIEXPORT jstring JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, jstr
 
     JUB_CHAR_PTR pMnemonic;
     JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &pMnemonic);
-    return buildPbRvString(env,rv,pMnemonic);
+    return buildPbRvString(env, rv, pMnemonic);
 }
 
 
@@ -118,25 +120,31 @@ JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jobject obj, jstring mn
     JUB_RV rv = JUB_CheckMnemonic(mnemonicPtr);
     if (JUBR_OK != rv) {
         LOG_ERR("JUB_CheckMnemonic rv: %08lx", rv);
+        env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
         return rv;
     }
+    env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
     return rv;
 }
 
 
-JNIEXPORT jstring JNICALL native_GenerateSeed(JNIEnv *env, jobject obj, jstring mnemonic, jstring passphrase) {
+JNIEXPORT jstring JNICALL
+native_GenerateSeed(JNIEnv *env, jobject obj, jstring mnemonic, jstring passphrase) {
     JUB_CHAR_PTR mnemonicPtr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(mnemonic, NULL));
     JUB_CHAR_PTR passphraseStr = const_cast<JUB_CHAR_PTR>(env->GetStringUTFChars(passphrase, NULL));
     JUB_BYTE seed[64] = {0,};
     JUB_RV rv = JUB_GenerateSeed(mnemonicPtr, passphraseStr, seed, nullptr);
-    std::string strSeed = CharPtr2HexStr(seed,64);
-    return buildPbRvString(env,rv,strSeed);
+    std::string strSeed = CharPtr2HexStr(seed, 64);
+    env->ReleaseStringUTFChars(mnemonic, mnemonicPtr);
+    env->ReleaseStringUTFChars(passphrase, passphraseStr);
+    return buildPbRvString(env, rv, strSeed);
 
 }
 
-JNIEXPORT jstring JNICALL native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj,jstring seed,jstring curve){
-    char* pParam = const_cast<char *>(env->GetStringUTFChars(curve, NULL));
-    const char* pSeed = env->GetStringUTFChars(seed, NULL);
+JNIEXPORT jstring JNICALL
+native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj, jstring seed, jstring curve) {
+    char *pParam = const_cast<char *>(env->GetStringUTFChars(curve, NULL));
+    const char *pSeed = env->GetStringUTFChars(seed, NULL);
     std::string paramString = pParam;
 
     JUB::Proto::Common::CURVES enum_cure;
@@ -145,8 +153,9 @@ JNIEXPORT jstring JNICALL native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj
     std::vector<unsigned char> vSeed = HexStr2CharPtr(pSeed);
 
     JUB_CHAR_PTR xprv = nullptr;
-    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0],vSeed.size(),(JUB_CURVES)enum_cure,&xprv);
-    return buildPbRvString(env,rv,xprv);
+    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_CURVES) enum_cure, &xprv);
+    env->ReleaseStringUTFChars(curve, pParam);
+    return buildPbRvString(env, rv, xprv);
 }
 
 
@@ -289,7 +298,8 @@ JNIEXPORT jboolean JNICALL native_IsBootLoader(JNIEnv *env, jobject obj, jlong d
 }
 
 JNIEXPORT jint JNICALL native_SetTimeOut(JNIEnv *env, jobject obj, jlong contextID, jint jTimeOut) {
-    return static_cast<jint>(JUB_SetTimeOut(static_cast<JUB_UINT16>(contextID), static_cast<JUB_UINT16>(jTimeOut)));
+    return static_cast<jint>(JUB_SetTimeOut(static_cast<JUB_UINT16>(contextID),
+                                            static_cast<JUB_UINT16>(jTimeOut)));
 }
 
 JNIEXPORT jstring JNICALL native_EnumApplets(JNIEnv *env, jobject obj, jlong deviceID) {
@@ -1067,32 +1077,47 @@ static JNINativeMethod gMethods[] = {
         "(Ljava/lang/String;)Ljava/lang/String;",
         (void *) native_GenerateMnemonic
     },
+    {
+        "nativeCheckMnemonic",
+        "(Ljava/lang/String;)I",
+        (void *) native_CheckMnemonic
+    },
+    {
+        "nativeGenerateSeed",
+        "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        (void *) native_GenerateSeed
+    },
+    {
+        "nativeSeedToMasterPrivateKey",
+        "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        (void *) native_SeedToMasterPrivateKey
+    },
 #ifdef HC
-    {
-        "nativeHCCreateContext",
-        "([IZLjava/lang/String;J)I",
-        (void *) native_HCCreateContext
-    },
-    {
-        "nativeHCGetAddress",
-        "(JLjava/lang/String;)[Ljava/lang/String;",
-        (void *) native_HCGetAddress
-    },
-    {
-        "nativeHCShowAddress",
-        "(JII)Ljava/lang/String;",
-        (void *) native_HCShowAddress
-    },
-    {
-        "nativeHCGetMainHDNode",
-        "(J)Ljava/lang/String;",
-        (void *) native_HCGetMainHDNode
-    },
-    {
-        "nativeHCTransaction",
-        "(JLjava/lang/String;)Ljava/lang/String;",
-        (void *) native_HCTransaction
-    },
+{
+    "nativeHCCreateContext",
+    "([IZLjava/lang/String;J)I",
+    (void *) native_HCCreateContext
+},
+{
+    "nativeHCGetAddress",
+    "(JLjava/lang/String;)[Ljava/lang/String;",
+    (void *) native_HCGetAddress
+},
+{
+    "nativeHCShowAddress",
+    "(JII)Ljava/lang/String;",
+    (void *) native_HCShowAddress
+},
+{
+    "nativeHCGetMainHDNode",
+    "(J)Ljava/lang/String;",
+    (void *) native_HCGetMainHDNode
+},
+{
+    "nativeHCTransaction",
+    "(JLjava/lang/String;)Ljava/lang/String;",
+    (void *) native_HCTransaction
+},
 
 #endif
 };
