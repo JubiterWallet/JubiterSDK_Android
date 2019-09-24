@@ -68,11 +68,11 @@ android {
 }
 
 //protobuf {
-//    // Configure the protoc executable
-//      // 配置 protobuf 编译器
+////     Configure the protoc executable
+////       配置 protobuf 编译器
 //    protoc {
 //        // Download from repositories
-//        artifact = 'com.google.protobuf:protoc:3.5.2'
+//        artifact = 'com.google.protobuf:protoc:3.9.1'
 //
 //        // 自定义编译器位置
 ////        path = 'D:\\Softwares\\protobuf-java-3.9.1\\protobuf-3.9.1'
@@ -84,12 +84,12 @@ android {
 //        }
 //    }
 //
-//    // 配置生成目录，编译后在 build 目录下生成对应的 java 文件
-//    // Starting from Protobuf 3.8.0, lite code generation is built into protoc's "java" output
+////     配置生成目录，编译后在 build 目录下生成对应的 java 文件
+////     Starting from Protobuf 3.8.0, lite code generation is built into protoc's "java" output
 //    generateProtoTasks {
 //        all().each { task ->
-//            task.plugins {
-//                javalite {
+//            task.builtins  {
+//                java {
 ////                    option "lite"
 //                }
 //            }
@@ -109,7 +109,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     // android 推荐使用 protobuf-lite
-//    implementation 'com.google.protobuf:protobuf-javalite:3.5.1'
-//    implementation 'com.google.protobuf:protobuf-java:3.9.1'
+//    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
+    implementation 'com.google.protobuf:protobuf-java:3.9.1'
 
 }
