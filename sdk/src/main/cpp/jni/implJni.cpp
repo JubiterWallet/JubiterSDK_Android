@@ -281,8 +281,12 @@ JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jobject obj,jlong
         deviceInfo.set_sn(info.sn);
         deviceInfo.set_pinretry(info.pinRetry);
         deviceInfo.set_pinmaxretry(info.pinMaxRetry);
-        deviceInfo.set_bleversion(info.bleVersion);
-        deviceInfo.set_firmwareversion(info.firmwareVersion);
+        JUB_CHAR bleVersion[5] = {0};
+        JUB_CHAR firmVersion[5] = {0};
+        memcpy(bleVersion,info.bleVersion,4);
+        memcpy(firmVersion,info.firmwareVersion,4);
+        deviceInfo.set_bleversion(bleVersion);
+        deviceInfo.set_firmwareversion(firmVersion);
         resultDeviceInfo.add_res()->PackFrom(deviceInfo);
     }
 
