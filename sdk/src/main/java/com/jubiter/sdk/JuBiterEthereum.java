@@ -13,6 +13,7 @@ import com.jubiter.sdk.proto.EthereumProtos;
 public final class JuBiterEthereum {
 
     /**
+     * 根据配置创建上下文
      *
      * @param config
      * @param deviceID
