@@ -519,24 +519,23 @@ JNIEXPORT jbyteArray JNICALL native_BuildUSDTOutputs(JNIEnv *env, jobject obj, j
     if(rv == JUBR_OK){
         //first output is return0,second is standard
         JUB::Proto::Bitcoin::OutputBTC output1;
-        JUB::Proto::Bitcoin::Return0Output return0;
-        return0.set_amount(USDT_outputs[0].outputReturn0.amount);
-        return0.set_data(CharPtr2HexStr(USDT_outputs[0].outputReturn0.data,USDT_outputs[0].outputReturn0.dataLen));
+        JUB::Proto::Bitcoin::Return0Output *return0 = new JUB::Proto::Bitcoin::Return0Output();
+        return0->set_amount(USDT_outputs[0].outputReturn0.amount);
+        return0->set_data(CharPtr2HexStr(USDT_outputs[0].outputReturn0.data,USDT_outputs[0].outputReturn0.dataLen));
         output1.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC)USDT_outputs[0].type);
-        output1.set_allocated_return0output(&return0);
+        output1.set_allocated_return0output(return0);
 
         JUB::Proto::Bitcoin::OutputBTC output2;
-        JUB::Proto::Bitcoin::StandardOutput standard;
-        standard.set_amount(USDT_outputs[1].outputStandard.amount);
-        standard.set_changeaddress(USDT_outputs[1].outputStandard.changeAddress);
-        standard.set_address(USDT_outputs[1].outputStandard.address);
-        JUB::Proto::Common::Bip32Path path;
-        path.set_change(false);
-        path.set_addressindex(0);
-        standard.set_allocated_path(&path);
+        JUB::Proto::Bitcoin::StandardOutput *standard = new JUB::Proto::Bitcoin::StandardOutput();
+        standard->set_amount(USDT_outputs[1].outputStandard.amount);
+        standard->set_changeaddress(USDT_outputs[1].outputStandard.changeAddress);
+        standard->set_address(USDT_outputs[1].outputStandard.address);
+        JUB::Proto::Common::Bip32Path *path = new JUB::Proto::Common::Bip32Path();
+        path->set_change(false);
+        path->set_addressindex(0);
+        standard->set_allocated_path(path);
         output2.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC)USDT_outputs[1].type);
-        output2.set_allocated_standardoputput(&standard);
-
+        output2.set_allocated_standardoputput(standard);
 
         resultOutputs.add_res()->PackFrom(output1);
         resultOutputs.add_res()->PackFrom(output2);
@@ -1021,9 +1020,14 @@ static JNINativeMethod gMethods[] = {
     },
     {
         "nativeBTCSetUnit",
-        "(I[B)[B",
+        "(I[B)I",
         (void *) native_SetUnitBTC
     },
+    {
+        "nativeBuildUSDTOutput",
+        "(ILjava/lang/String;J)[B",
+        (void *) native_BuildUSDTOutputs
+        },
 ////    {
 ////        "nativeParseTransaction",
 ////        "(JLjava/lang/String;)Ljava/lang/String;",

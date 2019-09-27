@@ -91,7 +91,7 @@ public class NativeApi {
 
     public static native byte[] nativeBTCSignTransaction(int contextID, byte[] txArray);
 
-    public static native byte[] nativeBTCSetUnit(int contextID, byte[] uint);
+    public static native int nativeBTCSetUnit(int contextID, byte[] uint);
 
     public static native byte[] nativeBuildUSDTOutput(int contextID, String usdtTo, long amount);
 

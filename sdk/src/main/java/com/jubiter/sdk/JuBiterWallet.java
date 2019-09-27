@@ -13,6 +13,11 @@ import com.jubiter.sdk.proto.CommonProtos;
  */
 public final class JuBiterWallet {
 
+    /**
+     *
+     * @param strength
+     * @return
+     */
     public static CommonProtos.ResultString generateMnemonic(CommonProtos.ENUM_MNEMONIC_STRENGTH strength) {
         try {
             byte[] mnemonic = NativeApi.nativeGenerateMnemonic(strength.toString().getBytes());
@@ -23,10 +28,21 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param menmonic
+     * @return
+     */
     public static int checkMnemonic(String menmonic) {
         return NativeApi.nativeCheckMnemonic(menmonic);
     }
 
+    /**
+     *
+     * @param mnemonic
+     * @param passphrase
+     * @return
+     */
     public static CommonProtos.ResultString generateSeed(String mnemonic, String passphrase) {
         try {
             byte[] result = NativeApi.nativeGenerateSeed(mnemonic, passphrase);
@@ -37,6 +53,12 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param seed
+     * @param curve
+     * @return
+     */
     public static CommonProtos.ResultString seedToMasterPrivateKey(String seed, CommonProtos.CURVES curve) {
         try {
             byte[] result = NativeApi.nativeSeedToMasterPrivateKey(seed, curve.toString().getBytes());
@@ -47,6 +69,11 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @return
+     */
     public static CommonProtos.ResultAny getDeviceInfo(int deviceID) {
         try {
             byte[] result = NativeApi.nativeGetDeviceInfo(deviceID);
@@ -57,6 +84,11 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @return
+     */
     public static CommonProtos.ResultString getDeviceCert(int deviceID) {
         try {
             byte[] result = NativeApi.nativeGetDeviceCert(deviceID);
@@ -67,6 +99,12 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @param apdu
+     * @return
+     */
     public static CommonProtos.ResultString sendApdu(int deviceID, String apdu) {
         try {
             byte[] result = NativeApi.nativeSendApdu(deviceID, apdu);
@@ -77,14 +115,30 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @return
+     */
     public static boolean isInitialize(int deviceID) {
         return NativeApi.nativeIsInitialize(deviceID);
     }
 
+    /**
+     *
+     * @param deviceID
+     * @return
+     */
     public static boolean isBootLoader(int deviceID) {
         return NativeApi.nativeIsBootLoader(deviceID);
     }
 
+    /**
+     *
+     * @param contextID
+     * @param timeout
+     * @return
+     */
     public static CommonProtos.ResultString setTimeout(int contextID, int timeout) {
         try {
             byte[] result = NativeApi.nativeSetTimeout(contextID, timeout);
@@ -131,6 +185,12 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @param appletID
+     * @return
+     */
     public static CommonProtos.ResultString getAppletVersion(int deviceID, String appletID) {
         try {
             byte[] result = NativeApi.nativeGetAppletVersion(deviceID, appletID);
@@ -141,6 +201,11 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param deviceID
+     * @return
+     */
     public static CommonProtos.ResultInt queryBattery(int deviceID) {
         try {
             byte[] result = NativeApi.nativeQuerryBattery(deviceID);
@@ -151,18 +216,39 @@ public final class JuBiterWallet {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @return
+     */
     public static int clearContext(int contextID) {
         return NativeApi.nativeClearContext(contextID);
     }
 
+    /**
+     *
+     * @param contextID
+     * @return
+     */
     public static int showVirtualPWD(int contextID) {
         return NativeApi.nativeShowVirtualPWD(contextID);
     }
 
+    /**
+     *
+     * @param contextID
+     * @return
+     */
     public static int cancelVirtualPWD(int contextID) {
         return NativeApi.nativeCancelVirtualPWD(contextID);
     }
 
+    /**
+     *
+     * @param contextID
+     * @param PIN
+     * @return
+     */
     public static CommonProtos.ResultInt verifyPIN(int contextID, String PIN) {
         try {
             byte[] result = NativeApi.nativeVerifyPIN(contextID, PIN);
@@ -297,6 +383,5 @@ public final class JuBiterWallet {
         }
         return false;
     }
-
 
 }
