@@ -29,4 +29,5 @@ dependencies {
 
     implementation project(path: ':sdk')
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
+    implementation 'pub.devrel:easypermissions:1.2.0'
 }
