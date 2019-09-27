@@ -12,6 +12,12 @@ import com.jubiter.sdk.proto.CommonProtos;
  */
 public final class JuBiterBitcoin {
 
+    /**
+     *
+     * @param config
+     * @param xPrikey
+     * @return
+     */
     public static CommonProtos.ResultInt createContext_Software(BitcoinProtos.ContextCfgBTC config, String xPrikey) {
         try {
             byte[] result = NativeApi.nativeBTCCreateContext_Software(config.toByteArray(), xPrikey);
@@ -22,6 +28,12 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param config
+     * @param deviceID
+     * @return
+     */
     public static CommonProtos.ResultInt createContext(BitcoinProtos.ContextCfgBTC config, int deviceID) {
         try {
             byte[] result = NativeApi.nativeBTCCreateContext(config.toByteArray(), deviceID);
@@ -32,6 +44,11 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @return
+     */
     public static CommonProtos.ResultString getMainHDNode(int contextID) {
         try {
             byte[] result = NativeApi.nativeBTCGetMainHDNode(contextID);
@@ -42,6 +59,12 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @param bip32
+     * @return
+     */
     public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.Bip32Path bip32) {
         try {
             byte[] result = NativeApi.nativeBTCGetHDNode(contextID, bip32.toByteArray());
@@ -52,6 +75,13 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @param bip32
+     * @param isShow
+     * @return
+     */
     public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip32Path bip32, boolean isShow) {
         try {
             byte[] result = NativeApi.nativeBTCGetAddress(contextID, bip32.toByteArray(), isShow);
@@ -62,6 +92,12 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @param bip32
+     * @return
+     */
     public static CommonProtos.ResultString setAddress(int contextID, CommonProtos.Bip32Path bip32) {
         try {
             byte[] result = NativeApi.nativeBTCSetAddress(contextID, bip32.toByteArray());
@@ -72,6 +108,12 @@ public final class JuBiterBitcoin {
         return null;
     }
 
+    /**
+     *
+     * @param contextID
+     * @param txInfo
+     * @return
+     */
     public static CommonProtos.ResultString signTransaction(int contextID, BitcoinProtos.TransactionBTC txInfo) {
         try {
             byte[] result = NativeApi.nativeBTCSignTransaction(contextID, txInfo.toByteArray());
@@ -82,20 +124,28 @@ public final class JuBiterBitcoin {
         return null;
     }
 
-    public static CommonProtos.ResultString setUint(int contextID, BitcoinProtos.BTC_UNIT_TYPE uintType) {
-        try {
-            byte[] result = NativeApi.nativeBTCSetUnit(contextID, uintType.toString().getBytes());
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
+    /**
+     *
+     * @param contextID
+     * @param uintType
+     * @return
+     */
+    public static int setUint(int contextID, BitcoinProtos.BTC_UNIT_TYPE uintType) {
+        return NativeApi.nativeBTCSetUnit(contextID, uintType.toString().getBytes());
     }
 
-    public static CommonProtos.ResultString buildUSDTOutput(int contextID, String usdtTo, long amount) {
+    /**
+     * 构建USDT交易输出
+     *
+     * @param contextID
+     * @param usdtTo
+     * @param amount
+     * @return
+     */
+    public static CommonProtos.ResultAny buildUSDTOutput(int contextID, String usdtTo, long amount) {
         try {
             byte[] result = NativeApi.nativeBuildUSDTOutput(contextID, usdtTo, amount);
-            return CommonProtos.ResultString.parseFrom(result);
+            return CommonProtos.ResultAny.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
