@@ -281,8 +281,40 @@ public final class JuBiterWallet {
      * @param scanCallback 扫描回调
      * @return 0：成功；非0：失败
      */
+    @Deprecated
     public static int startScan(InnerScanCallback scanCallback) {
         return NativeApi.nativeStartScan(scanCallback);
+    }
+
+    /**
+     * 扫描BLE设备
+     * <p>
+     * 异步接口，在扫描中回调中接收设备信息，若周边存在多个设备被搜索到则会回调多次
+     *
+     * @param scanResultCallback 扫描回调
+     * @return 0：成功；非0：失败
+     */
+    public static void startScan(final ScanResultCallback scanResultCallback) {
+        int rv = NativeApi.nativeStartScan(new InnerScanCallback() {
+            @Override
+            public void onScanResult(String name, String uuid, int devType) {
+                JuBiterBLEDevice device = new JuBiterBLEDevice(name, uuid, devType);
+                scanResultCallback.onScanResult(device);
+            }
+
+            @Override
+            public void onStop() {
+                scanResultCallback.onStop();
+            }
+
+            @Override
+            public void onError(int errorCode) {
+                scanResultCallback.onError(errorCode);
+            }
+        });
+        if (0 != rv) {
+            scanResultCallback.onError(rv);
+        }
     }
 
     /**

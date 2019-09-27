@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
+import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterWallet;
-import com.jubiter.sdk.jni.InnerScanCallback;
+import com.jubiter.sdk.ScanResultCallback;
 import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
@@ -104,10 +105,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.scanDevice_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JuBiterWallet.startScan(new InnerScanCallback() {
+                JuBiterWallet.startScan(new ScanResultCallback() {
                     @Override
-                    public void onScanResult(String name, String uuid, int devType) {
-                        printDevice(name, uuid, devType);
+                    public void onScanResult(JuBiterBLEDevice device) {
+                        Log.d(TAG, "name : " + device.getName() + " mac : " + device.getMac()
+                                + " type : " + device.getDeviceType());
                     }
 
                     @Override

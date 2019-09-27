@@ -7,11 +7,11 @@ package com.jubiter.sdk;
  */
 public class JuBiterBLEDevice {
 
-    private String mac;
     private String name;
+    private String mac;
     private int deviceType;
 
-    public JuBiterBLEDevice(String mac, String name, int deviceType) {
+    public JuBiterBLEDevice(String name, String mac, int deviceType) {
         this.mac = mac;
         this.name = name;
         this.deviceType = deviceType;
