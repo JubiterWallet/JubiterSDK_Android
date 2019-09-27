@@ -57,15 +57,16 @@ find_library(libLog
 if(CMAKE_BUILD_TYPE MATCHES "Debug"
         OR CMAKE_BUILD_TYPE MATCHES "None")
     message(">>>> link debug library")
-    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/debug)
+#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
+    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/debug)
 elseif(CMAKE_BUILD_TYPE MATCHES "Release")
     message(">>>> link release library")
-    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/release)
+#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
+    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI}/release)
 endif()
 
-#link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../../cpp/Jub_SDK_CXX/protos/cpp/libs/${ANDROID_ABI})
+# 连接 protobuf 静态库
+#link_directories(${OUT_DIRECTORY}/protos/libs/${ANDROID_ABI})
 
 # **************************************************************************************************
 #                                        生成动态库
@@ -88,6 +89,7 @@ target_link_libraries(
                       JUB_SDK
                       TrezorCrypto
                       BTSDK
-        libprotobuf
+                      libprotobuf
+#                      protobufd
                       ${libLog}
 )

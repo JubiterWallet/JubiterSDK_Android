@@ -7,7 +7,7 @@ package com.jubiter.sdk.jni;
  * 内容摘要：内部扫描回调接口
  * 其它说明：其它内容的说明
  * 当前版本：1.0.0
- * 作 者：fs
+ * 作 者：fengshuo
  * 完成日期：2017/5/17
  **/
 public interface InnerScanCallback {

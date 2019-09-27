@@ -60,7 +60,7 @@ void callback(unsigned int type) {
 }
 
 void scanCallback(JUB_BYTE_PTR devname, JUB_BYTE_PTR uuid, JUB_ULONG devType) {
-    LOG_ERR("scanCallback devname: %s  uuid: %s  devType: %d", devname, uuid, devType);
+    LOG_ERR("scanCallback devname: %s  uuid: %s  devType: %lu", devname, uuid, devType);
 
     JNIEnv *env = NULL;
     if ((jVM->GetEnv((void**) &env, JNI_VERSION_1_6)) != JNI_OK) {
