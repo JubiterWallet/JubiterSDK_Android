@@ -98,18 +98,18 @@ android {
 //}
 
 
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation("androidx.test:runner:1.1.1")
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
     // android 推荐使用 protobuf-lite
-//    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
+    //    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
-
+    // release 依赖库
+    releaseImplementation files('libs/BTSDK_release.jar')
+    // debug 依赖库
+    debugImplementation files('libs/BTSDK_debug.jar')
 }
