@@ -98,6 +98,8 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 设置快捷收款地址
+     *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param bip32     符合bip44格式的分层路径
      * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
@@ -130,6 +132,8 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 设置硬件显示的BTC单位
+     *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param uintType
      * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败

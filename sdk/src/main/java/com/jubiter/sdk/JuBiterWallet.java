@@ -294,19 +294,6 @@ public final class JuBiterWallet {
      * <p>
      * 异步接口，在扫描中回调中接收设备信息，若周边存在多个设备被搜索到则会回调多次
      *
-     * @param scanCallback 扫描回调
-     * @return 0：成功；非0：失败
-     */
-    @Deprecated
-    public static int startScan(InnerScanCallback scanCallback) {
-        return NativeApi.nativeStartScan(scanCallback);
-    }
-
-    /**
-     * 扫描BLE设备
-     * <p>
-     * 异步接口，在扫描中回调中接收设备信息，若周边存在多个设备被搜索到则会回调多次
-     *
      * @param scanResultCallback 扫描回调
      * @return 0：成功；非0：失败
      */
@@ -391,21 +378,21 @@ public final class JuBiterWallet {
     /**
      * 断开连接指定设备
      *
-     * @param deviceHandle 待操作的设备连接句柄
+     * @param deviceID 待操作的设备连接句柄
      * @return 0：成功；非0：失败
      */
-    public static int disconnectDevice(int deviceHandle) {
-        return NativeApi.nativeDisconnectDevice(deviceHandle);
+    public static int disconnectDevice(int deviceID) {
+        return NativeApi.nativeDisconnectDevice(deviceID);
     }
 
     /**
      * 查询指定设备是否连接
      *
-     * @param deviceHandle 待查询的设备连接句柄
+     * @param deviceID 待查询的设备连接句柄
      * @return 0：成功；非0：失败
      */
-    public static boolean isConnected(int deviceHandle) {
-        int rv = NativeApi.nativeIsConnected(deviceHandle);
+    public static boolean isConnected(int deviceID) {
+        int rv = NativeApi.nativeIsConnected(deviceID);
         if (0 == rv) {
             return true;
         }
