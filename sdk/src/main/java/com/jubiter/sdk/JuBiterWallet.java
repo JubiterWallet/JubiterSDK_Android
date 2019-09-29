@@ -347,28 +347,8 @@ public final class JuBiterWallet {
     /**
      * 连接 BLE 设备
      * <p>
-     * 注: 同步接口，该接口只支持单设备连接，若要连接其他设备，需断开当前连接
-     * <p>
-     * todo: 该接口应该 封装成异步接口，蓝牙连接、断开状态均在该接口接收
-     *
-     * @param address      待连接设备的 MAC 地址
-     * @param deviceHandle 连接成功后返回的设备唯一句柄
-     * @param timeout      连接超时时间，单位毫秒（ms）
-     * @param discCallback 设备断开连接回调
-     * @return 0：成功；非0：失败
-     */
-    @Deprecated
-    public static int connectDevice(String address, int[] deviceHandle, int timeout,
-                                    InnerDiscCallback discCallback) {
-        return NativeApi.nativeConnectDevice(address, deviceHandle, timeout, discCallback);
-    }
-
-    /**
-     * 连接 BLE 设备
-     * <p>
      * 注: 异步接口，该接口只支持单设备连接，若要连接其他设备，需断开当前连接
      * <p>
-     * todo: 该接口应该 封装成异步接口，蓝牙连接、断开状态均在该接口接收
      *
      * @param address                 待连接设备的 MAC 地址
      * @param timeout                 连接超时时间，单位毫秒（ms）
