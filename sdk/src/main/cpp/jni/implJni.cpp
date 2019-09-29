@@ -52,8 +52,8 @@ jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str) {
 
 jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
     JUB::Proto::Common::ResultString resultString;
-    resultString.set_rv(rv);
-    if (JUBR_OK == rv) { resultString.set_res(str); }
+    resultString.set_statecode(rv);
+    if (JUBR_OK == rv) { resultString.set_value(str); }
 
     std::string result;
     resultString.SerializeToString(&result);
@@ -65,8 +65,8 @@ jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
 
 jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
     JUB::Proto::Common::ResultString resultString;
-    resultString.set_rv(rv);
-    if (JUBR_OK == rv) { resultString.set_res(str); }
+    resultString.set_statecode(rv);
+    if (JUBR_OK == rv) { resultString.set_value(str); }
 
     std::string result;
     resultString.SerializeToString(&result);
@@ -75,8 +75,8 @@ jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
 
 jbyteArray buildPbRvUInt(JNIEnv *env, JUB_RV rv, uint32_t res) {
     JUB::Proto::Common::ResultInt resultInt;
-    resultInt.set_rv(rv);
-    if (JUBR_OK == rv) { resultInt.set_res(res); }
+    resultInt.set_statecode(rv);
+    if (JUBR_OK == rv) { resultInt.set_value(res); }
 
     std::string result;
     resultInt.SerializeToString(&result);
@@ -275,7 +275,7 @@ JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jobject obj, jint
     JUB_RV rv = JUB_GetDeviceInfo((JUB_UINT16) deviceID, &info);
 
     JUB::Proto::Common::ResultAny resultDeviceInfo;
-    resultDeviceInfo.set_rv(rv);
+    resultDeviceInfo.set_statecode(rv);
     if (rv == JUBR_OK) {
         JUB::Proto::Common::DeviceInfo deviceInfo;
         deviceInfo.set_label(info.label);
@@ -288,7 +288,7 @@ JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jobject obj, jint
         memcpy(firmVersion, info.firmwareVersion, 4);
         deviceInfo.set_bleversion(bleVersion);
         deviceInfo.set_firmwareversion(firmVersion);
-        resultDeviceInfo.add_res()->PackFrom(deviceInfo);
+        resultDeviceInfo.add_value()->PackFrom(deviceInfo);
     }
 
     std::string result;
@@ -533,7 +533,7 @@ native_BuildUSDTOutputs(JNIEnv *env, jobject obj, jint contextID, jstring USDTTO
     OUTPUT_BTC USDT_outputs[2] = {};
     JUB_RV rv = JUB_BuildUSDTOutputs(contextID, (JUB_CHAR_PTR) strUSDTTO.c_str(), amount,
                                      USDT_outputs);
-    resultOutputs.set_rv(rv);
+    resultOutputs.set_statecode(rv);
     if (rv == JUBR_OK) {
         //first output is return0,second is standard
         JUB::Proto::Bitcoin::OutputBTC output1;
@@ -556,8 +556,8 @@ native_BuildUSDTOutputs(JNIEnv *env, jobject obj, jint contextID, jstring USDTTO
         output2.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC) USDT_outputs[1].type);
         output2.set_allocated_standardoputput(standard);
 
-        resultOutputs.add_res()->PackFrom(output1);
-        resultOutputs.add_res()->PackFrom(output2);
+        resultOutputs.add_value()->PackFrom(output1);
+        resultOutputs.add_value()->PackFrom(output2);
     }
 
     std::string result;

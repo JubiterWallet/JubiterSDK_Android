@@ -14,9 +14,10 @@ import com.jubiter.sdk.proto.CommonProtos;
 public final class JuBiterWallet {
 
     /**
+     * 根据指定的强度生成对应的助记码
      *
-     * @param strength
-     * @return
+     * @param strength 助记码强度
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString generateMnemonic(CommonProtos.ENUM_MNEMONIC_STRENGTH strength) {
         try {
@@ -29,16 +30,16 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 校验助记码
      *
-     * @param menmonic
-     * @return
+     * @param menmonic 助记码
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static int checkMnemonic(String menmonic) {
         return NativeApi.nativeCheckMnemonic(menmonic);
     }
 
     /**
-     *
      * @param mnemonic
      * @param passphrase
      * @return
@@ -54,10 +55,11 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 生成主私钥
      *
-     * @param seed
-     * @param curve
-     * @return
+     * @param seed  密钥种子
+     * @param curve 密钥曲线算法
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString seedToMasterPrivateKey(String seed, CommonProtos.CURVES curve) {
         try {
@@ -70,9 +72,10 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 获取硬件设备信息
      *
-     * @param deviceID
-     * @return
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultAny getDeviceInfo(int deviceID) {
         try {
@@ -85,9 +88,10 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 获取硬件设备整数
      *
-     * @param deviceID
-     * @return
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString getDeviceCert(int deviceID) {
         try {
@@ -100,10 +104,11 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 发送 apdu
      *
-     * @param deviceID
-     * @param apdu
-     * @return
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @param apdu     待发送的自定义APDU
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString sendApdu(int deviceID, String apdu) {
         try {
@@ -116,17 +121,19 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 硬件是否初始化
      *
-     * @param deviceID
-     * @return
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return true：初始化成功，false : 未初始化
      */
     public static boolean isInitialize(int deviceID) {
         return NativeApi.nativeIsInitialize(deviceID);
     }
 
     /**
+     * 硬件是否处于 bootLoader 模式
      *
-     * @param deviceID
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
      * @return
      */
     public static boolean isBootLoader(int deviceID) {
@@ -134,9 +141,10 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 设置超时时间
      *
-     * @param contextID
-     * @param timeout
+     * @param contextID 下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param timeout   超时时间
      * @return
      */
     public static CommonProtos.ResultString setTimeout(int contextID, int timeout) {
@@ -154,7 +162,7 @@ public final class JuBiterWallet {
      * <p>
      * applet ID 以空格分隔
      *
-     * @param deviceID
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
      * @return
      */
     public static CommonProtos.ResultString enumApplets(int deviceID) {
@@ -172,7 +180,7 @@ public final class JuBiterWallet {
      * <p>
      * applet ID 以空格分隔
      *
-     * @param deviceID
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
      * @return
      */
     public static CommonProtos.ResultString enumSupportCoins(int deviceID) {
@@ -186,9 +194,12 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 获取指定 ID 应用的版本号
      *
-     * @param deviceID
-     * @param appletID
+     * 版本号规则：XX.XX.XX
+     *
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @param appletID 硬件设备内部 applet 的 ID
      * @return
      */
     public static CommonProtos.ResultString getAppletVersion(int deviceID, String appletID) {
@@ -202,8 +213,9 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 查询蓝牙设备电量
      *
-     * @param deviceID
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
      * @return
      */
     public static CommonProtos.ResultInt queryBattery(int deviceID) {
@@ -217,8 +229,9 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 清空上下文
      *
-     * @param contextID
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @return
      */
     public static int clearContext(int contextID) {
@@ -226,8 +239,9 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 显示硬件设备虚拟密码
      *
-     * @param contextID
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @return
      */
     public static int showVirtualPWD(int contextID) {
@@ -235,8 +249,9 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 取消硬件设备虚拟密码
      *
-     * @param contextID
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @return
      */
     public static int cancelVirtualPWD(int contextID) {
@@ -244,9 +259,10 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 校验钱包密码
      *
-     * @param contextID
-     * @param PIN
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param PIN       钱包密码
      * @return
      */
     public static CommonProtos.ResultInt verifyPIN(int contextID, String PIN) {

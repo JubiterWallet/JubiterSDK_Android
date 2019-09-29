@@ -13,10 +13,11 @@ import com.jubiter.sdk.proto.CommonProtos;
 public final class JuBiterBitcoin {
 
     /**
+     * 创建软件钱包上下文
      *
-     * @param config
-     * @param xPrikey
-     * @return
+     * @param config  上下文配置信息
+     * @param xPrikey 待使用钱包对应的主私钥
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultInt createContext_Software(BitcoinProtos.ContextCfgBTC config, String xPrikey) {
         try {
@@ -29,10 +30,11 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 创建硬件钱包上下文
      *
-     * @param config
-     * @param deviceID
-     * @return
+     * @param config   上下文配置信息
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultInt createContext(BitcoinProtos.ContextCfgBTC config, int deviceID) {
         try {
@@ -45,9 +47,10 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 获取主公钥
      *
-     * @param contextID
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString getMainHDNode(int contextID) {
         try {
@@ -60,10 +63,11 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 获取 bip32 指定路径的公钥
      *
-     * @param contextID
-     * @param bip32
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param bip32     符合bip44格式的分层路径
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.Bip32Path bip32) {
         try {
@@ -76,11 +80,12 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 获取指定 bip32 地址
      *
-     * @param contextID
-     * @param bip32
-     * @param isShow
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param bip32     符合bip44格式的分层路径
+     * @param isShow    是否在硬件屏幕显示地址；true：显示，false：不显示
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip32Path bip32, boolean isShow) {
         try {
@@ -93,10 +98,9 @@ public final class JuBiterBitcoin {
     }
 
     /**
-     *
-     * @param contextID
-     * @param bip32
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param bip32     符合bip44格式的分层路径
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString setAddress(int contextID, CommonProtos.Bip32Path bip32) {
         try {
@@ -109,10 +113,11 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * BTC 交易签名
      *
-     * @param contextID
-     * @param txInfo
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param txInfo    交易信息
+     * @return 交易结果。若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString signTransaction(int contextID, BitcoinProtos.TransactionBTC txInfo) {
         try {
@@ -125,10 +130,9 @@ public final class JuBiterBitcoin {
     }
 
     /**
-     *
-     * @param contextID
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param uintType
-     * @return
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static int setUint(int contextID, BitcoinProtos.BTC_UNIT_TYPE uintType) {
         return NativeApi.nativeBTCSetUnit(contextID, uintType.toString().getBytes());
@@ -137,10 +141,10 @@ public final class JuBiterBitcoin {
     /**
      * 构建USDT交易输出
      *
-     * @param contextID
-     * @param usdtTo
-     * @param amount
-     * @return
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param usdtTo    USDT 接收地址
+     * @param amount    USDT 转账金额
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultAny buildUSDTOutput(int contextID, String usdtTo, long amount) {
         try {

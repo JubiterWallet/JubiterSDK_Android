@@ -16,7 +16,7 @@ public final class CommonProtos {
   }
   /**
    * <pre>
-   *mnemonic strength
+   * mnemonic strength
    * </pre>
    *
    * Protobuf enum {@code JUB.Proto.Common.ENUM_MNEMONIC_STRENGTH}
@@ -1891,18 +1891,18 @@ public final class CommonProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    long getRv();
+    long getStateCode();
 
     /**
-     * <code>uint32 res = 2;</code>
+     * <code>uint32 value = 2;</code>
      */
-    int getRes();
+    int getValue();
   }
   /**
    * <pre>
-   * result with int rv
+   * result with int return value
    * </pre>
    *
    * Protobuf type {@code JUB.Proto.Common.ResultInt}
@@ -1951,12 +1951,12 @@ public final class CommonProtos {
               break;
             case 8: {
 
-              rv_ = input.readUInt64();
+              stateCode_ = input.readUInt64();
               break;
             }
             case 16: {
 
-              res_ = input.readUInt32();
+              value_ = input.readUInt32();
               break;
             }
             default: {
@@ -1991,22 +1991,22 @@ public final class CommonProtos {
               com.jubiter.sdk.proto.CommonProtos.ResultInt.class, com.jubiter.sdk.proto.CommonProtos.ResultInt.Builder.class);
     }
 
-    public static final int RV_FIELD_NUMBER = 1;
-    private long rv_;
+    public static final int STATECODE_FIELD_NUMBER = 1;
+    private long stateCode_;
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    public long getRv() {
-      return rv_;
+    public long getStateCode() {
+      return stateCode_;
     }
 
-    public static final int RES_FIELD_NUMBER = 2;
-    private int res_;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private int value_;
     /**
-     * <code>uint32 res = 2;</code>
+     * <code>uint32 value = 2;</code>
      */
-    public int getRes() {
-      return res_;
+    public int getValue() {
+      return value_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2023,11 +2023,11 @@ public final class CommonProtos {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (rv_ != 0L) {
-        output.writeUInt64(1, rv_);
+      if (stateCode_ != 0L) {
+        output.writeUInt64(1, stateCode_);
       }
-      if (res_ != 0) {
-        output.writeUInt32(2, res_);
+      if (value_ != 0) {
+        output.writeUInt32(2, value_);
       }
       unknownFields.writeTo(output);
     }
@@ -2038,13 +2038,13 @@ public final class CommonProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (rv_ != 0L) {
+      if (stateCode_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, rv_);
+          .computeUInt64Size(1, stateCode_);
       }
-      if (res_ != 0) {
+      if (value_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, res_);
+          .computeUInt32Size(2, value_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2061,10 +2061,10 @@ public final class CommonProtos {
       }
       com.jubiter.sdk.proto.CommonProtos.ResultInt other = (com.jubiter.sdk.proto.CommonProtos.ResultInt) obj;
 
-      if (getRv()
-          != other.getRv()) return false;
-      if (getRes()
-          != other.getRes()) return false;
+      if (getStateCode()
+          != other.getStateCode()) return false;
+      if (getValue()
+          != other.getValue()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2076,11 +2076,11 @@ public final class CommonProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + RV_FIELD_NUMBER;
+      hash = (37 * hash) + STATECODE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRv());
-      hash = (37 * hash) + RES_FIELD_NUMBER;
-      hash = (53 * hash) + getRes();
+          getStateCode());
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2178,7 +2178,7 @@ public final class CommonProtos {
     }
     /**
      * <pre>
-     * result with int rv
+     * result with int return value
      * </pre>
      *
      * Protobuf type {@code JUB.Proto.Common.ResultInt}
@@ -2218,9 +2218,9 @@ public final class CommonProtos {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        rv_ = 0L;
+        stateCode_ = 0L;
 
-        res_ = 0;
+        value_ = 0;
 
         return this;
       }
@@ -2248,8 +2248,8 @@ public final class CommonProtos {
       @java.lang.Override
       public com.jubiter.sdk.proto.CommonProtos.ResultInt buildPartial() {
         com.jubiter.sdk.proto.CommonProtos.ResultInt result = new com.jubiter.sdk.proto.CommonProtos.ResultInt(this);
-        result.rv_ = rv_;
-        result.res_ = res_;
+        result.stateCode_ = stateCode_;
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -2298,11 +2298,11 @@ public final class CommonProtos {
 
       public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultInt other) {
         if (other == com.jubiter.sdk.proto.CommonProtos.ResultInt.getDefaultInstance()) return this;
-        if (other.getRv() != 0L) {
-          setRv(other.getRv());
+        if (other.getStateCode() != 0L) {
+          setStateCode(other.getStateCode());
         }
-        if (other.getRes() != 0) {
-          setRes(other.getRes());
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2333,54 +2333,54 @@ public final class CommonProtos {
         return this;
       }
 
-      private long rv_ ;
+      private long stateCode_ ;
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public long getRv() {
-        return rv_;
+      public long getStateCode() {
+        return stateCode_;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder setRv(long value) {
+      public Builder setStateCode(long value) {
         
-        rv_ = value;
+        stateCode_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder clearRv() {
+      public Builder clearStateCode() {
         
-        rv_ = 0L;
+        stateCode_ = 0L;
         onChanged();
         return this;
       }
 
-      private int res_ ;
+      private int value_ ;
       /**
-       * <code>uint32 res = 2;</code>
+       * <code>uint32 value = 2;</code>
        */
-      public int getRes() {
-        return res_;
+      public int getValue() {
+        return value_;
       }
       /**
-       * <code>uint32 res = 2;</code>
+       * <code>uint32 value = 2;</code>
        */
-      public Builder setRes(int value) {
+      public Builder setValue(int value) {
         
-        res_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint32 res = 2;</code>
+       * <code>uint32 value = 2;</code>
        */
-      public Builder clearRes() {
+      public Builder clearValue() {
         
-        res_ = 0;
+        value_ = 0;
         onChanged();
         return this;
       }
@@ -2442,23 +2442,23 @@ public final class CommonProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    long getRv();
+    long getStateCode();
 
     /**
-     * <code>string res = 2;</code>
+     * <code>string value = 2;</code>
      */
-    java.lang.String getRes();
+    java.lang.String getValue();
     /**
-     * <code>string res = 2;</code>
+     * <code>string value = 2;</code>
      */
     com.google.protobuf.ByteString
-        getResBytes();
+        getValueBytes();
   }
   /**
    * <pre>
-   * result with string rv
+   * result with string return value
    * </pre>
    *
    * Protobuf type {@code JUB.Proto.Common.ResultString}
@@ -2473,7 +2473,7 @@ public final class CommonProtos {
       super(builder);
     }
     private ResultString() {
-      res_ = "";
+      value_ = "";
     }
 
     @java.lang.Override
@@ -2508,13 +2508,13 @@ public final class CommonProtos {
               break;
             case 8: {
 
-              rv_ = input.readUInt64();
+              stateCode_ = input.readUInt64();
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              res_ = s;
+              value_ = s;
               break;
             }
             default: {
@@ -2549,43 +2549,43 @@ public final class CommonProtos {
               com.jubiter.sdk.proto.CommonProtos.ResultString.class, com.jubiter.sdk.proto.CommonProtos.ResultString.Builder.class);
     }
 
-    public static final int RV_FIELD_NUMBER = 1;
-    private long rv_;
+    public static final int STATECODE_FIELD_NUMBER = 1;
+    private long stateCode_;
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    public long getRv() {
-      return rv_;
+    public long getStateCode() {
+      return stateCode_;
     }
 
-    public static final int RES_FIELD_NUMBER = 2;
-    private volatile java.lang.Object res_;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object value_;
     /**
-     * <code>string res = 2;</code>
+     * <code>string value = 2;</code>
      */
-    public java.lang.String getRes() {
-      java.lang.Object ref = res_;
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        res_ = s;
+        value_ = s;
         return s;
       }
     }
     /**
-     * <code>string res = 2;</code>
+     * <code>string value = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getResBytes() {
-      java.lang.Object ref = res_;
+        getValueBytes() {
+      java.lang.Object ref = value_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        res_ = b;
+        value_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -2606,11 +2606,11 @@ public final class CommonProtos {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (rv_ != 0L) {
-        output.writeUInt64(1, rv_);
+      if (stateCode_ != 0L) {
+        output.writeUInt64(1, stateCode_);
       }
-      if (!getResBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, res_);
+      if (!getValueBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
       }
       unknownFields.writeTo(output);
     }
@@ -2621,12 +2621,12 @@ public final class CommonProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (rv_ != 0L) {
+      if (stateCode_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, rv_);
+          .computeUInt64Size(1, stateCode_);
       }
-      if (!getResBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, res_);
+      if (!getValueBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2643,10 +2643,10 @@ public final class CommonProtos {
       }
       com.jubiter.sdk.proto.CommonProtos.ResultString other = (com.jubiter.sdk.proto.CommonProtos.ResultString) obj;
 
-      if (getRv()
-          != other.getRv()) return false;
-      if (!getRes()
-          .equals(other.getRes())) return false;
+      if (getStateCode()
+          != other.getStateCode()) return false;
+      if (!getValue()
+          .equals(other.getValue())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2658,11 +2658,11 @@ public final class CommonProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + RV_FIELD_NUMBER;
+      hash = (37 * hash) + STATECODE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRv());
-      hash = (37 * hash) + RES_FIELD_NUMBER;
-      hash = (53 * hash) + getRes().hashCode();
+          getStateCode());
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2760,7 +2760,7 @@ public final class CommonProtos {
     }
     /**
      * <pre>
-     * result with string rv
+     * result with string return value
      * </pre>
      *
      * Protobuf type {@code JUB.Proto.Common.ResultString}
@@ -2800,9 +2800,9 @@ public final class CommonProtos {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        rv_ = 0L;
+        stateCode_ = 0L;
 
-        res_ = "";
+        value_ = "";
 
         return this;
       }
@@ -2830,8 +2830,8 @@ public final class CommonProtos {
       @java.lang.Override
       public com.jubiter.sdk.proto.CommonProtos.ResultString buildPartial() {
         com.jubiter.sdk.proto.CommonProtos.ResultString result = new com.jubiter.sdk.proto.CommonProtos.ResultString(this);
-        result.rv_ = rv_;
-        result.res_ = res_;
+        result.stateCode_ = stateCode_;
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -2880,11 +2880,11 @@ public final class CommonProtos {
 
       public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultString other) {
         if (other == com.jubiter.sdk.proto.CommonProtos.ResultString.getDefaultInstance()) return this;
-        if (other.getRv() != 0L) {
-          setRv(other.getRv());
+        if (other.getStateCode() != 0L) {
+          setStateCode(other.getStateCode());
         }
-        if (!other.getRes().isEmpty()) {
-          res_ = other.res_;
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -2916,97 +2916,97 @@ public final class CommonProtos {
         return this;
       }
 
-      private long rv_ ;
+      private long stateCode_ ;
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public long getRv() {
-        return rv_;
+      public long getStateCode() {
+        return stateCode_;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder setRv(long value) {
+      public Builder setStateCode(long value) {
         
-        rv_ = value;
+        stateCode_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder clearRv() {
+      public Builder clearStateCode() {
         
-        rv_ = 0L;
+        stateCode_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.lang.Object res_ = "";
+      private java.lang.Object value_ = "";
       /**
-       * <code>string res = 2;</code>
+       * <code>string value = 2;</code>
        */
-      public java.lang.String getRes() {
-        java.lang.Object ref = res_;
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          res_ = s;
+          value_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string res = 2;</code>
+       * <code>string value = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getResBytes() {
-        java.lang.Object ref = res_;
+          getValueBytes() {
+        java.lang.Object ref = value_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          res_ = b;
+          value_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string res = 2;</code>
+       * <code>string value = 2;</code>
        */
-      public Builder setRes(
+      public Builder setValue(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        res_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string res = 2;</code>
+       * <code>string value = 2;</code>
        */
-      public Builder clearRes() {
+      public Builder clearValue() {
         
-        res_ = getDefaultInstance().getRes();
+        value_ = getDefaultInstance().getValue();
         onChanged();
         return this;
       }
       /**
-       * <code>string res = 2;</code>
+       * <code>string value = 2;</code>
        */
-      public Builder setResBytes(
+      public Builder setValueBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        res_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
@@ -3068,37 +3068,37 @@ public final class CommonProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    long getRv();
+    long getStateCode();
 
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
     java.util.List<com.google.protobuf.Any> 
-        getResList();
+        getValueList();
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    com.google.protobuf.Any getRes(int index);
+    com.google.protobuf.Any getValue(int index);
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    int getResCount();
+    int getValueCount();
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
     java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
-        getResOrBuilderList();
+        getValueOrBuilderList();
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    com.google.protobuf.AnyOrBuilder getResOrBuilder(
+    com.google.protobuf.AnyOrBuilder getValueOrBuilder(
         int index);
   }
   /**
    * <pre>
-   * result with DeviceInfo rv
+   * result with DeviceInfo return value
    * </pre>
    *
    * Protobuf type {@code JUB.Proto.Common.ResultAny}
@@ -3113,7 +3113,7 @@ public final class CommonProtos {
       super(builder);
     }
     private ResultAny() {
-      res_ = java.util.Collections.emptyList();
+      value_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -3149,15 +3149,15 @@ public final class CommonProtos {
               break;
             case 8: {
 
-              rv_ = input.readUInt64();
+              stateCode_ = input.readUInt64();
               break;
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                res_ = new java.util.ArrayList<com.google.protobuf.Any>();
+                value_ = new java.util.ArrayList<com.google.protobuf.Any>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              res_.add(
+              value_.add(
                   input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry));
               break;
             }
@@ -3177,7 +3177,7 @@ public final class CommonProtos {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          res_ = java.util.Collections.unmodifiableList(res_);
+          value_ = java.util.Collections.unmodifiableList(value_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -3196,48 +3196,48 @@ public final class CommonProtos {
               com.jubiter.sdk.proto.CommonProtos.ResultAny.class, com.jubiter.sdk.proto.CommonProtos.ResultAny.Builder.class);
     }
 
-    public static final int RV_FIELD_NUMBER = 1;
-    private long rv_;
+    public static final int STATECODE_FIELD_NUMBER = 1;
+    private long stateCode_;
     /**
-     * <code>uint64 rv = 1;</code>
+     * <code>uint64 stateCode = 1;</code>
      */
-    public long getRv() {
-      return rv_;
+    public long getStateCode() {
+      return stateCode_;
     }
 
-    public static final int RES_FIELD_NUMBER = 2;
-    private java.util.List<com.google.protobuf.Any> res_;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private java.util.List<com.google.protobuf.Any> value_;
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    public java.util.List<com.google.protobuf.Any> getResList() {
-      return res_;
+    public java.util.List<com.google.protobuf.Any> getValueList() {
+      return value_;
     }
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
     public java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
-        getResOrBuilderList() {
-      return res_;
+        getValueOrBuilderList() {
+      return value_;
     }
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    public int getResCount() {
-      return res_.size();
+    public int getValueCount() {
+      return value_.size();
     }
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    public com.google.protobuf.Any getRes(int index) {
-      return res_.get(index);
+    public com.google.protobuf.Any getValue(int index) {
+      return value_.get(index);
     }
     /**
-     * <code>repeated .google.protobuf.Any res = 2;</code>
+     * <code>repeated .google.protobuf.Any value = 2;</code>
      */
-    public com.google.protobuf.AnyOrBuilder getResOrBuilder(
+    public com.google.protobuf.AnyOrBuilder getValueOrBuilder(
         int index) {
-      return res_.get(index);
+      return value_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3254,11 +3254,11 @@ public final class CommonProtos {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (rv_ != 0L) {
-        output.writeUInt64(1, rv_);
+      if (stateCode_ != 0L) {
+        output.writeUInt64(1, stateCode_);
       }
-      for (int i = 0; i < res_.size(); i++) {
-        output.writeMessage(2, res_.get(i));
+      for (int i = 0; i < value_.size(); i++) {
+        output.writeMessage(2, value_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -3269,13 +3269,13 @@ public final class CommonProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (rv_ != 0L) {
+      if (stateCode_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, rv_);
+          .computeUInt64Size(1, stateCode_);
       }
-      for (int i = 0; i < res_.size(); i++) {
+      for (int i = 0; i < value_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, res_.get(i));
+          .computeMessageSize(2, value_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3292,10 +3292,10 @@ public final class CommonProtos {
       }
       com.jubiter.sdk.proto.CommonProtos.ResultAny other = (com.jubiter.sdk.proto.CommonProtos.ResultAny) obj;
 
-      if (getRv()
-          != other.getRv()) return false;
-      if (!getResList()
-          .equals(other.getResList())) return false;
+      if (getStateCode()
+          != other.getStateCode()) return false;
+      if (!getValueList()
+          .equals(other.getValueList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3307,12 +3307,12 @@ public final class CommonProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + RV_FIELD_NUMBER;
+      hash = (37 * hash) + STATECODE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRv());
-      if (getResCount() > 0) {
-        hash = (37 * hash) + RES_FIELD_NUMBER;
-        hash = (53 * hash) + getResList().hashCode();
+          getStateCode());
+      if (getValueCount() > 0) {
+        hash = (37 * hash) + VALUE_FIELD_NUMBER;
+        hash = (53 * hash) + getValueList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -3411,7 +3411,7 @@ public final class CommonProtos {
     }
     /**
      * <pre>
-     * result with DeviceInfo rv
+     * result with DeviceInfo return value
      * </pre>
      *
      * Protobuf type {@code JUB.Proto.Common.ResultAny}
@@ -3446,19 +3446,19 @@ public final class CommonProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getResFieldBuilder();
+          getValueFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        rv_ = 0L;
+        stateCode_ = 0L;
 
-        if (resBuilder_ == null) {
-          res_ = java.util.Collections.emptyList();
+        if (valueBuilder_ == null) {
+          value_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          resBuilder_.clear();
+          valueBuilder_.clear();
         }
         return this;
       }
@@ -3487,15 +3487,15 @@ public final class CommonProtos {
       public com.jubiter.sdk.proto.CommonProtos.ResultAny buildPartial() {
         com.jubiter.sdk.proto.CommonProtos.ResultAny result = new com.jubiter.sdk.proto.CommonProtos.ResultAny(this);
         int from_bitField0_ = bitField0_;
-        result.rv_ = rv_;
-        if (resBuilder_ == null) {
+        result.stateCode_ = stateCode_;
+        if (valueBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
-            res_ = java.util.Collections.unmodifiableList(res_);
+            value_ = java.util.Collections.unmodifiableList(value_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.res_ = res_;
+          result.value_ = value_;
         } else {
-          result.res_ = resBuilder_.build();
+          result.value_ = valueBuilder_.build();
         }
         onBuilt();
         return result;
@@ -3545,32 +3545,32 @@ public final class CommonProtos {
 
       public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultAny other) {
         if (other == com.jubiter.sdk.proto.CommonProtos.ResultAny.getDefaultInstance()) return this;
-        if (other.getRv() != 0L) {
-          setRv(other.getRv());
+        if (other.getStateCode() != 0L) {
+          setStateCode(other.getStateCode());
         }
-        if (resBuilder_ == null) {
-          if (!other.res_.isEmpty()) {
-            if (res_.isEmpty()) {
-              res_ = other.res_;
+        if (valueBuilder_ == null) {
+          if (!other.value_.isEmpty()) {
+            if (value_.isEmpty()) {
+              value_ = other.value_;
               bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureResIsMutable();
-              res_.addAll(other.res_);
+              ensureValueIsMutable();
+              value_.addAll(other.value_);
             }
             onChanged();
           }
         } else {
-          if (!other.res_.isEmpty()) {
-            if (resBuilder_.isEmpty()) {
-              resBuilder_.dispose();
-              resBuilder_ = null;
-              res_ = other.res_;
+          if (!other.value_.isEmpty()) {
+            if (valueBuilder_.isEmpty()) {
+              valueBuilder_.dispose();
+              valueBuilder_ = null;
+              value_ = other.value_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              resBuilder_ = 
+              valueBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getResFieldBuilder() : null;
+                   getValueFieldBuilder() : null;
             } else {
-              resBuilder_.addAllMessages(other.res_);
+              valueBuilder_.addAllMessages(other.value_);
             }
           }
         }
@@ -3604,270 +3604,270 @@ public final class CommonProtos {
       }
       private int bitField0_;
 
-      private long rv_ ;
+      private long stateCode_ ;
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public long getRv() {
-        return rv_;
+      public long getStateCode() {
+        return stateCode_;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder setRv(long value) {
+      public Builder setStateCode(long value) {
         
-        rv_ = value;
+        stateCode_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 rv = 1;</code>
+       * <code>uint64 stateCode = 1;</code>
        */
-      public Builder clearRv() {
+      public Builder clearStateCode() {
         
-        rv_ = 0L;
+        stateCode_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.util.List<com.google.protobuf.Any> res_ =
+      private java.util.List<com.google.protobuf.Any> value_ =
         java.util.Collections.emptyList();
-      private void ensureResIsMutable() {
+      private void ensureValueIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          res_ = new java.util.ArrayList<com.google.protobuf.Any>(res_);
+          value_ = new java.util.ArrayList<com.google.protobuf.Any>(value_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> resBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> valueBuilder_;
 
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public java.util.List<com.google.protobuf.Any> getResList() {
-        if (resBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(res_);
+      public java.util.List<com.google.protobuf.Any> getValueList() {
+        if (valueBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(value_);
         } else {
-          return resBuilder_.getMessageList();
+          return valueBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public int getResCount() {
-        if (resBuilder_ == null) {
-          return res_.size();
+      public int getValueCount() {
+        if (valueBuilder_ == null) {
+          return value_.size();
         } else {
-          return resBuilder_.getCount();
+          return valueBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public com.google.protobuf.Any getRes(int index) {
-        if (resBuilder_ == null) {
-          return res_.get(index);
+      public com.google.protobuf.Any getValue(int index) {
+        if (valueBuilder_ == null) {
+          return value_.get(index);
         } else {
-          return resBuilder_.getMessage(index);
+          return valueBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder setRes(
+      public Builder setValue(
           int index, com.google.protobuf.Any value) {
-        if (resBuilder_ == null) {
+        if (valueBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureResIsMutable();
-          res_.set(index, value);
+          ensureValueIsMutable();
+          value_.set(index, value);
           onChanged();
         } else {
-          resBuilder_.setMessage(index, value);
+          valueBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder setRes(
+      public Builder setValue(
           int index, com.google.protobuf.Any.Builder builderForValue) {
-        if (resBuilder_ == null) {
-          ensureResIsMutable();
-          res_.set(index, builderForValue.build());
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.set(index, builderForValue.build());
           onChanged();
         } else {
-          resBuilder_.setMessage(index, builderForValue.build());
+          valueBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder addRes(com.google.protobuf.Any value) {
-        if (resBuilder_ == null) {
+      public Builder addValue(com.google.protobuf.Any value) {
+        if (valueBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureResIsMutable();
-          res_.add(value);
+          ensureValueIsMutable();
+          value_.add(value);
           onChanged();
         } else {
-          resBuilder_.addMessage(value);
+          valueBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder addRes(
+      public Builder addValue(
           int index, com.google.protobuf.Any value) {
-        if (resBuilder_ == null) {
+        if (valueBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureResIsMutable();
-          res_.add(index, value);
+          ensureValueIsMutable();
+          value_.add(index, value);
           onChanged();
         } else {
-          resBuilder_.addMessage(index, value);
+          valueBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder addRes(
+      public Builder addValue(
           com.google.protobuf.Any.Builder builderForValue) {
-        if (resBuilder_ == null) {
-          ensureResIsMutable();
-          res_.add(builderForValue.build());
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.add(builderForValue.build());
           onChanged();
         } else {
-          resBuilder_.addMessage(builderForValue.build());
+          valueBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder addRes(
+      public Builder addValue(
           int index, com.google.protobuf.Any.Builder builderForValue) {
-        if (resBuilder_ == null) {
-          ensureResIsMutable();
-          res_.add(index, builderForValue.build());
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.add(index, builderForValue.build());
           onChanged();
         } else {
-          resBuilder_.addMessage(index, builderForValue.build());
+          valueBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder addAllRes(
+      public Builder addAllValue(
           java.lang.Iterable<? extends com.google.protobuf.Any> values) {
-        if (resBuilder_ == null) {
-          ensureResIsMutable();
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, res_);
+              values, value_);
           onChanged();
         } else {
-          resBuilder_.addAllMessages(values);
+          valueBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder clearRes() {
-        if (resBuilder_ == null) {
-          res_ = java.util.Collections.emptyList();
+      public Builder clearValue() {
+        if (valueBuilder_ == null) {
+          value_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          resBuilder_.clear();
+          valueBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public Builder removeRes(int index) {
-        if (resBuilder_ == null) {
-          ensureResIsMutable();
-          res_.remove(index);
+      public Builder removeValue(int index) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.remove(index);
           onChanged();
         } else {
-          resBuilder_.remove(index);
+          valueBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public com.google.protobuf.Any.Builder getResBuilder(
+      public com.google.protobuf.Any.Builder getValueBuilder(
           int index) {
-        return getResFieldBuilder().getBuilder(index);
+        return getValueFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public com.google.protobuf.AnyOrBuilder getResOrBuilder(
+      public com.google.protobuf.AnyOrBuilder getValueOrBuilder(
           int index) {
-        if (resBuilder_ == null) {
-          return res_.get(index);  } else {
-          return resBuilder_.getMessageOrBuilder(index);
+        if (valueBuilder_ == null) {
+          return value_.get(index);  } else {
+          return valueBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
       public java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
-           getResOrBuilderList() {
-        if (resBuilder_ != null) {
-          return resBuilder_.getMessageOrBuilderList();
+           getValueOrBuilderList() {
+        if (valueBuilder_ != null) {
+          return valueBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(res_);
+          return java.util.Collections.unmodifiableList(value_);
         }
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public com.google.protobuf.Any.Builder addResBuilder() {
-        return getResFieldBuilder().addBuilder(
+      public com.google.protobuf.Any.Builder addValueBuilder() {
+        return getValueFieldBuilder().addBuilder(
             com.google.protobuf.Any.getDefaultInstance());
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
-      public com.google.protobuf.Any.Builder addResBuilder(
+      public com.google.protobuf.Any.Builder addValueBuilder(
           int index) {
-        return getResFieldBuilder().addBuilder(
+        return getValueFieldBuilder().addBuilder(
             index, com.google.protobuf.Any.getDefaultInstance());
       }
       /**
-       * <code>repeated .google.protobuf.Any res = 2;</code>
+       * <code>repeated .google.protobuf.Any value = 2;</code>
        */
       public java.util.List<com.google.protobuf.Any.Builder> 
-           getResBuilderList() {
-        return getResFieldBuilder().getBuilderList();
+           getValueBuilderList() {
+        return getValueFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
-          getResFieldBuilder() {
-        if (resBuilder_ == null) {
-          resBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getValueFieldBuilder() {
+        if (valueBuilder_ == null) {
+          valueBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
-                  res_,
+                  value_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
-          res_ = null;
+          value_ = null;
         }
-        return resBuilder_;
+        return valueBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3962,15 +3962,15 @@ public final class CommonProtos {
       "viceInfo\022\n\n\002sn\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\022\n\nb" +
       "leVersion\030\003 \001(\t\022\027\n\017firmwareVersion\030\004 \001(\t" +
       "\022\020\n\010pinRetry\030\005 \001(\r\022\023\n\013pinMaxRetry\030\006 \001(\r\"" +
-      "$\n\tResultInt\022\n\n\002rv\030\001 \001(\004\022\013\n\003res\030\002 \001(\r\"\'\n" +
-      "\014ResultString\022\n\n\002rv\030\001 \001(\004\022\013\n\003res\030\002 \001(\t\":" +
-      "\n\tResultAny\022\n\n\002rv\030\001 \001(\004\022!\n\003res\030\002 \003(\0132\024.g" +
-      "oogle.protobuf.Any*K\n\026ENUM_MNEMONIC_STRE" +
-      "NGTH\022\017\n\013STRENGTH128\020\000\022\017\n\013STRENGTH192\020\001\022\017" +
-      "\n\013STRENGTH256\020\002*3\n\006CURVES\022\r\n\tsecp256k1\020\000" +
-      "\022\013\n\007ed25519\020\001\022\r\n\tnist256p1\020\002B4\n\025com.jubi" +
-      "ter.sdk.protoB\014CommonProtos\242\002\014CommonProt" +
-      "osb\006proto3"
+      "-\n\tResultInt\022\021\n\tstateCode\030\001 \001(\004\022\r\n\005value" +
+      "\030\002 \001(\r\"0\n\014ResultString\022\021\n\tstateCode\030\001 \001(" +
+      "\004\022\r\n\005value\030\002 \001(\t\"C\n\tResultAny\022\021\n\tstateCo" +
+      "de\030\001 \001(\004\022#\n\005value\030\002 \003(\0132\024.google.protobu" +
+      "f.Any*K\n\026ENUM_MNEMONIC_STRENGTH\022\017\n\013STREN" +
+      "GTH128\020\000\022\017\n\013STRENGTH192\020\001\022\017\n\013STRENGTH256" +
+      "\020\002*3\n\006CURVES\022\r\n\tsecp256k1\020\000\022\013\n\007ed25519\020\001" +
+      "\022\r\n\tnist256p1\020\002B4\n\025com.jubiter.sdk.proto" +
+      "B\014CommonProtos\242\002\014CommonProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3994,19 +3994,19 @@ public final class CommonProtos {
     internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultInt_descriptor,
-        new java.lang.String[] { "Rv", "Res", });
+        new java.lang.String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultString_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultString_descriptor,
-        new java.lang.String[] { "Rv", "Res", });
+        new java.lang.String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultAny_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultAny_descriptor,
-        new java.lang.String[] { "Rv", "Res", });
+        new java.lang.String[] { "StateCode", "Value", });
     com.google.protobuf.AnyProto.getDescriptor();
   }
 

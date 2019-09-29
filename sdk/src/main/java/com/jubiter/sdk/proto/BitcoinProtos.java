@@ -74,7 +74,7 @@ public final class BitcoinProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -83,7 +83,7 @@ public final class BitcoinProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ENUM_COIN_TYPE_BTC valueOf(int value) {
       return forNumber(value);
     }
@@ -122,7 +122,7 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.getDescriptor().getEnumTypes().get(0);
+      return BitcoinProtos.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final ENUM_COIN_TYPE_BTC[] VALUES = values();
@@ -130,7 +130,7 @@ public final class BitcoinProtos {
     public static ENUM_COIN_TYPE_BTC valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -192,7 +192,7 @@ public final class BitcoinProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -201,7 +201,7 @@ public final class BitcoinProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ENUM_TRAN_STYPE_BTC valueOf(int value) {
       return forNumber(value);
     }
@@ -238,7 +238,7 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.getDescriptor().getEnumTypes().get(1);
+      return BitcoinProtos.getDescriptor().getEnumTypes().get(1);
     }
 
     private static final ENUM_TRAN_STYPE_BTC[] VALUES = values();
@@ -246,7 +246,7 @@ public final class BitcoinProtos {
     public static ENUM_TRAN_STYPE_BTC valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -316,7 +316,7 @@ public final class BitcoinProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -325,7 +325,7 @@ public final class BitcoinProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static BTC_UNIT_TYPE valueOf(int value) {
       return forNumber(value);
     }
@@ -363,7 +363,7 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.getDescriptor().getEnumTypes().get(2);
+      return BitcoinProtos.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final BTC_UNIT_TYPE[] VALUES = values();
@@ -371,7 +371,7 @@ public final class BitcoinProtos {
     public static BTC_UNIT_TYPE valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -425,7 +425,7 @@ public final class BitcoinProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -434,7 +434,7 @@ public final class BitcoinProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ENUM_SCRIPT_TYPE_BTC valueOf(int value) {
       return forNumber(value);
     }
@@ -470,7 +470,7 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.getDescriptor().getEnumTypes().get(3);
+      return BitcoinProtos.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final ENUM_SCRIPT_TYPE_BTC[] VALUES = values();
@@ -478,7 +478,7 @@ public final class BitcoinProtos {
     public static ENUM_SCRIPT_TYPE_BTC valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -503,7 +503,7 @@ public final class BitcoinProtos {
     /**
      * <code>string main_path = 1;</code>
      */
-    java.lang.String getMainPath();
+    String getMainPath();
     /**
      * <code>string main_path = 1;</code>
      */
@@ -517,7 +517,7 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC getCoinType();
+    ENUM_COIN_TYPE_BTC getCoinType();
 
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
@@ -526,7 +526,7 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC getTransType();
+    ENUM_TRAN_STYPE_BTC getTransType();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.ContextCfgBTC}
@@ -546,14 +546,14 @@ public final class BitcoinProtos {
       transType_ = 0;
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new ContextCfgBTC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -564,7 +564,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -577,7 +577,7 @@ public final class BitcoinProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               mainPath_ = s;
               break;
@@ -615,30 +615,30 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.class, com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.Builder.class);
+              ContextCfgBTC.class, Builder.class);
     }
 
     public static final int MAIN_PATH_FIELD_NUMBER = 1;
-    private volatile java.lang.Object mainPath_;
+    private volatile Object mainPath_;
     /**
      * <code>string main_path = 1;</code>
      */
-    public java.lang.String getMainPath() {
-      java.lang.Object ref = mainPath_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getMainPath() {
+      Object ref = mainPath_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         mainPath_ = s;
         return s;
       }
@@ -648,11 +648,11 @@ public final class BitcoinProtos {
      */
     public com.google.protobuf.ByteString
         getMainPathBytes() {
-      java.lang.Object ref = mainPath_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = mainPath_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         mainPath_ = b;
         return b;
       } else {
@@ -671,10 +671,10 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC getCoinType() {
+    public ENUM_COIN_TYPE_BTC getCoinType() {
       @SuppressWarnings("deprecation")
-      com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.valueOf(coinType_);
-      return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.UNRECOGNIZED : result;
+      ENUM_COIN_TYPE_BTC result = ENUM_COIN_TYPE_BTC.valueOf(coinType_);
+      return result == null ? ENUM_COIN_TYPE_BTC.UNRECOGNIZED : result;
     }
 
     public static final int TRANS_TYPE_FIELD_NUMBER = 3;
@@ -688,14 +688,14 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC getTransType() {
+    public ENUM_TRAN_STYPE_BTC getTransType() {
       @SuppressWarnings("deprecation")
-      com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.valueOf(transType_);
-      return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.UNRECOGNIZED : result;
+      ENUM_TRAN_STYPE_BTC result = ENUM_TRAN_STYPE_BTC.valueOf(transType_);
+      return result == null ? ENUM_TRAN_STYPE_BTC.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -705,22 +705,22 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getMainPathBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mainPath_);
       }
-      if (coinType_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC.getNumber()) {
+      if (coinType_ != ENUM_COIN_TYPE_BTC.COINBTC.getNumber()) {
         output.writeEnum(2, coinType_);
       }
-      if (transType_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
+      if (transType_ != ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
         output.writeEnum(3, transType_);
       }
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -729,11 +729,11 @@ public final class BitcoinProtos {
       if (!getMainPathBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mainPath_);
       }
-      if (coinType_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC.getNumber()) {
+      if (coinType_ != ENUM_COIN_TYPE_BTC.COINBTC.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, coinType_);
       }
-      if (transType_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
+      if (transType_ != ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, transType_);
       }
@@ -742,15 +742,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC)) {
+      if (!(obj instanceof ContextCfgBTC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC other = (com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC) obj;
+      ContextCfgBTC other = (ContextCfgBTC) obj;
 
       if (!getMainPath()
           .equals(other.getMainPath())) return false;
@@ -760,7 +760,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -778,69 +778,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(byte[] data)
+    public static ContextCfgBTC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(java.io.InputStream input)
+    public static ContextCfgBTC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseDelimitedFrom(java.io.InputStream input)
+    public static ContextCfgBTC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseDelimitedFrom(
+    public static ContextCfgBTC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parseFrom(
+    public static ContextCfgBTC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -848,23 +848,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC prototype) {
+    public static Builder newBuilder(ContextCfgBTC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -874,18 +874,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.ContextCfgBTC)
-        com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTCOrBuilder {
+        ContextCfgBTCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.class, com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.Builder.class);
+                ContextCfgBTC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.newBuilder()
@@ -894,7 +894,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -903,7 +903,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         mainPath_ = "";
@@ -915,29 +915,29 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.getDefaultInstance();
+      @Override
+      public ContextCfgBTC getDefaultInstanceForType() {
+        return ContextCfgBTC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC build() {
-        com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC result = buildPartial();
+      @Override
+      public ContextCfgBTC build() {
+        ContextCfgBTC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC result = new com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC(this);
+      @Override
+      public ContextCfgBTC buildPartial() {
+        ContextCfgBTC result = new ContextCfgBTC(this);
         result.mainPath_ = mainPath_;
         result.coinType_ = coinType_;
         result.transType_ = transType_;
@@ -945,50 +945,50 @@ public final class BitcoinProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC)other);
+        if (other instanceof ContextCfgBTC) {
+          return mergeFrom((ContextCfgBTC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC.getDefaultInstance()) return this;
+      public Builder mergeFrom(ContextCfgBTC other) {
+        if (other == ContextCfgBTC.getDefaultInstance()) return this;
         if (!other.getMainPath().isEmpty()) {
           mainPath_ = other.mainPath_;
           onChanged();
@@ -1004,21 +1004,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC parsedMessage = null;
+        ContextCfgBTC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC) e.getUnfinishedMessage();
+          parsedMessage = (ContextCfgBTC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1028,20 +1028,20 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private java.lang.Object mainPath_ = "";
+      private Object mainPath_ = "";
       /**
        * <code>string main_path = 1;</code>
        */
-      public java.lang.String getMainPath() {
-        java.lang.Object ref = mainPath_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getMainPath() {
+        Object ref = mainPath_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           mainPath_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1049,11 +1049,11 @@ public final class BitcoinProtos {
        */
       public com.google.protobuf.ByteString
           getMainPathBytes() {
-        java.lang.Object ref = mainPath_;
+        Object ref = mainPath_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           mainPath_ = b;
           return b;
         } else {
@@ -1064,11 +1064,11 @@ public final class BitcoinProtos {
        * <code>string main_path = 1;</code>
        */
       public Builder setMainPath(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         mainPath_ = value;
         onChanged();
         return this;
@@ -1077,7 +1077,7 @@ public final class BitcoinProtos {
        * <code>string main_path = 1;</code>
        */
       public Builder clearMainPath() {
-        
+
         mainPath_ = getDefaultInstance().getMainPath();
         onChanged();
         return this;
@@ -1091,7 +1091,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         mainPath_ = value;
         onChanged();
         return this;
@@ -1115,19 +1115,19 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC getCoinType() {
+      public ENUM_COIN_TYPE_BTC getCoinType() {
         @SuppressWarnings("deprecation")
-        com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.valueOf(coinType_);
-        return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC.UNRECOGNIZED : result;
+        ENUM_COIN_TYPE_BTC result = ENUM_COIN_TYPE_BTC.valueOf(coinType_);
+        return result == null ? ENUM_COIN_TYPE_BTC.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
        */
-      public Builder setCoinType(com.jubiter.sdk.proto.BitcoinProtos.ENUM_COIN_TYPE_BTC value) {
+      public Builder setCoinType(ENUM_COIN_TYPE_BTC value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         coinType_ = value.getNumber();
         onChanged();
         return this;
@@ -1136,7 +1136,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
        */
       public Builder clearCoinType() {
-        
+
         coinType_ = 0;
         onChanged();
         return this;
@@ -1160,19 +1160,19 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC getTransType() {
+      public ENUM_TRAN_STYPE_BTC getTransType() {
         @SuppressWarnings("deprecation")
-        com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.valueOf(transType_);
-        return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC.UNRECOGNIZED : result;
+        ENUM_TRAN_STYPE_BTC result = ENUM_TRAN_STYPE_BTC.valueOf(transType_);
+        return result == null ? ENUM_TRAN_STYPE_BTC.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
        */
-      public Builder setTransType(com.jubiter.sdk.proto.BitcoinProtos.ENUM_TRAN_STYPE_BTC value) {
+      public Builder setTransType(ENUM_TRAN_STYPE_BTC value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         transType_ = value.getNumber();
         onChanged();
         return this;
@@ -1181,18 +1181,18 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
        */
       public Builder clearTransType() {
-        
+
         transType_ = 0;
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1203,18 +1203,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.ContextCfgBTC)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC DEFAULT_INSTANCE;
+    private static final ContextCfgBTC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC();
+      DEFAULT_INSTANCE = new ContextCfgBTC();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC getDefaultInstance() {
+    public static ContextCfgBTC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ContextCfgBTC>
         PARSER = new com.google.protobuf.AbstractParser<ContextCfgBTC>() {
-      @java.lang.Override
+      @Override
       public ContextCfgBTC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1227,13 +1227,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<ContextCfgBTC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.ContextCfgBTC getDefaultInstanceForType() {
+    @Override
+    public ContextCfgBTC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1246,7 +1246,7 @@ public final class BitcoinProtos {
     /**
      * <code>string preHash = 1;</code>
      */
-    java.lang.String getPreHash();
+    String getPreHash();
     /**
      * <code>string preHash = 1;</code>
      */
@@ -1270,11 +1270,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath();
+    CommonProtos.Bip32Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.InputBTC}
@@ -1292,14 +1292,14 @@ public final class BitcoinProtos {
       preHash_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new InputBTC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1310,7 +1310,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1323,7 +1323,7 @@ public final class BitcoinProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               preHash_ = s;
               break;
@@ -1339,11 +1339,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder subBuilder = null;
+              CommonProtos.Bip32Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip32Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip32Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -1372,30 +1372,30 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.InputBTC.class, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder.class);
+              InputBTC.class, Builder.class);
     }
 
     public static final int PREHASH_FIELD_NUMBER = 1;
-    private volatile java.lang.Object preHash_;
+    private volatile Object preHash_;
     /**
      * <code>string preHash = 1;</code>
      */
-    public java.lang.String getPreHash() {
-      java.lang.Object ref = preHash_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getPreHash() {
+      Object ref = preHash_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         preHash_ = s;
         return s;
       }
@@ -1405,11 +1405,11 @@ public final class BitcoinProtos {
      */
     public com.google.protobuf.ByteString
         getPreHashBytes() {
-      java.lang.Object ref = preHash_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = preHash_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         preHash_ = b;
         return b;
       } else {
@@ -1436,7 +1436,7 @@ public final class BitcoinProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private com.jubiter.sdk.proto.CommonProtos.Bip32Path path_;
+    private CommonProtos.Bip32Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
@@ -1446,18 +1446,18 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip32Path getPath() {
+      return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1467,7 +1467,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getPreHashBytes().isEmpty()) {
@@ -1485,7 +1485,7 @@ public final class BitcoinProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1511,15 +1511,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.InputBTC)) {
+      if (!(obj instanceof InputBTC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.InputBTC other = (com.jubiter.sdk.proto.BitcoinProtos.InputBTC) obj;
+      InputBTC other = (InputBTC) obj;
 
       if (!getPreHash()
           .equals(other.getPreHash())) return false;
@@ -1536,7 +1536,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1559,69 +1559,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(byte[] data)
+    public static InputBTC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(java.io.InputStream input)
+    public static InputBTC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseDelimitedFrom(java.io.InputStream input)
+    public static InputBTC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseDelimitedFrom(
+    public static InputBTC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC parseFrom(
+    public static InputBTC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1629,23 +1629,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.InputBTC prototype) {
+    public static Builder newBuilder(InputBTC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1655,18 +1655,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.InputBTC)
-        com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder {
+        InputBTCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.InputBTC.class, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder.class);
+                InputBTC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.InputBTC.newBuilder()
@@ -1675,7 +1675,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1684,7 +1684,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         preHash_ = "";
@@ -1702,29 +1702,29 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.InputBTC.getDefaultInstance();
+      @Override
+      public InputBTC getDefaultInstanceForType() {
+        return InputBTC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC build() {
-        com.jubiter.sdk.proto.BitcoinProtos.InputBTC result = buildPartial();
+      @Override
+      public InputBTC build() {
+        InputBTC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.InputBTC result = new com.jubiter.sdk.proto.BitcoinProtos.InputBTC(this);
+      @Override
+      public InputBTC buildPartial() {
+        InputBTC result = new InputBTC(this);
         result.preHash_ = preHash_;
         result.preIndex_ = preIndex_;
         result.amount_ = amount_;
@@ -1737,50 +1737,50 @@ public final class BitcoinProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.InputBTC) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.InputBTC)other);
+        if (other instanceof InputBTC) {
+          return mergeFrom((InputBTC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.InputBTC other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.InputBTC.getDefaultInstance()) return this;
+      public Builder mergeFrom(InputBTC other) {
+        if (other == InputBTC.getDefaultInstance()) return this;
         if (!other.getPreHash().isEmpty()) {
           preHash_ = other.preHash_;
           onChanged();
@@ -1799,21 +1799,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.InputBTC parsedMessage = null;
+        InputBTC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.InputBTC) e.getUnfinishedMessage();
+          parsedMessage = (InputBTC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1823,20 +1823,20 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private java.lang.Object preHash_ = "";
+      private Object preHash_ = "";
       /**
        * <code>string preHash = 1;</code>
        */
-      public java.lang.String getPreHash() {
-        java.lang.Object ref = preHash_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getPreHash() {
+        Object ref = preHash_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           preHash_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1844,11 +1844,11 @@ public final class BitcoinProtos {
        */
       public com.google.protobuf.ByteString
           getPreHashBytes() {
-        java.lang.Object ref = preHash_;
+        Object ref = preHash_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           preHash_ = b;
           return b;
         } else {
@@ -1859,11 +1859,11 @@ public final class BitcoinProtos {
        * <code>string preHash = 1;</code>
        */
       public Builder setPreHash(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         preHash_ = value;
         onChanged();
         return this;
@@ -1872,7 +1872,7 @@ public final class BitcoinProtos {
        * <code>string preHash = 1;</code>
        */
       public Builder clearPreHash() {
-        
+
         preHash_ = getDefaultInstance().getPreHash();
         onChanged();
         return this;
@@ -1886,7 +1886,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         preHash_ = value;
         onChanged();
         return this;
@@ -1903,7 +1903,7 @@ public final class BitcoinProtos {
        * <code>uint32 preIndex = 2;</code>
        */
       public Builder setPreIndex(int value) {
-        
+
         preIndex_ = value;
         onChanged();
         return this;
@@ -1912,7 +1912,7 @@ public final class BitcoinProtos {
        * <code>uint32 preIndex = 2;</code>
        */
       public Builder clearPreIndex() {
-        
+
         preIndex_ = 0;
         onChanged();
         return this;
@@ -1929,7 +1929,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
-        
+
         amount_ = value;
         onChanged();
         return this;
@@ -1938,15 +1938,15 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 3;</code>
        */
       public Builder clearAmount() {
-        
+
         amount_ = 0L;
         onChanged();
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip32Path path_;
+      private CommonProtos.Bip32Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
@@ -1956,9 +1956,9 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath() {
+      public CommonProtos.Bip32Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -1966,7 +1966,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip32Path value) {
+      public Builder setPath(CommonProtos.Bip32Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1983,7 +1983,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder builderForValue) {
+          CommonProtos.Bip32Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -1996,11 +1996,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip32Path value) {
+      public Builder mergePath(CommonProtos.Bip32Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2028,31 +2028,31 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder getPathBuilder() {
-        
+      public CommonProtos.Bip32Path.Builder getPathBuilder() {
+
         onChanged();
         return getPathFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+              CommonProtos.Bip32Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder> 
+          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder>(
+              CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -2060,13 +2060,13 @@ public final class BitcoinProtos {
         }
         return pathBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2077,18 +2077,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.InputBTC)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.InputBTC DEFAULT_INSTANCE;
+    private static final InputBTC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.InputBTC();
+      DEFAULT_INSTANCE = new InputBTC();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.InputBTC getDefaultInstance() {
+    public static InputBTC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<InputBTC>
         PARSER = new com.google.protobuf.AbstractParser<InputBTC>() {
-      @java.lang.Override
+      @Override
       public InputBTC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2101,13 +2101,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<InputBTC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.InputBTC getDefaultInstanceForType() {
+    @Override
+    public InputBTC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2120,7 +2120,7 @@ public final class BitcoinProtos {
     /**
      * <code>string address = 1;</code>
      */
-    java.lang.String getAddress();
+    String getAddress();
     /**
      * <code>string address = 1;</code>
      */
@@ -2144,11 +2144,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath();
+    CommonProtos.Bip32Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.StandardOutput}
@@ -2166,14 +2166,14 @@ public final class BitcoinProtos {
       address_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new StandardOutput();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2184,7 +2184,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2197,7 +2197,7 @@ public final class BitcoinProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               address_ = s;
               break;
@@ -2213,11 +2213,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder subBuilder = null;
+              CommonProtos.Bip32Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip32Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip32Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -2246,30 +2246,30 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.class, com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder.class);
+              StandardOutput.class, Builder.class);
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object address_;
+    private volatile Object address_;
     /**
      * <code>string address = 1;</code>
      */
-    public java.lang.String getAddress() {
-      java.lang.Object ref = address_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getAddress() {
+      Object ref = address_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         address_ = s;
         return s;
       }
@@ -2279,11 +2279,11 @@ public final class BitcoinProtos {
      */
     public com.google.protobuf.ByteString
         getAddressBytes() {
-      java.lang.Object ref = address_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         address_ = b;
         return b;
       } else {
@@ -2310,7 +2310,7 @@ public final class BitcoinProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private com.jubiter.sdk.proto.CommonProtos.Bip32Path path_;
+    private CommonProtos.Bip32Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
@@ -2320,18 +2320,18 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip32Path getPath() {
+      return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2341,7 +2341,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getAddressBytes().isEmpty()) {
@@ -2359,7 +2359,7 @@ public final class BitcoinProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2385,15 +2385,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.StandardOutput)) {
+      if (!(obj instanceof StandardOutput)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.StandardOutput other = (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) obj;
+      StandardOutput other = (StandardOutput) obj;
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
@@ -2410,7 +2410,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2434,69 +2434,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(byte[] data)
+    public static StandardOutput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(java.io.InputStream input)
+    public static StandardOutput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseDelimitedFrom(java.io.InputStream input)
+    public static StandardOutput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseDelimitedFrom(
+    public static StandardOutput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parseFrom(
+    public static StandardOutput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2504,23 +2504,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.StandardOutput prototype) {
+    public static Builder newBuilder(StandardOutput prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2530,18 +2530,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.StandardOutput)
-        com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder {
+        StandardOutputOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.class, com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder.class);
+                StandardOutput.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.newBuilder()
@@ -2550,7 +2550,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2559,7 +2559,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         address_ = "";
@@ -2577,29 +2577,29 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+      @Override
+      public StandardOutput getDefaultInstanceForType() {
+        return StandardOutput.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput build() {
-        com.jubiter.sdk.proto.BitcoinProtos.StandardOutput result = buildPartial();
+      @Override
+      public StandardOutput build() {
+        StandardOutput result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.StandardOutput result = new com.jubiter.sdk.proto.BitcoinProtos.StandardOutput(this);
+      @Override
+      public StandardOutput buildPartial() {
+        StandardOutput result = new StandardOutput(this);
         result.address_ = address_;
         result.amount_ = amount_;
         result.changeAddress_ = changeAddress_;
@@ -2612,50 +2612,50 @@ public final class BitcoinProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.StandardOutput)other);
+        if (other instanceof StandardOutput) {
+          return mergeFrom((StandardOutput)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.StandardOutput other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance()) return this;
+      public Builder mergeFrom(StandardOutput other) {
+        if (other == StandardOutput.getDefaultInstance()) return this;
         if (!other.getAddress().isEmpty()) {
           address_ = other.address_;
           onChanged();
@@ -2674,21 +2674,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.StandardOutput parsedMessage = null;
+        StandardOutput parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) e.getUnfinishedMessage();
+          parsedMessage = (StandardOutput) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2698,20 +2698,20 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private java.lang.Object address_ = "";
+      private Object address_ = "";
       /**
        * <code>string address = 1;</code>
        */
-      public java.lang.String getAddress() {
-        java.lang.Object ref = address_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getAddress() {
+        Object ref = address_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           address_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2719,11 +2719,11 @@ public final class BitcoinProtos {
        */
       public com.google.protobuf.ByteString
           getAddressBytes() {
-        java.lang.Object ref = address_;
+        Object ref = address_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           address_ = b;
           return b;
         } else {
@@ -2734,11 +2734,11 @@ public final class BitcoinProtos {
        * <code>string address = 1;</code>
        */
       public Builder setAddress(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         address_ = value;
         onChanged();
         return this;
@@ -2747,7 +2747,7 @@ public final class BitcoinProtos {
        * <code>string address = 1;</code>
        */
       public Builder clearAddress() {
-        
+
         address_ = getDefaultInstance().getAddress();
         onChanged();
         return this;
@@ -2761,7 +2761,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         address_ = value;
         onChanged();
         return this;
@@ -2778,7 +2778,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 2;</code>
        */
       public Builder setAmount(long value) {
-        
+
         amount_ = value;
         onChanged();
         return this;
@@ -2787,7 +2787,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 2;</code>
        */
       public Builder clearAmount() {
-        
+
         amount_ = 0L;
         onChanged();
         return this;
@@ -2804,7 +2804,7 @@ public final class BitcoinProtos {
        * <code>bool changeAddress = 3;</code>
        */
       public Builder setChangeAddress(boolean value) {
-        
+
         changeAddress_ = value;
         onChanged();
         return this;
@@ -2813,15 +2813,15 @@ public final class BitcoinProtos {
        * <code>bool changeAddress = 3;</code>
        */
       public Builder clearChangeAddress() {
-        
+
         changeAddress_ = false;
         onChanged();
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip32Path path_;
+      private CommonProtos.Bip32Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
@@ -2831,9 +2831,9 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32Path getPath() {
+      public CommonProtos.Bip32Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -2841,7 +2841,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip32Path value) {
+      public Builder setPath(CommonProtos.Bip32Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2858,7 +2858,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder builderForValue) {
+          CommonProtos.Bip32Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -2871,11 +2871,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip32Path value) {
+      public Builder mergePath(CommonProtos.Bip32Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2903,31 +2903,31 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder getPathBuilder() {
-        
+      public CommonProtos.Bip32Path.Builder getPathBuilder() {
+
         onChanged();
         return getPathFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path.getDefaultInstance() : path_;
+              CommonProtos.Bip32Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder> 
+          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip32Path, com.jubiter.sdk.proto.CommonProtos.Bip32Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip32PathOrBuilder>(
+              CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -2935,13 +2935,13 @@ public final class BitcoinProtos {
         }
         return pathBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2952,18 +2952,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.StandardOutput)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.StandardOutput DEFAULT_INSTANCE;
+    private static final StandardOutput DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.StandardOutput();
+      DEFAULT_INSTANCE = new StandardOutput();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getDefaultInstance() {
+    public static StandardOutput getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<StandardOutput>
         PARSER = new com.google.protobuf.AbstractParser<StandardOutput>() {
-      @java.lang.Override
+      @Override
       public StandardOutput parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2976,13 +2976,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<StandardOutput> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getDefaultInstanceForType() {
+    @Override
+    public StandardOutput getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3000,7 +3000,7 @@ public final class BitcoinProtos {
     /**
      * <code>string data = 2;</code>
      */
-    java.lang.String getData();
+    String getData();
     /**
      * <code>string data = 2;</code>
      */
@@ -3023,14 +3023,14 @@ public final class BitcoinProtos {
       data_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new Return0Output();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3041,7 +3041,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3059,7 +3059,7 @@ public final class BitcoinProtos {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               data_ = s;
               break;
@@ -3085,15 +3085,15 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.Return0Output.class, com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder.class);
+              Return0Output.class, Builder.class);
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 1;
@@ -3106,18 +3106,18 @@ public final class BitcoinProtos {
     }
 
     public static final int DATA_FIELD_NUMBER = 2;
-    private volatile java.lang.Object data_;
+    private volatile Object data_;
     /**
      * <code>string data = 2;</code>
      */
-    public java.lang.String getData() {
-      java.lang.Object ref = data_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getData() {
+      Object ref = data_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         data_ = s;
         return s;
       }
@@ -3127,11 +3127,11 @@ public final class BitcoinProtos {
      */
     public com.google.protobuf.ByteString
         getDataBytes() {
-      java.lang.Object ref = data_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = data_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         data_ = b;
         return b;
       } else {
@@ -3140,7 +3140,7 @@ public final class BitcoinProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3150,7 +3150,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (amount_ != 0L) {
@@ -3162,7 +3162,7 @@ public final class BitcoinProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3180,15 +3180,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.Return0Output)) {
+      if (!(obj instanceof Return0Output)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.Return0Output other = (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) obj;
+      Return0Output other = (Return0Output) obj;
 
       if (getAmount()
           != other.getAmount()) return false;
@@ -3198,7 +3198,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3215,69 +3215,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(byte[] data)
+    public static Return0Output parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(java.io.InputStream input)
+    public static Return0Output parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseDelimitedFrom(java.io.InputStream input)
+    public static Return0Output parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseDelimitedFrom(
+    public static Return0Output parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output parseFrom(
+    public static Return0Output parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3285,23 +3285,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.Return0Output prototype) {
+    public static Builder newBuilder(Return0Output prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3311,18 +3311,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.Return0Output)
-        com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder {
+        Return0OutputOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.Return0Output.class, com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder.class);
+                Return0Output.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.Return0Output.newBuilder()
@@ -3331,7 +3331,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3340,7 +3340,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         amount_ = 0L;
@@ -3350,79 +3350,79 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0Output getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+      @Override
+      public Return0Output getDefaultInstanceForType() {
+        return Return0Output.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0Output build() {
-        com.jubiter.sdk.proto.BitcoinProtos.Return0Output result = buildPartial();
+      @Override
+      public Return0Output build() {
+        Return0Output result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0Output buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.Return0Output result = new com.jubiter.sdk.proto.BitcoinProtos.Return0Output(this);
+      @Override
+      public Return0Output buildPartial() {
+        Return0Output result = new Return0Output(this);
         result.amount_ = amount_;
         result.data_ = data_;
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.Return0Output) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.Return0Output)other);
+        if (other instanceof Return0Output) {
+          return mergeFrom((Return0Output)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.Return0Output other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance()) return this;
+      public Builder mergeFrom(Return0Output other) {
+        if (other == Return0Output.getDefaultInstance()) return this;
         if (other.getAmount() != 0L) {
           setAmount(other.getAmount());
         }
@@ -3435,21 +3435,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.Return0Output parsedMessage = null;
+        Return0Output parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) e.getUnfinishedMessage();
+          parsedMessage = (Return0Output) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3470,7 +3470,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 1;</code>
        */
       public Builder setAmount(long value) {
-        
+
         amount_ = value;
         onChanged();
         return this;
@@ -3479,26 +3479,26 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 1;</code>
        */
       public Builder clearAmount() {
-        
+
         amount_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.lang.Object data_ = "";
+      private Object data_ = "";
       /**
        * <code>string data = 2;</code>
        */
-      public java.lang.String getData() {
-        java.lang.Object ref = data_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getData() {
+        Object ref = data_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           data_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -3506,11 +3506,11 @@ public final class BitcoinProtos {
        */
       public com.google.protobuf.ByteString
           getDataBytes() {
-        java.lang.Object ref = data_;
+        Object ref = data_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           data_ = b;
           return b;
         } else {
@@ -3521,11 +3521,11 @@ public final class BitcoinProtos {
        * <code>string data = 2;</code>
        */
       public Builder setData(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         data_ = value;
         onChanged();
         return this;
@@ -3534,7 +3534,7 @@ public final class BitcoinProtos {
        * <code>string data = 2;</code>
        */
       public Builder clearData() {
-        
+
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
@@ -3548,18 +3548,18 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         data_ = value;
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3570,18 +3570,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.Return0Output)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.Return0Output DEFAULT_INSTANCE;
+    private static final Return0Output DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.Return0Output();
+      DEFAULT_INSTANCE = new Return0Output();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.Return0Output getDefaultInstance() {
+    public static Return0Output getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Return0Output>
         PARSER = new com.google.protobuf.AbstractParser<Return0Output>() {
-      @java.lang.Override
+      @Override
       public Return0Output parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3594,13 +3594,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<Return0Output> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.Return0Output getDefaultInstanceForType() {
+    @Override
+    public Return0Output getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3613,7 +3613,7 @@ public final class BitcoinProtos {
     /**
      * <code>string data = 1;</code>
      */
-    java.lang.String getData();
+    String getData();
     /**
      * <code>string data = 1;</code>
      */
@@ -3636,14 +3636,14 @@ public final class BitcoinProtos {
       data_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new QRC20Output();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3654,7 +3654,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3667,7 +3667,7 @@ public final class BitcoinProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               data_ = s;
               break;
@@ -3693,30 +3693,30 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.class, com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder.class);
+              QRC20Output.class, Builder.class);
     }
 
     public static final int DATA_FIELD_NUMBER = 1;
-    private volatile java.lang.Object data_;
+    private volatile Object data_;
     /**
      * <code>string data = 1;</code>
      */
-    public java.lang.String getData() {
-      java.lang.Object ref = data_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getData() {
+      Object ref = data_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         data_ = s;
         return s;
       }
@@ -3726,11 +3726,11 @@ public final class BitcoinProtos {
      */
     public com.google.protobuf.ByteString
         getDataBytes() {
-      java.lang.Object ref = data_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = data_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         data_ = b;
         return b;
       } else {
@@ -3739,7 +3739,7 @@ public final class BitcoinProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3749,7 +3749,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getDataBytes().isEmpty()) {
@@ -3758,7 +3758,7 @@ public final class BitcoinProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3772,15 +3772,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.QRC20Output)) {
+      if (!(obj instanceof QRC20Output)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.QRC20Output other = (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) obj;
+      QRC20Output other = (QRC20Output) obj;
 
       if (!getData()
           .equals(other.getData())) return false;
@@ -3788,7 +3788,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3802,69 +3802,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(byte[] data)
+    public static QRC20Output parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(java.io.InputStream input)
+    public static QRC20Output parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseDelimitedFrom(java.io.InputStream input)
+    public static QRC20Output parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseDelimitedFrom(
+    public static QRC20Output parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parseFrom(
+    public static QRC20Output parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3872,23 +3872,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.QRC20Output prototype) {
+    public static Builder newBuilder(QRC20Output prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3898,18 +3898,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.QRC20Output)
-        com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder {
+        QRC20OutputOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.class, com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder.class);
+                QRC20Output.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.newBuilder()
@@ -3918,7 +3918,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3927,7 +3927,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         data_ = "";
@@ -3935,78 +3935,78 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+      @Override
+      public QRC20Output getDefaultInstanceForType() {
+        return QRC20Output.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output build() {
-        com.jubiter.sdk.proto.BitcoinProtos.QRC20Output result = buildPartial();
+      @Override
+      public QRC20Output build() {
+        QRC20Output result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.QRC20Output result = new com.jubiter.sdk.proto.BitcoinProtos.QRC20Output(this);
+      @Override
+      public QRC20Output buildPartial() {
+        QRC20Output result = new QRC20Output(this);
         result.data_ = data_;
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.QRC20Output)other);
+        if (other instanceof QRC20Output) {
+          return mergeFrom((QRC20Output)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.QRC20Output other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance()) return this;
+      public Builder mergeFrom(QRC20Output other) {
+        if (other == QRC20Output.getDefaultInstance()) return this;
         if (!other.getData().isEmpty()) {
           data_ = other.data_;
           onChanged();
@@ -4016,21 +4016,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.QRC20Output parsedMessage = null;
+        QRC20Output parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) e.getUnfinishedMessage();
+          parsedMessage = (QRC20Output) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4040,20 +4040,20 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private java.lang.Object data_ = "";
+      private Object data_ = "";
       /**
        * <code>string data = 1;</code>
        */
-      public java.lang.String getData() {
-        java.lang.Object ref = data_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getData() {
+        Object ref = data_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           data_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -4061,11 +4061,11 @@ public final class BitcoinProtos {
        */
       public com.google.protobuf.ByteString
           getDataBytes() {
-        java.lang.Object ref = data_;
+        Object ref = data_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           data_ = b;
           return b;
         } else {
@@ -4076,11 +4076,11 @@ public final class BitcoinProtos {
        * <code>string data = 1;</code>
        */
       public Builder setData(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         data_ = value;
         onChanged();
         return this;
@@ -4089,7 +4089,7 @@ public final class BitcoinProtos {
        * <code>string data = 1;</code>
        */
       public Builder clearData() {
-        
+
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
@@ -4103,18 +4103,18 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         data_ = value;
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4125,18 +4125,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.QRC20Output)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.QRC20Output DEFAULT_INSTANCE;
+    private static final QRC20Output DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.QRC20Output();
+      DEFAULT_INSTANCE = new QRC20Output();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getDefaultInstance() {
+    public static QRC20Output getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<QRC20Output>
         PARSER = new com.google.protobuf.AbstractParser<QRC20Output>() {
-      @java.lang.Override
+      @Override
       public QRC20Output parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4149,13 +4149,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<QRC20Output> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getDefaultInstanceForType() {
+    @Override
+    public QRC20Output getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4172,7 +4172,7 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC getType();
+    ENUM_SCRIPT_TYPE_BTC getType();
 
     /**
      * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
@@ -4181,11 +4181,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getStandardOputput();
+    StandardOutput getStandardOputput();
     /**
      * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder getStandardOputputOrBuilder();
+    StandardOutputOrBuilder getStandardOputputOrBuilder();
 
     /**
      * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
@@ -4194,11 +4194,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.Return0Output getReturn0Output();
+    Return0Output getReturn0Output();
     /**
      * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder getReturn0OutputOrBuilder();
+    Return0OutputOrBuilder getReturn0OutputOrBuilder();
 
     /**
      * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
@@ -4207,13 +4207,13 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getQrc20Output();
+    QRC20Output getQrc20Output();
     /**
      * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder getQrc20OutputOrBuilder();
+    QRC20OutputOrBuilder getQrc20OutputOrBuilder();
 
-    public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.OutputCase getOutputCase();
+    public OutputBTC.OutputCase getOutputCase();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.OutputBTC}
@@ -4231,14 +4231,14 @@ public final class BitcoinProtos {
       type_ = 0;
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new OutputBTC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4249,7 +4249,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -4268,42 +4268,42 @@ public final class BitcoinProtos {
               break;
             }
             case 18: {
-              com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder subBuilder = null;
+              StandardOutput.Builder subBuilder = null;
               if (outputCase_ == 2) {
-                subBuilder = ((com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_).toBuilder();
+                subBuilder = ((StandardOutput) output_).toBuilder();
               }
               output_ =
-                  input.readMessage(com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.parser(), extensionRegistry);
+                  input.readMessage(StandardOutput.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_);
+                subBuilder.mergeFrom((StandardOutput) output_);
                 output_ = subBuilder.buildPartial();
               }
               outputCase_ = 2;
               break;
             }
             case 26: {
-              com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder subBuilder = null;
+              Return0Output.Builder subBuilder = null;
               if (outputCase_ == 3) {
-                subBuilder = ((com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_).toBuilder();
+                subBuilder = ((Return0Output) output_).toBuilder();
               }
               output_ =
-                  input.readMessage(com.jubiter.sdk.proto.BitcoinProtos.Return0Output.parser(), extensionRegistry);
+                  input.readMessage(Return0Output.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_);
+                subBuilder.mergeFrom((Return0Output) output_);
                 output_ = subBuilder.buildPartial();
               }
               outputCase_ = 3;
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder subBuilder = null;
+              QRC20Output.Builder subBuilder = null;
               if (outputCase_ == 4) {
-                subBuilder = ((com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_).toBuilder();
+                subBuilder = ((QRC20Output) output_).toBuilder();
               }
               output_ =
-                  input.readMessage(com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.parser(), extensionRegistry);
+                  input.readMessage(QRC20Output.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_);
+                subBuilder.mergeFrom((QRC20Output) output_);
                 output_ = subBuilder.buildPartial();
               }
               outputCase_ = 4;
@@ -4330,19 +4330,19 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.class, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder.class);
+              OutputBTC.class, Builder.class);
     }
 
     private int outputCase_ = 0;
-    private java.lang.Object output_;
+    private Object output_;
     public enum OutputCase
         implements com.google.protobuf.Internal.EnumLite {
       STANDARDOPUTPUT(2),
@@ -4356,7 +4356,7 @@ public final class BitcoinProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @java.lang.Deprecated
+      @Deprecated
       public static OutputCase valueOf(int value) {
         return forNumber(value);
       }
@@ -4392,10 +4392,10 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC getType() {
+    public ENUM_SCRIPT_TYPE_BTC getType() {
       @SuppressWarnings("deprecation")
-      com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.valueOf(type_);
-      return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.UNRECOGNIZED : result;
+      ENUM_SCRIPT_TYPE_BTC result = ENUM_SCRIPT_TYPE_BTC.valueOf(type_);
+      return result == null ? ENUM_SCRIPT_TYPE_BTC.UNRECOGNIZED : result;
     }
 
     public static final int STANDARDOPUTPUT_FIELD_NUMBER = 2;
@@ -4408,20 +4408,20 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getStandardOputput() {
+    public StandardOutput getStandardOputput() {
       if (outputCase_ == 2) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_;
+         return (StandardOutput) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+      return StandardOutput.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder getStandardOputputOrBuilder() {
+    public StandardOutputOrBuilder getStandardOputputOrBuilder() {
       if (outputCase_ == 2) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_;
+         return (StandardOutput) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+      return StandardOutput.getDefaultInstance();
     }
 
     public static final int RETURN0OUTPUT_FIELD_NUMBER = 3;
@@ -4434,20 +4434,20 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.Return0Output getReturn0Output() {
+    public Return0Output getReturn0Output() {
       if (outputCase_ == 3) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_;
+         return (Return0Output) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+      return Return0Output.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder getReturn0OutputOrBuilder() {
+    public Return0OutputOrBuilder getReturn0OutputOrBuilder() {
       if (outputCase_ == 3) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_;
+         return (Return0Output) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+      return Return0Output.getDefaultInstance();
     }
 
     public static final int QRC20OUTPUT_FIELD_NUMBER = 4;
@@ -4460,24 +4460,24 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getQrc20Output() {
+    public QRC20Output getQrc20Output() {
       if (outputCase_ == 4) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_;
+         return (QRC20Output) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+      return QRC20Output.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
+    public QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
       if (outputCase_ == 4) {
-         return (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_;
+         return (QRC20Output) output_;
       }
-      return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+      return QRC20Output.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4487,60 +4487,60 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
+      if (type_ != ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (outputCase_ == 2) {
-        output.writeMessage(2, (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_);
+        output.writeMessage(2, (StandardOutput) output_);
       }
       if (outputCase_ == 3) {
-        output.writeMessage(3, (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_);
+        output.writeMessage(3, (Return0Output) output_);
       }
       if (outputCase_ == 4) {
-        output.writeMessage(4, (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_);
+        output.writeMessage(4, (QRC20Output) output_);
       }
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
+      if (type_ != ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
       if (outputCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_);
+          .computeMessageSize(2, (StandardOutput) output_);
       }
       if (outputCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_);
+          .computeMessageSize(3, (Return0Output) output_);
       }
       if (outputCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_);
+          .computeMessageSize(4, (QRC20Output) output_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.OutputBTC)) {
+      if (!(obj instanceof OutputBTC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.OutputBTC other = (com.jubiter.sdk.proto.BitcoinProtos.OutputBTC) obj;
+      OutputBTC other = (OutputBTC) obj;
 
       if (type_ != other.type_) return false;
       if (!getOutputCase().equals(other.getOutputCase())) return false;
@@ -4564,7 +4564,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4594,69 +4594,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(byte[] data)
+    public static OutputBTC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(java.io.InputStream input)
+    public static OutputBTC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseDelimitedFrom(java.io.InputStream input)
+    public static OutputBTC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseDelimitedFrom(
+    public static OutputBTC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parseFrom(
+    public static OutputBTC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4664,23 +4664,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.OutputBTC prototype) {
+    public static Builder newBuilder(OutputBTC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4690,18 +4690,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.OutputBTC)
-        com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder {
+        OutputBTCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.class, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder.class);
+                OutputBTC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.newBuilder()
@@ -4710,7 +4710,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4719,7 +4719,7 @@ public final class BitcoinProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         type_ = 0;
@@ -4729,29 +4729,29 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.getDefaultInstance();
+      @Override
+      public OutputBTC getDefaultInstanceForType() {
+        return OutputBTC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC build() {
-        com.jubiter.sdk.proto.BitcoinProtos.OutputBTC result = buildPartial();
+      @Override
+      public OutputBTC build() {
+        OutputBTC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.OutputBTC result = new com.jubiter.sdk.proto.BitcoinProtos.OutputBTC(this);
+      @Override
+      public OutputBTC buildPartial() {
+        OutputBTC result = new OutputBTC(this);
         result.type_ = type_;
         if (outputCase_ == 2) {
           if (standardOputputBuilder_ == null) {
@@ -4779,50 +4779,50 @@ public final class BitcoinProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.OutputBTC) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.OutputBTC)other);
+        if (other instanceof OutputBTC) {
+          return mergeFrom((OutputBTC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.OutputBTC other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.getDefaultInstance()) return this;
+      public Builder mergeFrom(OutputBTC other) {
+        if (other == OutputBTC.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
@@ -4848,21 +4848,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.OutputBTC parsedMessage = null;
+        OutputBTC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.OutputBTC) e.getUnfinishedMessage();
+          parsedMessage = (OutputBTC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4872,7 +4872,7 @@ public final class BitcoinProtos {
         return this;
       }
       private int outputCase_ = 0;
-      private java.lang.Object output_;
+      private Object output_;
       public OutputCase
           getOutputCase() {
         return OutputCase.forNumber(
@@ -4905,19 +4905,19 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC getType() {
+      public ENUM_SCRIPT_TYPE_BTC getType() {
         @SuppressWarnings("deprecation")
-        com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC result = com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.valueOf(type_);
-        return result == null ? com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.UNRECOGNIZED : result;
+        ENUM_SCRIPT_TYPE_BTC result = ENUM_SCRIPT_TYPE_BTC.valueOf(type_);
+        return result == null ? ENUM_SCRIPT_TYPE_BTC.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
        */
-      public Builder setType(com.jubiter.sdk.proto.BitcoinProtos.ENUM_SCRIPT_TYPE_BTC value) {
+      public Builder setType(ENUM_SCRIPT_TYPE_BTC value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -4926,14 +4926,14 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
        */
       public Builder clearType() {
-        
+
         type_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.StandardOutput, com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder, com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder> standardOputputBuilder_;
+          StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder> standardOputputBuilder_;
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
@@ -4943,23 +4943,23 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput getStandardOputput() {
+      public StandardOutput getStandardOputput() {
         if (standardOputputBuilder_ == null) {
           if (outputCase_ == 2) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_;
+            return (StandardOutput) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+          return StandardOutput.getDefaultInstance();
         } else {
           if (outputCase_ == 2) {
             return standardOputputBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+          return StandardOutput.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
-      public Builder setStandardOputput(com.jubiter.sdk.proto.BitcoinProtos.StandardOutput value) {
+      public Builder setStandardOputput(StandardOutput value) {
         if (standardOputputBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4976,7 +4976,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
       public Builder setStandardOputput(
-          com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder builderForValue) {
+          StandardOutput.Builder builderForValue) {
         if (standardOputputBuilder_ == null) {
           output_ = builderForValue.build();
           onChanged();
@@ -4989,11 +4989,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
-      public Builder mergeStandardOputput(com.jubiter.sdk.proto.BitcoinProtos.StandardOutput value) {
+      public Builder mergeStandardOputput(StandardOutput value) {
         if (standardOputputBuilder_ == null) {
           if (outputCase_ == 2 &&
-              output_ != com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance()) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.newBuilder((com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_)
+              output_ != StandardOutput.getDefaultInstance()) {
+            output_ = StandardOutput.newBuilder((StandardOutput) output_)
                 .mergeFrom(value).buildPartial();
           } else {
             output_ = value;
@@ -5030,35 +5030,35 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder getStandardOputputBuilder() {
+      public StandardOutput.Builder getStandardOputputBuilder() {
         return getStandardOputputFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder getStandardOputputOrBuilder() {
+      public StandardOutputOrBuilder getStandardOputputOrBuilder() {
         if ((outputCase_ == 2) && (standardOputputBuilder_ != null)) {
           return standardOputputBuilder_.getMessageOrBuilder();
         } else {
           if (outputCase_ == 2) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_;
+            return (StandardOutput) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+          return StandardOutput.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.StandardOutput, com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder, com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder> 
+          StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder>
           getStandardOputputFieldBuilder() {
         if (standardOputputBuilder_ == null) {
           if (!(outputCase_ == 2)) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.getDefaultInstance();
+            output_ = StandardOutput.getDefaultInstance();
           }
           standardOputputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.BitcoinProtos.StandardOutput, com.jubiter.sdk.proto.BitcoinProtos.StandardOutput.Builder, com.jubiter.sdk.proto.BitcoinProtos.StandardOutputOrBuilder>(
-                  (com.jubiter.sdk.proto.BitcoinProtos.StandardOutput) output_,
+              StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder>(
+                  (StandardOutput) output_,
                   getParentForChildren(),
                   isClean());
           output_ = null;
@@ -5069,7 +5069,7 @@ public final class BitcoinProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.Return0Output, com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder> return0OutputBuilder_;
+          Return0Output, Return0Output.Builder, Return0OutputOrBuilder> return0OutputBuilder_;
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
@@ -5079,23 +5079,23 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0Output getReturn0Output() {
+      public Return0Output getReturn0Output() {
         if (return0OutputBuilder_ == null) {
           if (outputCase_ == 3) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_;
+            return (Return0Output) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+          return Return0Output.getDefaultInstance();
         } else {
           if (outputCase_ == 3) {
             return return0OutputBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+          return Return0Output.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
-      public Builder setReturn0Output(com.jubiter.sdk.proto.BitcoinProtos.Return0Output value) {
+      public Builder setReturn0Output(Return0Output value) {
         if (return0OutputBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5112,7 +5112,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
       public Builder setReturn0Output(
-          com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder builderForValue) {
+          Return0Output.Builder builderForValue) {
         if (return0OutputBuilder_ == null) {
           output_ = builderForValue.build();
           onChanged();
@@ -5125,11 +5125,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
-      public Builder mergeReturn0Output(com.jubiter.sdk.proto.BitcoinProtos.Return0Output value) {
+      public Builder mergeReturn0Output(Return0Output value) {
         if (return0OutputBuilder_ == null) {
           if (outputCase_ == 3 &&
-              output_ != com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance()) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.Return0Output.newBuilder((com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_)
+              output_ != Return0Output.getDefaultInstance()) {
+            output_ = Return0Output.newBuilder((Return0Output) output_)
                 .mergeFrom(value).buildPartial();
           } else {
             output_ = value;
@@ -5166,35 +5166,35 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder getReturn0OutputBuilder() {
+      public Return0Output.Builder getReturn0OutputBuilder() {
         return getReturn0OutputFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder getReturn0OutputOrBuilder() {
+      public Return0OutputOrBuilder getReturn0OutputOrBuilder() {
         if ((outputCase_ == 3) && (return0OutputBuilder_ != null)) {
           return return0OutputBuilder_.getMessageOrBuilder();
         } else {
           if (outputCase_ == 3) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_;
+            return (Return0Output) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+          return Return0Output.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.Return0Output, com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder> 
+          Return0Output, Return0Output.Builder, Return0OutputOrBuilder>
           getReturn0OutputFieldBuilder() {
         if (return0OutputBuilder_ == null) {
           if (!(outputCase_ == 3)) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.Return0Output.getDefaultInstance();
+            output_ = Return0Output.getDefaultInstance();
           }
           return0OutputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.BitcoinProtos.Return0Output, com.jubiter.sdk.proto.BitcoinProtos.Return0Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.Return0OutputOrBuilder>(
-                  (com.jubiter.sdk.proto.BitcoinProtos.Return0Output) output_,
+              Return0Output, Return0Output.Builder, Return0OutputOrBuilder>(
+                  (Return0Output) output_,
                   getParentForChildren(),
                   isClean());
           output_ = null;
@@ -5205,7 +5205,7 @@ public final class BitcoinProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.QRC20Output, com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder> qrc20OutputBuilder_;
+          QRC20Output, QRC20Output.Builder, QRC20OutputOrBuilder> qrc20OutputBuilder_;
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
@@ -5215,23 +5215,23 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output getQrc20Output() {
+      public QRC20Output getQrc20Output() {
         if (qrc20OutputBuilder_ == null) {
           if (outputCase_ == 4) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_;
+            return (QRC20Output) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+          return QRC20Output.getDefaultInstance();
         } else {
           if (outputCase_ == 4) {
             return qrc20OutputBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+          return QRC20Output.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
-      public Builder setQrc20Output(com.jubiter.sdk.proto.BitcoinProtos.QRC20Output value) {
+      public Builder setQrc20Output(QRC20Output value) {
         if (qrc20OutputBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5248,7 +5248,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
       public Builder setQrc20Output(
-          com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder builderForValue) {
+          QRC20Output.Builder builderForValue) {
         if (qrc20OutputBuilder_ == null) {
           output_ = builderForValue.build();
           onChanged();
@@ -5261,11 +5261,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
-      public Builder mergeQrc20Output(com.jubiter.sdk.proto.BitcoinProtos.QRC20Output value) {
+      public Builder mergeQrc20Output(QRC20Output value) {
         if (qrc20OutputBuilder_ == null) {
           if (outputCase_ == 4 &&
-              output_ != com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance()) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.newBuilder((com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_)
+              output_ != QRC20Output.getDefaultInstance()) {
+            output_ = QRC20Output.newBuilder((QRC20Output) output_)
                 .mergeFrom(value).buildPartial();
           } else {
             output_ = value;
@@ -5302,35 +5302,35 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder getQrc20OutputBuilder() {
+      public QRC20Output.Builder getQrc20OutputBuilder() {
         return getQrc20OutputFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
+      public QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
         if ((outputCase_ == 4) && (qrc20OutputBuilder_ != null)) {
           return qrc20OutputBuilder_.getMessageOrBuilder();
         } else {
           if (outputCase_ == 4) {
-            return (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_;
+            return (QRC20Output) output_;
           }
-          return com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+          return QRC20Output.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.QRC20Output, com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder> 
+          QRC20Output, QRC20Output.Builder, QRC20OutputOrBuilder>
           getQrc20OutputFieldBuilder() {
         if (qrc20OutputBuilder_ == null) {
           if (!(outputCase_ == 4)) {
-            output_ = com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.getDefaultInstance();
+            output_ = QRC20Output.getDefaultInstance();
           }
           qrc20OutputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.BitcoinProtos.QRC20Output, com.jubiter.sdk.proto.BitcoinProtos.QRC20Output.Builder, com.jubiter.sdk.proto.BitcoinProtos.QRC20OutputOrBuilder>(
-                  (com.jubiter.sdk.proto.BitcoinProtos.QRC20Output) output_,
+              QRC20Output, QRC20Output.Builder, QRC20OutputOrBuilder>(
+                  (QRC20Output) output_,
                   getParentForChildren(),
                   isClean());
           output_ = null;
@@ -5339,13 +5339,13 @@ public final class BitcoinProtos {
         onChanged();;
         return qrc20OutputBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -5356,18 +5356,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.OutputBTC)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.OutputBTC DEFAULT_INSTANCE;
+    private static final OutputBTC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.OutputBTC();
+      DEFAULT_INSTANCE = new OutputBTC();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getDefaultInstance() {
+    public static OutputBTC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<OutputBTC>
         PARSER = new com.google.protobuf.AbstractParser<OutputBTC>() {
-      @java.lang.Override
+      @Override
       public OutputBTC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5380,13 +5380,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<OutputBTC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getDefaultInstanceForType() {
+    @Override
+    public OutputBTC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5409,12 +5409,12 @@ public final class BitcoinProtos {
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC> 
+    java.util.List<InputBTC>
         getInputsList();
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.InputBTC getInputs(int index);
+    InputBTC getInputs(int index);
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
@@ -5422,23 +5422,23 @@ public final class BitcoinProtos {
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder> 
+    java.util.List<? extends InputBTCOrBuilder>
         getInputsOrBuilderList();
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder getInputsOrBuilder(
-        int index);
+    InputBTCOrBuilder getInputsOrBuilder(
+            int index);
 
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> 
+    java.util.List<OutputBTC>
         getOutputsList();
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getOutputs(int index);
+    OutputBTC getOutputs(int index);
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
@@ -5446,13 +5446,13 @@ public final class BitcoinProtos {
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder> 
+    java.util.List<? extends OutputBTCOrBuilder>
         getOutputsOrBuilderList();
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder getOutputsOrBuilder(
-        int index);
+    OutputBTCOrBuilder getOutputsOrBuilder(
+            int index);
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.TransactionBTC}
@@ -5471,14 +5471,14 @@ public final class BitcoinProtos {
       outputs_ = java.util.Collections.emptyList();
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransactionBTC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -5489,7 +5489,7 @@ public final class BitcoinProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -5514,20 +5514,20 @@ public final class BitcoinProtos {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                inputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.BitcoinProtos.InputBTC>();
+                inputs_ = new java.util.ArrayList<InputBTC>();
                 mutable_bitField0_ |= 0x00000001;
               }
               inputs_.add(
-                  input.readMessage(com.jubiter.sdk.proto.BitcoinProtos.InputBTC.parser(), extensionRegistry));
+                  input.readMessage(InputBTC.parser(), extensionRegistry));
               break;
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                outputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC>();
+                outputs_ = new java.util.ArrayList<OutputBTC>();
                 mutable_bitField0_ |= 0x00000002;
               }
               outputs_.add(
-                  input.readMessage(com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.parser(), extensionRegistry));
+                  input.readMessage(OutputBTC.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -5557,15 +5557,15 @@ public final class BitcoinProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable
+      return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.class, com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.Builder.class);
+              TransactionBTC.class, Builder.class);
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
@@ -5587,17 +5587,17 @@ public final class BitcoinProtos {
     }
 
     public static final int INPUTS_FIELD_NUMBER = 3;
-    private java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC> inputs_;
+    private java.util.List<InputBTC> inputs_;
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC> getInputsList() {
+    public java.util.List<InputBTC> getInputsList() {
       return inputs_;
     }
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    public java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder> 
+    public java.util.List<? extends InputBTCOrBuilder>
         getInputsOrBuilderList() {
       return inputs_;
     }
@@ -5610,29 +5610,29 @@ public final class BitcoinProtos {
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.InputBTC getInputs(int index) {
+    public InputBTC getInputs(int index) {
       return inputs_.get(index);
     }
     /**
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder getInputsOrBuilder(
+    public InputBTCOrBuilder getInputsOrBuilder(
         int index) {
       return inputs_.get(index);
     }
 
     public static final int OUTPUTS_FIELD_NUMBER = 4;
-    private java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> outputs_;
+    private java.util.List<OutputBTC> outputs_;
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> getOutputsList() {
+    public java.util.List<OutputBTC> getOutputsList() {
       return outputs_;
     }
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    public java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder> 
+    public java.util.List<? extends OutputBTCOrBuilder>
         getOutputsOrBuilderList() {
       return outputs_;
     }
@@ -5645,19 +5645,19 @@ public final class BitcoinProtos {
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getOutputs(int index) {
+    public OutputBTC getOutputs(int index) {
       return outputs_.get(index);
     }
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
-    public com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder getOutputsOrBuilder(
+    public OutputBTCOrBuilder getOutputsOrBuilder(
         int index) {
       return outputs_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -5667,7 +5667,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (version_ != 0) {
@@ -5685,7 +5685,7 @@ public final class BitcoinProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -5712,15 +5712,15 @@ public final class BitcoinProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC)) {
+      if (!(obj instanceof TransactionBTC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC other = (com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC) obj;
+      TransactionBTC other = (TransactionBTC) obj;
 
       if (getVersion()
           != other.getVersion()) return false;
@@ -5734,7 +5734,7 @@ public final class BitcoinProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -5758,69 +5758,69 @@ public final class BitcoinProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(byte[] data)
+    public static TransactionBTC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(java.io.InputStream input)
+    public static TransactionBTC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseDelimitedFrom(java.io.InputStream input)
+    public static TransactionBTC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseDelimitedFrom(
+    public static TransactionBTC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parseFrom(
+    public static TransactionBTC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5828,23 +5828,23 @@ public final class BitcoinProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC prototype) {
+    public static Builder newBuilder(TransactionBTC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -5854,18 +5854,18 @@ public final class BitcoinProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Bitcoin.TransactionBTC)
-        com.jubiter.sdk.proto.BitcoinProtos.TransactionBTCOrBuilder {
+        TransactionBTCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.class, com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.Builder.class);
+                TransactionBTC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.newBuilder()
@@ -5874,7 +5874,7 @@ public final class BitcoinProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5885,7 +5885,7 @@ public final class BitcoinProtos {
           getOutputsFieldBuilder();
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         version_ = 0;
@@ -5907,29 +5907,29 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
+        return BitcoinProtos.internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.getDefaultInstance();
+      @Override
+      public TransactionBTC getDefaultInstanceForType() {
+        return TransactionBTC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC build() {
-        com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC result = buildPartial();
+      @Override
+      public TransactionBTC build() {
+        TransactionBTC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC buildPartial() {
-        com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC result = new com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC(this);
+      @Override
+      public TransactionBTC buildPartial() {
+        TransactionBTC result = new TransactionBTC(this);
         int from_bitField0_ = bitField0_;
         result.version_ = version_;
         result.locktime_ = locktime_;
@@ -5955,50 +5955,50 @@ public final class BitcoinProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC) {
-          return mergeFrom((com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC)other);
+        if (other instanceof TransactionBTC) {
+          return mergeFrom((TransactionBTC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC other) {
-        if (other == com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC.getDefaultInstance()) return this;
+      public Builder mergeFrom(TransactionBTC other) {
+        if (other == TransactionBTC.getDefaultInstance()) return this;
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
@@ -6023,7 +6023,7 @@ public final class BitcoinProtos {
               inputsBuilder_ = null;
               inputs_ = other.inputs_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              inputsBuilder_ = 
+              inputsBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getInputsFieldBuilder() : null;
             } else {
@@ -6049,7 +6049,7 @@ public final class BitcoinProtos {
               outputsBuilder_ = null;
               outputs_ = other.outputs_;
               bitField0_ = (bitField0_ & ~0x00000002);
-              outputsBuilder_ = 
+              outputsBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOutputsFieldBuilder() : null;
             } else {
@@ -6062,21 +6062,21 @@ public final class BitcoinProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC parsedMessage = null;
+        TransactionBTC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC) e.getUnfinishedMessage();
+          parsedMessage = (TransactionBTC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -6098,7 +6098,7 @@ public final class BitcoinProtos {
        * <code>uint32 version = 1;</code>
        */
       public Builder setVersion(int value) {
-        
+
         version_ = value;
         onChanged();
         return this;
@@ -6107,7 +6107,7 @@ public final class BitcoinProtos {
        * <code>uint32 version = 1;</code>
        */
       public Builder clearVersion() {
-        
+
         version_ = 0;
         onChanged();
         return this;
@@ -6124,7 +6124,7 @@ public final class BitcoinProtos {
        * <code>uint32 locktime = 2;</code>
        */
       public Builder setLocktime(int value) {
-        
+
         locktime_ = value;
         onChanged();
         return this;
@@ -6133,28 +6133,28 @@ public final class BitcoinProtos {
        * <code>uint32 locktime = 2;</code>
        */
       public Builder clearLocktime() {
-        
+
         locktime_ = 0;
         onChanged();
         return this;
       }
 
-      private java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC> inputs_ =
+      private java.util.List<InputBTC> inputs_ =
         java.util.Collections.emptyList();
       private void ensureInputsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          inputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.BitcoinProtos.InputBTC>(inputs_);
+          inputs_ = new java.util.ArrayList<InputBTC>(inputs_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.InputBTC, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder> inputsBuilder_;
+          InputBTC, InputBTC.Builder, InputBTCOrBuilder> inputsBuilder_;
 
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC> getInputsList() {
+      public java.util.List<InputBTC> getInputsList() {
         if (inputsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(inputs_);
         } else {
@@ -6174,7 +6174,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC getInputs(int index) {
+      public InputBTC getInputs(int index) {
         if (inputsBuilder_ == null) {
           return inputs_.get(index);
         } else {
@@ -6185,7 +6185,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder setInputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.InputBTC value) {
+          int index, InputBTC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6202,7 +6202,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder setInputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder builderForValue) {
+          int index, InputBTC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.set(index, builderForValue.build());
@@ -6215,7 +6215,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public Builder addInputs(com.jubiter.sdk.proto.BitcoinProtos.InputBTC value) {
+      public Builder addInputs(InputBTC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6232,7 +6232,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder addInputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.InputBTC value) {
+          int index, InputBTC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6249,7 +6249,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder addInputs(
-          com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder builderForValue) {
+          InputBTC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.add(builderForValue.build());
@@ -6263,7 +6263,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder addInputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder builderForValue) {
+          int index, InputBTC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.add(index, builderForValue.build());
@@ -6277,7 +6277,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
       public Builder addAllInputs(
-          java.lang.Iterable<? extends com.jubiter.sdk.proto.BitcoinProtos.InputBTC> values) {
+          Iterable<? extends InputBTC> values) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -6317,14 +6317,14 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder getInputsBuilder(
+      public InputBTC.Builder getInputsBuilder(
           int index) {
         return getInputsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder getInputsOrBuilder(
+      public InputBTCOrBuilder getInputsOrBuilder(
           int index) {
         if (inputsBuilder_ == null) {
           return inputs_.get(index);  } else {
@@ -6334,7 +6334,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder> 
+      public java.util.List<? extends InputBTCOrBuilder>
            getInputsOrBuilderList() {
         if (inputsBuilder_ != null) {
           return inputsBuilder_.getMessageOrBuilderList();
@@ -6345,31 +6345,31 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder addInputsBuilder() {
+      public InputBTC.Builder addInputsBuilder() {
         return getInputsFieldBuilder().addBuilder(
-            com.jubiter.sdk.proto.BitcoinProtos.InputBTC.getDefaultInstance());
+            InputBTC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder addInputsBuilder(
+      public InputBTC.Builder addInputsBuilder(
           int index) {
         return getInputsFieldBuilder().addBuilder(
-            index, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.getDefaultInstance());
+            index, InputBTC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder> 
+      public java.util.List<InputBTC.Builder>
            getInputsBuilderList() {
         return getInputsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.InputBTC, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder> 
+          InputBTC, InputBTC.Builder, InputBTCOrBuilder>
           getInputsFieldBuilder() {
         if (inputsBuilder_ == null) {
           inputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.jubiter.sdk.proto.BitcoinProtos.InputBTC, com.jubiter.sdk.proto.BitcoinProtos.InputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.InputBTCOrBuilder>(
+              InputBTC, InputBTC.Builder, InputBTCOrBuilder>(
                   inputs_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -6379,22 +6379,22 @@ public final class BitcoinProtos {
         return inputsBuilder_;
       }
 
-      private java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> outputs_ =
+      private java.util.List<OutputBTC> outputs_ =
         java.util.Collections.emptyList();
       private void ensureOutputsIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          outputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC>(outputs_);
+          outputs_ = new java.util.ArrayList<OutputBTC>(outputs_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.OutputBTC, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder> outputsBuilder_;
+          OutputBTC, OutputBTC.Builder, OutputBTCOrBuilder> outputsBuilder_;
 
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> getOutputsList() {
+      public java.util.List<OutputBTC> getOutputsList() {
         if (outputsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(outputs_);
         } else {
@@ -6414,7 +6414,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC getOutputs(int index) {
+      public OutputBTC getOutputs(int index) {
         if (outputsBuilder_ == null) {
           return outputs_.get(index);
         } else {
@@ -6425,7 +6425,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder setOutputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC value) {
+          int index, OutputBTC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6442,7 +6442,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder setOutputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder builderForValue) {
+          int index, OutputBTC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.set(index, builderForValue.build());
@@ -6455,7 +6455,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public Builder addOutputs(com.jubiter.sdk.proto.BitcoinProtos.OutputBTC value) {
+      public Builder addOutputs(OutputBTC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6472,7 +6472,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder addOutputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC value) {
+          int index, OutputBTC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6489,7 +6489,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder addOutputs(
-          com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder builderForValue) {
+          OutputBTC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.add(builderForValue.build());
@@ -6503,7 +6503,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder addOutputs(
-          int index, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder builderForValue) {
+          int index, OutputBTC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.add(index, builderForValue.build());
@@ -6517,7 +6517,7 @@ public final class BitcoinProtos {
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
       public Builder addAllOutputs(
-          java.lang.Iterable<? extends com.jubiter.sdk.proto.BitcoinProtos.OutputBTC> values) {
+          Iterable<? extends OutputBTC> values) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -6557,14 +6557,14 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder getOutputsBuilder(
+      public OutputBTC.Builder getOutputsBuilder(
           int index) {
         return getOutputsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder getOutputsOrBuilder(
+      public OutputBTCOrBuilder getOutputsOrBuilder(
           int index) {
         if (outputsBuilder_ == null) {
           return outputs_.get(index);  } else {
@@ -6574,7 +6574,7 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public java.util.List<? extends com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder> 
+      public java.util.List<? extends OutputBTCOrBuilder>
            getOutputsOrBuilderList() {
         if (outputsBuilder_ != null) {
           return outputsBuilder_.getMessageOrBuilderList();
@@ -6585,31 +6585,31 @@ public final class BitcoinProtos {
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder addOutputsBuilder() {
+      public OutputBTC.Builder addOutputsBuilder() {
         return getOutputsFieldBuilder().addBuilder(
-            com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.getDefaultInstance());
+            OutputBTC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder addOutputsBuilder(
+      public OutputBTC.Builder addOutputsBuilder(
           int index) {
         return getOutputsFieldBuilder().addBuilder(
-            index, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.getDefaultInstance());
+            index, OutputBTC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder> 
+      public java.util.List<OutputBTC.Builder>
            getOutputsBuilderList() {
         return getOutputsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.BitcoinProtos.OutputBTC, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder> 
+          OutputBTC, OutputBTC.Builder, OutputBTCOrBuilder>
           getOutputsFieldBuilder() {
         if (outputsBuilder_ == null) {
           outputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.jubiter.sdk.proto.BitcoinProtos.OutputBTC, com.jubiter.sdk.proto.BitcoinProtos.OutputBTC.Builder, com.jubiter.sdk.proto.BitcoinProtos.OutputBTCOrBuilder>(
+              OutputBTC, OutputBTC.Builder, OutputBTCOrBuilder>(
                   outputs_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -6618,13 +6618,13 @@ public final class BitcoinProtos {
         }
         return outputsBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -6635,18 +6635,18 @@ public final class BitcoinProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Bitcoin.TransactionBTC)
-    private static final com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC DEFAULT_INSTANCE;
+    private static final TransactionBTC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC();
+      DEFAULT_INSTANCE = new TransactionBTC();
     }
 
-    public static com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC getDefaultInstance() {
+    public static TransactionBTC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransactionBTC>
         PARSER = new com.google.protobuf.AbstractParser<TransactionBTC>() {
-      @java.lang.Override
+      @Override
       public TransactionBTC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6659,13 +6659,13 @@ public final class BitcoinProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<TransactionBTC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.BitcoinProtos.TransactionBTC getDefaultInstanceForType() {
+    @Override
+    public TransactionBTC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6673,37 +6673,37 @@ public final class BitcoinProtos {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable;
 
@@ -6714,7 +6714,7 @@ public final class BitcoinProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\021Jub_Bitcoin.proto\022\021JUB.Proto.Bitcoin\032\020" +
       "Jub_Common.proto\"\230\001\n\rContextCfgBTC\022\021\n\tma" +
       "in_path\030\001 \001(\t\0228\n\tcoin_type\030\002 \001(\0162%.JUB.P" +
@@ -6752,51 +6752,51 @@ public final class BitcoinProtos {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
+          CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor,
-        new java.lang.String[] { "MainPath", "CoinType", "TransType", });
+        new String[] { "MainPath", "CoinType", "TransType", });
     internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor,
-        new java.lang.String[] { "PreHash", "PreIndex", "Amount", "Path", });
+        new String[] { "PreHash", "PreIndex", "Amount", "Path", });
     internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor,
-        new java.lang.String[] { "Address", "Amount", "ChangeAddress", "Path", });
+        new String[] { "Address", "Amount", "ChangeAddress", "Path", });
     internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor,
-        new java.lang.String[] { "Amount", "Data", });
+        new String[] { "Amount", "Data", });
     internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor,
-        new java.lang.String[] { "Data", });
+        new String[] { "Data", });
     internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor,
-        new java.lang.String[] { "Type", "StandardOputput", "Return0Output", "Qrc20Output", "Output", });
+        new String[] { "Type", "StandardOputput", "Return0Output", "Qrc20Output", "Output", });
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor,
-        new java.lang.String[] { "Version", "Locktime", "Inputs", "Outputs", });
-    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
+        new String[] { "Version", "Locktime", "Inputs", "Outputs", });
+    CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
