@@ -191,8 +191,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterWallet.generateMnemonic(CommonProtos.ENUM_MNEMONIC_STRENGTH.STRENGTH128);
-                        Log.d(TAG, ">>> generateMnemonic - rv : " + result.getRv() + " value: " + result.getRes());
-                        mnemonic = result.getRes();
+                        Log.d(TAG, ">>> generateMnemonic - rv : " + result.getStateCode() + " value: " + result.getValue());
+                        mnemonic = result.getValue();
                     }
                 });
             }
@@ -217,8 +217,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterWallet.generateSeed(mnemonic, "123");
-                        Log.d(TAG, ">>> generateSeed - rv : " + result.getRv() + " value: " + result.getRes());
-                        seed = result.getRes();
+                        Log.d(TAG, ">>> generateSeed - rv : " + result.getStateCode() + " value: " + result.getValue());
+                        seed = result.getValue();
                     }
                 });
             }
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterWallet.seedToMasterPrivateKey(seed, CommonProtos.CURVES.secp256k1);
-                        Log.d(TAG, ">>> seedToMasterPrivateKey - rv : " + result.getRv() + " value: " + result.getRes());
+                        Log.d(TAG, ">>> seedToMasterPrivateKey - rv : " + result.getStateCode() + " value: " + result.getValue());
                     }
                 });
 
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultAny result = JuBiterWallet.getDeviceInfo(deviceID);
-                        for (com.google.protobuf.Any detail : result.getResList()) {
+                        for (com.google.protobuf.Any detail : result.getValueList()) {
                             try {
                                 CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
                                 Log.d(TAG, "rv : " + deviceInfo.toString());
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterWallet.getDeviceCert(deviceID);
-                        Log.d(TAG, ">>> getDeviceCert - rv : " + result.getRv() + " value: " + result.getRes());
+                        Log.d(TAG, ">>> getDeviceCert - rv : " + result.getStateCode() + " value: " + result.getValue());
                     }
                 });
 
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterWallet.sendApdu(deviceID, "00A40400");
-                        Log.d(TAG, ">>> sendApdu - rv : " + result.getRv() + " value: " + result.getRes());
+                        Log.d(TAG, ">>> sendApdu - rv : " + result.getStateCode() + " value: " + result.getValue());
                     }
                 });
             }
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultString result = JuBiterWallet.enumApplets(deviceID);
-                Log.d(TAG, ">>> enumApplets - rv : " + result.getRv() + " value: " + result.getRes());
+                Log.d(TAG, ">>> enumApplets - rv : " + result.getStateCode() + " value: " + result.getValue());
             }
         });
     }
@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultString result = JuBiterWallet.enumSupportCoins(deviceID);
-                Log.d(TAG, ">>> enumSupportCoins - rv : " + result.getRv() + " value: " + result.getRes());
+                Log.d(TAG, ">>> enumSupportCoins - rv : " + result.getStateCode() + " value: " + result.getValue());
             }
         });
     }
@@ -349,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultString result = JuBiterWallet.getAppletVersion(deviceID, "d1560001328300424c44000042544301");
-                Log.d(TAG, ">>> getAppletVersion - rv : " + result.getRv() + " value: " + result.getRes());
+                Log.d(TAG, ">>> getAppletVersion - rv : " + result.getStateCode() + " value: " + result.getValue());
             }
         });
     }
@@ -359,7 +359,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultInt result = JuBiterWallet.queryBattery(deviceID);
-                Log.d(TAG, ">>> rv: " + result.getRv() + " res: " + result.getRes());
+                Log.d(TAG, ">>> rv: " + result.getStateCode() + " res: " + result.getValue());
             }
         });
     }
@@ -416,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
                         .build();
                 CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZZFX");
-                Log.d(TAG, ">>> rv: " + result.getRes());
+                Log.d(TAG, ">>> rv: " + result.getValue());
             }
         });
     }
@@ -434,8 +434,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
-                        contextID = result.getRes();
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        contextID = result.getValue();
                     }
                 });
             }
@@ -450,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterBitcoin.getMainHDNode(contextID);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -469,7 +469,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setChange(false)
                                 .build();
                         CommonProtos.ResultString result = JuBiterBitcoin.getHDNode(contextID, bip32Path);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -487,8 +487,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setAddressIndex(0)
                                 .setChange(false)
                                 .build();
-                        CommonProtos.ResultString result = JuBiterBitcoin.getAddress(contextID, bip32Path, false);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        CommonProtos.ResultString result = JuBiterBitcoin.getAddress(contextID, bip32Path, true);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -508,12 +508,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
-                        if (0 != result.getRv()) {
-                            Log.d(TAG, "createContext : " + result.getRv());
+                        if (0 != result.getStateCode()) {
+                            Log.d(TAG, "createContext : " + result.getStateCode());
                             return;
                         }
 
-                        final int contextID2 = result.getRes();
+                        final int contextID2 = result.getValue();
                         int rv = JuBiterWallet.showVirtualPWD(contextID2);
                         Log.d(TAG, "showVirtualPWD : " + rv);
                         if (0 != rv) {
@@ -537,8 +537,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClickListener(String pin) {
                 CommonProtos.ResultInt resultInt = JuBiterWallet.verifyPIN(contextID, pin);
-                Log.d(TAG, ">>> verifyPIN : " + resultInt.getRv());
-                if (0 != resultInt.getRv()) {
+                Log.d(TAG, ">>> verifyPIN : " + resultInt.getStateCode());
+                if (0 != resultInt.getStateCode()) {
                     return;
                 }
                 switch (coinType) {
@@ -614,7 +614,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setLocktime(0)
                 .build();
         CommonProtos.ResultString signResult = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
-        Log.d(TAG, ">>> signTransaction - rv : " + signResult.getRv() + " value: " + signResult.getRes());
+        Log.d(TAG, ">>> signTransaction - rv : " + signResult.getStateCode() + " value: " + signResult.getValue());
     }
 
     private void addListenerOnBuildUSDTOutputBtn() {
@@ -624,7 +624,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 CommonProtos.ResultAny result = JuBiterBitcoin.buildUSDTOutput(contextID, "1JpuFuiBfMzm99JzZG4rpZexxjortaH42t", 2000);
 
                 List<BitcoinProtos.OutputBTC> outputBTCList = new ArrayList<>();
-                for (com.google.protobuf.Any res : result.getResList()) {
+                for (com.google.protobuf.Any res : result.getValueList()) {
                     try {
                         BitcoinProtos.OutputBTC output = res.unpack(BitcoinProtos.OutputBTC.class);
                         outputBTCList.add(output);
@@ -655,7 +655,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setMainPath("m/44'/60'/0'")
                         .build();
                 CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config, "");
-                Log.d(TAG, ">>> rv: " + result.getRes());
+                Log.d(TAG, ">>> rv: " + result.getValue());
             }
         });
     }
@@ -671,8 +671,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setMainPath("m/44'/60'/0'")
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
-                        contextID = result.getRes();
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        contextID = result.getValue();
                     }
                 });
             }
@@ -687,7 +687,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterEthereum.getMainHDNode(contextID, EthereumProtos.ENUM_PUB_FORMAT.XPUB);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -706,7 +706,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setChange(false)
                                 .build();
                         CommonProtos.ResultString result = JuBiterEthereum.getHDNode(contextID, EthereumProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -725,7 +725,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setChange(false)
                                 .build();
                         CommonProtos.ResultString result = JuBiterEthereum.getAddress(contextID, bip32Path, false);
-                        Log.d(TAG, ">>> rv: " + result.getRes());
+                        Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
             }
@@ -743,12 +743,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setMainPath("m/44'/60'/0'")
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
-                        if (0 != result.getRv()) {
-                            Log.d(TAG, "createContext : " + result.getRv());
+                        if (0 != result.getStateCode()) {
+                            Log.d(TAG, "createContext : " + result.getStateCode());
                             return;
                         }
 
-                        final int contextID2 = result.getRes();
+                        final int contextID2 = result.getValue();
                         int rv = JuBiterWallet.showVirtualPWD(contextID2);
                         Log.d(TAG, "showVirtualPWD : " + rv);
                         if (0 != rv) {
@@ -782,7 +782,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setInput("4A75626974657257616C6C6574")
                 .build();
         CommonProtos.ResultString result = JuBiterEthereum.signTransaction(contextID, transactionETH);
-        Log.d(TAG, ">>> signTransaction - rv : " + result.getRv() + " value: " + result.getRes());
+        Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
     }
 
 
