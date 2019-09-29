@@ -8,10 +8,11 @@ package com.jubiter.sdk;
 public interface ConnectionStateCallback {
 
     /**
+     * 连接成功，返回设备句柄
      *
-     * @param name
+     * @param mac 设备MAC
      */
-    public void onConnected(String name, int handle);
+    public void onConnected(String mac, int handle);
 
     /**
      * 连接断开回调
