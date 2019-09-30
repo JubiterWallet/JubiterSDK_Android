@@ -15,7 +15,7 @@ public interface InnerDiscCallback {
     /**
      * 连接断开回调
      *
-     * @param name 设备名称
+     * @param mac 设备蓝牙MAC
      */
-    public void onDisconnect(String name);
+    public void onDisconnect(String mac);
 }
