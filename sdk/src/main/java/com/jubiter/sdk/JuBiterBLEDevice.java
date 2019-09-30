@@ -1,5 +1,7 @@
 package com.jubiter.sdk;
 
+import androidx.annotation.NonNull;
+
 /**
  * @author fengshuo
  * @date 2019/9/25
@@ -27,5 +29,11 @@ public class JuBiterBLEDevice {
 
     public int getDeviceType() {
         return deviceType;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name + '\n' + mac;
     }
 }

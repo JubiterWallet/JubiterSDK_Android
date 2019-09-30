@@ -1,9 +1,14 @@
 package com.jubiter.sdk.example;
 
 import android.Manifest;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
@@ -34,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private String seed;
     private int deviceID;
     private int contextID;
+    private Context mContext;
+    private List<JuBiterBLEDevice> mDeviceList;
+    private BaseAdapter mAdapter;
+    private JuBiterBLEDevice mConnectedDevice;
+    private TextView mStateTx;
 
 
     enum COIN_TYPE {
@@ -47,14 +57,24 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         setContentView(R.layout.activity_main);
 
         init();
+    }
+
+    private void init() {
+        mContext = MainActivity.this;
+        mDeviceList = new ArrayList<>();
+
         if (!hasPermissions()) {
             requestPermissions("Permission request", REQUEST_PERMISSION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             JuBiterWallet.initDevice();
         }
+
+        initUI();
     }
 
-    private void init() {
+    private void initUI() {
+        mStateTx = findViewById(R.id.state_tx);
+
         addListenerOnGenerateMnemonicBtn();
         addListenerOnCheckMnemonicBtn();
         addListenerOnGenerateSeedBtn();
@@ -64,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnSendApduBtn();
 
         addListenerOnScanDeviceBtn();
-        addListenerOnConnectDeviceBtn();
         addListenerOnCancelConnectBtn();
         addListenerOnIsConectedBtn();
         addListenerOnDisconnectDevice();
@@ -98,57 +117,95 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnETHGetAddressBtn();
         addListenerOnETHTransactionBtn();
         addListenerOnBuildERC20AbiBtn();
-
     }
 
     private void addListenerOnScanDeviceBtn() {
         findViewById(R.id.scanDevice_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JuBiterWallet.startScan(new ScanResultCallback() {
+
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void onScanResult(JuBiterBLEDevice device) {
-                        Log.d(TAG, "name : " + device.getName() + " mac : " + device.getMac()
-                                + " type : " + device.getDeviceType());
-                    }
+                    public void run() {
+                        final DeviceListDialog dialog = new DeviceListDialog(mContext, new DeviceListDialog.DeviceCallback() {
+                            @Override
+                            public void onShow() {
+                                Log.d(TAG, ">>> onShow");
+                                startScan();
+                            }
 
-                    @Override
-                    public void onStop() {
+                            @Override
+                            public void onRefresh() {
+                                Log.d(TAG, ">>> onRefresh");
+                                mDeviceList.clear();
+                            }
 
-                    }
-
-                    @Override
-                    public void onError(int errorCode) {
-
+                            @Override
+                            public void onCancel() {
+                                Log.d(TAG, ">>> onCancel");
+                                JuBiterWallet.stopScan();
+                            }
+                        });
+                        dialog.setAdapter(mAdapter = new BleDeviceAdapter(mContext, mDeviceList));
+                        dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Log.d(TAG, ">>> onItemClick: " + position);
+                                JuBiterWallet.stopScan();
+                                dialog.dismiss();
+                                connectDevice(mDeviceList.get(position));
+                            }
+                        });
+                        dialog.show();
                     }
                 });
             }
         });
-
     }
 
-    private void addListenerOnConnectDeviceBtn() {
-        findViewById(R.id.connectDevice_btn).setOnClickListener(new View.OnClickListener() {
+    private void startScan() {
+        JuBiterWallet.startScan(new ScanResultCallback() {
             @Override
-            public void onClick(View v) {
-                JuBiterWallet.stopScan();
-                JuBiterWallet.connectDeviceAsync("DD:A6:FE:7D:9C:27", 15 * 1000, new ConnectionStateCallback() {
-                    @Override
-                    public void onConnected(String name, int handle) {
-                        Log.d(TAG, ">>> onConnected - handle: " + handle);
-                        deviceID = handle;
-                    }
+            public void onScanResult(JuBiterBLEDevice device) {
+                Log.d(TAG, "name : " + device.getName() + " mac : " + device.getMac()
+                        + " type : " + device.getDeviceType());
+                mDeviceList.add(device);
+                mAdapter.notifyDataSetChanged();
+            }
 
-                    @Override
-                    public void onDisconnected(String mac) {
-                        Log.d(TAG, ">>> disconnect: " + mac);
-                    }
+            @Override
+            public void onStop() {
 
-                    @Override
-                    public void onError(int error) {
-                        Log.d(TAG, ">>> onError: " + error);
-                    }
-                });
+            }
+
+            @Override
+            public void onError(int errorCode) {
+
+            }
+        });
+    }
+
+    private void connectDevice(JuBiterBLEDevice device) {
+        mConnectedDevice = device;
+        JuBiterWallet.connectDeviceAsync(device.getMac(), 15 * 1000, new ConnectionStateCallback() {
+            @Override
+            public void onConnected(String mac, int handle) {
+                Log.d(TAG, ">>> onConnected - handle: " + handle + " mac: " + mac);
+                showToast(mac + " connected");
+                updateStateInfo(mConnectedDevice.getName() + '\n' + mac);
+                deviceID = handle;
+            }
+
+            @Override
+            public void onDisconnected(String mac) {
+                Log.d(TAG, ">>> disconnect: " + mac);
+                showToast(mac + " disconnect");
+                updateStateInfo("");
+            }
+
+            @Override
+            public void onError(int error) {
+                Log.d(TAG, ">>> onError: " + error);
             }
         });
     }
@@ -166,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.cancelConnect_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int rv = JuBiterWallet.cancelConnect("DD:A6:FE:7D:9C:27");
+                int rv = JuBiterWallet.cancelConnect(mConnectedDevice.getMac());
                 Log.d(TAG, ">>> cancelConnect: " + rv);
             }
         });
@@ -318,8 +375,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.setTimeout_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                CommonProtos.ResultString result = JuBiterWallet.setTimeout();
-//                printLog(result);
+                CommonProtos.ResultString result = JuBiterWallet.setTimeout(contextID, 10);
             }
         });
     }
@@ -826,5 +882,23 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    void showToast(final String tip) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(mContext, tip, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void updateStateInfo(final String info) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mStateTx.setText(info);
+            }
+        });
     }
 }

@@ -350,14 +350,14 @@ public final class JuBiterWallet {
                 int[] deviceHandle = new int[1];
                 int rv = NativeApi.nativeConnectDevice(address, deviceHandle, timeout, new InnerDiscCallback() {
                     @Override
-                    public void onDisconnect(String name) {
-                        connectionStateCallback.onDisconnected(name);
+                    public void onDisconnect(String mac) {
+                        connectionStateCallback.onDisconnected(mac);
                     }
                 });
                 if (0 != rv) {
                     connectionStateCallback.onError(rv);
                 } else {
-                    connectionStateCallback.onConnected("", deviceHandle[0]);
+                    connectionStateCallback.onConnected(address, deviceHandle[0]);
                 }
             }
         }).start();
