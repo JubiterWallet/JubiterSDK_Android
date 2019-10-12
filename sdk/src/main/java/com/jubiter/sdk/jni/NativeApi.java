@@ -55,7 +55,7 @@ public class NativeApi {
      * @param timeout
      * @return
      */
-    public static native byte[] nativeSetTimeout(int contextID, int timeout);
+    public static native int nativeSetTimeout(int contextID, int timeout);
 
     public static native byte[] nativeEnumApplets(int deviceID);
 

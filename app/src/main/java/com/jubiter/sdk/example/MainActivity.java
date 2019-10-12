@@ -375,7 +375,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.setTimeout_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonProtos.ResultString result = JuBiterWallet.setTimeout(contextID, 10);
+                int result = JuBiterWallet.setTimeout(contextID, 10);
+                Log.d(TAG, ">>> setTimeout : " + result);
             }
         });
     }
@@ -415,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultInt result = JuBiterWallet.queryBattery(deviceID);
-                Log.d(TAG, ">>> rv: " + result.getStateCode() + " res: " + result.getValue());
+                Log.d(TAG, ">>> rv: " + result.getStateCode() + " value: " + result.getValue());
             }
         });
     }
@@ -645,11 +646,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.STANDARD)
                 .build();
 
+        // 找零
         CommonProtos.Bip32Path bip32Path_3 = CommonProtos.Bip32Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
-        // 找零
+
         BitcoinProtos.StandardOutput ouput_2 = BitcoinProtos.StandardOutput.newBuilder()
                 .setAddress("1JpuFuiBfMzm99JzZG4rpZexxjortaH42t")
                 .setChangeAddress(true)
@@ -669,6 +671,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .addOutputs(1, outputBTC_2)
                 .setLocktime(0)
                 .build();
+        Log.d(TAG, "txInfo:" + HexUtils.convertBytesToString(transactionBTC.toByteArray()));
         CommonProtos.ResultString signResult = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
         Log.d(TAG, ">>> signTransaction - rv : " + signResult.getStateCode() + " value: " + signResult.getValue());
     }

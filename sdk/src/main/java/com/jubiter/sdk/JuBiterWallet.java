@@ -147,14 +147,8 @@ public final class JuBiterWallet {
      * @param timeout   超时时间
      * @return
      */
-    public static CommonProtos.ResultString setTimeout(int contextID, int timeout) {
-        try {
-            byte[] result = NativeApi.nativeSetTimeout(contextID, timeout);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static int setTimeout(int contextID, int timeout) {
+        return NativeApi.nativeSetTimeout(contextID, timeout);
     }
 
     /**

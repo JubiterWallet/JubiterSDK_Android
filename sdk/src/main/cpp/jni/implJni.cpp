@@ -1124,7 +1124,7 @@ static JNINativeMethod gMethods[] = {
     },
     {
         "nativeSetTimeout",
-        "(II)[B",
+        "(II)I",
         (void *) native_SetTimeOut
     },
     {
