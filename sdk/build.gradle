@@ -23,23 +23,20 @@ android {
                         "-frtti",
                         "-fexceptions",
                         "-DDEBUG",
-//                        "-D__ANDROID__",
-//                        "-DJSON_HAS_INT64",  // JsonCpp 64位库编译失败，启用该标记也失败
                         "-DHAVE_ENDIAN_H"
 
-                arguments '-DANDROID_TOOLCHAIN=clang',      // 工具链更新，NDK 15c规定不再支持gcc，但gcc暂未移除，现项目改为clang工具链编译
-                        // 相关说明：https://developer.android.com/ndk/downloads/revision_history.html?hl=zh-cn
+                arguments '-DANDROID_TOOLCHAIN=clang',
                         "-DANDROID_STL=c++_static",      // 使用库: gnustl_static、stlport_static等，详见Android NDK官网。CMake默认使用 gnustl_static
-                        "-DANDROID_ARM_MODE=arm",            // 如果不添加，在编译 polarssl 库里 bignum 中的汇编时会报错 (*)
+                        "-DANDROID_ARM_MODE=arm",
                         "-DANDROID_PLATFORM=android-19"
             }
 
             ndk {
-//                abiFilters "armeabi-v7a"
-                abiFilters "arm64-v8a",
+//                abiFilters "arm64-v8a"
+                abiFilters "armeabi-v7a",
+                        "arm64-v8a",
                         "x86",
-                        "x86_64",
-                        "armeabi-v7a"
+                        "x86_64"
             }
 
         }
