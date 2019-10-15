@@ -97,12 +97,12 @@ bool parseFromJbyteArray(JNIEnv *env, jbyteArray jbytes, T *pb) {
     return pb->ParseFromString(pStr);
 }
 
-bool parseBip32Path(JNIEnv *env, jbyteArray jbytes, BIP32_Path *bip32Path) {
-    JUB::Proto::Common::Bip32Path pbBip32Path;
-    bool rv = parseFromJbyteArray(env, jbytes, &pbBip32Path);
+bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path) {
+    JUB::Proto::Common::Bip32Path pbBip44Path;
+    bool rv = parseFromJbyteArray(env, jbytes, &pbBip44Path);
     if (rv) {
-        bip32Path->addressIndex = pbBip32Path.addressindex();
-        bip32Path->change = (JUB_ENUM_BOOL) pbBip32Path.change();
+        bip44Path->addressIndex = pbBip44Path.addressindex();
+        bip44Path->change = (JUB_ENUM_BOOL) pbBip44Path.change();
     }
     return rv;
 }
@@ -117,19 +117,19 @@ JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jobject obj, j
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH_Parse(paramString, &strength);
 
-    JUB_MNEMONIC_STRENGTH jubStrength;
+    JUB_ENUM_MNEMONIC_STRENGTH jubStrength;
     switch (strength) {
         case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH128:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH128;
+            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH128;
             break;
         case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH192:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH192;
+            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH192;
             break;
         case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH256:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH256;
+            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH256;
             break;
         default:
-            jubStrength = JUB_MNEMONIC_STRENGTH::STRENGTH128;
+            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH128;
     }
 
     JUB_CHAR_PTR pMnemonic;
@@ -171,7 +171,7 @@ native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj, jstring seed, jbyteArray
     std::vector<unsigned char> vSeed = HexStr2CharPtr(strSeed);
 
     JUB_CHAR_PTR xprv = nullptr;
-    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_CURVES) enum_curve, &xprv);
+    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_ENUM_CURVES) enum_curve, &xprv);
     return buildPbRvString(env, rv, xprv);
 }
 
@@ -383,7 +383,7 @@ native_CreateContextBTC_soft(JNIEnv *env, jobject obj, jbyteArray jcfg, jstring 
         CONTEXT_CONFIG_BTC cfg;
         cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
         cfg.coinType = (JUB_ENUM_COINTYPE_BTC) pbCfg.coin_type();
-        cfg.transType = (JUB_BTC_TRANS_TYPE) pbCfg.trans_type();
+        cfg.transType = (JUB_ENUM_BTC_TRANS_TYPE) pbCfg.trans_type();
         JUB_UINT16 contextID;
         JUB_RV rv = JUB_CreateContextBTC_soft(cfg, (JUB_CHAR_PTR) strXprv.c_str(), &contextID);
         return buildPbRvUInt(env, rv, contextID);
@@ -400,7 +400,7 @@ native_CreateContextBTC(JNIEnv *env, jobject obj, jbyteArray jcfg, jint deviceID
         CONTEXT_CONFIG_BTC cfg;
         cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
         cfg.coinType = (JUB_ENUM_COINTYPE_BTC) pbCfg.coin_type();
-        cfg.transType = (JUB_BTC_TRANS_TYPE) pbCfg.trans_type();
+        cfg.transType = (JUB_ENUM_BTC_TRANS_TYPE) pbCfg.trans_type();
         JUB_UINT16 contextID;
         JUB_RV rv = JUB_CreateContextBTC(cfg, deviceID, &contextID);
         return buildPbRvUInt(env, rv, contextID);
@@ -418,8 +418,8 @@ JNIEXPORT jbyteArray JNICALL native_GetMainHDNodeBTC(JNIEnv *env, jobject obj, j
 JNIEXPORT jbyteArray JNICALL
 native_GetHDNodeBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) {
 
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR xpub;
         JUB_RV rv = JUB_GetHDNodeBTC(contextID, bip32Path, &xpub);
         return buildPbRvString(env, rv, xpub);
@@ -430,8 +430,8 @@ native_GetHDNodeBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) 
 JNIEXPORT jbyteArray JNICALL
 native_GetAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32, jboolean bShow) {
 
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressBTC(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
         return buildPbRvString(env, rv, address);
@@ -442,8 +442,8 @@ native_GetAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32,
 
 JNIEXPORT jbyteArray JNICALL
 native_SetMyAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) {
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_SetMyAddressBTC(contextID, bip32Path, &address);
         return buildPbRvString(env, rv, address);
@@ -470,7 +470,7 @@ native_SignTransactionBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray j
         }
         for (auto i = 0; i < tx.outputs_size(); i++) {
             OUTPUT_BTC output;
-            output.type = (OUTPUT_BTC_TYPE) tx.outputs(i).type();
+            output.type = (OUTPUT_ENUM_BTC_TYPE) tx.outputs(i).type();
             switch (output.type) {
                 case STANDARD:
                     if (!tx.outputs(i).has_standardoputput())
@@ -519,7 +519,7 @@ native_SetUnitBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray junit) {
 
     JUB::Proto::Bitcoin::BTC_UNIT_TYPE unit;
     JUB::Proto::Bitcoin::BTC_UNIT_TYPE_Parse(strUnit, &unit);
-    JUB_RV rv = JUB_SetUnitBTC(contextID, (JUB_BTC_UNIT_TYPE) unit);
+    JUB_RV rv = JUB_SetUnitBTC(contextID, (JUB_ENUM_BTC_UNIT_TYPE) unit);
     return rv;
 }
 
@@ -609,7 +609,7 @@ native_GetMainHDNodeETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray for
     JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
 
     JUB_CHAR_PTR xpub;
-    JUB_RV rv = JUB_GetMainHDNodeETH(contextID, (JUB_ETH_PUB_FORMAT) _format, &xpub);
+    JUB_RV rv = JUB_GetMainHDNodeETH(contextID, (JUB_ENUM_ETH_PUB_FORMAT) _format, &xpub);
     return buildPbRvString(env, rv, xpub);
 }
 
@@ -620,10 +620,10 @@ native_GetHDNodeETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray format,
     JUB::Proto::Ethereum::ENUM_PUB_FORMAT _format;
     JUB::Proto::Ethereum::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
 
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR xpub;
-        JUB_RV rv = JUB_GetHDNodeETH(contextID, (JUB_ETH_PUB_FORMAT) _format, bip32Path, &xpub);
+        JUB_RV rv = JUB_GetHDNodeETH(contextID, (JUB_ENUM_ETH_PUB_FORMAT) _format, bip32Path, &xpub);
         return buildPbRvString(env, rv, xpub);
     }
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
@@ -632,8 +632,8 @@ native_GetHDNodeETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray format,
 JNIEXPORT jbyteArray JNICALL
 native_GetAddressETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32, jboolean bShow) {
 
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressETH(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
         return buildPbRvString(env, rv, address);
@@ -644,8 +644,8 @@ native_GetAddressETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32,
 
 JNIEXPORT jbyteArray JNICALL
 native_SetMyAddressETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) {
-    BIP32_Path bip32Path;
-    if (parseBip32Path(env, bip32, &bip32Path)) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_SetMyAddressETH(contextID, bip32Path, &address);
         return buildPbRvString(env, rv, address);
@@ -670,7 +670,7 @@ JNIEXPORT jbyteArray JNICALL
 native_SignTransactionETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
     JUB::Proto::Ethereum::TransactionETH pbTx;
     if (parseFromJbyteArray(env, tx, &pbTx)) {
-        BIP32_Path bip32Path;
+        BIP44_Path bip32Path;
         bip32Path.change = (JUB_ENUM_BOOL) pbTx.path().change();
         bip32Path.addressIndex = pbTx.path().addressindex();
 
@@ -794,7 +794,7 @@ JNIEXPORT jobjectArray native_HCGetAddress(JNIEnv *env, jobject obj, jlong conte
     for (int i = 0; i < input_number; i++) {
         JUB_CHAR_PTR xpub;
 
-        BIP32_Path path;
+        BIP44_Path path;
         path.change = (JUB_ENUM_BOOL) root[BIP32_PATH][i][CHANGE].asBool();
         path.addressIndex = static_cast<JUB_UINT64>(root[BIP32_PATH][i][INDEX].asInt());
 
@@ -828,7 +828,7 @@ JNIEXPORT jstring JNICALL native_HCShowAddress(JNIEnv *env, jobject obj, jlong c
         return NULL;
     }
 
-    BIP32_Path path;
+    BIP44_Path path;
     path.change = JUB_ENUM_BOOL(change);
     path.addressIndex = static_cast<JUB_UINT64>(index);
 
