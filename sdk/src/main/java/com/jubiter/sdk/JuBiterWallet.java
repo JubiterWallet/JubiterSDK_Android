@@ -32,16 +32,18 @@ public final class JuBiterWallet {
     /**
      * 校验助记码
      *
-     * @param menmonic 助记码
+     * @param mnemonic 助记码
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static int checkMnemonic(String menmonic) {
-        return NativeApi.nativeCheckMnemonic(menmonic);
+    public static int checkMnemonic(String mnemonic) {
+        return NativeApi.nativeCheckMnemonic(mnemonic);
     }
 
     /**
-     * @param mnemonic
-     * @param passphrase
+     * 根据助记词生成种子
+     *
+     * @param mnemonic 助记词
+     * @param passphrase 盐值
      * @return
      */
     public static CommonProtos.ResultString generateSeed(String mnemonic, String passphrase) {

@@ -194,6 +194,17 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 showToast(mac + " connected");
                 updateStateInfo(mConnectedDevice.getName() + '\n' + mac);
                 deviceID = handle;
+
+                Log.d(TAG, ">>> thread id: " + Thread.currentThread().getId());
+                CommonProtos.ResultAny result = JuBiterWallet.getDeviceInfo(deviceID);
+                for (com.google.protobuf.Any detail : result.getValueList()) {
+                    try {
+                        CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
+                        Log.d(TAG, "rv : " + deviceInfo.toString());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -260,7 +271,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.checkMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = JuBiterWallet.checkMnemonic(mnemonic);
+                int result = JuBiterWallet.checkMnemonic("gauge hole clog property soccer idea cycle stadium utility slice hold chief");
+//                int result = JuBiterWallet.checkMnemonic(mnemonic);
                 Log.d(TAG, ">>> generateMnemonic - rv : " + result);
             }
         });
@@ -711,10 +723,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
-                        .setMainPath("m/44'/60'/0'")
+                        .setMainPath("m/44\'/0\'/0\'")
                         .build();
-                CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config, "");
-                Log.d(TAG, ">>> rv: " + result.getValue());
+                CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config,
+                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
+                Log.d(TAG,
+                        ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+                contextID = result.getValue();
             }
         });
     }
@@ -730,7 +745,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setMainPath("m/44'/60'/0'")
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        Log.d(TAG,
+                                ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
                         contextID = result.getValue();
                     }
                 });
@@ -849,7 +865,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.buildErc20Abi_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonProtos.ResultString result = JuBiterEthereum.buildERC20Abi(contextID, "", "10000000");
+                CommonProtos.ResultString result = JuBiterEthereum.buildERC20Abi(contextID, "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9", "10000000");
                 Log.d(TAG, ">>> buildERC20Abi rv: " + result);
             }
         });
