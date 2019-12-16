@@ -636,6 +636,7 @@ native_GetAddressETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32,
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressETH(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
+        LOG_ERR("JUB_GetAddressETH : %s", address);
         return buildPbRvString(env, rv, address);
     }
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
