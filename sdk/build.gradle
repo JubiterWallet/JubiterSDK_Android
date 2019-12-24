@@ -22,7 +22,7 @@ android {
                         "-std=c++11",
                         "-frtti",
                         "-fexceptions",
-                        "-DDEBUG",
+//                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments '-DANDROID_TOOLCHAIN=clang',
@@ -44,7 +44,10 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            // shrinkResources 去除无用资源，依赖minifyEnabled，需与minifyEnabled 同时开启
+            // library无法启用该属性。
+//            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -101,11 +104,10 @@ android {
 
 dependencies {
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // android 推荐使用 protobuf-lite
     //    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
     implementation 'com.google.protobuf:protobuf-java:3.9.1'

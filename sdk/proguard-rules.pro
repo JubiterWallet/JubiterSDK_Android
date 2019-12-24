@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+
+
+# natvie 方法不混淆
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keep class com.jubiter.sdk.jni.InnerDiscCallback{*;}
+-keep class com.jubiter.sdk.jni.InnerScanCallback{*;}
+-keep class com.jubiter.sdk.jni.NativeApi{*;}
+-keep class com.jubiter.sdk.jni.utils.JUB_DEVICE_INFO{*;}
+
+-keep class com.ftsafe.bluetooth.key.ckey.FTBtKeyNativeApi{*;}
+-keep class com.ftsafe.bluetooth.key.ckey.FTBluetoothKey{*;}
+
+
