@@ -121,13 +121,22 @@ public final class JuBiterEthereum {
      * 构建ERC20交易体
      *
      * @param contextID   上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenName 币种名称
+     * @param unitDP 允许的小数点后位数
+     * @param contractAddress 合约地址
      * @param address     接收地址
      * @param amountInWei 转账金额，以 wei 为单位
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString buildERC20Abi(int contextID, String address, String amountInWei) {
+    public static CommonProtos.ResultString buildERC20Abi(int contextID,
+                                                          String tokenName,
+                                                          int unitDP,
+                                                          String contractAddress,
+                                                          String address,
+                                                          String amountInWei) {
         try {
-            byte[] result = NativeApi.nativeETHBuildERC20Abi(contextID, address, amountInWei);
+            byte[] result = NativeApi.nativeETHBuildERC20Abi(contextID, tokenName, unitDP,
+                    contractAddress, address, amountInWei);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

@@ -1102,7 +1102,7 @@ static JNINativeMethod gMethods[] = {
     },
     {
         "nativeETHBuildERC20Abi",
-        "(ILjava/lang/String;Ljava/lang/String;)[B",
+        "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
         (void *) native_BuildERC20AbiETH
     },
     {
