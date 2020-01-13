@@ -109,7 +109,12 @@ public class NativeApi {
 
     public static native byte[] nativeETHSetAddress(int contextID, byte[] bip32);
 
-    public static native byte[] nativeETHBuildERC20Abi(int contextID, String address, String amountInWei);
+    public static native byte[] nativeETHBuildERC20Abi(int contextID,
+                                                       String tokenName,
+                                                       int unitDP,
+                                                       String contractAddress,
+                                                       String address,
+                                                       String amountInWei);
 
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 

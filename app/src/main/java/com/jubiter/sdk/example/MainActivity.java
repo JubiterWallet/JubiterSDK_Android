@@ -865,7 +865,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.buildErc20Abi_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonProtos.ResultString result = JuBiterEthereum.buildERC20Abi(contextID, "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9", "10000000");
+                CommonProtos.ResultString result = JuBiterEthereum.buildERC20Abi(contextID, "",
+                        1, "", "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9", "10000000");
                 Log.d(TAG, ">>> buildERC20Abi rv: " + result);
             }
         });
