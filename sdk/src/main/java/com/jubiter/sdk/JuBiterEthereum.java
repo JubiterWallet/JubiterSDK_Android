@@ -53,7 +53,7 @@ public final class JuBiterEthereum {
      * @param format    主公钥的显示格式，HEX or XPUB
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString getMainHDNode(int contextID, EthereumProtos.ENUM_PUB_FORMAT format) {
+    public static CommonProtos.ResultString getMainHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format) {
         try {
             byte[] result = NativeApi.nativeETHGetMainHDNode(contextID, format.toString().getBytes());
             return CommonProtos.ResultString.parseFrom(result);
@@ -68,13 +68,13 @@ public final class JuBiterEthereum {
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param format    公钥的显示格式，HEX or XPUB
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString getHDNode(int contextID, EthereumProtos.ENUM_PUB_FORMAT format,
-                                                      CommonProtos.Bip32Path bip32) {
+    public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format,
+                                                      CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeETHGetHDNode(contextID, format.toString().getBytes(), bip32.toByteArray());
+            byte[] result = NativeApi.nativeETHGetHDNode(contextID, format.toString().getBytes(), bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -86,13 +86,13 @@ public final class JuBiterEthereum {
      * 获取指定 bip32 地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @param isShow    是否在硬件屏幕显示地址；true：显示，false：不显示
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip32Path bip32, boolean isShow) {
+    public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip44Path bip44, boolean isShow) {
         try {
-            byte[] result = NativeApi.nativeETHGetAddress(contextID, bip32.toByteArray(), isShow);
+            byte[] result = NativeApi.nativeETHGetAddress(contextID, bip44.toByteArray(), isShow);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -104,12 +104,13 @@ public final class JuBiterEthereum {
      * 设置ETH快捷收款地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString setAddress(int contextID, CommonProtos.Bip32Path bip32) {
+    public static CommonProtos.ResultString setAddress(int contextID,
+                                                       CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeETHSetAddress(contextID, bip32.toByteArray());
+            byte[] result = NativeApi.nativeETHSetAddress(contextID, bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -120,12 +121,12 @@ public final class JuBiterEthereum {
     /**
      * 构建ERC20交易体
      *
-     * @param contextID   上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param tokenName 币种名称
-     * @param unitDP 允许的小数点后位数
+     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenName       币种名称
+     * @param unitDP          允许的小数点后位数
      * @param contractAddress 合约地址
-     * @param address     接收地址
-     * @param amountInWei 转账金额，以 wei 为单位
+     * @param address         接收地址
+     * @param amountInWei     转账金额，以 wei 为单位
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString buildERC20Abi(int contextID,

@@ -63,15 +63,15 @@ public final class JuBiterBitcoin {
     }
 
     /**
-     * 获取 bip32 指定路径的公钥
+     * 获取 bip44 指定路径的公钥
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.Bip32Path bip32) {
+    public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeBTCGetHDNode(contextID, bip32.toByteArray());
+            byte[] result = NativeApi.nativeBTCGetHDNode(contextID, bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -80,16 +80,16 @@ public final class JuBiterBitcoin {
     }
 
     /**
-     * 获取指定 bip32 地址
+     * 获取指定 bip44 地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @param isShow    是否在硬件屏幕显示地址；true：显示，false：不显示
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip32Path bip32, boolean isShow) {
+    public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip44Path bip44, boolean isShow) {
         try {
-            byte[] result = NativeApi.nativeBTCGetAddress(contextID, bip32.toByteArray(), isShow);
+            byte[] result = NativeApi.nativeBTCGetAddress(contextID, bip44.toByteArray(), isShow);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -101,12 +101,13 @@ public final class JuBiterBitcoin {
      * 设置快捷收款地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip32     符合bip44格式的分层路径
+     * @param bip44     符合bip44格式的分层路径
      * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString setAddress(int contextID, CommonProtos.Bip32Path bip32) {
+    public static CommonProtos.ResultString setAddress(int contextID,
+                                                       CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeBTCSetAddress(contextID, bip32.toByteArray());
+            byte[] result = NativeApi.nativeBTCSetAddress(contextID, bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

@@ -154,40 +154,40 @@ public final class BitcoinProtos {
   public enum ENUM_TRAN_STYPE_BTC
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>p2pkh = 0;</code>
+     * <code>P2PKH = 0;</code>
      */
-    p2pkh(0),
+    P2PKH(0),
     /**
-     * <code>p2sh_p2wpkh = 1;</code>
+     * <code>P2SH_P2WPKH = 1;</code>
      */
-    p2sh_p2wpkh(1),
+    P2SH_P2WPKH(1),
     /**
-     * <code>p2sh_multisig = 2;</code>
+     * <code>P2SH_MULTISIG = 2;</code>
      */
-    p2sh_multisig(2),
+    P2SH_MULTISIG(2),
     /**
-     * <code>p2pk = 3;</code>
+     * <code>P2PK = 3;</code>
      */
-    p2pk(3),
+    P2PK(3),
     UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>p2pkh = 0;</code>
+     * <code>P2PKH = 0;</code>
      */
-    public static final int p2pkh_VALUE = 0;
+    public static final int P2PKH_VALUE = 0;
     /**
-     * <code>p2sh_p2wpkh = 1;</code>
+     * <code>P2SH_P2WPKH = 1;</code>
      */
-    public static final int p2sh_p2wpkh_VALUE = 1;
+    public static final int P2SH_P2WPKH_VALUE = 1;
     /**
-     * <code>p2sh_multisig = 2;</code>
+     * <code>P2SH_MULTISIG = 2;</code>
      */
-    public static final int p2sh_multisig_VALUE = 2;
+    public static final int P2SH_MULTISIG_VALUE = 2;
     /**
-     * <code>p2pk = 3;</code>
+     * <code>P2PK = 3;</code>
      */
-    public static final int p2pk_VALUE = 3;
+    public static final int P2PK_VALUE = 3;
 
 
     public final int getNumber() {
@@ -208,10 +208,10 @@ public final class BitcoinProtos {
 
     public static ENUM_TRAN_STYPE_BTC forNumber(int value) {
       switch (value) {
-        case 0: return p2pkh;
-        case 1: return p2sh_p2wpkh;
-        case 2: return p2sh_multisig;
-        case 3: return p2pk;
+        case 0: return P2PKH;
+        case 1: return P2SH_P2WPKH;
+        case 2: return P2SH_MULTISIG;
+        case 3: return P2PK;
         default: return null;
       }
     }
@@ -395,32 +395,32 @@ public final class BitcoinProtos {
   public enum ENUM_SCRIPT_TYPE_BTC
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>STANDARD = 0;</code>
+     * <code>SC_P2PKH = 0;</code>
      */
-    STANDARD(0),
+    SC_P2PKH(0),
     /**
-     * <code>RETURN0 = 1;</code>
+     * <code>SC_RETURN0 = 1;</code>
      */
-    RETURN0(1),
+    SC_RETURN0(1),
     /**
-     * <code>QRC20 = 3;</code>
+     * <code>SC_QRC20 = 3;</code>
      */
-    QRC20(3),
+    SC_QRC20(3),
     UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>STANDARD = 0;</code>
+     * <code>SC_P2PKH = 0;</code>
      */
-    public static final int STANDARD_VALUE = 0;
+    public static final int SC_P2PKH_VALUE = 0;
     /**
-     * <code>RETURN0 = 1;</code>
+     * <code>SC_RETURN0 = 1;</code>
      */
-    public static final int RETURN0_VALUE = 1;
+    public static final int SC_RETURN0_VALUE = 1;
     /**
-     * <code>QRC20 = 3;</code>
+     * <code>SC_QRC20 = 3;</code>
      */
-    public static final int QRC20_VALUE = 3;
+    public static final int SC_QRC20_VALUE = 3;
 
 
     public final int getNumber() {
@@ -441,9 +441,9 @@ public final class BitcoinProtos {
 
     public static ENUM_SCRIPT_TYPE_BTC forNumber(int value) {
       switch (value) {
-        case 0: return STANDARD;
-        case 1: return RETURN0;
-        case 3: return QRC20;
+        case 0: return SC_P2PKH;
+        case 1: return SC_RETURN0;
+        case 3: return SC_QRC20;
         default: return null;
       }
     }
@@ -636,7 +636,7 @@ public final class BitcoinProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         mainPath_ = s;
@@ -650,7 +650,7 @@ public final class BitcoinProtos {
         getMainPathBytes() {
       Object ref = mainPath_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         mainPath_ = b;
@@ -714,7 +714,7 @@ public final class BitcoinProtos {
       if (coinType_ != ENUM_COIN_TYPE_BTC.COINBTC.getNumber()) {
         output.writeEnum(2, coinType_);
       }
-      if (transType_ != ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
+      if (transType_ != ENUM_TRAN_STYPE_BTC.P2PKH.getNumber()) {
         output.writeEnum(3, transType_);
       }
       unknownFields.writeTo(output);
@@ -733,7 +733,7 @@ public final class BitcoinProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, coinType_);
       }
-      if (transType_ != ENUM_TRAN_STYPE_BTC.p2pkh.getNumber()) {
+      if (transType_ != ENUM_TRAN_STYPE_BTC.P2PKH.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, transType_);
       }
@@ -1051,7 +1051,7 @@ public final class BitcoinProtos {
           getMainPathBytes() {
         Object ref = mainPath_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           mainPath_ = b;
@@ -1068,7 +1068,7 @@ public final class BitcoinProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         mainPath_ = value;
         onChanged();
         return this;
@@ -1077,7 +1077,7 @@ public final class BitcoinProtos {
        * <code>string main_path = 1;</code>
        */
       public Builder clearMainPath() {
-
+        
         mainPath_ = getDefaultInstance().getMainPath();
         onChanged();
         return this;
@@ -1091,7 +1091,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         mainPath_ = value;
         onChanged();
         return this;
@@ -1127,7 +1127,7 @@ public final class BitcoinProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         coinType_ = value.getNumber();
         onChanged();
         return this;
@@ -1136,7 +1136,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_COIN_TYPE_BTC coin_type = 2;</code>
        */
       public Builder clearCoinType() {
-
+        
         coinType_ = 0;
         onChanged();
         return this;
@@ -1172,7 +1172,7 @@ public final class BitcoinProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         transType_ = value.getNumber();
         onChanged();
         return this;
@@ -1181,7 +1181,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_TRAN_STYPE_BTC trans_type = 3;</code>
        */
       public Builder clearTransType() {
-
+        
         transType_ = 0;
         onChanged();
         return this;
@@ -1244,17 +1244,17 @@ public final class BitcoinProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string preHash = 1;</code>
+     * <code>string pre_hash = 1;</code>
      */
     String getPreHash();
     /**
-     * <code>string preHash = 1;</code>
+     * <code>string pre_hash = 1;</code>
      */
     com.google.protobuf.ByteString
         getPreHashBytes();
 
     /**
-     * <code>uint32 preIndex = 2;</code>
+     * <code>uint32 pre_index = 2;</code>
      */
     int getPreIndex();
 
@@ -1264,17 +1264,17 @@ public final class BitcoinProtos {
     long getAmount();
 
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
     boolean hasPath();
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    CommonProtos.Bip32Path getPath();
+    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
+    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.InputBTC}
@@ -1339,11 +1339,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              CommonProtos.Bip32Path.Builder subBuilder = null;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(CommonProtos.Bip32Path.parser(), extensionRegistry);
+              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -1383,17 +1383,17 @@ public final class BitcoinProtos {
               InputBTC.class, Builder.class);
     }
 
-    public static final int PREHASH_FIELD_NUMBER = 1;
+    public static final int PRE_HASH_FIELD_NUMBER = 1;
     private volatile Object preHash_;
     /**
-     * <code>string preHash = 1;</code>
+     * <code>string pre_hash = 1;</code>
      */
     public String getPreHash() {
       Object ref = preHash_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         preHash_ = s;
@@ -1401,13 +1401,13 @@ public final class BitcoinProtos {
       }
     }
     /**
-     * <code>string preHash = 1;</code>
+     * <code>string pre_hash = 1;</code>
      */
     public com.google.protobuf.ByteString
         getPreHashBytes() {
       Object ref = preHash_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         preHash_ = b;
@@ -1417,10 +1417,10 @@ public final class BitcoinProtos {
       }
     }
 
-    public static final int PREINDEX_FIELD_NUMBER = 2;
+    public static final int PRE_INDEX_FIELD_NUMBER = 2;
     private int preIndex_;
     /**
-     * <code>uint32 preIndex = 2;</code>
+     * <code>uint32 pre_index = 2;</code>
      */
     public int getPreIndex() {
       return preIndex_;
@@ -1436,23 +1436,23 @@ public final class BitcoinProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private CommonProtos.Bip32Path path_;
+    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
     public boolean hasPath() {
       return path_ != null;
     }
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public CommonProtos.Bip32Path getPath() {
-      return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
+    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
@@ -1543,9 +1543,9 @@ public final class BitcoinProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PREHASH_FIELD_NUMBER;
+      hash = (37 * hash) + PRE_HASH_FIELD_NUMBER;
       hash = (53 * hash) + getPreHash().hashCode();
-      hash = (37 * hash) + PREINDEX_FIELD_NUMBER;
+      hash = (37 * hash) + PRE_INDEX_FIELD_NUMBER;
       hash = (53 * hash) + getPreIndex();
       hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
@@ -1825,7 +1825,7 @@ public final class BitcoinProtos {
 
       private Object preHash_ = "";
       /**
-       * <code>string preHash = 1;</code>
+       * <code>string pre_hash = 1;</code>
        */
       public String getPreHash() {
         Object ref = preHash_;
@@ -1840,13 +1840,13 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>string preHash = 1;</code>
+       * <code>string pre_hash = 1;</code>
        */
       public com.google.protobuf.ByteString
           getPreHashBytes() {
         Object ref = preHash_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           preHash_ = b;
@@ -1856,29 +1856,29 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>string preHash = 1;</code>
+       * <code>string pre_hash = 1;</code>
        */
       public Builder setPreHash(
           String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         preHash_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string preHash = 1;</code>
+       * <code>string pre_hash = 1;</code>
        */
       public Builder clearPreHash() {
-
+        
         preHash_ = getDefaultInstance().getPreHash();
         onChanged();
         return this;
       }
       /**
-       * <code>string preHash = 1;</code>
+       * <code>string pre_hash = 1;</code>
        */
       public Builder setPreHashBytes(
           com.google.protobuf.ByteString value) {
@@ -1886,7 +1886,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         preHash_ = value;
         onChanged();
         return this;
@@ -1894,25 +1894,25 @@ public final class BitcoinProtos {
 
       private int preIndex_ ;
       /**
-       * <code>uint32 preIndex = 2;</code>
+       * <code>uint32 pre_index = 2;</code>
        */
       public int getPreIndex() {
         return preIndex_;
       }
       /**
-       * <code>uint32 preIndex = 2;</code>
+       * <code>uint32 pre_index = 2;</code>
        */
       public Builder setPreIndex(int value) {
-
+        
         preIndex_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint32 preIndex = 2;</code>
+       * <code>uint32 pre_index = 2;</code>
        */
       public Builder clearPreIndex() {
-
+        
         preIndex_ = 0;
         onChanged();
         return this;
@@ -1929,7 +1929,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
-
+        
         amount_ = value;
         onChanged();
         return this;
@@ -1938,35 +1938,35 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 3;</code>
        */
       public Builder clearAmount() {
-
+        
         amount_ = 0L;
         onChanged();
         return this;
       }
 
-      private CommonProtos.Bip32Path path_;
+      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder> pathBuilder_;
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public boolean hasPath() {
         return pathBuilder_ != null || path_ != null;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32Path getPath() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
+          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder setPath(CommonProtos.Bip32Path value) {
+      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1980,10 +1980,10 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder setPath(
-          CommonProtos.Bip32Path.Builder builderForValue) {
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -1994,13 +1994,13 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder mergePath(CommonProtos.Bip32Path value) {
+      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2012,7 +2012,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder clearPath() {
         if (pathBuilder_ == null) {
@@ -2026,33 +2026,33 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32Path.Builder getPathBuilder() {
-
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+        
         onChanged();
         return getPathFieldBuilder().getBuilder();
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              CommonProtos.Bip32Path.getDefaultInstance() : path_;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>(
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -2133,22 +2133,22 @@ public final class BitcoinProtos {
     long getAmount();
 
     /**
-     * <code>bool changeAddress = 3;</code>
+     * <code>bool change_address = 3;</code>
      */
     boolean getChangeAddress();
 
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
     boolean hasPath();
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    CommonProtos.Bip32Path getPath();
+    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    CommonProtos.Bip32PathOrBuilder getPathOrBuilder();
+    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.StandardOutput}
@@ -2213,11 +2213,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              CommonProtos.Bip32Path.Builder subBuilder = null;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(CommonProtos.Bip32Path.parser(), extensionRegistry);
+              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -2267,7 +2267,7 @@ public final class BitcoinProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         address_ = s;
@@ -2281,7 +2281,7 @@ public final class BitcoinProtos {
         getAddressBytes() {
       Object ref = address_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         address_ = b;
@@ -2300,33 +2300,33 @@ public final class BitcoinProtos {
       return amount_;
     }
 
-    public static final int CHANGEADDRESS_FIELD_NUMBER = 3;
+    public static final int CHANGE_ADDRESS_FIELD_NUMBER = 3;
     private boolean changeAddress_;
     /**
-     * <code>bool changeAddress = 3;</code>
+     * <code>bool change_address = 3;</code>
      */
     public boolean getChangeAddress() {
       return changeAddress_;
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private CommonProtos.Bip32Path path_;
+    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
     public boolean hasPath() {
       return path_ != null;
     }
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public CommonProtos.Bip32Path getPath() {
-      return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
+    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
-     * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+     * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
@@ -2422,7 +2422,7 @@ public final class BitcoinProtos {
       hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAmount());
-      hash = (37 * hash) + CHANGEADDRESS_FIELD_NUMBER;
+      hash = (37 * hash) + CHANGE_ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getChangeAddress());
       if (hasPath()) {
@@ -2721,7 +2721,7 @@ public final class BitcoinProtos {
           getAddressBytes() {
         Object ref = address_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           address_ = b;
@@ -2738,7 +2738,7 @@ public final class BitcoinProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         address_ = value;
         onChanged();
         return this;
@@ -2747,7 +2747,7 @@ public final class BitcoinProtos {
        * <code>string address = 1;</code>
        */
       public Builder clearAddress() {
-
+        
         address_ = getDefaultInstance().getAddress();
         onChanged();
         return this;
@@ -2761,7 +2761,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         address_ = value;
         onChanged();
         return this;
@@ -2778,7 +2778,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 2;</code>
        */
       public Builder setAmount(long value) {
-
+        
         amount_ = value;
         onChanged();
         return this;
@@ -2787,7 +2787,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 2;</code>
        */
       public Builder clearAmount() {
-
+        
         amount_ = 0L;
         onChanged();
         return this;
@@ -2795,53 +2795,53 @@ public final class BitcoinProtos {
 
       private boolean changeAddress_ ;
       /**
-       * <code>bool changeAddress = 3;</code>
+       * <code>bool change_address = 3;</code>
        */
       public boolean getChangeAddress() {
         return changeAddress_;
       }
       /**
-       * <code>bool changeAddress = 3;</code>
+       * <code>bool change_address = 3;</code>
        */
       public Builder setChangeAddress(boolean value) {
-
+        
         changeAddress_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool changeAddress = 3;</code>
+       * <code>bool change_address = 3;</code>
        */
       public Builder clearChangeAddress() {
-
+        
         changeAddress_ = false;
         onChanged();
         return this;
       }
 
-      private CommonProtos.Bip32Path path_;
+      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder> pathBuilder_;
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public boolean hasPath() {
         return pathBuilder_ != null || path_ != null;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32Path getPath() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? CommonProtos.Bip32Path.getDefaultInstance() : path_;
+          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder setPath(CommonProtos.Bip32Path value) {
+      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2855,10 +2855,10 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder setPath(
-          CommonProtos.Bip32Path.Builder builderForValue) {
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -2869,13 +2869,13 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder mergePath(CommonProtos.Bip32Path value) {
+      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              CommonProtos.Bip32Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2887,7 +2887,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder clearPath() {
         if (pathBuilder_ == null) {
@@ -2901,33 +2901,33 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32Path.Builder getPathBuilder() {
-
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+        
         onChanged();
         return getPathFieldBuilder().getBuilder();
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public CommonProtos.Bip32PathOrBuilder getPathOrBuilder() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              CommonProtos.Bip32Path.getDefaultInstance() : path_;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
-       * <code>.JUB.Proto.Common.Bip32Path path = 4;</code>
+       * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              CommonProtos.Bip32Path, CommonProtos.Bip32Path.Builder, CommonProtos.Bip32PathOrBuilder>(
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -3115,7 +3115,7 @@ public final class BitcoinProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         data_ = s;
@@ -3129,7 +3129,7 @@ public final class BitcoinProtos {
         getDataBytes() {
       Object ref = data_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         data_ = b;
@@ -3470,7 +3470,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 1;</code>
        */
       public Builder setAmount(long value) {
-
+        
         amount_ = value;
         onChanged();
         return this;
@@ -3479,7 +3479,7 @@ public final class BitcoinProtos {
        * <code>uint64 amount = 1;</code>
        */
       public Builder clearAmount() {
-
+        
         amount_ = 0L;
         onChanged();
         return this;
@@ -3508,7 +3508,7 @@ public final class BitcoinProtos {
           getDataBytes() {
         Object ref = data_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           data_ = b;
@@ -3525,7 +3525,7 @@ public final class BitcoinProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         data_ = value;
         onChanged();
         return this;
@@ -3534,7 +3534,7 @@ public final class BitcoinProtos {
        * <code>string data = 2;</code>
        */
       public Builder clearData() {
-
+        
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
@@ -3548,7 +3548,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         data_ = value;
         onChanged();
         return this;
@@ -3714,7 +3714,7 @@ public final class BitcoinProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         data_ = s;
@@ -3728,7 +3728,7 @@ public final class BitcoinProtos {
         getDataBytes() {
       Object ref = data_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         data_ = b;
@@ -4063,7 +4063,7 @@ public final class BitcoinProtos {
           getDataBytes() {
         Object ref = data_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           data_ = b;
@@ -4080,7 +4080,7 @@ public final class BitcoinProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         data_ = value;
         onChanged();
         return this;
@@ -4089,7 +4089,7 @@ public final class BitcoinProtos {
        * <code>string data = 1;</code>
        */
       public Builder clearData() {
-
+        
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
@@ -4103,7 +4103,7 @@ public final class BitcoinProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         data_ = value;
         onChanged();
         return this;
@@ -4175,41 +4175,41 @@ public final class BitcoinProtos {
     ENUM_SCRIPT_TYPE_BTC getType();
 
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    boolean hasStandardOputput();
+    boolean hasStdOutput();
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    StandardOutput getStandardOputput();
+    StandardOutput getStdOutput();
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    StandardOutputOrBuilder getStandardOputputOrBuilder();
+    StandardOutputOrBuilder getStdOutputOrBuilder();
 
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     boolean hasReturn0Output();
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     Return0Output getReturn0Output();
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     Return0OutputOrBuilder getReturn0OutputOrBuilder();
 
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     boolean hasQrc20Output();
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     QRC20Output getQrc20Output();
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     QRC20OutputOrBuilder getQrc20OutputOrBuilder();
 
@@ -4345,9 +4345,9 @@ public final class BitcoinProtos {
     private Object output_;
     public enum OutputCase
         implements com.google.protobuf.Internal.EnumLite {
-      STANDARDOPUTPUT(2),
-      RETURN0OUTPUT(3),
-      QRC20OUTPUT(4),
+      STD_OUTPUT(2),
+      RETURN0_OUTPUT(3),
+      QRC20_OUTPUT(4),
       OUTPUT_NOT_SET(0);
       private final int value;
       private OutputCase(int value) {
@@ -4363,9 +4363,9 @@ public final class BitcoinProtos {
 
       public static OutputCase forNumber(int value) {
         switch (value) {
-          case 2: return STANDARDOPUTPUT;
-          case 3: return RETURN0OUTPUT;
-          case 4: return QRC20OUTPUT;
+          case 2: return STD_OUTPUT;
+          case 3: return RETURN0_OUTPUT;
+          case 4: return QRC20_OUTPUT;
           case 0: return OUTPUT_NOT_SET;
           default: return null;
         }
@@ -4398,41 +4398,41 @@ public final class BitcoinProtos {
       return result == null ? ENUM_SCRIPT_TYPE_BTC.UNRECOGNIZED : result;
     }
 
-    public static final int STANDARDOPUTPUT_FIELD_NUMBER = 2;
+    public static final int STD_OUTPUT_FIELD_NUMBER = 2;
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    public boolean hasStandardOputput() {
+    public boolean hasStdOutput() {
       return outputCase_ == 2;
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    public StandardOutput getStandardOputput() {
+    public StandardOutput getStdOutput() {
       if (outputCase_ == 2) {
          return (StandardOutput) output_;
       }
       return StandardOutput.getDefaultInstance();
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+     * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
      */
-    public StandardOutputOrBuilder getStandardOputputOrBuilder() {
+    public StandardOutputOrBuilder getStdOutputOrBuilder() {
       if (outputCase_ == 2) {
          return (StandardOutput) output_;
       }
       return StandardOutput.getDefaultInstance();
     }
 
-    public static final int RETURN0OUTPUT_FIELD_NUMBER = 3;
+    public static final int RETURN0_OUTPUT_FIELD_NUMBER = 3;
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     public boolean hasReturn0Output() {
       return outputCase_ == 3;
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     public Return0Output getReturn0Output() {
       if (outputCase_ == 3) {
@@ -4441,7 +4441,7 @@ public final class BitcoinProtos {
       return Return0Output.getDefaultInstance();
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+     * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
      */
     public Return0OutputOrBuilder getReturn0OutputOrBuilder() {
       if (outputCase_ == 3) {
@@ -4450,15 +4450,15 @@ public final class BitcoinProtos {
       return Return0Output.getDefaultInstance();
     }
 
-    public static final int QRC20OUTPUT_FIELD_NUMBER = 4;
+    public static final int QRC20_OUTPUT_FIELD_NUMBER = 4;
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     public boolean hasQrc20Output() {
       return outputCase_ == 4;
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     public QRC20Output getQrc20Output() {
       if (outputCase_ == 4) {
@@ -4467,7 +4467,7 @@ public final class BitcoinProtos {
       return QRC20Output.getDefaultInstance();
     }
     /**
-     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+     * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
      */
     public QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
       if (outputCase_ == 4) {
@@ -4490,7 +4490,7 @@ public final class BitcoinProtos {
     @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
+      if (type_ != ENUM_SCRIPT_TYPE_BTC.SC_P2PKH.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (outputCase_ == 2) {
@@ -4511,7 +4511,7 @@ public final class BitcoinProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != ENUM_SCRIPT_TYPE_BTC.STANDARD.getNumber()) {
+      if (type_ != ENUM_SCRIPT_TYPE_BTC.SC_P2PKH.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
@@ -4546,8 +4546,8 @@ public final class BitcoinProtos {
       if (!getOutputCase().equals(other.getOutputCase())) return false;
       switch (outputCase_) {
         case 2:
-          if (!getStandardOputput()
-              .equals(other.getStandardOputput())) return false;
+          if (!getStdOutput()
+              .equals(other.getStdOutput())) return false;
           break;
         case 3:
           if (!getReturn0Output()
@@ -4575,15 +4575,15 @@ public final class BitcoinProtos {
       hash = (53 * hash) + type_;
       switch (outputCase_) {
         case 2:
-          hash = (37 * hash) + STANDARDOPUTPUT_FIELD_NUMBER;
-          hash = (53 * hash) + getStandardOputput().hashCode();
+          hash = (37 * hash) + STD_OUTPUT_FIELD_NUMBER;
+          hash = (53 * hash) + getStdOutput().hashCode();
           break;
         case 3:
-          hash = (37 * hash) + RETURN0OUTPUT_FIELD_NUMBER;
+          hash = (37 * hash) + RETURN0_OUTPUT_FIELD_NUMBER;
           hash = (53 * hash) + getReturn0Output().hashCode();
           break;
         case 4:
-          hash = (37 * hash) + QRC20OUTPUT_FIELD_NUMBER;
+          hash = (37 * hash) + QRC20_OUTPUT_FIELD_NUMBER;
           hash = (53 * hash) + getQrc20Output().hashCode();
           break;
         case 0:
@@ -4754,10 +4754,10 @@ public final class BitcoinProtos {
         OutputBTC result = new OutputBTC(this);
         result.type_ = type_;
         if (outputCase_ == 2) {
-          if (standardOputputBuilder_ == null) {
+          if (stdOutputBuilder_ == null) {
             result.output_ = output_;
           } else {
-            result.output_ = standardOputputBuilder_.build();
+            result.output_ = stdOutputBuilder_.build();
           }
         }
         if (outputCase_ == 3) {
@@ -4827,15 +4827,15 @@ public final class BitcoinProtos {
           setTypeValue(other.getTypeValue());
         }
         switch (other.getOutputCase()) {
-          case STANDARDOPUTPUT: {
-            mergeStandardOputput(other.getStandardOputput());
+          case STD_OUTPUT: {
+            mergeStdOutput(other.getStdOutput());
             break;
           }
-          case RETURN0OUTPUT: {
+          case RETURN0_OUTPUT: {
             mergeReturn0Output(other.getReturn0Output());
             break;
           }
-          case QRC20OUTPUT: {
+          case QRC20_OUTPUT: {
             mergeQrc20Output(other.getQrc20Output());
             break;
           }
@@ -4917,7 +4917,7 @@ public final class BitcoinProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -4926,71 +4926,71 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Bitcoin.ENUM_SCRIPT_TYPE_BTC type = 1;</code>
        */
       public Builder clearType() {
-
+        
         type_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder> standardOputputBuilder_;
+          StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder> stdOutputBuilder_;
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public boolean hasStandardOputput() {
+      public boolean hasStdOutput() {
         return outputCase_ == 2;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public StandardOutput getStandardOputput() {
-        if (standardOputputBuilder_ == null) {
+      public StandardOutput getStdOutput() {
+        if (stdOutputBuilder_ == null) {
           if (outputCase_ == 2) {
             return (StandardOutput) output_;
           }
           return StandardOutput.getDefaultInstance();
         } else {
           if (outputCase_ == 2) {
-            return standardOputputBuilder_.getMessage();
+            return stdOutputBuilder_.getMessage();
           }
           return StandardOutput.getDefaultInstance();
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public Builder setStandardOputput(StandardOutput value) {
-        if (standardOputputBuilder_ == null) {
+      public Builder setStdOutput(StandardOutput value) {
+        if (stdOutputBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           output_ = value;
           onChanged();
         } else {
-          standardOputputBuilder_.setMessage(value);
+          stdOutputBuilder_.setMessage(value);
         }
         outputCase_ = 2;
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public Builder setStandardOputput(
+      public Builder setStdOutput(
           StandardOutput.Builder builderForValue) {
-        if (standardOputputBuilder_ == null) {
+        if (stdOutputBuilder_ == null) {
           output_ = builderForValue.build();
           onChanged();
         } else {
-          standardOputputBuilder_.setMessage(builderForValue.build());
+          stdOutputBuilder_.setMessage(builderForValue.build());
         }
         outputCase_ = 2;
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public Builder mergeStandardOputput(StandardOutput value) {
-        if (standardOputputBuilder_ == null) {
+      public Builder mergeStdOutput(StandardOutput value) {
+        if (stdOutputBuilder_ == null) {
           if (outputCase_ == 2 &&
               output_ != StandardOutput.getDefaultInstance()) {
             output_ = StandardOutput.newBuilder((StandardOutput) output_)
@@ -5001,18 +5001,18 @@ public final class BitcoinProtos {
           onChanged();
         } else {
           if (outputCase_ == 2) {
-            standardOputputBuilder_.mergeFrom(value);
+            stdOutputBuilder_.mergeFrom(value);
           }
-          standardOputputBuilder_.setMessage(value);
+          stdOutputBuilder_.setMessage(value);
         }
         outputCase_ = 2;
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public Builder clearStandardOputput() {
-        if (standardOputputBuilder_ == null) {
+      public Builder clearStdOutput() {
+        if (stdOutputBuilder_ == null) {
           if (outputCase_ == 2) {
             outputCase_ = 0;
             output_ = null;
@@ -5023,22 +5023,22 @@ public final class BitcoinProtos {
             outputCase_ = 0;
             output_ = null;
           }
-          standardOputputBuilder_.clear();
+          stdOutputBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public StandardOutput.Builder getStandardOputputBuilder() {
-        return getStandardOputputFieldBuilder().getBuilder();
+      public StandardOutput.Builder getStdOutputBuilder() {
+        return getStdOutputFieldBuilder().getBuilder();
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
-      public StandardOutputOrBuilder getStandardOputputOrBuilder() {
-        if ((outputCase_ == 2) && (standardOputputBuilder_ != null)) {
-          return standardOputputBuilder_.getMessageOrBuilder();
+      public StandardOutputOrBuilder getStdOutputOrBuilder() {
+        if ((outputCase_ == 2) && (stdOutputBuilder_ != null)) {
+          return stdOutputBuilder_.getMessageOrBuilder();
         } else {
           if (outputCase_ == 2) {
             return (StandardOutput) output_;
@@ -5047,16 +5047,16 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.StandardOutput standardOputput = 2;</code>
+       * <code>.JUB.Proto.Bitcoin.StandardOutput std_output = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder>
-          getStandardOputputFieldBuilder() {
-        if (standardOputputBuilder_ == null) {
+          getStdOutputFieldBuilder() {
+        if (stdOutputBuilder_ == null) {
           if (!(outputCase_ == 2)) {
             output_ = StandardOutput.getDefaultInstance();
           }
-          standardOputputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          stdOutputBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               StandardOutput, StandardOutput.Builder, StandardOutputOrBuilder>(
                   (StandardOutput) output_,
                   getParentForChildren(),
@@ -5065,19 +5065,19 @@ public final class BitcoinProtos {
         }
         outputCase_ = 2;
         onChanged();;
-        return standardOputputBuilder_;
+        return stdOutputBuilder_;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
           Return0Output, Return0Output.Builder, Return0OutputOrBuilder> return0OutputBuilder_;
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public boolean hasReturn0Output() {
         return outputCase_ == 3;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Return0Output getReturn0Output() {
         if (return0OutputBuilder_ == null) {
@@ -5093,7 +5093,7 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Builder setReturn0Output(Return0Output value) {
         if (return0OutputBuilder_ == null) {
@@ -5109,7 +5109,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Builder setReturn0Output(
           Return0Output.Builder builderForValue) {
@@ -5123,7 +5123,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Builder mergeReturn0Output(Return0Output value) {
         if (return0OutputBuilder_ == null) {
@@ -5145,7 +5145,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Builder clearReturn0Output() {
         if (return0OutputBuilder_ == null) {
@@ -5164,13 +5164,13 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Return0Output.Builder getReturn0OutputBuilder() {
         return getReturn0OutputFieldBuilder().getBuilder();
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       public Return0OutputOrBuilder getReturn0OutputOrBuilder() {
         if ((outputCase_ == 3) && (return0OutputBuilder_ != null)) {
@@ -5183,7 +5183,7 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.Return0Output return0Output = 3;</code>
+       * <code>.JUB.Proto.Bitcoin.Return0Output return0_output = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           Return0Output, Return0Output.Builder, Return0OutputOrBuilder>
@@ -5207,13 +5207,13 @@ public final class BitcoinProtos {
       private com.google.protobuf.SingleFieldBuilderV3<
           QRC20Output, QRC20Output.Builder, QRC20OutputOrBuilder> qrc20OutputBuilder_;
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public boolean hasQrc20Output() {
         return outputCase_ == 4;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public QRC20Output getQrc20Output() {
         if (qrc20OutputBuilder_ == null) {
@@ -5229,7 +5229,7 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public Builder setQrc20Output(QRC20Output value) {
         if (qrc20OutputBuilder_ == null) {
@@ -5245,7 +5245,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public Builder setQrc20Output(
           QRC20Output.Builder builderForValue) {
@@ -5259,7 +5259,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public Builder mergeQrc20Output(QRC20Output value) {
         if (qrc20OutputBuilder_ == null) {
@@ -5281,7 +5281,7 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public Builder clearQrc20Output() {
         if (qrc20OutputBuilder_ == null) {
@@ -5300,13 +5300,13 @@ public final class BitcoinProtos {
         return this;
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public QRC20Output.Builder getQrc20OutputBuilder() {
         return getQrc20OutputFieldBuilder().getBuilder();
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       public QRC20OutputOrBuilder getQrc20OutputOrBuilder() {
         if ((outputCase_ == 4) && (qrc20OutputBuilder_ != null)) {
@@ -5319,7 +5319,7 @@ public final class BitcoinProtos {
         }
       }
       /**
-       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20Output = 4;</code>
+       * <code>.JUB.Proto.Bitcoin.QRC20Output qrc20_output = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           QRC20Output, QRC20Output.Builder, QRC20OutputOrBuilder>
@@ -6023,7 +6023,7 @@ public final class BitcoinProtos {
               inputsBuilder_ = null;
               inputs_ = other.inputs_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              inputsBuilder_ =
+              inputsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getInputsFieldBuilder() : null;
             } else {
@@ -6049,7 +6049,7 @@ public final class BitcoinProtos {
               outputsBuilder_ = null;
               outputs_ = other.outputs_;
               bitField0_ = (bitField0_ & ~0x00000002);
-              outputsBuilder_ =
+              outputsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOutputsFieldBuilder() : null;
             } else {
@@ -6098,7 +6098,7 @@ public final class BitcoinProtos {
        * <code>uint32 version = 1;</code>
        */
       public Builder setVersion(int value) {
-
+        
         version_ = value;
         onChanged();
         return this;
@@ -6107,7 +6107,7 @@ public final class BitcoinProtos {
        * <code>uint32 version = 1;</code>
        */
       public Builder clearVersion() {
-
+        
         version_ = 0;
         onChanged();
         return this;
@@ -6124,7 +6124,7 @@ public final class BitcoinProtos {
        * <code>uint32 locktime = 2;</code>
        */
       public Builder setLocktime(int value) {
-
+        
         locktime_ = value;
         onChanged();
         return this;
@@ -6133,7 +6133,7 @@ public final class BitcoinProtos {
        * <code>uint32 locktime = 2;</code>
        */
       public Builder clearLocktime() {
-
+        
         locktime_ = 0;
         onChanged();
         return this;
@@ -6673,37 +6673,37 @@ public final class BitcoinProtos {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_InputBTC_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_InputBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_StandardOutput_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_StandardOutput_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_Return0Output_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_Return0Output_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_QRC20Output_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_QRC20Output_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable;
 
@@ -6720,19 +6720,19 @@ public final class BitcoinProtos {
       "in_path\030\001 \001(\t\0228\n\tcoin_type\030\002 \001(\0162%.JUB.P" +
       "roto.Bitcoin.ENUM_COIN_TYPE_BTC\022:\n\ntrans" +
       "_type\030\003 \001(\0162&.JUB.Proto.Bitcoin.ENUM_TRA" +
-      "N_STYPE_BTC\"h\n\010InputBTC\022\017\n\007preHash\030\001 \001(\t" +
-      "\022\020\n\010preIndex\030\002 \001(\r\022\016\n\006amount\030\003 \001(\004\022)\n\004pa" +
-      "th\030\004 \001(\0132\033.JUB.Proto.Common.Bip32Path\"s\n" +
-      "\016StandardOutput\022\017\n\007address\030\001 \001(\t\022\016\n\006amou" +
-      "nt\030\002 \001(\004\022\025\n\rchangeAddress\030\003 \001(\010\022)\n\004path\030" +
-      "\004 \001(\0132\033.JUB.Proto.Common.Bip32Path\"-\n\rRe" +
-      "turn0Output\022\016\n\006amount\030\001 \001(\004\022\014\n\004data\030\002 \001(" +
-      "\t\"\033\n\013QRC20Output\022\014\n\004data\030\001 \001(\t\"\374\001\n\tOutpu" +
-      "tBTC\0225\n\004type\030\001 \001(\0162\'.JUB.Proto.Bitcoin.E" +
-      "NUM_SCRIPT_TYPE_BTC\022<\n\017standardOputput\030\002" +
-      " \001(\0132!.JUB.Proto.Bitcoin.StandardOutputH" +
-      "\000\0229\n\rreturn0Output\030\003 \001(\0132 .JUB.Proto.Bit" +
-      "coin.Return0OutputH\000\0225\n\013qrc20Output\030\004 \001(" +
+      "N_STYPE_BTC\"j\n\010InputBTC\022\020\n\010pre_hash\030\001 \001(" +
+      "\t\022\021\n\tpre_index\030\002 \001(\r\022\016\n\006amount\030\003 \001(\004\022)\n\004" +
+      "path\030\004 \001(\0132\033.JUB.Proto.Common.Bip44Path\"" +
+      "t\n\016StandardOutput\022\017\n\007address\030\001 \001(\t\022\016\n\006am" +
+      "ount\030\002 \001(\004\022\026\n\016change_address\030\003 \001(\010\022)\n\004pa" +
+      "th\030\004 \001(\0132\033.JUB.Proto.Common.Bip44Path\"-\n" +
+      "\rReturn0Output\022\016\n\006amount\030\001 \001(\004\022\014\n\004data\030\002" +
+      " \001(\t\"\033\n\013QRC20Output\022\014\n\004data\030\001 \001(\t\"\371\001\n\tOu" +
+      "tputBTC\0225\n\004type\030\001 \001(\0162\'.JUB.Proto.Bitcoi" +
+      "n.ENUM_SCRIPT_TYPE_BTC\0227\n\nstd_output\030\002 \001" +
+      "(\0132!.JUB.Proto.Bitcoin.StandardOutputH\000\022" +
+      ":\n\016return0_output\030\003 \001(\0132 .JUB.Proto.Bitc" +
+      "oin.Return0OutputH\000\0226\n\014qrc20_output\030\004 \001(" +
       "\0132\036.JUB.Proto.Bitcoin.QRC20OutputH\000B\010\n\006o" +
       "utput\"\217\001\n\016TransactionBTC\022\017\n\007version\030\001 \001(" +
       "\r\022\020\n\010locktime\030\002 \001(\r\022+\n\006inputs\030\003 \003(\0132\033.JU" +
@@ -6741,18 +6741,18 @@ public final class BitcoinProtos {
       "COIN_TYPE_BTC\022\013\n\007COINBTC\020\000\022\013\n\007COINBCH\020\001\022" +
       "\013\n\007COINLTC\020\002\022\014\n\010COINUSDT\020\003\022\014\n\010COINDASH\020\004" +
       "\022\014\n\010COINQTUM\020\005*N\n\023ENUM_TRAN_STYPE_BTC\022\t\n" +
-      "\005p2pkh\020\000\022\017\n\013p2sh_p2wpkh\020\001\022\021\n\rp2sh_multis" +
-      "ig\020\002\022\010\n\004p2pk\020\003*C\n\rBTC_UNIT_TYPE\022\007\n\003BTC\020\000" +
+      "\005P2PKH\020\000\022\017\n\013P2SH_P2WPKH\020\001\022\021\n\rP2SH_MULTIS" +
+      "IG\020\002\022\010\n\004P2PK\020\003*C\n\rBTC_UNIT_TYPE\022\007\n\003BTC\020\000" +
       "\022\010\n\004cBTC\020\001\022\010\n\004mBTC\020\002\022\010\n\004uBTC\020\003\022\013\n\007Satosh" +
-      "i\020\004*<\n\024ENUM_SCRIPT_TYPE_BTC\022\014\n\010STANDARD\020" +
-      "\000\022\013\n\007RETURN0\020\001\022\t\n\005QRC20\020\003B6\n\025com.jubiter" +
-      ".sdk.protoB\rBitcoinProtos\242\002\rBitcoinProto" +
-      "sb\006proto3"
+      "i\020\004*B\n\024ENUM_SCRIPT_TYPE_BTC\022\014\n\010SC_P2PKH\020" +
+      "\000\022\016\n\nSC_RETURN0\020\001\022\014\n\010SC_QRC20\020\003B6\n\025com.j" +
+      "ubiter.sdk.protoB\rBitcoinProtos\242\002\rBitcoi" +
+      "nProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          CommonProtos.getDescriptor(),
+          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -6789,14 +6789,14 @@ public final class BitcoinProtos {
     internal_static_JUB_Proto_Bitcoin_OutputBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_OutputBTC_descriptor,
-        new String[] { "Type", "StandardOputput", "Return0Output", "Qrc20Output", "Output", });
+        new String[] { "Type", "StdOutput", "Return0Output", "Qrc20Output", "Output", });
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_JUB_Proto_Bitcoin_TransactionBTC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor,
         new String[] { "Version", "Locktime", "Inputs", "Outputs", });
-    CommonProtos.getDescriptor();
+    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
