@@ -301,7 +301,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.ResultString result = JuBiterWallet.seedToMasterPrivateKey(seed, CommonProtos.CURVES.secp256k1);
+                        CommonProtos.ResultString result =
+                                JuBiterWallet.seedToMasterPrivateKey(seed, CommonProtos.CURVES.SECP256K1);
                         Log.d(TAG, ">>> seedToMasterPrivateKey - rv : " + result.getStateCode() + " value: " + result.getValue());
                     }
                 });
@@ -482,7 +483,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                         .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
                         .setMainPath("m/44'/0'/0'")
-                        .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
+                        .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                         .build();
                 CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZZFX");
                 Log.d(TAG, ">>> rv: " + result.getValue());
@@ -500,7 +501,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
                                 .setMainPath("m/44'/0'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
+                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
                         Log.d(TAG, ">>> rv: " + result.getValue());
@@ -533,7 +534,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.Bip32Path bip32Path = CommonProtos.Bip32Path.newBuilder()
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                                 .setAddressIndex(0)
                                 .setChange(false)
                                 .build();
@@ -552,7 +553,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.Bip32Path bip32Path = CommonProtos.Bip32Path.newBuilder()
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                                 .setAddressIndex(0)
                                 .setChange(false)
                                 .build();
@@ -574,7 +575,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
                                 .setMainPath("m/44'/0'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.p2pkh)
+                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
                         if (0 != result.getStateCode()) {
@@ -625,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     private void btcTransaction(int contextID) {
         // inputs
-        CommonProtos.Bip32Path bip32Path_1 = CommonProtos.Bip32Path.newBuilder()
+        CommonProtos.Bip44Path bip32Path_1 = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
@@ -636,7 +637,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setPreIndex(0)
                 .build();
 
-        CommonProtos.Bip32Path bip32Path_2 = CommonProtos.Bip32Path.newBuilder()
+        CommonProtos.Bip44Path bip32Path_2 = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
@@ -654,12 +655,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setChangeAddress(false)
                 .build();
         BitcoinProtos.OutputBTC outputBTC_1 = BitcoinProtos.OutputBTC.newBuilder()
-                .setStandardOputput(ouput_1)
-                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.STANDARD)
+                .setStdOutput(ouput_1)
+                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.SC_P2PKH)
                 .build();
 
         // 找零
-        CommonProtos.Bip32Path bip32Path_3 = CommonProtos.Bip32Path.newBuilder()
+        CommonProtos.Bip44Path bip32Path_3 = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
@@ -671,8 +672,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setPath(bip32Path_3)
                 .build();
         BitcoinProtos.OutputBTC outputBTC_2 = BitcoinProtos.OutputBTC.newBuilder()
-                .setStandardOputput(ouput_2)
-                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.STANDARD)
+                .setStdOutput(ouput_2)
+                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.SC_P2PKH)
                 .build();
 
         BitcoinProtos.TransactionBTC transactionBTC = BitcoinProtos.TransactionBTC.newBuilder()
@@ -761,7 +762,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.ResultString result = JuBiterEthereum.getMainHDNode(contextID, EthereumProtos.ENUM_PUB_FORMAT.XPUB);
+                        CommonProtos.ResultString result = JuBiterEthereum.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
                         Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
@@ -776,11 +777,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.Bip32Path bip32Path = CommonProtos.Bip32Path.newBuilder()
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                                 .setAddressIndex(0)
                                 .setChange(false)
                                 .build();
-                        CommonProtos.ResultString result = JuBiterEthereum.getHDNode(contextID, EthereumProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
+                        CommonProtos.ResultString result = JuBiterEthereum.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
                         Log.d(TAG, ">>> rv: " + result.getValue());
                     }
                 });
@@ -795,7 +796,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 ThreadUtils.execute(new Runnable() {
                     @Override
                     public void run() {
-                        CommonProtos.Bip32Path bip32Path = CommonProtos.Bip32Path.newBuilder()
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                                 .setAddressIndex(0)
                                 .setChange(false)
                                 .build();
@@ -843,7 +844,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void ethTransaction(int contextID) {
-        CommonProtos.Bip32Path bip32Path = CommonProtos.Bip32Path.newBuilder()
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setChange(false)
                 .setAddressIndex(0)
                 .build();
