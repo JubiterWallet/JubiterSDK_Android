@@ -5,6 +5,7 @@
 [submodule "cpp/JubiterSDK"]
 	path = cpp/JubiterSDK
 	url = https://github.com/ZXC-zxc/JubiterSDK_C.git
+	branch = mutex
 [submodule "cpp/Protobuffer"]
 	path = cpp/Protobuffer
 	url = https://github.com/protocolbuffers/protobuf.git
