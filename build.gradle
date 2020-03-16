@@ -2,12 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter(){ url 'http://jcenter.bintray.com/'}
+        jcenter(){ url 'https://jcenter.bintray.com/'}
         google()
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
         
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,7 +17,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter(){ url 'http://jcenter.bintray.com/'}
+        jcenter(){ url 'https://jcenter.bintray.com/'}
         google()
 
     }
