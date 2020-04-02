@@ -20,6 +20,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
         
+    - name: permission
+      run: sudo chmod 777 ./gradlew
+      
     - name: Android Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
       with:
