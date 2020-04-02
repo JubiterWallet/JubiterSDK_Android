@@ -21,9 +21,11 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: permission
-      run: sudo chmod 777 ./gradlew
+      run: |
+        sudo chmod 777 ./gradlew
+        sudo chmod 777 ./ActionBuild.sh
       
     - name: Android Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
       with:
-        args: "./gradlew :sdk:assembleRelease"
+        args: "./ActionBuild.sh"
