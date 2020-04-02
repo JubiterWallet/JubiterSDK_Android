@@ -22,7 +22,6 @@ android {
                         "-std=c++11",
                         "-frtti",
                         "-fexceptions",
-                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments '-DANDROID_TOOLCHAIN=clang',
