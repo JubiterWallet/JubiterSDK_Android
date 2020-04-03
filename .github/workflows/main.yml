@@ -18,9 +18,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - name: module
-      run: git submodule update --init --recursive
+    - uses: actions/checkout@v1
+      with:
+         token: ${{ secrets.ACCESS_TOKEN }}
+         submodules: true
         
     - name: permission
       run: |
