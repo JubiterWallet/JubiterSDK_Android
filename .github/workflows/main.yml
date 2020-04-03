@@ -20,7 +20,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v1
       with:
-         token: ${{ secrets.ACCESS_TOKEN }}
+         token: ${{ github.token }}
          submodules: true
         
     - name: permission
