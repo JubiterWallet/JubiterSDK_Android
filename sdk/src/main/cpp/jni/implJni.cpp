@@ -466,6 +466,7 @@ native_SignTransactionBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray j
             input.preHash = (JUB_CHAR_PTR) tx.inputs(i).pre_hash().c_str();
             input.path.change = (JUB_ENUM_BOOL) tx.inputs(i).path().change();
             input.path.addressIndex = tx.inputs(i).path().address_index();
+            input.nSequence = 0xFFFFFFFF;
             inputs.emplace_back(input);
         }
         for (auto i = 0; i < tx.outputs_size(); i++) {
