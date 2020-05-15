@@ -439,6 +439,11 @@ native_GetAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32,
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
 }
 
+JNIEXPORT jint JNICALL native_CheckAddressBTC(JNIEnv *env,jobject obj, jint contextID,jstring address){
+    auto strAddress = jstring2stdString(env, address);
+    return (jint)JUB_CheckAddressBTC(contextID,strAddress.c_str());
+}
+
 
 JNIEXPORT jbyteArray JNICALL
 native_SetMyAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) {
