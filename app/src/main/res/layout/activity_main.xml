@@ -232,6 +232,13 @@
             android:text="BTC Get Address" />
 
         <Button
+            android:id="@+id/btcCheckAddress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="BTC Check Address" />
+
+        <Button
             android:id="@+id/btcTransaction_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

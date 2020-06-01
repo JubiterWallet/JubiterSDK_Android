@@ -171,7 +171,8 @@ native_SeedToMasterPrivateKey(JNIEnv *env, jobject obj, jstring seed, jbyteArray
     std::vector<unsigned char> vSeed = HexStr2CharPtr(strSeed);
 
     JUB_CHAR_PTR xprv = nullptr;
-    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_ENUM_CURVES) enum_curve, &xprv);
+    JUB_RV rv = JUB_SeedToMasterPrivateKey(&vSeed[0], vSeed.size(), (JUB_ENUM_CURVES) enum_curve,
+                                           &xprv);
     return buildPbRvString(env, rv, xprv);
 }
 
@@ -439,9 +440,10 @@ native_GetAddressBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32,
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jint JNICALL native_CheckAddressBTC(JNIEnv *env,jobject obj, jint contextID,jstring address){
+JNIEXPORT jint JNICALL
+native_CheckAddressBTC(JNIEnv *env, jobject obj, jint contextID, jstring address) {
     auto strAddress = jstring2stdString(env, address);
-    return (jint)JUB_CheckAddressBTC(contextID,strAddress.c_str());
+    return (jint) JUB_CheckAddressBTC(contextID, strAddress.c_str());
 }
 
 
@@ -483,13 +485,13 @@ native_SignTransactionBTC(JNIEnv *env, jobject obj, jint contextID, jbyteArray j
                         return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
                     output.stdOutput.amount = tx.outputs(i).std_output().amount();
                     output.stdOutput.address = (JUB_CHAR_PTR) tx.outputs(
-                        i).std_output().address().c_str();
+                            i).std_output().address().c_str();
                     output.stdOutput.changeAddress = (JUB_ENUM_BOOL) tx.outputs(
-                        i).std_output().change_address();
+                            i).std_output().change_address();
                     output.stdOutput.path.addressIndex = tx.outputs(
-                        i).std_output().path().address_index();
+                            i).std_output().path().address_index();
                     output.stdOutput.path.change = (JUB_ENUM_BOOL) tx.outputs(
-                        i).std_output().path().change();
+                            i).std_output().path().change();
                     break;
                 case RETURN0:
                     if (!tx.outputs(i).has_return0_output())
@@ -663,19 +665,19 @@ native_SetMyAddressETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip3
 
 JNIEXPORT jbyteArray JNICALL
 native_BuildERC20AbiETH(JNIEnv *env, jobject obj, jint contextID, jstring tokenName,
-                        jint    unitDP,
+                        jint unitDP,
                         jstring contractAddress,
                         jstring address,
                         jstring amountInWei) {
     auto strAddress = jstring2stdString(env, address);
     auto strAmount = jstring2stdString(env, amountInWei);
-    auto strTokenName = jstring2stdString(env,tokenName);
-    auto strContractAddress = jstring2stdString(env,contractAddress);
+    auto strTokenName = jstring2stdString(env, tokenName);
+    auto strContractAddress = jstring2stdString(env, contractAddress);
     JUB_CHAR_PTR abi = nullptr;
-    JUB_RV rv = JUB_BuildERC20AbiETH(contextID, (JUB_CHAR_PTR)strTokenName.c_str(),unitDP,
-    (JUB_CHAR_PTR)strContractAddress.c_str(),
-    (JUB_CHAR_PTR) strAddress.c_str(),
-    (JUB_CHAR_PTR) strAmount.c_str(), &abi);
+    JUB_RV rv = JUB_BuildERC20AbiETH(contextID, (JUB_CHAR_PTR) strTokenName.c_str(), unitDP,
+                                     (JUB_CHAR_PTR) strContractAddress.c_str(),
+                                     (JUB_CHAR_PTR) strAddress.c_str(),
+                                     (JUB_CHAR_PTR) strAmount.c_str(), &abi);
 
     return buildPbRvString(env, rv, abi);
 }
@@ -951,216 +953,221 @@ JNIEXPORT jstring JNICALL native_HCTransaction(JNIEnv *env, jobject obj, jlong c
  * (3)native函数名
  */
 static JNINativeMethod gMethods[] = {
-    {
-        "nativeInitDevice",
-        "()I",
-        (void *) native_initDevice
-    },
-    {
-        "nativeStartScan",
-        "(Lcom/jubiter/sdk/jni/InnerScanCallback;)I",
-        (void *) native_startScan
-    },
-    {
-        "nativeStopScan",
-        "()I",
-        (void *) native_stopScan
-    },
-    {
-        "nativeConnectDevice",
-        "(Ljava/lang/String;[IILcom/jubiter/sdk/jni/InnerDiscCallback;)I",
-        (void *) native_connectDevice
-    },
-    {
-        "nativeDisconnectDevice",
-        "(I)I",
-        (void *) native_disconnectDevice
-    },
-    {
-        "nativeIsConnected",
-        "(I)I",
-        (void *) native_isConnectDevice
-    },
-    {
-        "nativeShowVirtualPWD",
-        "(I)I",
-        (void *) native_ShowVirtualPwd
-    },
-    {
-        "nativeCancelVirtualPWD",
-        "(I)I",
-        (void *) native_CancelVirtualPwd
-    },
-    {
-        "nativeVerifyPIN",
-        "(ILjava/lang/String;)[B",
-        (void *) native_VerifyPIN
-    },
-    {
-        "nativeGetDeviceInfo",
-        "(I)[B",
-        (void *) native_GetDeviceInfo
-    },
-    {
-        "nativeSendApdu",
-        "(ILjava/lang/String;)[B",
-        (void *) native_SendAPDU
-    },
-    {
-        "nativeGetDeviceCert",
-        "(I)[B",
-        (void *) native_GetDeviceCert
-    },
-    {
-        "nativeEnumApplets",
-        "(I)[B",
-        (void *) native_EnumApplets
-    },
-    {
-        "nativeGetAppletVersion",
-        "(ILjava/lang/String;)[B",
-        (void *) native_GetAppletVersion
-    },
-    {
-        "nativeQuerryBattery",
-        "(I)[B",
-        (void *) native_QueryBattery
-    },
-    {
-        "nativeBTCCreateContext",
-        "([BI)[B",
-        (void *) native_CreateContextBTC
-    },
-    {
-        "nativeBTCCreateContext_Software",
-        "([BLjava/lang/String;)[B",
-        (void *) native_CreateContextBTC_soft
-    },
-    {
-        "nativeBTCGetAddress",
-        "(I[BZ)[B",
-        (void *) native_GetAddressBTC
-    },
-    {
-        "nativeBTCGetMainHDNode",
-        "(I)[B",
-        (void *) native_GetMainHDNodeBTC
-    },
-    {
-        "nativeBTCGetHDNode",
-        "(I[B)[B",
-        (void *) native_GetHDNodeBTC
-    },
-    {
-        "nativeBTCSetAddress",
-        "(I[B)[B",
-        (void *) native_SetMyAddressBTC
-    },
-    {
-        "nativeBTCSignTransaction",
-        "(I[B)[B",
-        (void *) native_SignTransactionBTC
-    },
-    {
-        "nativeBTCSetUnit",
-        "(I[B)I",
-        (void *) native_SetUnitBTC
-    },
-    {
-        "nativeBuildUSDTOutput",
-        "(ILjava/lang/String;J)[B",
-        (void *) native_BuildUSDTOutputs
-    },
+        {
+                "nativeInitDevice",
+                "()I",
+                (void *) native_initDevice
+        },
+        {
+                "nativeStartScan",
+                "(Lcom/jubiter/sdk/jni/InnerScanCallback;)I",
+                (void *) native_startScan
+        },
+        {
+                "nativeStopScan",
+                "()I",
+                (void *) native_stopScan
+        },
+        {
+                "nativeConnectDevice",
+                "(Ljava/lang/String;[IILcom/jubiter/sdk/jni/InnerDiscCallback;)I",
+                (void *) native_connectDevice
+        },
+        {
+                "nativeDisconnectDevice",
+                "(I)I",
+                (void *) native_disconnectDevice
+        },
+        {
+                "nativeIsConnected",
+                "(I)I",
+                (void *) native_isConnectDevice
+        },
+        {
+                "nativeShowVirtualPWD",
+                "(I)I",
+                (void *) native_ShowVirtualPwd
+        },
+        {
+                "nativeCancelVirtualPWD",
+                "(I)I",
+                (void *) native_CancelVirtualPwd
+        },
+        {
+                "nativeVerifyPIN",
+                "(ILjava/lang/String;)[B",
+                (void *) native_VerifyPIN
+        },
+        {
+                "nativeGetDeviceInfo",
+                "(I)[B",
+                (void *) native_GetDeviceInfo
+        },
+        {
+                "nativeSendApdu",
+                "(ILjava/lang/String;)[B",
+                (void *) native_SendAPDU
+        },
+        {
+                "nativeGetDeviceCert",
+                "(I)[B",
+                (void *) native_GetDeviceCert
+        },
+        {
+                "nativeEnumApplets",
+                "(I)[B",
+                (void *) native_EnumApplets
+        },
+        {
+                "nativeGetAppletVersion",
+                "(ILjava/lang/String;)[B",
+                (void *) native_GetAppletVersion
+        },
+        {
+                "nativeQuerryBattery",
+                "(I)[B",
+                (void *) native_QueryBattery
+        },
+        {
+                "nativeBTCCreateContext",
+                "([BI)[B",
+                (void *) native_CreateContextBTC
+        },
+        {
+                "nativeBTCCreateContext_Software",
+                "([BLjava/lang/String;)[B",
+                (void *) native_CreateContextBTC_soft
+        },
+        {
+                "nativeBTCGetAddress",
+                "(I[BZ)[B",
+                (void *) native_GetAddressBTC
+        },
+        {
+                "nativeBTCCheckAddress",
+                "(ILjava/lang/String;)I",
+                (void *) native_CheckAddressBTC
+        },
+        {
+                "nativeBTCGetMainHDNode",
+                "(I)[B",
+                (void *) native_GetMainHDNodeBTC
+        },
+        {
+                "nativeBTCGetHDNode",
+                "(I[B)[B",
+                (void *) native_GetHDNodeBTC
+        },
+        {
+                "nativeBTCSetAddress",
+                "(I[B)[B",
+                (void *) native_SetMyAddressBTC
+        },
+        {
+                "nativeBTCSignTransaction",
+                "(I[B)[B",
+                (void *) native_SignTransactionBTC
+        },
+        {
+                "nativeBTCSetUnit",
+                "(I[B)I",
+                (void *) native_SetUnitBTC
+        },
+        {
+                "nativeBuildUSDTOutput",
+                "(ILjava/lang/String;J)[B",
+                (void *) native_BuildUSDTOutputs
+        },
 ////    {
 ////        "nativeParseTransaction",
 ////        "(JLjava/lang/String;)Ljava/lang/String;",
 ////        (void *) native_ParseTransactionRaw
 ////    },
-    {
-        "nativeETHCreateContext",
-        "([BI)[B",
-        (void *) native_CreateContextETH
-    },
-    {
-        "nativeETHCreateContext_Software",
-        "([BLjava/lang/String;)[B",
-        (void *) native_CreateContextETH_soft
-    },
-    {
-        "nativeETHGetMainHDNode",
-        "(I[B)[B",
-        (void *) native_GetMainHDNodeETH
-    },
-    {
-        "nativeETHGetHDNode",
-        "(I[B[B)[B",
-        (void *) native_GetHDNodeETH
-    },
-    {
-        "nativeETHGetAddress",
-        "(I[BZ)[B",
-        (void *) native_GetAddressETH
-    },
-    {
-        "nativeETHSetAddress",
-        "(I[B)[B",
-        (void *) native_SetMyAddressETH
-    },
-    {
-        "nativeETHBuildERC20Abi",
-        "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-        (void *) native_BuildERC20AbiETH
-    },
-    {
-        "nativeETHSignTransaction",
-        "(I[B)[B",
-        (void *) native_SignTransactionETH
-    },
-    {
-        "nativeEnumSupportCoins",
-        "(I)[B",
-        (void *) native_EnumSupportCoins
-    },
-    {
-        "nativeClearContext",
-        "(I)I",
-        (void *) native_ClearContext
-    },
-    {
-        "nativeIsInitialize",
-        "(I)Z",
-        (void *) native_IsInitialize
-    },
-    {
-        "nativeIsBootLoader",
-        "(I)Z",
-        (void *) native_IsBootLoader
-    },
-    {
-        "nativeSetTimeout",
-        "(II)I",
-        (void *) native_SetTimeOut
-    },
-    {
-        "nativeGenerateMnemonic",
-        "([B)[B",
-        (void *) native_GenerateMnemonic
-    },
-    {
-        "nativeCheckMnemonic",
-        "(Ljava/lang/String;)I",
-        (void *) native_CheckMnemonic
-    },
-    {
-        "nativeGenerateSeed",
-        "(Ljava/lang/String;Ljava/lang/String;)[B",
-        (void *) native_GenerateSeed
-    },
-    {
-        "nativeSeedToMasterPrivateKey",
-        "(Ljava/lang/String;[B)[B",
-        (void *) native_SeedToMasterPrivateKey
-    },
+        {
+                "nativeETHCreateContext",
+                "([BI)[B",
+                (void *) native_CreateContextETH
+        },
+        {
+                "nativeETHCreateContext_Software",
+                "([BLjava/lang/String;)[B",
+                (void *) native_CreateContextETH_soft
+        },
+        {
+                "nativeETHGetMainHDNode",
+                "(I[B)[B",
+                (void *) native_GetMainHDNodeETH
+        },
+        {
+                "nativeETHGetHDNode",
+                "(I[B[B)[B",
+                (void *) native_GetHDNodeETH
+        },
+        {
+                "nativeETHGetAddress",
+                "(I[BZ)[B",
+                (void *) native_GetAddressETH
+        },
+        {
+                "nativeETHSetAddress",
+                "(I[B)[B",
+                (void *) native_SetMyAddressETH
+        },
+        {
+                "nativeETHBuildERC20Abi",
+                "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildERC20AbiETH
+        },
+        {
+                "nativeETHSignTransaction",
+                "(I[B)[B",
+                (void *) native_SignTransactionETH
+        },
+        {
+                "nativeEnumSupportCoins",
+                "(I)[B",
+                (void *) native_EnumSupportCoins
+        },
+        {
+                "nativeClearContext",
+                "(I)I",
+                (void *) native_ClearContext
+        },
+        {
+                "nativeIsInitialize",
+                "(I)Z",
+                (void *) native_IsInitialize
+        },
+        {
+                "nativeIsBootLoader",
+                "(I)Z",
+                (void *) native_IsBootLoader
+        },
+        {
+                "nativeSetTimeout",
+                "(II)I",
+                (void *) native_SetTimeOut
+        },
+        {
+                "nativeGenerateMnemonic",
+                "([B)[B",
+                (void *) native_GenerateMnemonic
+        },
+        {
+                "nativeCheckMnemonic",
+                "(Ljava/lang/String;)I",
+                (void *) native_CheckMnemonic
+        },
+        {
+                "nativeGenerateSeed",
+                "(Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_GenerateSeed
+        },
+        {
+                "nativeSeedToMasterPrivateKey",
+                "(Ljava/lang/String;[B)[B",
+                (void *) native_SeedToMasterPrivateKey
+        },
 #ifdef HC
 {
     "nativeHCCreateContext",
