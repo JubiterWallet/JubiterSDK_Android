@@ -10,6 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
 import com.jubiter.sdk.JuBiterBLEDevice;
@@ -24,9 +28,6 @@ import com.jubiter.sdk.proto.EthereumProtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Size;
-import androidx.appcompat.app.AppCompatActivity;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnBTCGetMainHDNodetn();
         addListenerOnBTCGetHDNodeBtn();
         addListenerOnBTCGetAddressBtn();
+        addListenerOnBTCCheckAddressBtn();
         addListenerOnBTCTransactionBtn();
         addListenerOnBuildUSDTOutputBtn();
         addListenerOnSetUintBtn();
@@ -559,6 +561,22 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .build();
                         CommonProtos.ResultString result = JuBiterBitcoin.getAddress(contextID, bip32Path, true);
                         Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnBTCCheckAddressBtn() {
+        findViewById(R.id.btcCheckAddress_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        String address = "1AoqCRhM1VFSjGQHnzXSc2fYqis22W7ynv";
+                        int result = JuBiterBitcoin.checkAddress(contextID, address);
+                        Log.d(TAG, ">>> rv: " + result);
                     }
                 });
             }

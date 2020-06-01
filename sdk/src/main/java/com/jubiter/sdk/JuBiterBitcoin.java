@@ -116,6 +116,18 @@ public final class JuBiterBitcoin {
     }
 
     /**
+     * 检测收款地址
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param address   待检测地址
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static int checkAddress(int contextID, String address) {
+        int result = NativeApi.nativeBTCCheckAddress(contextID, address);
+        return result;
+    }
+
+    /**
      * BTC 交易签名
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回

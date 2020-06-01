@@ -89,6 +89,8 @@ public class NativeApi {
 
     public static native byte[] nativeBTCSetAddress(int contextID, byte[] bip32);
 
+    public static native int nativeBTCCheckAddress(int contextID, String address);
+
     public static native byte[] nativeBTCSignTransaction(int contextID, byte[] txArray);
 
     public static native int nativeBTCSetUnit(int contextID, byte[] uint);
