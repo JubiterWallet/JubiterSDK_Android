@@ -74,9 +74,10 @@ jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
 }
 
 jbyteArray buildPbRvUInt(JNIEnv *env, JUB_RV rv, uint32_t res) {
+    LOG_ERR("rv: %d, value: %d", rv, res);
     JUB::Proto::Common::ResultInt resultInt;
     resultInt.set_state_code(rv);
-    if (JUBR_OK == rv) { resultInt.set_value(res); }
+    resultInt.set_value(res);
 
     std::string result;
     resultInt.SerializeToString(&result);
@@ -369,7 +370,7 @@ JNIEXPORT jint JNICALL native_CancelVirtualPwd(JNIEnv *env, jobject obj, jint co
 JNIEXPORT jbyteArray JNICALL
 native_VerifyPIN(JNIEnv *env, jobject obj, jint contextID, jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
-    JUB_ULONG retry;
+    JUB_ULONG retry = 0;
     JUB_RV rv = JUB_VerifyPIN(contextID, (JUB_CHAR_PTR) strPin.c_str(), &retry);
     return buildPbRvUInt(env, rv, retry);
 }
