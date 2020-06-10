@@ -431,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultInt result = JuBiterWallet.queryBattery(deviceID);
-                Log.d(TAG, ">>> rv: " + result.getStateCode() + " value: " + result.getValue());
+                Log.d(TAG, ">>> rv: " + result.getStateCode());
             }
         });
     }
@@ -470,8 +470,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.verifyPIN_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonProtos.ResultInt result = JuBiterWallet.verifyPIN(contextID, "5555");
-                Log.d(TAG, ">>> rv: " + result);
+                CommonProtos.ResultInt result = JuBiterWallet.verifyPIN(contextID, "5554");
+                Log.d(TAG, ">>> rv: " + result.getStateCode() + " value: " + result.getValue());
             }
         });
     }
@@ -625,7 +625,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClickListener(String pin) {
                 CommonProtos.ResultInt resultInt = JuBiterWallet.verifyPIN(contextID, pin);
-                Log.d(TAG, ">>> verifyPIN : " + resultInt.getStateCode());
+                Log.d(TAG, ">>> verifyPIN : " + resultInt.getStateCode() + ", " + resultInt.getValue());
                 if (0 != resultInt.getStateCode()) {
                     return;
                 }
