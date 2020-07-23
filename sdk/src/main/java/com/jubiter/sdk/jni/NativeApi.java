@@ -120,4 +120,22 @@ public class NativeApi {
 
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 
+    //********************************* SDK EOS ************************************
+
+    public static native byte[] nativeEOSCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeEOSCreateContext_Software(byte[] config, String xPrikey);
+
+    public static native byte[] nativeEOSGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native byte[] nativeEOSGetHDNode(int contextID, byte[] format, byte[] bip32);
+
+    public static native byte[] nativeEOSGetMainHDNode(int contextID, byte[] format);
+
+    public static native byte[] nativeEOSSetAddress(int contextID, byte[] bip32);
+
+    public static native byte[] nativeEOSSignTransaction(int contextID, byte[] txInfo);
+
+    public static native byte[] nativeEOSBuildAction(int contextID, byte[] txInfo);
+
 }
