@@ -848,7 +848,7 @@ native_BuildActionEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
                     break;
                 case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::SELLRAM:
                     action.type = JUB_ENUM_EOS_ACTION_TYPE::SELLRAM;
-                    action.sellRam.account = ((JUB_CHAR_PTR) pdAc.sell_ram_action().account().c_str();
+                    action.sellRam.account = (JUB_CHAR_PTR) pdAc.sell_ram_action().account().c_str();
                     action.sellRam.bytes = (JUB_CHAR_PTR) pdAc.sell_ram_action().byte().c_str();
                     break;
                 default:
