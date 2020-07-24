@@ -146,7 +146,7 @@ public final class JuBiterEOS {
      */
     public static CommonProtos.ResultString signTransaction(int contextID, EOSProtos.TransactionEOS txInfo) {
         try {
-            byte[] result = NativeApi.nativeETHSignTransaction(contextID, txInfo.toByteArray());
+            byte[] result = NativeApi.nativeEOSSignTransaction(contextID, txInfo.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
