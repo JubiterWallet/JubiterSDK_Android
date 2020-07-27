@@ -830,6 +830,7 @@ native_BuildActionEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
                     action.delegate.receiver = (JUB_CHAR_PTR) pdAc.dele_action().receiver().c_str();
                     action.delegate.netQty = (JUB_CHAR_PTR) pdAc.dele_action().net_qty().c_str();
                     action.delegate.cpuQty = (JUB_CHAR_PTR) pdAc.dele_action().cpu_qty().c_str();
+                    action.delegate.transfer = pdAc.dele_action().transfer();
                     action.delegate.bStake = pdAc.dele_action().stake();
                     break;
                 case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::UNDELE:
