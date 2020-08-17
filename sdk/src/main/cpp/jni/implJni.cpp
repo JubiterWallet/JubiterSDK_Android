@@ -12,6 +12,7 @@
 #include <Jub_Common.pb.h>
 #include <Jub_Bitcoin.pb.h>
 #include <Jub_Ethereum.pb.h>
+#include <Jub_EOS.pb.h>
 
 #ifdef HC
 #include <JUB_SDK_Hcash.h>
@@ -702,6 +703,172 @@ native_SignTransactionETH(JNIEnv *env, jobject obj, jint contextID, jbyteArray t
     }
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
 }
+//=================================== EOS Wallet =========================================
+
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextEOS(JNIEnv *env, jobject obj, jbyteArray jcfg, jint deviceID) {
+    JUB::Proto::Common::ContextCfg pbCfg;
+    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
+        CONTEXT_CONFIG_EOS cfg;
+        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
+        JUB_UINT16 contextID;
+        JUB_RV rv = JUB_CreateContextEOS(cfg, deviceID, &contextID);
+        return buildPbRvUInt(env, rv, contextID);
+    } else {
+        return buildPbRvUInt(env, JUBR_ARGUMENTS_BAD, 0);
+    };
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextEOS_soft(JNIEnv *env, jobject obj, jbyteArray jcfg, jstring xprv) {
+    auto strXPRV = jstring2stdString(env, xprv);
+    JUB::Proto::Common::ContextCfg pbCfg;
+    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
+        CONTEXT_CONFIG_EOS cfg;
+        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
+        JUB_UINT16 contextID;
+        JUB_RV rv = JUB_CreateContextEOS_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
+        return buildPbRvUInt(env, rv, contextID);
+    } else {
+        return buildPbRvUInt(env, JUBR_ARGUMENTS_BAD, 0);
+    };
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetAddressEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32, jboolean bShow) {
+
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR address;
+        JUB_RV rv = JUB_GetAddressEOS(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
+        LOG_ERR("JUB_GetAddressEOS : %s", address);
+        return buildPbRvString(env, rv, address);
+    }
+    return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetHDNodeEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray format, jbyteArray bip32) {
+
+    auto strFormat = jbyteArray2stdString(env, format);
+    JUB::Proto::Common::ENUM_PUB_FORMAT _format;
+    JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
+
+    BIP44_Path bip44Path;
+    if (parseBip44Path(env, bip32, &bip44Path)) {
+        JUB_CHAR_PTR xpub;
+        JUB_RV rv = JUB_GetHDNodeEOS(contextID, (JUB_ENUM_PUB_FORMAT) _format, bip44Path, &xpub);
+        return buildPbRvString(env, rv, xpub);
+    }
+    return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetMainHDNodeEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray format) {
+    auto strFormat = jbyteArray2stdString(env, format);
+    JUB::Proto::Common::ENUM_PUB_FORMAT _format;
+    JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
+
+    JUB_CHAR_PTR xpub;
+    JUB_RV rv = JUB_GetMainHDNodeEOS(contextID, (JUB_ENUM_PUB_FORMAT) _format, &xpub);
+    return buildPbRvString(env, rv, xpub);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SetMyAddressEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray bip32) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR address = nullptr;
+        JUB_RV rv = JUB_SetMyAddressEOS(contextID, bip32Path, &address);
+        return buildPbRvString(env, rv, address);
+    }
+    return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignTransactionEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
+    JUB::Proto::EOS::TransactionEOS pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        BIP44_Path bip32Path;
+        bip32Path.change = (JUB_ENUM_BOOL) pbTx.path().change();
+        bip32Path.addressIndex = pbTx.path().address_index();
+
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_RV rv = JUB_SignTransactionEOS(contextID, bip32Path,
+                                           (JUB_CHAR_PTR) pbTx.chainid().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.expiration().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.referenceblockid().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.referenceblocktime().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.actionsinjson().c_str(), &raw);
+
+        return buildPbRvString(env, rv, raw);
+    }
+    return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_BuildActionEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
+    JUB::Proto::EOS::ActionListEOS pbAcList;
+    if (parseFromJbyteArray(env, tx, &pbAcList)) {
+
+        std::vector<JUB_ACTION_EOS> actionArray;
+
+        for (int i = 0; i < pbAcList.actions_size(); i++) {
+            const JUB::Proto::EOS::ActionEOS& pdAc = pbAcList.actions(i);
+            JUB_ACTION_EOS action;
+            switch (pdAc.type()) {
+                case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::XFER:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::XFER;
+                    action.transfer.from = (JUB_CHAR_PTR) pdAc.xfer_action().from().c_str();
+                    action.transfer.to = (JUB_CHAR_PTR) pdAc.xfer_action().to().c_str();
+                    action.transfer.asset = (JUB_CHAR_PTR) pdAc.xfer_action().asset().c_str();
+                    action.transfer.memo = (JUB_CHAR_PTR) pdAc.xfer_action().memo().c_str();
+                    break;
+                case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::DELE:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::DELE;
+                    action.delegate.from = (JUB_CHAR_PTR) pdAc.dele_action().from().c_str();
+                    action.delegate.receiver = (JUB_CHAR_PTR) pdAc.dele_action().receiver().c_str();
+                    action.delegate.netQty = (JUB_CHAR_PTR) pdAc.dele_action().net_qty().c_str();
+                    action.delegate.cpuQty = (JUB_CHAR_PTR) pdAc.dele_action().cpu_qty().c_str();
+                    action.delegate.transfer = pdAc.dele_action().transfer();
+                    action.delegate.bStake = pdAc.dele_action().stake();
+                    break;
+                case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::UNDELE:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::UNDELE;
+                    action.delegate.from = (JUB_CHAR_PTR) pdAc.dele_action().from().c_str();
+                    action.delegate.receiver = (JUB_CHAR_PTR) pdAc.dele_action().receiver().c_str();
+                    action.delegate.netQty = (JUB_CHAR_PTR) pdAc.dele_action().net_qty().c_str();
+                    action.delegate.cpuQty = (JUB_CHAR_PTR) pdAc.dele_action().cpu_qty().c_str();
+                    action.delegate.bStake = pdAc.dele_action().stake();
+                    break;
+                case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::BUYRAM:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::BUYRAM;
+                    action.buyRam.payer = (JUB_CHAR_PTR) pdAc.buy_ram_action().payer().c_str();
+                    action.buyRam.quant = (JUB_CHAR_PTR) pdAc.buy_ram_action().quant().c_str();
+                    action.buyRam.receiver = (JUB_CHAR_PTR) pdAc.buy_ram_action().receiver().c_str();
+                    break;
+                case JUB::Proto::EOS::ENUM_EOS_ACTION_TYPE::SELLRAM:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::SELLRAM;
+                    action.sellRam.account = (JUB_CHAR_PTR) pdAc.sell_ram_action().account().c_str();
+                    action.sellRam.bytes = (JUB_CHAR_PTR) pdAc.sell_ram_action().byte().c_str();
+                    break;
+                default:
+                    action.type = JUB_ENUM_EOS_ACTION_TYPE::NS_ITEM_EOS_ACTION_TYPE;
+                    break;
+            }
+            action.currency = (JUB_CHAR_PTR) pdAc.currency().c_str();
+            action.name = (JUB_CHAR_PTR) pdAc.name().c_str();
+
+            actionArray.push_back(action);
+        }
+        JUB_CHAR_PTR actions = nullptr;
+        JUB_RV rv = JUB_BuildActionEOS(contextID,&actionArray[0],
+                                       pbAcList.actions_size(), &actions);
+
+        return buildPbRvString(env, rv, actions);
+    }
+    return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
 
 //=================================== HC Wallet =========================================
 
@@ -985,6 +1152,11 @@ static JNINativeMethod gMethods[] = {
                 (void *) native_isConnectDevice
         },
         {
+                "nativeCancelConnect",
+                "(Ljava/lang/String;)I",
+                (void *) native_cancelConnect
+        },
+        {
                 "nativeShowVirtualPWD",
                 "(I)I",
                 (void *) native_ShowVirtualPwd
@@ -1168,6 +1340,47 @@ static JNINativeMethod gMethods[] = {
                 "nativeSeedToMasterPrivateKey",
                 "(Ljava/lang/String;[B)[B",
                 (void *) native_SeedToMasterPrivateKey
+        },
+        // EOS
+        {
+                "nativeEOSCreateContext",
+                "([BI)[B",
+                (void *) native_CreateContextEOS
+        },
+        {
+                "nativeEOSCreateContext_Software",
+                "([BLjava/lang/String;)[B",
+                (void *) native_CreateContextEOS_soft
+        },
+        {
+                "nativeEOSGetAddress",
+                "(I[BZ)[B",
+                (void *) native_GetAddressEOS
+        },
+        {
+                "nativeEOSGetHDNode",
+                "(I[B[B)[B",
+                (void *) native_GetHDNodeEOS
+        },
+        {
+                "nativeEOSGetMainHDNode",
+                "(I[B)[B",
+                (void *) native_GetMainHDNodeEOS
+        },
+        {
+                "nativeEOSSetAddress",
+                "(I[B)[B",
+                (void *) native_SetMyAddressEOS
+        },
+        {
+                "nativeEOSSignTransaction",
+                "(I[B)[B",
+                (void *) native_SignTransactionEOS
+        },
+        {
+                "nativeEOSBuildAction",
+                "(I[B)[B",
+                (void *) native_BuildActionEOS
         },
 #ifdef HC
 {

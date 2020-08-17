@@ -5417,6 +5417,2091 @@ public final class EOSProtos {
 
   }
 
+  public interface ActionListEOSOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.EOS.ActionListEOS)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    java.util.List<ActionEOS>
+        getActionsList();
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    ActionEOS getActions(int index);
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    int getActionsCount();
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    java.util.List<? extends ActionEOSOrBuilder>
+        getActionsOrBuilderList();
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    ActionEOSOrBuilder getActionsOrBuilder(
+            int index);
+  }
+  /**
+   * Protobuf type {@code JUB.Proto.EOS.ActionListEOS}
+   */
+  public  static final class ActionListEOS extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.EOS.ActionListEOS)
+      ActionListEOSOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ActionListEOS.newBuilder() to construct.
+    private ActionListEOS(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ActionListEOS() {
+      actions_ = java.util.Collections.emptyList();
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ActionListEOS();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ActionListEOS(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                actions_ = new java.util.ArrayList<ActionEOS>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              actions_.add(
+                  input.readMessage(ActionEOS.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          actions_ = java.util.Collections.unmodifiableList(actions_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ActionListEOS.class, Builder.class);
+    }
+
+    public static final int ACTIONS_FIELD_NUMBER = 1;
+    private java.util.List<ActionEOS> actions_;
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    public java.util.List<ActionEOS> getActionsList() {
+      return actions_;
+    }
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    public java.util.List<? extends ActionEOSOrBuilder>
+        getActionsOrBuilderList() {
+      return actions_;
+    }
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    public int getActionsCount() {
+      return actions_.size();
+    }
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    public ActionEOS getActions(int index) {
+      return actions_.get(index);
+    }
+    /**
+     * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+     */
+    public ActionEOSOrBuilder getActionsOrBuilder(
+        int index) {
+      return actions_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < actions_.size(); i++) {
+        output.writeMessage(1, actions_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < actions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, actions_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ActionListEOS)) {
+        return super.equals(obj);
+      }
+      ActionListEOS other = (ActionListEOS) obj;
+
+      if (!getActionsList()
+          .equals(other.getActionsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getActionsCount() > 0) {
+        hash = (37 * hash) + ACTIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getActionsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ActionListEOS parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ActionListEOS parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ActionListEOS parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ActionListEOS parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ActionListEOS parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ActionListEOS parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ActionListEOS parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ActionListEOS parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ActionListEOS parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static ActionListEOS parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ActionListEOS parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ActionListEOS parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ActionListEOS prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JUB.Proto.EOS.ActionListEOS}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.ActionListEOS)
+        ActionListEOSOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ActionListEOS.class, Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.EOSProtos.ActionListEOS.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getActionsFieldBuilder();
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        if (actionsBuilder_ == null) {
+          actions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          actionsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+      }
+
+      @Override
+      public ActionListEOS getDefaultInstanceForType() {
+        return ActionListEOS.getDefaultInstance();
+      }
+
+      @Override
+      public ActionListEOS build() {
+        ActionListEOS result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public ActionListEOS buildPartial() {
+        ActionListEOS result = new ActionListEOS(this);
+        int from_bitField0_ = bitField0_;
+        if (actionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            actions_ = java.util.Collections.unmodifiableList(actions_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.actions_ = actions_;
+        } else {
+          result.actions_ = actionsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ActionListEOS) {
+          return mergeFrom((ActionListEOS)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ActionListEOS other) {
+        if (other == ActionListEOS.getDefaultInstance()) return this;
+        if (actionsBuilder_ == null) {
+          if (!other.actions_.isEmpty()) {
+            if (actions_.isEmpty()) {
+              actions_ = other.actions_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureActionsIsMutable();
+              actions_.addAll(other.actions_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.actions_.isEmpty()) {
+            if (actionsBuilder_.isEmpty()) {
+              actionsBuilder_.dispose();
+              actionsBuilder_ = null;
+              actions_ = other.actions_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              actionsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getActionsFieldBuilder() : null;
+            } else {
+              actionsBuilder_.addAllMessages(other.actions_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        ActionListEOS parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (ActionListEOS) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<ActionEOS> actions_ =
+        java.util.Collections.emptyList();
+      private void ensureActionsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          actions_ = new java.util.ArrayList<ActionEOS>(actions_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder> actionsBuilder_;
+
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public java.util.List<ActionEOS> getActionsList() {
+        if (actionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(actions_);
+        } else {
+          return actionsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public int getActionsCount() {
+        if (actionsBuilder_ == null) {
+          return actions_.size();
+        } else {
+          return actionsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public ActionEOS getActions(int index) {
+        if (actionsBuilder_ == null) {
+          return actions_.get(index);
+        } else {
+          return actionsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder setActions(
+          int index, ActionEOS value) {
+        if (actionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActionsIsMutable();
+          actions_.set(index, value);
+          onChanged();
+        } else {
+          actionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder setActions(
+          int index, ActionEOS.Builder builderForValue) {
+        if (actionsBuilder_ == null) {
+          ensureActionsIsMutable();
+          actions_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          actionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder addActions(ActionEOS value) {
+        if (actionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActionsIsMutable();
+          actions_.add(value);
+          onChanged();
+        } else {
+          actionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder addActions(
+          int index, ActionEOS value) {
+        if (actionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActionsIsMutable();
+          actions_.add(index, value);
+          onChanged();
+        } else {
+          actionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder addActions(
+          ActionEOS.Builder builderForValue) {
+        if (actionsBuilder_ == null) {
+          ensureActionsIsMutable();
+          actions_.add(builderForValue.build());
+          onChanged();
+        } else {
+          actionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder addActions(
+          int index, ActionEOS.Builder builderForValue) {
+        if (actionsBuilder_ == null) {
+          ensureActionsIsMutable();
+          actions_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          actionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder addAllActions(
+          Iterable<? extends ActionEOS> values) {
+        if (actionsBuilder_ == null) {
+          ensureActionsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, actions_);
+          onChanged();
+        } else {
+          actionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder clearActions() {
+        if (actionsBuilder_ == null) {
+          actions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          actionsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public Builder removeActions(int index) {
+        if (actionsBuilder_ == null) {
+          ensureActionsIsMutable();
+          actions_.remove(index);
+          onChanged();
+        } else {
+          actionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public ActionEOS.Builder getActionsBuilder(
+          int index) {
+        return getActionsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public ActionEOSOrBuilder getActionsOrBuilder(
+          int index) {
+        if (actionsBuilder_ == null) {
+          return actions_.get(index);  } else {
+          return actionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public java.util.List<? extends ActionEOSOrBuilder>
+           getActionsOrBuilderList() {
+        if (actionsBuilder_ != null) {
+          return actionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(actions_);
+        }
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public ActionEOS.Builder addActionsBuilder() {
+        return getActionsFieldBuilder().addBuilder(
+            ActionEOS.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public ActionEOS.Builder addActionsBuilder(
+          int index) {
+        return getActionsFieldBuilder().addBuilder(
+            index, ActionEOS.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
+       */
+      public java.util.List<ActionEOS.Builder>
+           getActionsBuilderList() {
+        return getActionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder>
+          getActionsFieldBuilder() {
+        if (actionsBuilder_ == null) {
+          actionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder>(
+                  actions_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          actions_ = null;
+        }
+        return actionsBuilder_;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.EOS.ActionListEOS)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.ActionListEOS)
+    private static final ActionListEOS DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ActionListEOS();
+    }
+
+    public static ActionListEOS getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ActionListEOS>
+        PARSER = new com.google.protobuf.AbstractParser<ActionListEOS>() {
+      @Override
+      public ActionListEOS parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ActionListEOS(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ActionListEOS> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<ActionListEOS> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public ActionListEOS getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TransactionEOSOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.EOS.TransactionEOS)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    boolean hasPath();
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    CommonProtos.Bip44Path getPath();
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+
+    /**
+     * <code>string chainID = 2;</code>
+     */
+    String getChainID();
+    /**
+     * <code>string chainID = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getChainIDBytes();
+
+    /**
+     * <code>string expiration = 3;</code>
+     */
+    String getExpiration();
+    /**
+     * <code>string expiration = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getExpirationBytes();
+
+    /**
+     * <code>string referenceBlockId = 4;</code>
+     */
+    String getReferenceBlockId();
+    /**
+     * <code>string referenceBlockId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getReferenceBlockIdBytes();
+
+    /**
+     * <code>string referenceBlockTime = 5;</code>
+     */
+    String getReferenceBlockTime();
+    /**
+     * <code>string referenceBlockTime = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getReferenceBlockTimeBytes();
+
+    /**
+     * <code>string actionsInJSON = 6;</code>
+     */
+    String getActionsInJSON();
+    /**
+     * <code>string actionsInJSON = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getActionsInJSONBytes();
+  }
+  /**
+   * Protobuf type {@code JUB.Proto.EOS.TransactionEOS}
+   */
+  public  static final class TransactionEOS extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.EOS.TransactionEOS)
+      TransactionEOSOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TransactionEOS.newBuilder() to construct.
+    private TransactionEOS(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TransactionEOS() {
+      chainID_ = "";
+      expiration_ = "";
+      referenceBlockId_ = "";
+      referenceBlockTime_ = "";
+      actionsInJSON_ = "";
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TransactionEOS();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TransactionEOS(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              CommonProtos.Bip44Path.Builder subBuilder = null;
+              if (path_ != null) {
+                subBuilder = path_.toBuilder();
+              }
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(path_);
+                path_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              String s = input.readStringRequireUtf8();
+
+              chainID_ = s;
+              break;
+            }
+            case 26: {
+              String s = input.readStringRequireUtf8();
+
+              expiration_ = s;
+              break;
+            }
+            case 34: {
+              String s = input.readStringRequireUtf8();
+
+              referenceBlockId_ = s;
+              break;
+            }
+            case 42: {
+              String s = input.readStringRequireUtf8();
+
+              referenceBlockTime_ = s;
+              break;
+            }
+            case 50: {
+              String s = input.readStringRequireUtf8();
+
+              actionsInJSON_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TransactionEOS.class, Builder.class);
+    }
+
+    public static final int PATH_FIELD_NUMBER = 1;
+    private CommonProtos.Bip44Path path_;
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public boolean hasPath() {
+      return path_ != null;
+    }
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    }
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      return getPath();
+    }
+
+    public static final int CHAINID_FIELD_NUMBER = 2;
+    private volatile Object chainID_;
+    /**
+     * <code>string chainID = 2;</code>
+     */
+    public String getChainID() {
+      Object ref = chainID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        chainID_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string chainID = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getChainIDBytes() {
+      Object ref = chainID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        chainID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int EXPIRATION_FIELD_NUMBER = 3;
+    private volatile Object expiration_;
+    /**
+     * <code>string expiration = 3;</code>
+     */
+    public String getExpiration() {
+      Object ref = expiration_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        expiration_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string expiration = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getExpirationBytes() {
+      Object ref = expiration_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        expiration_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REFERENCEBLOCKID_FIELD_NUMBER = 4;
+    private volatile Object referenceBlockId_;
+    /**
+     * <code>string referenceBlockId = 4;</code>
+     */
+    public String getReferenceBlockId() {
+      Object ref = referenceBlockId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        referenceBlockId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string referenceBlockId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReferenceBlockIdBytes() {
+      Object ref = referenceBlockId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        referenceBlockId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REFERENCEBLOCKTIME_FIELD_NUMBER = 5;
+    private volatile Object referenceBlockTime_;
+    /**
+     * <code>string referenceBlockTime = 5;</code>
+     */
+    public String getReferenceBlockTime() {
+      Object ref = referenceBlockTime_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        referenceBlockTime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string referenceBlockTime = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReferenceBlockTimeBytes() {
+      Object ref = referenceBlockTime_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        referenceBlockTime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ACTIONSINJSON_FIELD_NUMBER = 6;
+    private volatile Object actionsInJSON_;
+    /**
+     * <code>string actionsInJSON = 6;</code>
+     */
+    public String getActionsInJSON() {
+      Object ref = actionsInJSON_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        actionsInJSON_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string actionsInJSON = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getActionsInJSONBytes() {
+      Object ref = actionsInJSON_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        actionsInJSON_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (path_ != null) {
+        output.writeMessage(1, getPath());
+      }
+      if (!getChainIDBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, chainID_);
+      }
+      if (!getExpirationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, expiration_);
+      }
+      if (!getReferenceBlockIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, referenceBlockId_);
+      }
+      if (!getReferenceBlockTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, referenceBlockTime_);
+      }
+      if (!getActionsInJSONBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, actionsInJSON_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (path_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getPath());
+      }
+      if (!getChainIDBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, chainID_);
+      }
+      if (!getExpirationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, expiration_);
+      }
+      if (!getReferenceBlockIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, referenceBlockId_);
+      }
+      if (!getReferenceBlockTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, referenceBlockTime_);
+      }
+      if (!getActionsInJSONBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, actionsInJSON_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TransactionEOS)) {
+        return super.equals(obj);
+      }
+      TransactionEOS other = (TransactionEOS) obj;
+
+      if (hasPath() != other.hasPath()) return false;
+      if (hasPath()) {
+        if (!getPath()
+            .equals(other.getPath())) return false;
+      }
+      if (!getChainID()
+          .equals(other.getChainID())) return false;
+      if (!getExpiration()
+          .equals(other.getExpiration())) return false;
+      if (!getReferenceBlockId()
+          .equals(other.getReferenceBlockId())) return false;
+      if (!getReferenceBlockTime()
+          .equals(other.getReferenceBlockTime())) return false;
+      if (!getActionsInJSON()
+          .equals(other.getActionsInJSON())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasPath()) {
+        hash = (37 * hash) + PATH_FIELD_NUMBER;
+        hash = (53 * hash) + getPath().hashCode();
+      }
+      hash = (37 * hash) + CHAINID_FIELD_NUMBER;
+      hash = (53 * hash) + getChainID().hashCode();
+      hash = (37 * hash) + EXPIRATION_FIELD_NUMBER;
+      hash = (53 * hash) + getExpiration().hashCode();
+      hash = (37 * hash) + REFERENCEBLOCKID_FIELD_NUMBER;
+      hash = (53 * hash) + getReferenceBlockId().hashCode();
+      hash = (37 * hash) + REFERENCEBLOCKTIME_FIELD_NUMBER;
+      hash = (53 * hash) + getReferenceBlockTime().hashCode();
+      hash = (37 * hash) + ACTIONSINJSON_FIELD_NUMBER;
+      hash = (53 * hash) + getActionsInJSON().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static TransactionEOS parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TransactionEOS parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TransactionEOS parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TransactionEOS parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TransactionEOS parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TransactionEOS parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TransactionEOS parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static TransactionEOS parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static TransactionEOS parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static TransactionEOS parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static TransactionEOS parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static TransactionEOS parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(TransactionEOS prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JUB.Proto.EOS.TransactionEOS}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.TransactionEOS)
+        TransactionEOSOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TransactionEOS.class, Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.EOSProtos.TransactionEOS.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        if (pathBuilder_ == null) {
+          path_ = null;
+        } else {
+          path_ = null;
+          pathBuilder_ = null;
+        }
+        chainID_ = "";
+
+        expiration_ = "";
+
+        referenceBlockId_ = "";
+
+        referenceBlockTime_ = "";
+
+        actionsInJSON_ = "";
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+      }
+
+      @Override
+      public TransactionEOS getDefaultInstanceForType() {
+        return TransactionEOS.getDefaultInstance();
+      }
+
+      @Override
+      public TransactionEOS build() {
+        TransactionEOS result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TransactionEOS buildPartial() {
+        TransactionEOS result = new TransactionEOS(this);
+        if (pathBuilder_ == null) {
+          result.path_ = path_;
+        } else {
+          result.path_ = pathBuilder_.build();
+        }
+        result.chainID_ = chainID_;
+        result.expiration_ = expiration_;
+        result.referenceBlockId_ = referenceBlockId_;
+        result.referenceBlockTime_ = referenceBlockTime_;
+        result.actionsInJSON_ = actionsInJSON_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TransactionEOS) {
+          return mergeFrom((TransactionEOS)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TransactionEOS other) {
+        if (other == TransactionEOS.getDefaultInstance()) return this;
+        if (other.hasPath()) {
+          mergePath(other.getPath());
+        }
+        if (!other.getChainID().isEmpty()) {
+          chainID_ = other.chainID_;
+          onChanged();
+        }
+        if (!other.getExpiration().isEmpty()) {
+          expiration_ = other.expiration_;
+          onChanged();
+        }
+        if (!other.getReferenceBlockId().isEmpty()) {
+          referenceBlockId_ = other.referenceBlockId_;
+          onChanged();
+        }
+        if (!other.getReferenceBlockTime().isEmpty()) {
+          referenceBlockTime_ = other.referenceBlockTime_;
+          onChanged();
+        }
+        if (!other.getActionsInJSON().isEmpty()) {
+          actionsInJSON_ = other.actionsInJSON_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TransactionEOS parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TransactionEOS) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private CommonProtos.Bip44Path path_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public boolean hasPath() {
+        return pathBuilder_ != null || path_ != null;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44Path getPath() {
+        if (pathBuilder_ == null) {
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+        } else {
+          return pathBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder setPath(CommonProtos.Bip44Path value) {
+        if (pathBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          path_ = value;
+          onChanged();
+        } else {
+          pathBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder setPath(
+          CommonProtos.Bip44Path.Builder builderForValue) {
+        if (pathBuilder_ == null) {
+          path_ = builderForValue.build();
+          onChanged();
+        } else {
+          pathBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder mergePath(CommonProtos.Bip44Path value) {
+        if (pathBuilder_ == null) {
+          if (path_ != null) {
+            path_ =
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+          } else {
+            path_ = value;
+          }
+          onChanged();
+        } else {
+          pathBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder clearPath() {
+        if (pathBuilder_ == null) {
+          path_ = null;
+          onChanged();
+        } else {
+          path_ = null;
+          pathBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
+        
+        onChanged();
+        return getPathFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+        if (pathBuilder_ != null) {
+          return pathBuilder_.getMessageOrBuilder();
+        } else {
+          return path_ == null ?
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
+        }
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
+          getPathFieldBuilder() {
+        if (pathBuilder_ == null) {
+          pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
+                  getPath(),
+                  getParentForChildren(),
+                  isClean());
+          path_ = null;
+        }
+        return pathBuilder_;
+      }
+
+      private Object chainID_ = "";
+      /**
+       * <code>string chainID = 2;</code>
+       */
+      public String getChainID() {
+        Object ref = chainID_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          chainID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string chainID = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getChainIDBytes() {
+        Object ref = chainID_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          chainID_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string chainID = 2;</code>
+       */
+      public Builder setChainID(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        chainID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string chainID = 2;</code>
+       */
+      public Builder clearChainID() {
+        
+        chainID_ = getDefaultInstance().getChainID();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string chainID = 2;</code>
+       */
+      public Builder setChainIDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        chainID_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object expiration_ = "";
+      /**
+       * <code>string expiration = 3;</code>
+       */
+      public String getExpiration() {
+        Object ref = expiration_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          expiration_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string expiration = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getExpirationBytes() {
+        Object ref = expiration_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          expiration_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string expiration = 3;</code>
+       */
+      public Builder setExpiration(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        expiration_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string expiration = 3;</code>
+       */
+      public Builder clearExpiration() {
+        
+        expiration_ = getDefaultInstance().getExpiration();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string expiration = 3;</code>
+       */
+      public Builder setExpirationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        expiration_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object referenceBlockId_ = "";
+      /**
+       * <code>string referenceBlockId = 4;</code>
+       */
+      public String getReferenceBlockId() {
+        Object ref = referenceBlockId_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          referenceBlockId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string referenceBlockId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReferenceBlockIdBytes() {
+        Object ref = referenceBlockId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          referenceBlockId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string referenceBlockId = 4;</code>
+       */
+      public Builder setReferenceBlockId(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        referenceBlockId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string referenceBlockId = 4;</code>
+       */
+      public Builder clearReferenceBlockId() {
+        
+        referenceBlockId_ = getDefaultInstance().getReferenceBlockId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string referenceBlockId = 4;</code>
+       */
+      public Builder setReferenceBlockIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        referenceBlockId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object referenceBlockTime_ = "";
+      /**
+       * <code>string referenceBlockTime = 5;</code>
+       */
+      public String getReferenceBlockTime() {
+        Object ref = referenceBlockTime_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          referenceBlockTime_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string referenceBlockTime = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReferenceBlockTimeBytes() {
+        Object ref = referenceBlockTime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          referenceBlockTime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string referenceBlockTime = 5;</code>
+       */
+      public Builder setReferenceBlockTime(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        referenceBlockTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string referenceBlockTime = 5;</code>
+       */
+      public Builder clearReferenceBlockTime() {
+        
+        referenceBlockTime_ = getDefaultInstance().getReferenceBlockTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string referenceBlockTime = 5;</code>
+       */
+      public Builder setReferenceBlockTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        referenceBlockTime_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object actionsInJSON_ = "";
+      /**
+       * <code>string actionsInJSON = 6;</code>
+       */
+      public String getActionsInJSON() {
+        Object ref = actionsInJSON_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          actionsInJSON_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string actionsInJSON = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getActionsInJSONBytes() {
+        Object ref = actionsInJSON_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          actionsInJSON_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string actionsInJSON = 6;</code>
+       */
+      public Builder setActionsInJSON(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        actionsInJSON_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string actionsInJSON = 6;</code>
+       */
+      public Builder clearActionsInJSON() {
+        
+        actionsInJSON_ = getDefaultInstance().getActionsInJSON();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string actionsInJSON = 6;</code>
+       */
+      public Builder setActionsInJSONBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        actionsInJSON_ = value;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.EOS.TransactionEOS)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.TransactionEOS)
+    private static final TransactionEOS DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TransactionEOS();
+    }
+
+    public static TransactionEOS getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TransactionEOS>
+        PARSER = new com.google.protobuf.AbstractParser<TransactionEOS>() {
+      @Override
+      public TransactionEOS parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TransactionEOS(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TransactionEOS> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<TransactionEOS> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TransactionEOS getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_EOS_TransferAction_descriptor;
   private static final 
@@ -5442,6 +7527,16 @@ public final class EOSProtos {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -5451,30 +7546,37 @@ public final class EOSProtos {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\rJub_EOS.proto\022\rJUB.Proto.EOS\"G\n\016Transf" +
-      "erAction\022\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\r\n\005as" +
-      "set\030\003 \001(\t\022\014\n\004memo\030\004 \001(\t\"a\n\016DelegateActio" +
-      "n\022\014\n\004from\030\001 \001(\t\022\020\n\010receiver\030\002 \001(\t\022\017\n\007net" +
-      "_qty\030\003 \001(\t\022\017\n\007cpu_qty\030\004 \001(\t\022\r\n\005stake\030\005 \001" +
-      "(\010\">\n\014BuyRamAction\022\r\n\005payer\030\001 \001(\t\022\r\n\005qua" +
-      "nt\030\002 \001(\t\022\020\n\010receiver\030\003 \001(\t\".\n\rSellRamAct" +
-      "ion\022\017\n\007account\030\001 \001(\t\022\014\n\004byte\030\002 \001(\t\"\304\002\n\tA" +
-      "ctionEOS\0221\n\004type\030\001 \001(\0162#.JUB.Proto.EOS.E" +
-      "NUM_EOS_ACTION_TYPE\022\020\n\010currency\030\002 \001(\t\022\014\n" +
-      "\004name\030\003 \001(\t\0224\n\013xfer_action\030\004 \001(\0132\035.JUB.P" +
-      "roto.EOS.TransferActionH\000\0224\n\013dele_action" +
-      "\030\005 \001(\0132\035.JUB.Proto.EOS.DelegateActionH\000\022" +
-      "5\n\016buy_ram_action\030\006 \001(\0132\033.JUB.Proto.EOS." +
-      "BuyRamActionH\000\0227\n\017sell_ram_action\030\007 \001(\0132" +
-      "\034.JUB.Proto.EOS.SellRamActionH\000B\010\n\006actio" +
-      "n*O\n\024ENUM_EOS_ACTION_TYPE\022\010\n\004XFER\020\000\022\010\n\004D" +
-      "ELE\020\001\022\n\n\006UNDELE\020\002\022\n\n\006BUYRAM\020\003\022\013\n\007SELLRAM" +
-      "\020\004B.\n\025com.jubiter.sdk.protoB\tEOSProtos\242\002" +
-      "\tEOSProtosb\006proto3"
+      "\n\rJub_EOS.proto\022\rJUB.Proto.EOS\032\020Jub_Comm" +
+      "on.proto\"G\n\016TransferAction\022\014\n\004from\030\001 \001(\t" +
+      "\022\n\n\002to\030\002 \001(\t\022\r\n\005asset\030\003 \001(\t\022\014\n\004memo\030\004 \001(" +
+      "\t\"a\n\016DelegateAction\022\014\n\004from\030\001 \001(\t\022\020\n\010rec" +
+      "eiver\030\002 \001(\t\022\017\n\007net_qty\030\003 \001(\t\022\017\n\007cpu_qty\030" +
+      "\004 \001(\t\022\r\n\005stake\030\005 \001(\010\">\n\014BuyRamAction\022\r\n\005" +
+      "payer\030\001 \001(\t\022\r\n\005quant\030\002 \001(\t\022\020\n\010receiver\030\003" +
+      " \001(\t\".\n\rSellRamAction\022\017\n\007account\030\001 \001(\t\022\014" +
+      "\n\004byte\030\002 \001(\t\"\304\002\n\tActionEOS\0221\n\004type\030\001 \001(\016" +
+      "2#.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE\022\020\n" +
+      "\010currency\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\0224\n\013xfer_ac" +
+      "tion\030\004 \001(\0132\035.JUB.Proto.EOS.TransferActio" +
+      "nH\000\0224\n\013dele_action\030\005 \001(\0132\035.JUB.Proto.EOS" +
+      ".DelegateActionH\000\0225\n\016buy_ram_action\030\006 \001(" +
+      "\0132\033.JUB.Proto.EOS.BuyRamActionH\000\0227\n\017sell" +
+      "_ram_action\030\007 \001(\0132\034.JUB.Proto.EOS.SellRa" +
+      "mActionH\000B\010\n\006action\":\n\rActionListEOS\022)\n\007" +
+      "actions\030\001 \003(\0132\030.JUB.Proto.EOS.ActionEOS\"" +
+      "\255\001\n\016TransactionEOS\022)\n\004path\030\001 \001(\0132\033.JUB.P" +
+      "roto.Common.Bip44Path\022\017\n\007chainID\030\002 \001(\t\022\022" +
+      "\n\nexpiration\030\003 \001(\t\022\030\n\020referenceBlockId\030\004" +
+      " \001(\t\022\032\n\022referenceBlockTime\030\005 \001(\t\022\025\n\racti" +
+      "onsInJSON\030\006 \001(\t*O\n\024ENUM_EOS_ACTION_TYPE\022" +
+      "\010\n\004XFER\020\000\022\010\n\004DELE\020\001\022\n\n\006UNDELE\020\002\022\n\n\006BUYRA" +
+      "M\020\003\022\013\n\007SELLRAM\020\004B.\n\025com.jubiter.sdk.prot" +
+      "oB\tEOSProtos\242\002\tEOSProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_EOS_TransferAction_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -5506,6 +7608,19 @@ public final class EOSProtos {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_ActionEOS_descriptor,
         new String[] { "Type", "Currency", "Name", "XferAction", "DeleAction", "BuyRamAction", "SellRamAction", "Action", });
+    internal_static_JUB_Proto_EOS_ActionListEOS_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_EOS_ActionListEOS_descriptor,
+        new String[] { "Actions", });
+    internal_static_JUB_Proto_EOS_TransactionEOS_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_EOS_TransactionEOS_descriptor,
+        new String[] { "Path", "ChainID", "Expiration", "ReferenceBlockId", "ReferenceBlockTime", "ActionsInJSON", });
+    CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

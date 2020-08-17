@@ -308,6 +308,55 @@
             android:textAllCaps="false"
             android:text="Build ERC20" />
 
+        <Button
+            android:id="@+id/eosCreateContext_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Create Context" />
+
+        <Button
+            android:id="@+id/eosCreateContext_software_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Create Context (software)" />
+
+        <Button
+            android:id="@+id/eosGetMainHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Main HD Node" />
+
+        <Button
+            android:id="@+id/eosGetHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS HD Node" />
+
+        <Button
+            android:id="@+id/eosGetAddress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Get Address" />
+
+        <Button
+            android:id="@+id/eosTransaction_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Transaction" />
+
+        <Button
+            android:id="@+id/eosbuildAction_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="EOS Build Action" />
+
     </LinearLayout>
 
 </ScrollView>
