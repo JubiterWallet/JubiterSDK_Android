@@ -18,11 +18,13 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
 import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
+import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.ScanResultCallback;
 import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
+import com.jubiter.sdk.proto.EOSProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     enum COIN_TYPE {
         BTC,
         ETH,
+        EOS
     }
 
     @Override
@@ -119,6 +122,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnETHGetAddressBtn();
         addListenerOnETHTransactionBtn();
         addListenerOnBuildERC20AbiBtn();
+
+        addListenerOnEOSCreateContext_SoftwareBtn();
+        addListenerOnEOSCreateContextBtn();
+        addListenerOnEOSGetMainHDNodetn();
+        addListenerOnEOSGetHDNodeBtn();
+        addListenerOnEOSGetAddressBtn();
+        addListenerOnEOSTransactionBtn();
     }
 
     private void addListenerOnScanDeviceBtn() {
@@ -636,6 +646,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     case ETH:
                         ethTransaction(contextID);
                         break;
+                    case EOS:
+                        eosTransaction(contextID);
+                        break;
                 }
             }
         });
@@ -889,6 +902,165 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 Log.d(TAG, ">>> buildERC20Abi rv: " + result);
             }
         });
+    }
+
+    private void addListenerOnEOSCreateContext_SoftwareBtn() {
+        findViewById(R.id.eosCreateContext_software_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                        .setMainPath("m/44'/194'/0'")
+                        .build();
+                CommonProtos.ResultInt result = JuBiterEOS.createContext_Software(config,
+                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
+                Log.d(TAG,
+                        ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+                contextID = result.getValue();
+            }
+        });
+    }
+
+    private void addListenerOnEOSCreateContextBtn() {
+        findViewById(R.id.eosCreateContext_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                                .setMainPath("m/44'/194'/0'")
+                                .build();
+                        CommonProtos.ResultInt result = JuBiterEOS.createContext(config, deviceID);
+                        Log.d(TAG,
+                                ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+                        contextID = result.getValue();
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnEOSGetMainHDNodetn() {
+        findViewById(R.id.eosGetMainHDNode_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ResultString result = JuBiterEOS.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnEOSGetHDNodeBtn() {
+        findViewById(R.id.eosGetHDNode_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                                .setAddressIndex(0)
+                                .setChange(false)
+                                .build();
+                        CommonProtos.ResultString result = JuBiterEOS.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnEOSGetAddressBtn() {
+        findViewById(R.id.eosGetAddress_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                                .setAddressIndex(0)
+                                .setChange(false)
+                                .build();
+                        CommonProtos.ResultString result = JuBiterEOS.getAddress(contextID, bip32Path, false);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnEOSTransactionBtn() {
+        findViewById(R.id.eosTransaction_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                                .setMainPath("m/44'/194'/0'")
+                                .build();
+                        CommonProtos.ResultInt result = JuBiterEOS.createContext(config, deviceID);
+                        if (0 != result.getStateCode()) {
+                            Log.d(TAG, "createContext : " + result.getStateCode());
+                            return;
+                        }
+
+                        final int contextID2 = result.getValue();
+                        int rv = JuBiterWallet.showVirtualPWD(contextID2);
+                        Log.d(TAG, "showVirtualPWD : " + rv);
+                        if (0 != rv) {
+                            return;
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showPINDialog(COIN_TYPE.EOS, contextID2);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    private void eosTransaction(int contextID) {
+        EOSProtos.TransferAction transferAction = EOSProtos.TransferAction.newBuilder()
+                .setFrom("abcdenero123")
+                .setTo("gsy123451111")
+                .setAsset("14.285 MPT")
+                .setMemo("@gmail.com")
+                .build();
+
+        EOSProtos.ActionEOS actionEOS = EOSProtos.ActionEOS.newBuilder()
+                .setType(EOSProtos.ENUM_EOS_ACTION_TYPE.XFER)
+                .setXferAction(transferAction)
+                .setCurrency("metpacktoken")
+                .setName("transfer")
+                .build();
+
+        EOSProtos.ActionListEOS listEOS = EOSProtos.ActionListEOS.newBuilder()
+                .setActions(0,actionEOS).build();
+        CommonProtos.ResultString action = JuBiterEOS.buildAction(contextID, listEOS);
+
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setChange(false)
+                .setAddressIndex(0)
+                .build();
+        EOSProtos.TransactionEOS transactionEOS = EOSProtos.TransactionEOS.newBuilder()
+                .setPath(bip32Path)
+                .setChainID("")
+                .setExpiration("900")
+                .setReferenceBlockId("052de5f233dc30d0a11a09d063f43181bea9ec44bc66b33c24d9198dc6e4c15c")
+                .setReferenceBlockTime("1576745481")
+                .setActionsInJSON(action.getValue())
+                .build();
+        CommonProtos.ResultString result = JuBiterEOS.signTransaction(contextID, transactionEOS);
+        Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
     }
 
 
