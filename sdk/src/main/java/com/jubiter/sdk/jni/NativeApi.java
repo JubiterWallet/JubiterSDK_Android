@@ -138,4 +138,6 @@ public class NativeApi {
 
     public static native byte[] nativeEOSBuildAction(int contextID, byte[] txInfo);
 
+    public static native byte[] nativeEOSCalculateMemoHash(String memo);
+
 }
