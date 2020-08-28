@@ -731,7 +731,7 @@ native_CreateContextEOS_soft(JNIEnv *env, jobject obj, jbyteArray jcfg, jstring 
         return buildPbRvUInt(env, rv, contextID);
     } else {
         return buildPbRvUInt(env, JUBR_ARGUMENTS_BAD, 0);
-    };
+    }
 }
 
 JNIEXPORT jbyteArray JNICALL
@@ -868,6 +868,14 @@ native_BuildActionEOS(JNIEnv *env, jobject obj, jint contextID, jbyteArray tx) {
         return buildPbRvString(env, rv, actions);
     }
     return buildPbRvString(env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_CalculateMemoHashEOS(JNIEnv *env, jobject obj,jstring memo) {
+    auto strMemo = jstring2stdString(env, memo);
+    JUB_CHAR_PTR memoHash = nullptr;
+    JUB_RV rv = JUB_CalculateMemoHash((JUB_CHAR_PTR) strMemo.c_str(), &memoHash);
+    return buildPbRvString(env, rv, memoHash);
 }
 
 //=================================== HC Wallet =========================================
@@ -1381,6 +1389,11 @@ static JNINativeMethod gMethods[] = {
                 "nativeEOSBuildAction",
                 "(I[B)[B",
                 (void *) native_BuildActionEOS
+        },
+        {
+                "nativeEOSCalculateMemoHash",
+                "(Ljava/lang/String;)[B",
+                (void *) native_CalculateMemoHashEOS
         },
 #ifdef HC
 {
