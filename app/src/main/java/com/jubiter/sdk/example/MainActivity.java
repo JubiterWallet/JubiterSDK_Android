@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnEOSGetHDNodeBtn();
         addListenerOnEOSGetAddressBtn();
         addListenerOnEOSTransactionBtn();
+        addListenerOnEOSCalculateMemoHash();
     }
 
     private void addListenerOnScanDeviceBtn() {
@@ -1061,6 +1062,21 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .build();
         CommonProtos.ResultString result = JuBiterEOS.signTransaction(contextID, transactionEOS);
         Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
+    }
+
+    private void addListenerOnEOSCalculateMemoHash() {
+        findViewById(R.id.eosCalculateMemoHash_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ResultString result = JuBiterEOS.calculateMemoHash("memo");
+                        Log.d(TAG, ">>> calculateMemoHash - rv : " + result.getStateCode() + " value: " + result.getValue());
+                    }
+                });
+            }
+        });
     }
 
 
