@@ -29,9 +29,13 @@ public class NativeApi {
 
     public static native int nativeStopScan();
 
-    public static native int nativeConnectDevice(String address, int[] deviceHandle, int timeout, InnerDiscCallback discCallback);
+    public static native int nativeConnectDevice(String deviceName,
+                                                 String deviceMAC,
+                                                 int[] deviceHandle,
+                                                 int timeout,
+                                                 InnerDiscCallback discCallback);
 
-    public static native int nativeCancelConnect(String address);
+    public static native int nativeCancelConnect(String deviceName, String deviceMAC);
 
     public static native int nativeDisconnectDevice(int deviceHandle);
 
@@ -43,14 +47,13 @@ public class NativeApi {
 
     public static native byte[] nativeGetDeviceCert(int deviceID);
 
-    public static native byte[] nativeSendApdu(int deviceID, String apdu);
+    public static native byte[] nativeSendAPDU(int deviceID, String apdu);
 
     public static native boolean nativeIsInitialize(int deviceID);
 
     public static native boolean nativeIsBootLoader(int deviceID);
 
     /**
-     *
      * @param contextID
      * @param timeout
      * @return
@@ -63,7 +66,7 @@ public class NativeApi {
 
     public static native byte[] nativeGetAppletVersion(int deviceID, String appID);
 
-    public static native byte[] nativeQuerryBattery(int deviceID);
+    public static native byte[] nativeQueryBattery(int deviceID);
 
     //********************************* SDK Common ************************************
 
@@ -77,7 +80,7 @@ public class NativeApi {
 
     //********************************* SDK BTC ************************************
 
-    public static native byte[] nativeBTCCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeBTCCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeBTCCreateContext(byte[] config, int deviceID);
 
@@ -93,7 +96,7 @@ public class NativeApi {
 
     public static native byte[] nativeBTCSignTransaction(int contextID, byte[] txArray);
 
-    public static native int nativeBTCSetUnit(int contextID, byte[] uint);
+    public static native int nativeBTCSetUnit(int contextID, byte[] unit);
 
     public static native byte[] nativeBuildUSDTOutput(int contextID, String usdtTo, long amount);
 
@@ -101,7 +104,7 @@ public class NativeApi {
 
     public static native byte[] nativeETHCreateContext(byte[] config, int deviceID);
 
-    public static native byte[] nativeETHCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeETHCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeETHGetMainHDNode(int contextID, byte[] format);
 
@@ -124,7 +127,7 @@ public class NativeApi {
 
     public static native byte[] nativeEOSCreateContext(byte[] config, int deviceID);
 
-    public static native byte[] nativeEOSCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeEOSCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeEOSGetAddress(int contextID, byte[] bip32, boolean isShow);
 
@@ -139,5 +142,27 @@ public class NativeApi {
     public static native byte[] nativeEOSBuildAction(int contextID, byte[] txInfo);
 
     public static native byte[] nativeEOSCalculateMemoHash(String memo);
+
+    //********************************* SDK NFC ************************************
+
+    public static native int nativeNFCInitDevice();
+
+    public static native byte[] nativeNFCConnectDevice(String deviceUUID);
+
+    public static native int nativeNFCDisconnectDevice(int deviceID);
+
+    public static native int nativeNFCIsConnect(int deviceID);
+
+    public static native int nativeNFCReset(int deviceID);
+
+    public static native int nativeNFCGenerateSeed(int deviceID, String PIN, byte[] curve);
+
+    public static native int nativeNFCImportMnemonic(int deviceID, String PIN, String mnemonic);
+
+    public static native byte[] nativeNFCExportMnemonic(int deviceID, String PIN, String mnemonic);
+
+    public static native int nativeNFCChangePIN(int deviceID, String originPIN, String newPIN);
+
+    //***************************************************************************
 
 }

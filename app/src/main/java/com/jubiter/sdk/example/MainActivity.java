@@ -1,7 +1,14 @@
 package com.jubiter.sdk.example;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +27,7 @@ import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
+import com.jubiter.sdk.JuBiterNFCWallet;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.ScanResultCallback;
 import com.jubiter.sdk.proto.BitcoinProtos;
@@ -34,7 +42,7 @@ import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private static final String TAG = "JuBiterTest";
+    private static final String TAG = "MainActivity";
 
     private final static int REQUEST_PERMISSION = 0x1001;
 
@@ -48,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private JuBiterBLEDevice mConnectedDevice;
     private TextView mStateTx;
 
+    private NfcAdapter nfcAdapter;
+    private PendingIntent pendingIntent;
+
 
     enum COIN_TYPE {
         BTC,
@@ -60,7 +71,36 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        if (tag != null) {
+            Log.d(TAG, ">>> intent");
+        }
+
         init();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            // 当前
+            String[][] techList = new String[][]{
+                    {IsoDep.class.getName()},
+                    {NfcA.class.getName()},
+            };
+
+            IntentFilter tagFilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+            tagFilter.addDataType("*/*");
+            List<IntentFilter> filterList = new ArrayList<>();
+            filterList.add(tagFilter);
+
+            if (nfcAdapter != null) {
+                nfcAdapter.enableForegroundDispatch(this, pendingIntent, filterList.toArray(new IntentFilter[filterList.size()]), techList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void init() {
@@ -68,10 +108,18 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mDeviceList = new ArrayList<>();
 
         if (!hasPermissions()) {
-            requestPermissions("Permission request", REQUEST_PERMISSION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
+            requestPermissions("Permission request", REQUEST_PERMISSION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             JuBiterWallet.initDevice();
+            JuBiterNFCWallet.nfcInitDevice();
         }
+
+        nfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
+        pendingIntent = PendingIntent.getActivity(mContext, 0, new Intent(
+                mContext, mContext.getClass())
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
         initUI();
     }
@@ -89,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         addListenerOnScanDeviceBtn();
         addListenerOnCancelConnectBtn();
-        addListenerOnIsConectedBtn();
+        addListenerOnIsConnectedBtn();
         addListenerOnDisconnectDevice();
 
         addListenerOnIsInitializeBtn();
@@ -107,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         addListenerOnBTCCreateContext_SoftwareBtn();
         addListenerOnBTCCreateContextBtn();
-        addListenerOnBTCGetMainHDNodetn();
+        addListenerOnBTCGetMainHDNodeBtn();
         addListenerOnBTCGetHDNodeBtn();
         addListenerOnBTCGetAddressBtn();
         addListenerOnBTCCheckAddressBtn();
@@ -130,6 +178,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnEOSGetAddressBtn();
         addListenerOnEOSTransactionBtn();
         addListenerOnEOSCalculateMemoHash();
+
+        addListenerOnNFCConnectBtn();
+        addListenerOnNFCResetBtn();
+        addListenerOnNFCGenerateBtn();
+        addListenerOnNFCImportMnemonicBtn();
+        addListenerOnNFCExportMnemonicBtn();
+        addListenerOnNFCChangePINBtn();
     }
 
     private void addListenerOnScanDeviceBtn() {
@@ -200,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     private void connectDevice(JuBiterBLEDevice device) {
         mConnectedDevice = device;
-        JuBiterWallet.connectDeviceAsync(device.getMac(), 15 * 1000, new ConnectionStateCallback() {
+        JuBiterWallet.connectDeviceAsync(device.getName(), device.getMac(), 15 * 1000, new ConnectionStateCallback() {
             @Override
             public void onConnected(String mac, int handle) {
                 Log.d(TAG, ">>> onConnected - handle: " + handle + " mac: " + mac);
@@ -247,13 +302,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.cancelConnect_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int rv = JuBiterWallet.cancelConnect(mConnectedDevice.getMac());
+                int rv = JuBiterWallet.cancelConnect(mConnectedDevice.getName(), mConnectedDevice.getMac());
                 Log.d(TAG, ">>> cancelConnect: " + rv);
             }
         });
     }
 
-    private void addListenerOnIsConectedBtn() {
+    private void addListenerOnIsConnectedBtn() {
         findViewById(R.id.isConnected_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -499,7 +554,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                         .build();
                 CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZZFX");
-                Log.d(TAG, ">>> rv: " + result.getValue());
+                Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
+
+                if (result.getStateCode() == 0) {
+                    contextID = result.getValue();
+                }
             }
         });
     }
@@ -525,7 +584,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
-    private void addListenerOnBTCGetMainHDNodetn() {
+    private void addListenerOnBTCGetMainHDNodeBtn() {
         findViewById(R.id.btcGetMainHDNode_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -698,7 +757,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .build();
 
         BitcoinProtos.StandardOutput ouput_2 = BitcoinProtos.StandardOutput.newBuilder()
-                .setAddress("1JpuFuiBfMzm99JzZG4rpZexxjortaH42t")
+                .setAddress("1AoqCRhM1VFSjGQHnzXSc2fYqis22W7ynv")
                 .setChangeAddress(true)
                 .setAmount(500)
                 .setPath(bip32Path_3)
@@ -1079,6 +1138,65 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
+    ///////////////////////////////////////  NFC ///////////////////////////////////////////////
+
+    private void addListenerOnNFCConnectBtn() {
+        findViewById(R.id.nfcConnect_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonProtos.ResultInt result = JuBiterNFCWallet.nfcConnectDevice("123456");
+                Log.d(TAG, "rv: " + result.getStateCode() + ", value: " + result.getValue());
+            }
+        });
+    }
+
+    private void addListenerOnNFCResetBtn() {
+        findViewById(R.id.nfcReset_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void addListenerOnNFCGenerateBtn() {
+        findViewById(R.id.nfcGenerateSeed_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                JuBiterNFCWallet.nfcGenerateSeed();
+            }
+        });
+    }
+
+    private void addListenerOnNFCImportMnemonicBtn() {
+        findViewById(R.id.nfcImportMnemonic_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void addListenerOnNFCExportMnemonicBtn() {
+        findViewById(R.id.nfcExportMnemonic_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void addListenerOnNFCChangePINBtn() {
+        findViewById(R.id.nfcChangePIN_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    ///////////////////////////////////////  NFC ///////////////////////////////////////////////
+
 
     private void printDevice(String name, String mac, int deviceType) {
         Log.d(TAG, "name : " + name + " mac: " + mac + " type: " + deviceType);
@@ -1109,6 +1227,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e(TAG, ">>> Intent");
+
     }
 
     void showToast(final String tip) {

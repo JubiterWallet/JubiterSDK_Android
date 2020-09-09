@@ -33,7 +33,9 @@ void disconnectCallback(JUB_BYTE_PTR devname);
 
 int getMnemonicStrength(jint strength);
 
-JUB_RV jobjectToInitParam(JNIEnv *env, JUB_VOID_PTR javaVM, DEVICE_INIT_PARAM *param);
+JUB_RV jobjectToBLEInitParam(JNIEnv *env, JUB_VOID_PTR javaVM, DEVICE_INIT_PARAM *param);
+
+JUB_RV jobjectToNFCInitParam(JNIEnv *env, JUB_VOID_PTR javaVM, NFC_DEVICE_INIT_PARAM *param);
 
 jobject newJavaObject(JNIEnv *env, const char * className, int errorCode, jstring message);
 

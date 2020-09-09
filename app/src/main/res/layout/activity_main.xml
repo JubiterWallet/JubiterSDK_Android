@@ -364,6 +364,48 @@
             android:textAllCaps="false"
             android:text="EOS Calculate MemoHash" />
 
+        <Button
+            android:id="@+id/nfcConnect_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC Connect" />
+
+        <Button
+            android:id="@+id/nfcReset_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC Reset" />
+
+        <Button
+            android:id="@+id/nfcGenerateSeed_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC GenerateSeed" />
+
+        <Button
+            android:id="@+id/nfcImportMnemonic_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC ImportMnemonic" />
+
+        <Button
+            android:id="@+id/nfcExportMnemonic_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC ExportMnemonic" />
+
+        <Button
+            android:id="@+id/nfcChangePIN_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="NFC ChangePIN" />
+
     </LinearLayout>
 
 </ScrollView>

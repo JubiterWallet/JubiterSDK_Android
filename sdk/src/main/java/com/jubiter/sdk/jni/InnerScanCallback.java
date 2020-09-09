@@ -32,5 +32,4 @@ public interface InnerScanCallback {
      */
     public void onError(int errorCode);
 
-
 }

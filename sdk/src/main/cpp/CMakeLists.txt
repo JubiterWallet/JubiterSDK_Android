@@ -51,10 +51,12 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug"
     message(">>>> link debug library")
 #    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
     link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/debug)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/)
 elseif(CMAKE_BUILD_TYPE MATCHES "Release")
     message(">>>> link release library")
 #    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
-    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/release)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/)
 endif()
 
 # 连接 protobuf 静态库
@@ -81,7 +83,7 @@ target_link_libraries(
                       JUB_SDK
                       TrezorCrypto
                       BTSDK
+                      NFCSDK
                       libprotobuf
-#                      protobufd
                       ${libLog}
 )
