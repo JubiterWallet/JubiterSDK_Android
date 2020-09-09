@@ -23,21 +23,21 @@ android {
                         "-std=c++11",
                         "-frtti",
                         "-fexceptions",
-//                        "-DDEBUG",
+                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments '-DANDROID_TOOLCHAIN=clang',
-                        "-DANDROID_STL=c++_static",      // 使用库: gnustl_static、stlport_static等，详见Android NDK官网。CMake默认使用 gnustl_static
+                        "-DANDROID_STL=c++_static",
                         "-DANDROID_ARM_MODE=arm",
                         "-DANDROID_PLATFORM=android-19"
             }
 
             ndk {
-//                abiFilters "armeabi-v7a"
-                abiFilters "armeabi-v7a",
-                        "arm64-v8a",
-                        "x86",
-                        "x86_64"
+                abiFilters "armeabi-v7a", "arm64-v8a"
+//                abiFilters "armeabi-v7a",
+//                        "arm64-v8a"
+//                        "x86",
+//                        "x86_64"
             }
 
         }
@@ -104,10 +104,10 @@ android {
 
 dependencies {
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // android 推荐使用 protobuf-lite
     //    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
@@ -115,4 +115,5 @@ dependencies {
     releaseImplementation files('libs/BTSDK_release.jar')
     // debug 依赖库
     debugImplementation files('libs/BTSDK_debug.jar')
+    implementation files('libs/nfcSDK.jar')
 }
