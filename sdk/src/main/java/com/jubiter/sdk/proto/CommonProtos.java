@@ -16,6 +16,264 @@ public final class CommonProtos {
   }
   /**
    * <pre>
+   * The communication of devices
+   * </pre>
+   *
+   * Protobuf enum {@code JUB.Proto.Common.ENUM_COMMODE}
+   */
+  public enum ENUM_COMMODE
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>SWI = 0;</code>
+     */
+    SWI(0),
+    /**
+     * <code>HID = 1;</code>
+     */
+    HID(1),
+    /**
+     * <code>BLE = 2;</code>
+     */
+    BLE(2),
+    /**
+     * <code>NFC = 3;</code>
+     */
+    NFC(3),
+    /**
+     * <code>COMMODE_NS_ITEM = 4;</code>
+     */
+    COMMODE_NS_ITEM(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>SWI = 0;</code>
+     */
+    public static final int SWI_VALUE = 0;
+    /**
+     * <code>HID = 1;</code>
+     */
+    public static final int HID_VALUE = 1;
+    /**
+     * <code>BLE = 2;</code>
+     */
+    public static final int BLE_VALUE = 2;
+    /**
+     * <code>NFC = 3;</code>
+     */
+    public static final int NFC_VALUE = 3;
+    /**
+     * <code>COMMODE_NS_ITEM = 4;</code>
+     */
+    public static final int COMMODE_NS_ITEM_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ENUM_COMMODE valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ENUM_COMMODE forNumber(int value) {
+      switch (value) {
+        case 0: return SWI;
+        case 1: return HID;
+        case 2: return BLE;
+        case 3: return NFC;
+        case 4: return COMMODE_NS_ITEM;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ENUM_COMMODE>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ENUM_COMMODE> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ENUM_COMMODE>() {
+            public ENUM_COMMODE findValueByNumber(int number) {
+              return ENUM_COMMODE.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final ENUM_COMMODE[] VALUES = values();
+
+    public static ENUM_COMMODE valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ENUM_COMMODE(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.ENUM_COMMODE)
+  }
+
+  /**
+   * <pre>
+   * The product class
+   * </pre>
+   *
+   * Protobuf enum {@code JUB.Proto.Common.ENUM_DEVICE}
+   */
+  public enum ENUM_DEVICE
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>VD = 0;</code>
+     */
+    VD(0),
+    /**
+     * <code>BLADE = 1;</code>
+     */
+    BLADE(1),
+    /**
+     * <code>BIO = 2;</code>
+     */
+    BIO(2),
+    /**
+     * <code>LITE = 3;</code>
+     */
+    LITE(3),
+    /**
+     * <code>DEVICE_NS_ITEM = 4;</code>
+     */
+    DEVICE_NS_ITEM(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>VD = 0;</code>
+     */
+    public static final int VD_VALUE = 0;
+    /**
+     * <code>BLADE = 1;</code>
+     */
+    public static final int BLADE_VALUE = 1;
+    /**
+     * <code>BIO = 2;</code>
+     */
+    public static final int BIO_VALUE = 2;
+    /**
+     * <code>LITE = 3;</code>
+     */
+    public static final int LITE_VALUE = 3;
+    /**
+     * <code>DEVICE_NS_ITEM = 4;</code>
+     */
+    public static final int DEVICE_NS_ITEM_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ENUM_DEVICE valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ENUM_DEVICE forNumber(int value) {
+      switch (value) {
+        case 0: return VD;
+        case 1: return BLADE;
+        case 2: return BIO;
+        case 3: return LITE;
+        case 4: return DEVICE_NS_ITEM;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ENUM_DEVICE>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ENUM_DEVICE> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ENUM_DEVICE>() {
+            public ENUM_DEVICE findValueByNumber(int number) {
+              return ENUM_DEVICE.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final ENUM_DEVICE[] VALUES = values();
+
+    public static ENUM_DEVICE valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ENUM_DEVICE(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.ENUM_DEVICE)
+  }
+
+  /**
+   * <pre>
    * Graphene role
    * </pre>
    *
@@ -46,7 +304,7 @@ public final class CommonProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -55,7 +313,7 @@ public final class CommonProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ENUM_GRAPHENE_ROLE valueOf(int value) {
       return forNumber(value);
     }
@@ -90,7 +348,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(0);
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final ENUM_GRAPHENE_ROLE[] VALUES = values();
@@ -98,7 +356,7 @@ public final class CommonProtos {
     public static ENUM_GRAPHENE_ROLE valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -156,7 +414,7 @@ public final class CommonProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -165,7 +423,7 @@ public final class CommonProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ENUM_MNEMONIC_STRENGTH valueOf(int value) {
       return forNumber(value);
     }
@@ -201,7 +459,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(1);
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final ENUM_MNEMONIC_STRENGTH[] VALUES = values();
@@ -209,7 +467,7 @@ public final class CommonProtos {
     public static ENUM_MNEMONIC_STRENGTH valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -267,7 +525,7 @@ public final class CommonProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -276,7 +534,7 @@ public final class CommonProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static CURVES valueOf(int value) {
       return forNumber(value);
     }
@@ -312,7 +570,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(2);
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(4);
     }
 
     private static final CURVES[] VALUES = values();
@@ -320,7 +578,7 @@ public final class CommonProtos {
     public static CURVES valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -366,7 +624,7 @@ public final class CommonProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -375,7 +633,7 @@ public final class CommonProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ENUM_PUB_FORMAT valueOf(int value) {
       return forNumber(value);
     }
@@ -410,7 +668,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(3);
+      return com.jubiter.sdk.proto.CommonProtos.getDescriptor().getEnumTypes().get(5);
     }
 
     private static final ENUM_PUB_FORMAT[] VALUES = values();
@@ -418,7 +676,7 @@ public final class CommonProtos {
     public static ENUM_PUB_FORMAT valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -470,14 +728,14 @@ public final class CommonProtos {
     private Bip44Path() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new Bip44Path();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -488,7 +746,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -531,15 +789,15 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Bip44Path.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.class, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder.class);
     }
 
     public static final int CHANGE_FIELD_NUMBER = 1;
@@ -561,7 +819,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -571,7 +829,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (change_ != false) {
@@ -583,7 +841,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -602,15 +860,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Bip44Path)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.Bip44Path)) {
         return super.equals(obj);
       }
-      Bip44Path other = (Bip44Path) obj;
+      com.jubiter.sdk.proto.CommonProtos.Bip44Path other = (com.jubiter.sdk.proto.CommonProtos.Bip44Path) obj;
 
       if (getChange()
           != other.getChange()) return false;
@@ -620,7 +878,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -638,69 +896,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Bip44Path parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Bip44Path parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Bip44Path parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Bip44Path parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Bip44Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -708,23 +966,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Bip44Path prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.Bip44Path prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -739,18 +997,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.Bip44Path)
-        Bip44PathOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Bip44Path.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.Bip44Path.class, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder()
@@ -759,7 +1017,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -768,7 +1026,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         change_ = false;
@@ -778,79 +1036,79 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Bip44Path_descriptor;
       }
 
-      @Override
-      public Bip44Path getDefaultInstanceForType() {
-        return Bip44Path.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance();
       }
 
-      @Override
-      public Bip44Path build() {
-        Bip44Path result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path build() {
+        com.jubiter.sdk.proto.CommonProtos.Bip44Path result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public Bip44Path buildPartial() {
-        Bip44Path result = new Bip44Path(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.Bip44Path result = new com.jubiter.sdk.proto.CommonProtos.Bip44Path(this);
         result.change_ = change_;
         result.addressIndex_ = addressIndex_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Bip44Path) {
-          return mergeFrom((Bip44Path)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.Bip44Path) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.Bip44Path)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Bip44Path other) {
-        if (other == Bip44Path.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.Bip44Path other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance()) return this;
         if (other.getChange() != false) {
           setChange(other.getChange());
         }
@@ -862,21 +1120,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Bip44Path parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.Bip44Path parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Bip44Path) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.Bip44Path) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -937,13 +1195,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -954,18 +1212,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.Bip44Path)
-    private static final Bip44Path DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.Bip44Path DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Bip44Path();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.Bip44Path();
     }
 
-    public static Bip44Path getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.Bip44Path getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Bip44Path>
         PARSER = new com.google.protobuf.AbstractParser<Bip44Path>() {
-      @Override
+      @java.lang.Override
       public Bip44Path parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -978,13 +1236,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Bip44Path> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public Bip44Path getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1006,7 +1264,7 @@ public final class CommonProtos {
     /**
      * <code>.JUB.Proto.Common.ENUM_GRAPHENE_ROLE role = 2;</code>
      */
-    ENUM_GRAPHENE_ROLE getRole();
+    com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE getRole();
 
     /**
      * <code>uint64 address_index = 3;</code>
@@ -1039,14 +1297,14 @@ public final class CommonProtos {
       role_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new Slip48Path();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1057,7 +1315,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1111,15 +1369,15 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Slip48Path.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.Slip48Path.class, com.jubiter.sdk.proto.CommonProtos.Slip48Path.Builder.class);
     }
 
     public static final int NETWORK_FIELD_NUMBER = 1;
@@ -1142,10 +1400,10 @@ public final class CommonProtos {
     /**
      * <code>.JUB.Proto.Common.ENUM_GRAPHENE_ROLE role = 2;</code>
      */
-    public ENUM_GRAPHENE_ROLE getRole() {
+    public com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE getRole() {
       @SuppressWarnings("deprecation")
-      ENUM_GRAPHENE_ROLE result = ENUM_GRAPHENE_ROLE.valueOf(role_);
-      return result == null ? ENUM_GRAPHENE_ROLE.UNRECOGNIZED : result;
+      com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE result = com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.valueOf(role_);
+      return result == null ? com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.UNRECOGNIZED : result;
     }
 
     public static final int ADDRESS_INDEX_FIELD_NUMBER = 3;
@@ -1167,7 +1425,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1177,13 +1435,13 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (network_ != 0L) {
         output.writeUInt64(1, network_);
       }
-      if (role_ != ENUM_GRAPHENE_ROLE.OWNER.getNumber()) {
+      if (role_ != com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.OWNER.getNumber()) {
         output.writeEnum(2, role_);
       }
       if (addressIndex_ != 0L) {
@@ -1195,7 +1453,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1205,7 +1463,7 @@ public final class CommonProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, network_);
       }
-      if (role_ != ENUM_GRAPHENE_ROLE.OWNER.getNumber()) {
+      if (role_ != com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.OWNER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, role_);
       }
@@ -1222,15 +1480,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Slip48Path)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.Slip48Path)) {
         return super.equals(obj);
       }
-      Slip48Path other = (Slip48Path) obj;
+      com.jubiter.sdk.proto.CommonProtos.Slip48Path other = (com.jubiter.sdk.proto.CommonProtos.Slip48Path) obj;
 
       if (getNetwork()
           != other.getNetwork()) return false;
@@ -1243,7 +1501,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1266,69 +1524,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Slip48Path parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Slip48Path parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Slip48Path parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Slip48Path parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Slip48Path parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1336,23 +1594,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Slip48Path prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.Slip48Path prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1367,18 +1625,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.Slip48Path)
-        Slip48PathOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.Slip48PathOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Slip48Path.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.Slip48Path.class, com.jubiter.sdk.proto.CommonProtos.Slip48Path.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.Slip48Path.newBuilder()
@@ -1387,7 +1645,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1396,7 +1654,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         network_ = 0L;
@@ -1410,29 +1668,29 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_Slip48Path_descriptor;
       }
 
-      @Override
-      public Slip48Path getDefaultInstanceForType() {
-        return Slip48Path.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Slip48Path getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.Slip48Path.getDefaultInstance();
       }
 
-      @Override
-      public Slip48Path build() {
-        Slip48Path result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Slip48Path build() {
+        com.jubiter.sdk.proto.CommonProtos.Slip48Path result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public Slip48Path buildPartial() {
-        Slip48Path result = new Slip48Path(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.Slip48Path buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.Slip48Path result = new com.jubiter.sdk.proto.CommonProtos.Slip48Path(this);
         result.network_ = network_;
         result.role_ = role_;
         result.addressIndex_ = addressIndex_;
@@ -1441,50 +1699,50 @@ public final class CommonProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Slip48Path) {
-          return mergeFrom((Slip48Path)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.Slip48Path) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.Slip48Path)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Slip48Path other) {
-        if (other == Slip48Path.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.Slip48Path other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.Slip48Path.getDefaultInstance()) return this;
         if (other.getNetwork() != 0L) {
           setNetwork(other.getNetwork());
         }
@@ -1502,21 +1760,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Slip48Path parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.Slip48Path parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Slip48Path) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.Slip48Path) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1570,15 +1828,15 @@ public final class CommonProtos {
       /**
        * <code>.JUB.Proto.Common.ENUM_GRAPHENE_ROLE role = 2;</code>
        */
-      public ENUM_GRAPHENE_ROLE getRole() {
+      public com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE getRole() {
         @SuppressWarnings("deprecation")
-        ENUM_GRAPHENE_ROLE result = ENUM_GRAPHENE_ROLE.valueOf(role_);
-        return result == null ? ENUM_GRAPHENE_ROLE.UNRECOGNIZED : result;
+        com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE result = com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.valueOf(role_);
+        return result == null ? com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Common.ENUM_GRAPHENE_ROLE role = 2;</code>
        */
-      public Builder setRole(ENUM_GRAPHENE_ROLE value) {
+      public Builder setRole(com.jubiter.sdk.proto.CommonProtos.ENUM_GRAPHENE_ROLE value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1648,13 +1906,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1665,18 +1923,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.Slip48Path)
-    private static final Slip48Path DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.Slip48Path DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Slip48Path();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.Slip48Path();
     }
 
-    public static Slip48Path getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.Slip48Path getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Slip48Path>
         PARSER = new com.google.protobuf.AbstractParser<Slip48Path>() {
-      @Override
+      @java.lang.Override
       public Slip48Path parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1689,13 +1947,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Slip48Path> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public Slip48Path getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.Slip48Path getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1708,7 +1966,7 @@ public final class CommonProtos {
     /**
      * <code>string main_path = 1;</code>
      */
-    String getMainPath();
+    java.lang.String getMainPath();
     /**
      * <code>string main_path = 1;</code>
      */
@@ -1731,14 +1989,14 @@ public final class CommonProtos {
       mainPath_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ContextCfg();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1749,7 +2007,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1762,7 +2020,7 @@ public final class CommonProtos {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               mainPath_ = s;
               break;
@@ -1788,30 +2046,30 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ContextCfg.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.ContextCfg.class, com.jubiter.sdk.proto.CommonProtos.ContextCfg.Builder.class);
     }
 
     public static final int MAIN_PATH_FIELD_NUMBER = 1;
-    private volatile Object mainPath_;
+    private volatile java.lang.Object mainPath_;
     /**
      * <code>string main_path = 1;</code>
      */
-    public String getMainPath() {
-      Object ref = mainPath_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getMainPath() {
+      java.lang.Object ref = mainPath_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         mainPath_ = s;
         return s;
       }
@@ -1821,11 +2079,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getMainPathBytes() {
-      Object ref = mainPath_;
-      if (ref instanceof String) {
+      java.lang.Object ref = mainPath_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         mainPath_ = b;
         return b;
       } else {
@@ -1834,7 +2092,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1844,7 +2102,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getMainPathBytes().isEmpty()) {
@@ -1853,7 +2111,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1867,15 +2125,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ContextCfg)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.ContextCfg)) {
         return super.equals(obj);
       }
-      ContextCfg other = (ContextCfg) obj;
+      com.jubiter.sdk.proto.CommonProtos.ContextCfg other = (com.jubiter.sdk.proto.CommonProtos.ContextCfg) obj;
 
       if (!getMainPath()
           .equals(other.getMainPath())) return false;
@@ -1883,7 +2141,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1897,69 +2155,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfg parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfg parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ContextCfg parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ContextCfg parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ContextCfg parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1967,23 +2225,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ContextCfg prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.ContextCfg prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1993,18 +2251,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.ContextCfg)
-        ContextCfgOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.ContextCfgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ContextCfg.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.ContextCfg.class, com.jubiter.sdk.proto.CommonProtos.ContextCfg.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.ContextCfg.newBuilder()
@@ -2013,7 +2271,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2022,7 +2280,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         mainPath_ = "";
@@ -2030,78 +2288,78 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ContextCfg_descriptor;
       }
 
-      @Override
-      public ContextCfg getDefaultInstanceForType() {
-        return ContextCfg.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ContextCfg getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.ContextCfg.getDefaultInstance();
       }
 
-      @Override
-      public ContextCfg build() {
-        ContextCfg result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ContextCfg build() {
+        com.jubiter.sdk.proto.CommonProtos.ContextCfg result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ContextCfg buildPartial() {
-        ContextCfg result = new ContextCfg(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ContextCfg buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.ContextCfg result = new com.jubiter.sdk.proto.CommonProtos.ContextCfg(this);
         result.mainPath_ = mainPath_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ContextCfg) {
-          return mergeFrom((ContextCfg)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.ContextCfg) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.ContextCfg)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ContextCfg other) {
-        if (other == ContextCfg.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ContextCfg other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.ContextCfg.getDefaultInstance()) return this;
         if (!other.getMainPath().isEmpty()) {
           mainPath_ = other.mainPath_;
           onChanged();
@@ -2111,21 +2369,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ContextCfg parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.ContextCfg parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ContextCfg) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.ContextCfg) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2135,20 +2393,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object mainPath_ = "";
+      private java.lang.Object mainPath_ = "";
       /**
        * <code>string main_path = 1;</code>
        */
-      public String getMainPath() {
-        Object ref = mainPath_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getMainPath() {
+        java.lang.Object ref = mainPath_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           mainPath_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2156,11 +2414,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getMainPathBytes() {
-        Object ref = mainPath_;
+        java.lang.Object ref = mainPath_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           mainPath_ = b;
           return b;
         } else {
@@ -2171,7 +2429,7 @@ public final class CommonProtos {
        * <code>string main_path = 1;</code>
        */
       public Builder setMainPath(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2203,13 +2461,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2220,18 +2478,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.ContextCfg)
-    private static final ContextCfg DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.ContextCfg DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ContextCfg();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.ContextCfg();
     }
 
-    public static ContextCfg getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.ContextCfg getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ContextCfg>
         PARSER = new com.google.protobuf.AbstractParser<ContextCfg>() {
-      @Override
+      @java.lang.Override
       public ContextCfg parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2244,13 +2502,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ContextCfg> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ContextCfg getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.ContextCfg getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2263,7 +2521,7 @@ public final class CommonProtos {
     /**
      * <code>string sn = 1;</code>
      */
-    String getSn();
+    java.lang.String getSn();
     /**
      * <code>string sn = 1;</code>
      */
@@ -2273,7 +2531,7 @@ public final class CommonProtos {
     /**
      * <code>string label = 2;</code>
      */
-    String getLabel();
+    java.lang.String getLabel();
     /**
      * <code>string label = 2;</code>
      */
@@ -2283,7 +2541,7 @@ public final class CommonProtos {
     /**
      * <code>string ble_version = 3;</code>
      */
-    String getBleVersion();
+    java.lang.String getBleVersion();
     /**
      * <code>string ble_version = 3;</code>
      */
@@ -2293,7 +2551,7 @@ public final class CommonProtos {
     /**
      * <code>string firmware_version = 4;</code>
      */
-    String getFirmwareVersion();
+    java.lang.String getFirmwareVersion();
     /**
      * <code>string firmware_version = 4;</code>
      */
@@ -2333,14 +2591,14 @@ public final class CommonProtos {
       firmwareVersion_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new DeviceInfo();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2351,7 +2609,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2364,25 +2622,25 @@ public final class CommonProtos {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               sn_ = s;
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               label_ = s;
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               bleVersion_ = s;
               break;
             }
             case 34: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               firmwareVersion_ = s;
               break;
@@ -2418,30 +2676,30 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              DeviceInfo.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.DeviceInfo.class, com.jubiter.sdk.proto.CommonProtos.DeviceInfo.Builder.class);
     }
 
     public static final int SN_FIELD_NUMBER = 1;
-    private volatile Object sn_;
+    private volatile java.lang.Object sn_;
     /**
      * <code>string sn = 1;</code>
      */
-    public String getSn() {
-      Object ref = sn_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSn() {
+      java.lang.Object ref = sn_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         sn_ = s;
         return s;
       }
@@ -2451,11 +2709,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getSnBytes() {
-      Object ref = sn_;
-      if (ref instanceof String) {
+      java.lang.Object ref = sn_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         sn_ = b;
         return b;
       } else {
@@ -2464,18 +2722,18 @@ public final class CommonProtos {
     }
 
     public static final int LABEL_FIELD_NUMBER = 2;
-    private volatile Object label_;
+    private volatile java.lang.Object label_;
     /**
      * <code>string label = 2;</code>
      */
-    public String getLabel() {
-      Object ref = label_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getLabel() {
+      java.lang.Object ref = label_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         label_ = s;
         return s;
       }
@@ -2485,11 +2743,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getLabelBytes() {
-      Object ref = label_;
-      if (ref instanceof String) {
+      java.lang.Object ref = label_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         label_ = b;
         return b;
       } else {
@@ -2498,18 +2756,18 @@ public final class CommonProtos {
     }
 
     public static final int BLE_VERSION_FIELD_NUMBER = 3;
-    private volatile Object bleVersion_;
+    private volatile java.lang.Object bleVersion_;
     /**
      * <code>string ble_version = 3;</code>
      */
-    public String getBleVersion() {
-      Object ref = bleVersion_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getBleVersion() {
+      java.lang.Object ref = bleVersion_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         bleVersion_ = s;
         return s;
       }
@@ -2519,11 +2777,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getBleVersionBytes() {
-      Object ref = bleVersion_;
-      if (ref instanceof String) {
+      java.lang.Object ref = bleVersion_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         bleVersion_ = b;
         return b;
       } else {
@@ -2532,18 +2790,18 @@ public final class CommonProtos {
     }
 
     public static final int FIRMWARE_VERSION_FIELD_NUMBER = 4;
-    private volatile Object firmwareVersion_;
+    private volatile java.lang.Object firmwareVersion_;
     /**
      * <code>string firmware_version = 4;</code>
      */
-    public String getFirmwareVersion() {
-      Object ref = firmwareVersion_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getFirmwareVersion() {
+      java.lang.Object ref = firmwareVersion_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         firmwareVersion_ = s;
         return s;
       }
@@ -2553,11 +2811,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getFirmwareVersionBytes() {
-      Object ref = firmwareVersion_;
-      if (ref instanceof String) {
+      java.lang.Object ref = firmwareVersion_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         firmwareVersion_ = b;
         return b;
       } else {
@@ -2584,7 +2842,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2594,7 +2852,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getSnBytes().isEmpty()) {
@@ -2618,7 +2876,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2649,15 +2907,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof DeviceInfo)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.DeviceInfo)) {
         return super.equals(obj);
       }
-      DeviceInfo other = (DeviceInfo) obj;
+      com.jubiter.sdk.proto.CommonProtos.DeviceInfo other = (com.jubiter.sdk.proto.CommonProtos.DeviceInfo) obj;
 
       if (!getSn()
           .equals(other.getSn())) return false;
@@ -2675,7 +2933,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2699,69 +2957,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DeviceInfo parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static DeviceInfo parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static DeviceInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static DeviceInfo parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static DeviceInfo parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2769,23 +3027,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(DeviceInfo prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.DeviceInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2799,18 +3057,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.DeviceInfo)
-        DeviceInfoOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.DeviceInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                DeviceInfo.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.DeviceInfo.class, com.jubiter.sdk.proto.CommonProtos.DeviceInfo.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.DeviceInfo.newBuilder()
@@ -2819,7 +3077,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2828,7 +3086,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         sn_ = "";
@@ -2846,29 +3104,29 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_DeviceInfo_descriptor;
       }
 
-      @Override
-      public DeviceInfo getDefaultInstanceForType() {
-        return DeviceInfo.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.DeviceInfo getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.DeviceInfo.getDefaultInstance();
       }
 
-      @Override
-      public DeviceInfo build() {
-        DeviceInfo result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.DeviceInfo build() {
+        com.jubiter.sdk.proto.CommonProtos.DeviceInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public DeviceInfo buildPartial() {
-        DeviceInfo result = new DeviceInfo(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.DeviceInfo buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.DeviceInfo result = new com.jubiter.sdk.proto.CommonProtos.DeviceInfo(this);
         result.sn_ = sn_;
         result.label_ = label_;
         result.bleVersion_ = bleVersion_;
@@ -2879,50 +3137,50 @@ public final class CommonProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof DeviceInfo) {
-          return mergeFrom((DeviceInfo)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.DeviceInfo) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.DeviceInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(DeviceInfo other) {
-        if (other == DeviceInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.DeviceInfo other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.DeviceInfo.getDefaultInstance()) return this;
         if (!other.getSn().isEmpty()) {
           sn_ = other.sn_;
           onChanged();
@@ -2950,21 +3208,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        DeviceInfo parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.DeviceInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (DeviceInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.DeviceInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2974,20 +3232,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object sn_ = "";
+      private java.lang.Object sn_ = "";
       /**
        * <code>string sn = 1;</code>
        */
-      public String getSn() {
-        Object ref = sn_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getSn() {
+        java.lang.Object ref = sn_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           sn_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2995,11 +3253,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getSnBytes() {
-        Object ref = sn_;
+        java.lang.Object ref = sn_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sn_ = b;
           return b;
         } else {
@@ -3010,7 +3268,7 @@ public final class CommonProtos {
        * <code>string sn = 1;</code>
        */
       public Builder setSn(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3043,20 +3301,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object label_ = "";
+      private java.lang.Object label_ = "";
       /**
        * <code>string label = 2;</code>
        */
-      public String getLabel() {
-        Object ref = label_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getLabel() {
+        java.lang.Object ref = label_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           label_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -3064,11 +3322,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getLabelBytes() {
-        Object ref = label_;
+        java.lang.Object ref = label_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           label_ = b;
           return b;
         } else {
@@ -3079,7 +3337,7 @@ public final class CommonProtos {
        * <code>string label = 2;</code>
        */
       public Builder setLabel(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3112,20 +3370,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object bleVersion_ = "";
+      private java.lang.Object bleVersion_ = "";
       /**
        * <code>string ble_version = 3;</code>
        */
-      public String getBleVersion() {
-        Object ref = bleVersion_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getBleVersion() {
+        java.lang.Object ref = bleVersion_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           bleVersion_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -3133,11 +3391,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getBleVersionBytes() {
-        Object ref = bleVersion_;
+        java.lang.Object ref = bleVersion_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           bleVersion_ = b;
           return b;
         } else {
@@ -3148,7 +3406,7 @@ public final class CommonProtos {
        * <code>string ble_version = 3;</code>
        */
       public Builder setBleVersion(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3181,20 +3439,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object firmwareVersion_ = "";
+      private java.lang.Object firmwareVersion_ = "";
       /**
        * <code>string firmware_version = 4;</code>
        */
-      public String getFirmwareVersion() {
-        Object ref = firmwareVersion_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getFirmwareVersion() {
+        java.lang.Object ref = firmwareVersion_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           firmwareVersion_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -3202,11 +3460,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getFirmwareVersionBytes() {
-        Object ref = firmwareVersion_;
+        java.lang.Object ref = firmwareVersion_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           firmwareVersion_ = b;
           return b;
         } else {
@@ -3217,7 +3475,7 @@ public final class CommonProtos {
        * <code>string firmware_version = 4;</code>
        */
       public Builder setFirmwareVersion(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3301,13 +3559,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3318,18 +3576,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.DeviceInfo)
-    private static final DeviceInfo DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.DeviceInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new DeviceInfo();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.DeviceInfo();
     }
 
-    public static DeviceInfo getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.DeviceInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<DeviceInfo>
         PARSER = new com.google.protobuf.AbstractParser<DeviceInfo>() {
-      @Override
+      @java.lang.Override
       public DeviceInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3342,13 +3600,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<DeviceInfo> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public DeviceInfo getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.DeviceInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3387,14 +3645,14 @@ public final class CommonProtos {
     private ResultInt() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ResultInt();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3405,7 +3663,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3448,15 +3706,15 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ResultInt.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.ResultInt.class, com.jubiter.sdk.proto.CommonProtos.ResultInt.Builder.class);
     }
 
     public static final int STATE_CODE_FIELD_NUMBER = 1;
@@ -3478,7 +3736,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3488,7 +3746,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (stateCode_ != 0L) {
@@ -3500,7 +3758,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3519,15 +3777,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ResultInt)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.ResultInt)) {
         return super.equals(obj);
       }
-      ResultInt other = (ResultInt) obj;
+      com.jubiter.sdk.proto.CommonProtos.ResultInt other = (com.jubiter.sdk.proto.CommonProtos.ResultInt) obj;
 
       if (getStateCode()
           != other.getStateCode()) return false;
@@ -3537,7 +3795,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3554,69 +3812,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultInt parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultInt parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultInt parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ResultInt parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultInt parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3624,23 +3882,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ResultInt prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.ResultInt prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3654,18 +3912,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.ResultInt)
-        ResultIntOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.ResultIntOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ResultInt.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.ResultInt.class, com.jubiter.sdk.proto.CommonProtos.ResultInt.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.ResultInt.newBuilder()
@@ -3674,7 +3932,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3683,7 +3941,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         stateCode_ = 0L;
@@ -3693,79 +3951,79 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultInt_descriptor;
       }
 
-      @Override
-      public ResultInt getDefaultInstanceForType() {
-        return ResultInt.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultInt getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.ResultInt.getDefaultInstance();
       }
 
-      @Override
-      public ResultInt build() {
-        ResultInt result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultInt build() {
+        com.jubiter.sdk.proto.CommonProtos.ResultInt result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ResultInt buildPartial() {
-        ResultInt result = new ResultInt(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultInt buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.ResultInt result = new com.jubiter.sdk.proto.CommonProtos.ResultInt(this);
         result.stateCode_ = stateCode_;
         result.value_ = value_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ResultInt) {
-          return mergeFrom((ResultInt)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.ResultInt) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.ResultInt)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ResultInt other) {
-        if (other == ResultInt.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultInt other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.ResultInt.getDefaultInstance()) return this;
         if (other.getStateCode() != 0L) {
           setStateCode(other.getStateCode());
         }
@@ -3777,21 +4035,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ResultInt parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.ResultInt parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ResultInt) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.ResultInt) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3852,13 +4110,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3869,18 +4127,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.ResultInt)
-    private static final ResultInt DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.ResultInt DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ResultInt();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.ResultInt();
     }
 
-    public static ResultInt getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.ResultInt getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ResultInt>
         PARSER = new com.google.protobuf.AbstractParser<ResultInt>() {
-      @Override
+      @java.lang.Override
       public ResultInt parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3893,13 +4151,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ResultInt> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ResultInt getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.ResultInt getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3917,7 +4175,7 @@ public final class CommonProtos {
     /**
      * <code>string value = 2;</code>
      */
-    String getValue();
+    java.lang.String getValue();
     /**
      * <code>string value = 2;</code>
      */
@@ -3944,14 +4202,14 @@ public final class CommonProtos {
       value_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ResultString();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3962,7 +4220,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3980,7 +4238,7 @@ public final class CommonProtos {
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               value_ = s;
               break;
@@ -4006,15 +4264,15 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ResultString.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.ResultString.class, com.jubiter.sdk.proto.CommonProtos.ResultString.Builder.class);
     }
 
     public static final int STATE_CODE_FIELD_NUMBER = 1;
@@ -4027,18 +4285,18 @@ public final class CommonProtos {
     }
 
     public static final int VALUE_FIELD_NUMBER = 2;
-    private volatile Object value_;
+    private volatile java.lang.Object value_;
     /**
      * <code>string value = 2;</code>
      */
-    public String getValue() {
-      Object ref = value_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         value_ = s;
         return s;
       }
@@ -4048,11 +4306,11 @@ public final class CommonProtos {
      */
     public com.google.protobuf.ByteString
         getValueBytes() {
-      Object ref = value_;
-      if (ref instanceof String) {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         value_ = b;
         return b;
       } else {
@@ -4061,7 +4319,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4071,7 +4329,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (stateCode_ != 0L) {
@@ -4083,7 +4341,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -4101,15 +4359,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ResultString)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.ResultString)) {
         return super.equals(obj);
       }
-      ResultString other = (ResultString) obj;
+      com.jubiter.sdk.proto.CommonProtos.ResultString other = (com.jubiter.sdk.proto.CommonProtos.ResultString) obj;
 
       if (getStateCode()
           != other.getStateCode()) return false;
@@ -4119,7 +4377,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4136,69 +4394,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultString parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultString parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultString parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ResultString parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultString parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4206,23 +4464,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ResultString prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.ResultString prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4236,18 +4494,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.ResultString)
-        ResultStringOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.ResultStringOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ResultString.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.ResultString.class, com.jubiter.sdk.proto.CommonProtos.ResultString.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.ResultString.newBuilder()
@@ -4256,7 +4514,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4265,7 +4523,7 @@ public final class CommonProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         stateCode_ = 0L;
@@ -4275,79 +4533,79 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultString_descriptor;
       }
 
-      @Override
-      public ResultString getDefaultInstanceForType() {
-        return ResultString.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultString getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.ResultString.getDefaultInstance();
       }
 
-      @Override
-      public ResultString build() {
-        ResultString result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultString build() {
+        com.jubiter.sdk.proto.CommonProtos.ResultString result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ResultString buildPartial() {
-        ResultString result = new ResultString(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultString buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.ResultString result = new com.jubiter.sdk.proto.CommonProtos.ResultString(this);
         result.stateCode_ = stateCode_;
         result.value_ = value_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ResultString) {
-          return mergeFrom((ResultString)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.ResultString) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.ResultString)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ResultString other) {
-        if (other == ResultString.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultString other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.ResultString.getDefaultInstance()) return this;
         if (other.getStateCode() != 0L) {
           setStateCode(other.getStateCode());
         }
@@ -4360,21 +4618,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ResultString parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.ResultString parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ResultString) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.ResultString) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4410,20 +4668,20 @@ public final class CommonProtos {
         return this;
       }
 
-      private Object value_ = "";
+      private java.lang.Object value_ = "";
       /**
        * <code>string value = 2;</code>
        */
-      public String getValue() {
-        Object ref = value_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           value_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4431,11 +4689,11 @@ public final class CommonProtos {
        */
       public com.google.protobuf.ByteString
           getValueBytes() {
-        Object ref = value_;
+        java.lang.Object ref = value_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           value_ = b;
           return b;
         } else {
@@ -4446,7 +4704,7 @@ public final class CommonProtos {
        * <code>string value = 2;</code>
        */
       public Builder setValue(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4478,13 +4736,13 @@ public final class CommonProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4495,18 +4753,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.ResultString)
-    private static final ResultString DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.ResultString DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ResultString();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.ResultString();
     }
 
-    public static ResultString getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.ResultString getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ResultString>
         PARSER = new com.google.protobuf.AbstractParser<ResultString>() {
-      @Override
+      @java.lang.Override
       public ResultString parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4519,13 +4777,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ResultString> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ResultString getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.ResultString getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4562,7 +4820,7 @@ public final class CommonProtos {
      * <code>repeated .google.protobuf.Any value = 2;</code>
      */
     com.google.protobuf.AnyOrBuilder getValueOrBuilder(
-            int index);
+        int index);
   }
   /**
    * <pre>
@@ -4584,14 +4842,14 @@ public final class CommonProtos {
       value_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ResultAny();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4602,7 +4860,7 @@ public final class CommonProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -4653,15 +4911,15 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonProtos.internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable
+      return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ResultAny.class, Builder.class);
+              com.jubiter.sdk.proto.CommonProtos.ResultAny.class, com.jubiter.sdk.proto.CommonProtos.ResultAny.Builder.class);
     }
 
     public static final int STATE_CODE_FIELD_NUMBER = 1;
@@ -4709,7 +4967,7 @@ public final class CommonProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4719,7 +4977,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (stateCode_ != 0L) {
@@ -4731,7 +4989,7 @@ public final class CommonProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -4750,15 +5008,15 @@ public final class CommonProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ResultAny)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.CommonProtos.ResultAny)) {
         return super.equals(obj);
       }
-      ResultAny other = (ResultAny) obj;
+      com.jubiter.sdk.proto.CommonProtos.ResultAny other = (com.jubiter.sdk.proto.CommonProtos.ResultAny) obj;
 
       if (getStateCode()
           != other.getStateCode()) return false;
@@ -4768,7 +5026,7 @@ public final class CommonProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4787,69 +5045,69 @@ public final class CommonProtos {
       return hash;
     }
 
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultAny parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ResultAny parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultAny parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ResultAny parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ResultAny parseFrom(
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4857,23 +5115,23 @@ public final class CommonProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ResultAny prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.CommonProtos.ResultAny prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4887,18 +5145,18 @@ public final class CommonProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.ResultAny)
-        ResultAnyOrBuilder {
+        com.jubiter.sdk.proto.CommonProtos.ResultAnyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ResultAny.class, Builder.class);
+                com.jubiter.sdk.proto.CommonProtos.ResultAny.class, com.jubiter.sdk.proto.CommonProtos.ResultAny.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.CommonProtos.ResultAny.newBuilder()
@@ -4907,7 +5165,7 @@ public final class CommonProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4917,7 +5175,7 @@ public final class CommonProtos {
           getValueFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         stateCode_ = 0L;
@@ -4931,29 +5189,29 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
+        return com.jubiter.sdk.proto.CommonProtos.internal_static_JUB_Proto_Common_ResultAny_descriptor;
       }
 
-      @Override
-      public ResultAny getDefaultInstanceForType() {
-        return ResultAny.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultAny getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.CommonProtos.ResultAny.getDefaultInstance();
       }
 
-      @Override
-      public ResultAny build() {
-        ResultAny result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultAny build() {
+        com.jubiter.sdk.proto.CommonProtos.ResultAny result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ResultAny buildPartial() {
-        ResultAny result = new ResultAny(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.CommonProtos.ResultAny buildPartial() {
+        com.jubiter.sdk.proto.CommonProtos.ResultAny result = new com.jubiter.sdk.proto.CommonProtos.ResultAny(this);
         int from_bitField0_ = bitField0_;
         result.stateCode_ = stateCode_;
         if (valueBuilder_ == null) {
@@ -4969,50 +5227,50 @@ public final class CommonProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ResultAny) {
-          return mergeFrom((ResultAny)other);
+        if (other instanceof com.jubiter.sdk.proto.CommonProtos.ResultAny) {
+          return mergeFrom((com.jubiter.sdk.proto.CommonProtos.ResultAny)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ResultAny other) {
-        if (other == ResultAny.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.CommonProtos.ResultAny other) {
+        if (other == com.jubiter.sdk.proto.CommonProtos.ResultAny.getDefaultInstance()) return this;
         if (other.getStateCode() != 0L) {
           setStateCode(other.getStateCode());
         }
@@ -5047,21 +5305,21 @@ public final class CommonProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ResultAny parsedMessage = null;
+        com.jubiter.sdk.proto.CommonProtos.ResultAny parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ResultAny) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.CommonProtos.ResultAny) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5236,7 +5494,7 @@ public final class CommonProtos {
        * <code>repeated .google.protobuf.Any value = 2;</code>
        */
       public Builder addAllValue(
-          Iterable<? extends com.google.protobuf.Any> values) {
+          java.lang.Iterable<? extends com.google.protobuf.Any> values) {
         if (valueBuilder_ == null) {
           ensureValueIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5337,13 +5595,13 @@ public final class CommonProtos {
         }
         return valueBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -5354,18 +5612,18 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Common.ResultAny)
-    private static final ResultAny DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.CommonProtos.ResultAny DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ResultAny();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.CommonProtos.ResultAny();
     }
 
-    public static ResultAny getDefaultInstance() {
+    public static com.jubiter.sdk.proto.CommonProtos.ResultAny getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ResultAny>
         PARSER = new com.google.protobuf.AbstractParser<ResultAny>() {
-      @Override
+      @java.lang.Override
       public ResultAny parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5378,13 +5636,13 @@ public final class CommonProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ResultAny> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ResultAny getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.CommonProtos.ResultAny getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5433,7 +5691,7 @@ public final class CommonProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\020Jub_Common.proto\022\020JUB.Proto.Common\032\031go" +
       "ogle/protobuf/any.proto\"2\n\tBip44Path\022\016\n\006" +
       "change\030\001 \001(\010\022\025\n\raddress_index\030\002 \001(\004\"{\n\nS" +
@@ -5448,14 +5706,17 @@ public final class CommonProtos {
       "\005value\030\002 \001(\r\"1\n\014ResultString\022\022\n\nstate_co" +
       "de\030\001 \001(\004\022\r\n\005value\030\002 \001(\t\"D\n\tResultAny\022\022\n\n" +
       "state_code\030\001 \001(\004\022#\n\005value\030\002 \003(\0132\024.google" +
-      ".protobuf.Any*+\n\022ENUM_GRAPHENE_ROLE\022\t\n\005O" +
-      "WNER\020\000\022\n\n\006ACTIVE\020\001*K\n\026ENUM_MNEMONIC_STRE" +
-      "NGTH\022\017\n\013STRENGTH128\020\000\022\017\n\013STRENGTH192\020\001\022\017" +
-      "\n\013STRENGTH256\020\002*3\n\006CURVES\022\r\n\tSECP256K1\020\000" +
-      "\022\013\n\007ED25519\020\001\022\r\n\tNIST256P1\020\002*$\n\017ENUM_PUB" +
-      "_FORMAT\022\007\n\003HEX\020\000\022\010\n\004XPUB\020\001B4\n\025com.jubite" +
-      "r.sdk.protoB\014CommonProtos\242\002\014CommonProtos" +
-      "b\006proto3"
+      ".protobuf.Any*G\n\014ENUM_COMMODE\022\007\n\003SWI\020\000\022\007" +
+      "\n\003HID\020\001\022\007\n\003BLE\020\002\022\007\n\003NFC\020\003\022\023\n\017COMMODE_NS_" +
+      "ITEM\020\004*G\n\013ENUM_DEVICE\022\006\n\002VD\020\000\022\t\n\005BLADE\020\001" +
+      "\022\007\n\003BIO\020\002\022\010\n\004LITE\020\003\022\022\n\016DEVICE_NS_ITEM\020\004*" +
+      "+\n\022ENUM_GRAPHENE_ROLE\022\t\n\005OWNER\020\000\022\n\n\006ACTI" +
+      "VE\020\001*K\n\026ENUM_MNEMONIC_STRENGTH\022\017\n\013STRENG" +
+      "TH128\020\000\022\017\n\013STRENGTH192\020\001\022\017\n\013STRENGTH256\020" +
+      "\002*3\n\006CURVES\022\r\n\tSECP256K1\020\000\022\013\n\007ED25519\020\001\022" +
+      "\r\n\tNIST256P1\020\002*$\n\017ENUM_PUB_FORMAT\022\007\n\003HEX" +
+      "\020\000\022\010\n\004XPUB\020\001B4\n\025com.jubiter.sdk.protoB\014C" +
+      "ommonProtos\242\002\014CommonProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5467,43 +5728,43 @@ public final class CommonProtos {
     internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_Bip44Path_descriptor,
-        new String[] { "Change", "AddressIndex", });
+        new java.lang.String[] { "Change", "AddressIndex", });
     internal_static_JUB_Proto_Common_Slip48Path_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_Slip48Path_descriptor,
-        new String[] { "Network", "Role", "AddressIndex", "KeyIndex", });
+        new java.lang.String[] { "Network", "Role", "AddressIndex", "KeyIndex", });
     internal_static_JUB_Proto_Common_ContextCfg_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ContextCfg_descriptor,
-        new String[] { "MainPath", });
+        new java.lang.String[] { "MainPath", });
     internal_static_JUB_Proto_Common_DeviceInfo_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_DeviceInfo_descriptor,
-        new String[] { "Sn", "Label", "BleVersion", "FirmwareVersion", "PinRetry", "PinMaxRetry", });
+        new java.lang.String[] { "Sn", "Label", "BleVersion", "FirmwareVersion", "PinRetry", "PinMaxRetry", });
     internal_static_JUB_Proto_Common_ResultInt_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultInt_descriptor,
-        new String[] { "StateCode", "Value", });
+        new java.lang.String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultString_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultString_descriptor,
-        new String[] { "StateCode", "Value", });
+        new java.lang.String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultAny_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultAny_descriptor,
-        new String[] { "StateCode", "Value", });
+        new java.lang.String[] { "StateCode", "Value", });
     com.google.protobuf.AnyProto.getDescriptor();
   }
 

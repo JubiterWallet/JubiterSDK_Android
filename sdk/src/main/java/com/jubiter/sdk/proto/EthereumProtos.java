@@ -21,7 +21,7 @@ public final class EthereumProtos {
     /**
      * <code>string main_path = 1;</code>
      */
-    String getMainPath();
+    java.lang.String getMainPath();
     /**
      * <code>string main_path = 1;</code>
      */
@@ -49,14 +49,14 @@ public final class EthereumProtos {
       mainPath_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ContextCfgETH();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -67,7 +67,7 @@ public final class EthereumProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -80,7 +80,7 @@ public final class EthereumProtos {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               mainPath_ = s;
               break;
@@ -111,30 +111,30 @@ public final class EthereumProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
+      return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_fieldAccessorTable
+      return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ContextCfgETH.class, Builder.class);
+              com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.class, com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.Builder.class);
     }
 
     public static final int MAIN_PATH_FIELD_NUMBER = 1;
-    private volatile Object mainPath_;
+    private volatile java.lang.Object mainPath_;
     /**
      * <code>string main_path = 1;</code>
      */
-    public String getMainPath() {
-      Object ref = mainPath_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getMainPath() {
+      java.lang.Object ref = mainPath_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         mainPath_ = s;
         return s;
       }
@@ -144,11 +144,11 @@ public final class EthereumProtos {
      */
     public com.google.protobuf.ByteString
         getMainPathBytes() {
-      Object ref = mainPath_;
-      if (ref instanceof String) {
+      java.lang.Object ref = mainPath_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         mainPath_ = b;
         return b;
       } else {
@@ -166,7 +166,7 @@ public final class EthereumProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -176,7 +176,7 @@ public final class EthereumProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getMainPathBytes().isEmpty()) {
@@ -188,7 +188,7 @@ public final class EthereumProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -206,15 +206,15 @@ public final class EthereumProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ContextCfgETH)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH)) {
         return super.equals(obj);
       }
-      ContextCfgETH other = (ContextCfgETH) obj;
+      com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH other = (com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH) obj;
 
       if (!getMainPath()
           .equals(other.getMainPath())) return false;
@@ -224,7 +224,7 @@ public final class EthereumProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -240,69 +240,69 @@ public final class EthereumProtos {
       return hash;
     }
 
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfgETH parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ContextCfgETH parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ContextCfgETH parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ContextCfgETH parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ContextCfgETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -310,23 +310,23 @@ public final class EthereumProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ContextCfgETH prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -336,18 +336,18 @@ public final class EthereumProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Ethereum.ContextCfgETH)
-        ContextCfgETHOrBuilder {
+        com.jubiter.sdk.proto.EthereumProtos.ContextCfgETHOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_fieldAccessorTable
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ContextCfgETH.class, Builder.class);
+                com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.class, com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.newBuilder()
@@ -356,7 +356,7 @@ public final class EthereumProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -365,7 +365,7 @@ public final class EthereumProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         mainPath_ = "";
@@ -375,79 +375,79 @@ public final class EthereumProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
       }
 
-      @Override
-      public ContextCfgETH getDefaultInstanceForType() {
-        return ContextCfgETH.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.getDefaultInstance();
       }
 
-      @Override
-      public ContextCfgETH build() {
-        ContextCfgETH result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH build() {
+        com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ContextCfgETH buildPartial() {
-        ContextCfgETH result = new ContextCfgETH(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH buildPartial() {
+        com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH result = new com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH(this);
         result.mainPath_ = mainPath_;
         result.chainId_ = chainId_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ContextCfgETH) {
-          return mergeFrom((ContextCfgETH)other);
+        if (other instanceof com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH) {
+          return mergeFrom((com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ContextCfgETH other) {
-        if (other == ContextCfgETH.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH other) {
+        if (other == com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH.getDefaultInstance()) return this;
         if (!other.getMainPath().isEmpty()) {
           mainPath_ = other.mainPath_;
           onChanged();
@@ -460,21 +460,21 @@ public final class EthereumProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ContextCfgETH parsedMessage = null;
+        com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ContextCfgETH) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -484,20 +484,20 @@ public final class EthereumProtos {
         return this;
       }
 
-      private Object mainPath_ = "";
+      private java.lang.Object mainPath_ = "";
       /**
        * <code>string main_path = 1;</code>
        */
-      public String getMainPath() {
-        Object ref = mainPath_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getMainPath() {
+        java.lang.Object ref = mainPath_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           mainPath_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -505,11 +505,11 @@ public final class EthereumProtos {
        */
       public com.google.protobuf.ByteString
           getMainPathBytes() {
-        Object ref = mainPath_;
+        java.lang.Object ref = mainPath_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           mainPath_ = b;
           return b;
         } else {
@@ -520,7 +520,7 @@ public final class EthereumProtos {
        * <code>string main_path = 1;</code>
        */
       public Builder setMainPath(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -578,13 +578,13 @@ public final class EthereumProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -595,18 +595,18 @@ public final class EthereumProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Ethereum.ContextCfgETH)
-    private static final ContextCfgETH DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ContextCfgETH();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH();
     }
 
-    public static ContextCfgETH getDefaultInstance() {
+    public static com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ContextCfgETH>
         PARSER = new com.google.protobuf.AbstractParser<ContextCfgETH>() {
-      @Override
+      @java.lang.Override
       public ContextCfgETH parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -619,13 +619,13 @@ public final class EthereumProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ContextCfgETH> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ContextCfgETH getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.EthereumProtos.ContextCfgETH getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -642,11 +642,11 @@ public final class EthereumProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    CommonProtos.Bip44Path getPath();
+    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
 
     /**
      * <code>uint32 nonce = 2;</code>
@@ -661,7 +661,7 @@ public final class EthereumProtos {
     /**
      * <code>string gas_price_in_wei = 4;</code>
      */
-    String getGasPriceInWei();
+    java.lang.String getGasPriceInWei();
     /**
      * <code>string gas_price_in_wei = 4;</code>
      */
@@ -671,7 +671,7 @@ public final class EthereumProtos {
     /**
      * <code>string to = 5;</code>
      */
-    String getTo();
+    java.lang.String getTo();
     /**
      * <code>string to = 5;</code>
      */
@@ -681,7 +681,7 @@ public final class EthereumProtos {
     /**
      * <code>string value_in_wei = 6;</code>
      */
-    String getValueInWei();
+    java.lang.String getValueInWei();
     /**
      * <code>string value_in_wei = 6;</code>
      */
@@ -691,7 +691,7 @@ public final class EthereumProtos {
     /**
      * <code>string input = 7;</code>
      */
-    String getInput();
+    java.lang.String getInput();
     /**
      * <code>string input = 7;</code>
      */
@@ -717,14 +717,14 @@ public final class EthereumProtos {
       input_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransactionETH();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -735,7 +735,7 @@ public final class EthereumProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -748,11 +748,11 @@ public final class EthereumProtos {
               done = true;
               break;
             case 10: {
-              CommonProtos.Bip44Path.Builder subBuilder = null;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -771,25 +771,25 @@ public final class EthereumProtos {
               break;
             }
             case 34: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               gasPriceInWei_ = s;
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               to_ = s;
               break;
             }
             case 50: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               valueInWei_ = s;
               break;
             }
             case 58: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               input_ = s;
               break;
@@ -815,19 +815,19 @@ public final class EthereumProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
+      return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable
+      return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              TransactionETH.class, Builder.class);
+              com.jubiter.sdk.proto.EthereumProtos.TransactionETH.class, com.jubiter.sdk.proto.EthereumProtos.TransactionETH.Builder.class);
     }
 
     public static final int PATH_FIELD_NUMBER = 1;
-    private CommonProtos.Bip44Path path_;
+    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
@@ -837,13 +837,13 @@ public final class EthereumProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    public CommonProtos.Bip44Path getPath() {
-      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
@@ -866,18 +866,18 @@ public final class EthereumProtos {
     }
 
     public static final int GAS_PRICE_IN_WEI_FIELD_NUMBER = 4;
-    private volatile Object gasPriceInWei_;
+    private volatile java.lang.Object gasPriceInWei_;
     /**
      * <code>string gas_price_in_wei = 4;</code>
      */
-    public String getGasPriceInWei() {
-      Object ref = gasPriceInWei_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getGasPriceInWei() {
+      java.lang.Object ref = gasPriceInWei_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         gasPriceInWei_ = s;
         return s;
       }
@@ -887,11 +887,11 @@ public final class EthereumProtos {
      */
     public com.google.protobuf.ByteString
         getGasPriceInWeiBytes() {
-      Object ref = gasPriceInWei_;
-      if (ref instanceof String) {
+      java.lang.Object ref = gasPriceInWei_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         gasPriceInWei_ = b;
         return b;
       } else {
@@ -900,18 +900,18 @@ public final class EthereumProtos {
     }
 
     public static final int TO_FIELD_NUMBER = 5;
-    private volatile Object to_;
+    private volatile java.lang.Object to_;
     /**
      * <code>string to = 5;</code>
      */
-    public String getTo() {
-      Object ref = to_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getTo() {
+      java.lang.Object ref = to_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         to_ = s;
         return s;
       }
@@ -921,11 +921,11 @@ public final class EthereumProtos {
      */
     public com.google.protobuf.ByteString
         getToBytes() {
-      Object ref = to_;
-      if (ref instanceof String) {
+      java.lang.Object ref = to_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         to_ = b;
         return b;
       } else {
@@ -934,18 +934,18 @@ public final class EthereumProtos {
     }
 
     public static final int VALUE_IN_WEI_FIELD_NUMBER = 6;
-    private volatile Object valueInWei_;
+    private volatile java.lang.Object valueInWei_;
     /**
      * <code>string value_in_wei = 6;</code>
      */
-    public String getValueInWei() {
-      Object ref = valueInWei_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getValueInWei() {
+      java.lang.Object ref = valueInWei_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         valueInWei_ = s;
         return s;
       }
@@ -955,11 +955,11 @@ public final class EthereumProtos {
      */
     public com.google.protobuf.ByteString
         getValueInWeiBytes() {
-      Object ref = valueInWei_;
-      if (ref instanceof String) {
+      java.lang.Object ref = valueInWei_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         valueInWei_ = b;
         return b;
       } else {
@@ -968,18 +968,18 @@ public final class EthereumProtos {
     }
 
     public static final int INPUT_FIELD_NUMBER = 7;
-    private volatile Object input_;
+    private volatile java.lang.Object input_;
     /**
      * <code>string input = 7;</code>
      */
-    public String getInput() {
-      Object ref = input_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getInput() {
+      java.lang.Object ref = input_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         input_ = s;
         return s;
       }
@@ -989,11 +989,11 @@ public final class EthereumProtos {
      */
     public com.google.protobuf.ByteString
         getInputBytes() {
-      Object ref = input_;
-      if (ref instanceof String) {
+      java.lang.Object ref = input_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         input_ = b;
         return b;
       } else {
@@ -1002,7 +1002,7 @@ public final class EthereumProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1012,7 +1012,7 @@ public final class EthereumProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (path_ != null) {
@@ -1039,7 +1039,7 @@ public final class EthereumProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1074,15 +1074,15 @@ public final class EthereumProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof TransactionETH)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.EthereumProtos.TransactionETH)) {
         return super.equals(obj);
       }
-      TransactionETH other = (TransactionETH) obj;
+      com.jubiter.sdk.proto.EthereumProtos.TransactionETH other = (com.jubiter.sdk.proto.EthereumProtos.TransactionETH) obj;
 
       if (hasPath() != other.hasPath()) return false;
       if (hasPath()) {
@@ -1105,7 +1105,7 @@ public final class EthereumProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1133,69 +1133,69 @@ public final class EthereumProtos {
       return hash;
     }
 
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionETH parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionETH parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static TransactionETH parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static TransactionETH parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static TransactionETH parseFrom(
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1203,23 +1203,23 @@ public final class EthereumProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TransactionETH prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.EthereumProtos.TransactionETH prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1229,18 +1229,18 @@ public final class EthereumProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Ethereum.TransactionETH)
-        TransactionETHOrBuilder {
+        com.jubiter.sdk.proto.EthereumProtos.TransactionETHOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                TransactionETH.class, Builder.class);
+                com.jubiter.sdk.proto.EthereumProtos.TransactionETH.class, com.jubiter.sdk.proto.EthereumProtos.TransactionETH.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EthereumProtos.TransactionETH.newBuilder()
@@ -1249,7 +1249,7 @@ public final class EthereumProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1258,7 +1258,7 @@ public final class EthereumProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (pathBuilder_ == null) {
@@ -1282,29 +1282,29 @@ public final class EthereumProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
+        return com.jubiter.sdk.proto.EthereumProtos.internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor;
       }
 
-      @Override
-      public TransactionETH getDefaultInstanceForType() {
-        return TransactionETH.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.TransactionETH getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.EthereumProtos.TransactionETH.getDefaultInstance();
       }
 
-      @Override
-      public TransactionETH build() {
-        TransactionETH result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.TransactionETH build() {
+        com.jubiter.sdk.proto.EthereumProtos.TransactionETH result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public TransactionETH buildPartial() {
-        TransactionETH result = new TransactionETH(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.EthereumProtos.TransactionETH buildPartial() {
+        com.jubiter.sdk.proto.EthereumProtos.TransactionETH result = new com.jubiter.sdk.proto.EthereumProtos.TransactionETH(this);
         if (pathBuilder_ == null) {
           result.path_ = path_;
         } else {
@@ -1320,50 +1320,50 @@ public final class EthereumProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof TransactionETH) {
-          return mergeFrom((TransactionETH)other);
+        if (other instanceof com.jubiter.sdk.proto.EthereumProtos.TransactionETH) {
+          return mergeFrom((com.jubiter.sdk.proto.EthereumProtos.TransactionETH)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(TransactionETH other) {
-        if (other == TransactionETH.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.EthereumProtos.TransactionETH other) {
+        if (other == com.jubiter.sdk.proto.EthereumProtos.TransactionETH.getDefaultInstance()) return this;
         if (other.hasPath()) {
           mergePath(other.getPath());
         }
@@ -1394,21 +1394,21 @@ public final class EthereumProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        TransactionETH parsedMessage = null;
+        com.jubiter.sdk.proto.EthereumProtos.TransactionETH parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (TransactionETH) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.EthereumProtos.TransactionETH) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1418,9 +1418,9 @@ public final class EthereumProtos {
         return this;
       }
 
-      private CommonProtos.Bip44Path path_;
+      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
@@ -1430,9 +1430,9 @@ public final class EthereumProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public CommonProtos.Bip44Path getPath() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -1440,7 +1440,7 @@ public final class EthereumProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public Builder setPath(CommonProtos.Bip44Path value) {
+      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1457,7 +1457,7 @@ public final class EthereumProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
       public Builder setPath(
-          CommonProtos.Bip44Path.Builder builderForValue) {
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -1470,11 +1470,11 @@ public final class EthereumProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public Builder mergePath(CommonProtos.Bip44Path value) {
+      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -1502,7 +1502,7 @@ public final class EthereumProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -1510,23 +1510,23 @@ public final class EthereumProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
+          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
+              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -1587,20 +1587,20 @@ public final class EthereumProtos {
         return this;
       }
 
-      private Object gasPriceInWei_ = "";
+      private java.lang.Object gasPriceInWei_ = "";
       /**
        * <code>string gas_price_in_wei = 4;</code>
        */
-      public String getGasPriceInWei() {
-        Object ref = gasPriceInWei_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getGasPriceInWei() {
+        java.lang.Object ref = gasPriceInWei_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           gasPriceInWei_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1608,11 +1608,11 @@ public final class EthereumProtos {
        */
       public com.google.protobuf.ByteString
           getGasPriceInWeiBytes() {
-        Object ref = gasPriceInWei_;
+        java.lang.Object ref = gasPriceInWei_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           gasPriceInWei_ = b;
           return b;
         } else {
@@ -1623,7 +1623,7 @@ public final class EthereumProtos {
        * <code>string gas_price_in_wei = 4;</code>
        */
       public Builder setGasPriceInWei(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1656,20 +1656,20 @@ public final class EthereumProtos {
         return this;
       }
 
-      private Object to_ = "";
+      private java.lang.Object to_ = "";
       /**
        * <code>string to = 5;</code>
        */
-      public String getTo() {
-        Object ref = to_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getTo() {
+        java.lang.Object ref = to_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           to_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1677,11 +1677,11 @@ public final class EthereumProtos {
        */
       public com.google.protobuf.ByteString
           getToBytes() {
-        Object ref = to_;
+        java.lang.Object ref = to_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           to_ = b;
           return b;
         } else {
@@ -1692,7 +1692,7 @@ public final class EthereumProtos {
        * <code>string to = 5;</code>
        */
       public Builder setTo(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1725,20 +1725,20 @@ public final class EthereumProtos {
         return this;
       }
 
-      private Object valueInWei_ = "";
+      private java.lang.Object valueInWei_ = "";
       /**
        * <code>string value_in_wei = 6;</code>
        */
-      public String getValueInWei() {
-        Object ref = valueInWei_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getValueInWei() {
+        java.lang.Object ref = valueInWei_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           valueInWei_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1746,11 +1746,11 @@ public final class EthereumProtos {
        */
       public com.google.protobuf.ByteString
           getValueInWeiBytes() {
-        Object ref = valueInWei_;
+        java.lang.Object ref = valueInWei_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           valueInWei_ = b;
           return b;
         } else {
@@ -1761,7 +1761,7 @@ public final class EthereumProtos {
        * <code>string value_in_wei = 6;</code>
        */
       public Builder setValueInWei(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1794,20 +1794,20 @@ public final class EthereumProtos {
         return this;
       }
 
-      private Object input_ = "";
+      private java.lang.Object input_ = "";
       /**
        * <code>string input = 7;</code>
        */
-      public String getInput() {
-        Object ref = input_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getInput() {
+        java.lang.Object ref = input_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           input_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1815,11 +1815,11 @@ public final class EthereumProtos {
        */
       public com.google.protobuf.ByteString
           getInputBytes() {
-        Object ref = input_;
+        java.lang.Object ref = input_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           input_ = b;
           return b;
         } else {
@@ -1830,7 +1830,7 @@ public final class EthereumProtos {
        * <code>string input = 7;</code>
        */
       public Builder setInput(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1862,13 +1862,13 @@ public final class EthereumProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1879,18 +1879,18 @@ public final class EthereumProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Ethereum.TransactionETH)
-    private static final TransactionETH DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.EthereumProtos.TransactionETH DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new TransactionETH();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EthereumProtos.TransactionETH();
     }
 
-    public static TransactionETH getDefaultInstance() {
+    public static com.jubiter.sdk.proto.EthereumProtos.TransactionETH getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransactionETH>
         PARSER = new com.google.protobuf.AbstractParser<TransactionETH>() {
-      @Override
+      @java.lang.Override
       public TransactionETH parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1903,13 +1903,13 @@ public final class EthereumProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<TransactionETH> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public TransactionETH getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.EthereumProtos.TransactionETH getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1933,7 +1933,7 @@ public final class EthereumProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\022Jub_Ethereum.proto\022\022JUB.Proto.Ethereum" +
       "\032\020Jub_Common.proto\"4\n\rContextCfgETH\022\021\n\tm" +
       "ain_path\030\001 \001(\t\022\020\n\010chain_id\030\002 \001(\r\"\250\001\n\016Tra" +
@@ -1947,21 +1947,21 @@ public final class EthereumProtos {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          CommonProtos.getDescriptor(),
+          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_JUB_Proto_Ethereum_ContextCfgETH_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor,
-        new String[] { "MainPath", "ChainId", });
+        new java.lang.String[] { "MainPath", "ChainId", });
     internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor,
-        new String[] { "Path", "Nonce", "GasLimit", "GasPriceInWei", "To", "ValueInWei", "Input", });
-    CommonProtos.getDescriptor();
+        new java.lang.String[] { "Path", "Nonce", "GasLimit", "GasPriceInWei", "To", "ValueInWei", "Input", });
+    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

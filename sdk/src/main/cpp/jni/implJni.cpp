@@ -35,6 +35,7 @@
 // 保存 JavaVM
 JavaVM *g_vm = NULL;
 
+// todo: extra 待移除
 jobject jInitPara;
 
 //==================helper=========================
@@ -894,9 +895,11 @@ native_CalculateMemoHashEOS(JNIEnv *env, jclass clz, jstring memo) {
 
 //=================================== NFC Wallet ========================================
 
-JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz) {
-    NFC_DEVICE_INIT_PARAM nfcInitParam;
+JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
+    jInitPara = initParam;
+
     // 初始化参数转换
+    NFC_DEVICE_INIT_PARAM nfcInitParam;
     jobjectToNFCInitParam(env, g_vm, &nfcInitParam);
     JUB_RV rv = JUB_initNFCDevice(nfcInitParam);
     return rv;
@@ -957,7 +960,8 @@ JNIEXPORT jint
 native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin) {
     auto strOriginPin = jstring2stdString(env, jOriginPin);
     auto strNewPin = jstring2stdString(env, jNewPin);
-    JUB_RV rv = JUB_ChangePIN(deviceID, strOriginPin.c_str(), strNewPin.c_str());
+    JUB_ULONG retry = 0;
+    JUB_RV rv = JUB_ChangePIN(deviceID, strOriginPin.c_str(), strNewPin.c_str(), &retry);
 }
 
 //=================================== NFC Wallet ========================================
@@ -1488,7 +1492,7 @@ static JNINativeMethod gMethods[] = {
         // NFC
         {
                 "nativeNFCInitDevice",
-                "()I",
+                "(Lcom/jubiter/sdk/jni/NFCInitParam;)I",
                 (void *) native_NFCInitDevice
         },
         {
