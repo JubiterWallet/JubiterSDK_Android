@@ -30,6 +30,7 @@ import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterNFCWallet;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.ScanResultCallback;
+import com.jubiter.sdk.jni.NFCInitParam;
 import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EOSProtos;
@@ -113,7 +114,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             JuBiterWallet.initDevice();
-            JuBiterNFCWallet.nfcInitDevice();
+
+            Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            if (tag != null) {
+                int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext, tag));
+                Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
+            }
         }
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(mContext);

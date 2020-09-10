@@ -1,6 +1,7 @@
 package com.jubiter.sdk;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.jubiter.sdk.jni.NFCInitParam;
 import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
 
@@ -16,8 +17,8 @@ public class JuBiterNFCWallet {
      * 初始化 NFC
      * @return
      */
-    public static int nfcInitDevice() {
-        return NativeApi.nativeNFCInitDevice();
+    public static int nfcInitDevice(NFCInitParam param) {
+        return NativeApi.nativeNFCInitDevice(param);
     }
 
     /**

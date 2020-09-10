@@ -145,7 +145,7 @@ public class NativeApi {
 
     //********************************* SDK NFC ************************************
 
-    public static native int nativeNFCInitDevice();
+    public static native int nativeNFCInitDevice(NFCInitParam param);
 
     public static native byte[] nativeNFCConnectDevice(String deviceUUID);
 

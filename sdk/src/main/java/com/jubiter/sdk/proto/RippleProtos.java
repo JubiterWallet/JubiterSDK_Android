@@ -34,7 +34,7 @@ public final class RippleProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -43,7 +43,7 @@ public final class RippleProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ENUM_XRP_TX_TYPE valueOf(int value) {
       return forNumber(value);
     }
@@ -77,7 +77,7 @@ public final class RippleProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return RippleProtos.getDescriptor().getEnumTypes().get(0);
+      return com.jubiter.sdk.proto.RippleProtos.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final ENUM_XRP_TX_TYPE[] VALUES = values();
@@ -85,7 +85,7 @@ public final class RippleProtos {
     public static ENUM_XRP_TX_TYPE valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -211,7 +211,7 @@ public final class RippleProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -220,7 +220,7 @@ public final class RippleProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ENUM_XRP_PYMT_TYPE valueOf(int value) {
       return forNumber(value);
     }
@@ -259,7 +259,7 @@ public final class RippleProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return RippleProtos.getDescriptor().getEnumTypes().get(1);
+      return com.jubiter.sdk.proto.RippleProtos.getDescriptor().getEnumTypes().get(1);
     }
 
     private static final ENUM_XRP_PYMT_TYPE[] VALUES = values();
@@ -267,7 +267,7 @@ public final class RippleProtos {
     public static ENUM_XRP_PYMT_TYPE valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -296,7 +296,7 @@ public final class RippleProtos {
      *
      * <code>string currency = 1;</code>
      */
-    String getCurrency();
+    java.lang.String getCurrency();
     /**
      * <pre>
      * [Optional]
@@ -310,7 +310,7 @@ public final class RippleProtos {
     /**
      * <code>string value = 2;</code>
      */
-    String getValue();
+    java.lang.String getValue();
     /**
      * <code>string value = 2;</code>
      */
@@ -324,7 +324,7 @@ public final class RippleProtos {
      *
      * <code>string issuer = 3;</code>
      */
-    String getIssuer();
+    java.lang.String getIssuer();
     /**
      * <pre>
      * [Optional]
@@ -353,14 +353,14 @@ public final class RippleProtos {
       issuer_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new PymtAmount();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -371,7 +371,7 @@ public final class RippleProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -384,19 +384,19 @@ public final class RippleProtos {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               currency_ = s;
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               value_ = s;
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               issuer_ = s;
               break;
@@ -422,19 +422,19 @@ public final class RippleProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PymtAmount.class, Builder.class);
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.class, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder.class);
     }
 
     public static final int CURRENCY_FIELD_NUMBER = 1;
-    private volatile Object currency_;
+    private volatile java.lang.Object currency_;
     /**
      * <pre>
      * [Optional]
@@ -442,14 +442,14 @@ public final class RippleProtos {
      *
      * <code>string currency = 1;</code>
      */
-    public String getCurrency() {
-      Object ref = currency_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getCurrency() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         currency_ = s;
         return s;
       }
@@ -463,11 +463,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getCurrencyBytes() {
-      Object ref = currency_;
-      if (ref instanceof String) {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         currency_ = b;
         return b;
       } else {
@@ -476,18 +476,18 @@ public final class RippleProtos {
     }
 
     public static final int VALUE_FIELD_NUMBER = 2;
-    private volatile Object value_;
+    private volatile java.lang.Object value_;
     /**
      * <code>string value = 2;</code>
      */
-    public String getValue() {
-      Object ref = value_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         value_ = s;
         return s;
       }
@@ -497,11 +497,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getValueBytes() {
-      Object ref = value_;
-      if (ref instanceof String) {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         value_ = b;
         return b;
       } else {
@@ -510,7 +510,7 @@ public final class RippleProtos {
     }
 
     public static final int ISSUER_FIELD_NUMBER = 3;
-    private volatile Object issuer_;
+    private volatile java.lang.Object issuer_;
     /**
      * <pre>
      * [Optional]
@@ -518,14 +518,14 @@ public final class RippleProtos {
      *
      * <code>string issuer = 3;</code>
      */
-    public String getIssuer() {
-      Object ref = issuer_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getIssuer() {
+      java.lang.Object ref = issuer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         issuer_ = s;
         return s;
       }
@@ -539,11 +539,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getIssuerBytes() {
-      Object ref = issuer_;
-      if (ref instanceof String) {
+      java.lang.Object ref = issuer_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         issuer_ = b;
         return b;
       } else {
@@ -552,7 +552,7 @@ public final class RippleProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -562,7 +562,7 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getCurrencyBytes().isEmpty()) {
@@ -577,7 +577,7 @@ public final class RippleProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -597,15 +597,15 @@ public final class RippleProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PymtAmount)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.RippleProtos.PymtAmount)) {
         return super.equals(obj);
       }
-      PymtAmount other = (PymtAmount) obj;
+      com.jubiter.sdk.proto.RippleProtos.PymtAmount other = (com.jubiter.sdk.proto.RippleProtos.PymtAmount) obj;
 
       if (!getCurrency()
           .equals(other.getCurrency())) return false;
@@ -617,7 +617,7 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -635,69 +635,69 @@ public final class RippleProtos {
       return hash;
     }
 
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtAmount parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtAmount parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PymtAmount parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PymtAmount parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PymtAmount parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -705,23 +705,23 @@ public final class RippleProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PymtAmount prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.RippleProtos.PymtAmount prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -731,18 +731,18 @@ public final class RippleProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Ripple.PymtAmount)
-        PymtAmountOrBuilder {
+        com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PymtAmount.class, Builder.class);
+                com.jubiter.sdk.proto.RippleProtos.PymtAmount.class, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.RippleProtos.PymtAmount.newBuilder()
@@ -751,7 +751,7 @@ public final class RippleProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -760,7 +760,7 @@ public final class RippleProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         currency_ = "";
@@ -772,29 +772,29 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtAmount_descriptor;
       }
 
-      @Override
-      public PymtAmount getDefaultInstanceForType() {
-        return PymtAmount.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance();
       }
 
-      @Override
-      public PymtAmount build() {
-        PymtAmount result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount build() {
+        com.jubiter.sdk.proto.RippleProtos.PymtAmount result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PymtAmount buildPartial() {
-        PymtAmount result = new PymtAmount(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount buildPartial() {
+        com.jubiter.sdk.proto.RippleProtos.PymtAmount result = new com.jubiter.sdk.proto.RippleProtos.PymtAmount(this);
         result.currency_ = currency_;
         result.value_ = value_;
         result.issuer_ = issuer_;
@@ -802,50 +802,50 @@ public final class RippleProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PymtAmount) {
-          return mergeFrom((PymtAmount)other);
+        if (other instanceof com.jubiter.sdk.proto.RippleProtos.PymtAmount) {
+          return mergeFrom((com.jubiter.sdk.proto.RippleProtos.PymtAmount)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PymtAmount other) {
-        if (other == PymtAmount.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.RippleProtos.PymtAmount other) {
+        if (other == com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance()) return this;
         if (!other.getCurrency().isEmpty()) {
           currency_ = other.currency_;
           onChanged();
@@ -863,21 +863,21 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PymtAmount parsedMessage = null;
+        com.jubiter.sdk.proto.RippleProtos.PymtAmount parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PymtAmount) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.RippleProtos.PymtAmount) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -887,7 +887,7 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object currency_ = "";
+      private java.lang.Object currency_ = "";
       /**
        * <pre>
        * [Optional]
@@ -895,16 +895,16 @@ public final class RippleProtos {
        *
        * <code>string currency = 1;</code>
        */
-      public String getCurrency() {
-        Object ref = currency_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getCurrency() {
+        java.lang.Object ref = currency_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           currency_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -916,11 +916,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getCurrencyBytes() {
-        Object ref = currency_;
+        java.lang.Object ref = currency_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           currency_ = b;
           return b;
         } else {
@@ -935,7 +935,7 @@ public final class RippleProtos {
        * <code>string currency = 1;</code>
        */
       public Builder setCurrency(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -976,20 +976,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object value_ = "";
+      private java.lang.Object value_ = "";
       /**
        * <code>string value = 2;</code>
        */
-      public String getValue() {
-        Object ref = value_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           value_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -997,11 +997,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getValueBytes() {
-        Object ref = value_;
+        java.lang.Object ref = value_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           value_ = b;
           return b;
         } else {
@@ -1012,7 +1012,7 @@ public final class RippleProtos {
        * <code>string value = 2;</code>
        */
       public Builder setValue(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1045,7 +1045,7 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object issuer_ = "";
+      private java.lang.Object issuer_ = "";
       /**
        * <pre>
        * [Optional]
@@ -1053,16 +1053,16 @@ public final class RippleProtos {
        *
        * <code>string issuer = 3;</code>
        */
-      public String getIssuer() {
-        Object ref = issuer_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getIssuer() {
+        java.lang.Object ref = issuer_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           issuer_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1074,11 +1074,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getIssuerBytes() {
-        Object ref = issuer_;
+        java.lang.Object ref = issuer_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           issuer_ = b;
           return b;
         } else {
@@ -1093,7 +1093,7 @@ public final class RippleProtos {
        * <code>string issuer = 3;</code>
        */
       public Builder setIssuer(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1133,13 +1133,13 @@ public final class RippleProtos {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1150,18 +1150,18 @@ public final class RippleProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Ripple.PymtAmount)
-    private static final PymtAmount DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.RippleProtos.PymtAmount DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PymtAmount();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.RippleProtos.PymtAmount();
     }
 
-    public static PymtAmount getDefaultInstance() {
+    public static com.jubiter.sdk.proto.RippleProtos.PymtAmount getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PymtAmount>
         PARSER = new com.google.protobuf.AbstractParser<PymtAmount>() {
-      @Override
+      @java.lang.Override
       public PymtAmount parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1174,13 +1174,878 @@ public final class RippleProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PymtAmount> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PymtAmount getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmount getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface XrpMemoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.Ripple.XrpMemo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string type = 1;</code>
+     */
+    java.lang.String getType();
+    /**
+     * <code>string type = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <code>string data = 2;</code>
+     */
+    java.lang.String getData();
+    /**
+     * <code>string data = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getDataBytes();
+
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    java.lang.String getFormat();
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getFormatBytes();
+  }
+  /**
+   * Protobuf type {@code JUB.Proto.Ripple.XrpMemo}
+   */
+  public  static final class XrpMemo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.Ripple.XrpMemo)
+      XrpMemoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use XrpMemo.newBuilder() to construct.
+    private XrpMemo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private XrpMemo() {
+      type_ = "";
+      data_ = "";
+      format_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new XrpMemo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private XrpMemo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              data_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              format_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.jubiter.sdk.proto.RippleProtos.XrpMemo.class, com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object type_;
+    /**
+     * <code>string type = 1;</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string type = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATA_FIELD_NUMBER = 2;
+    private volatile java.lang.Object data_;
+    /**
+     * <code>string data = 2;</code>
+     */
+    public java.lang.String getData() {
+      java.lang.Object ref = data_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        data_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string data = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDataBytes() {
+      java.lang.Object ref = data_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        data_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FORMAT_FIELD_NUMBER = 3;
+    private volatile java.lang.Object format_;
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    public java.lang.String getFormat() {
+      java.lang.Object ref = format_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        format_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFormatBytes() {
+      java.lang.Object ref = format_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        format_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+      }
+      if (!getDataBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, data_);
+      }
+      if (!getFormatBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, format_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+      }
+      if (!getDataBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, data_);
+      }
+      if (!getFormatBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, format_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.jubiter.sdk.proto.RippleProtos.XrpMemo)) {
+        return super.equals(obj);
+      }
+      com.jubiter.sdk.proto.RippleProtos.XrpMemo other = (com.jubiter.sdk.proto.RippleProtos.XrpMemo) obj;
+
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (!getData()
+          .equals(other.getData())) return false;
+      if (!getFormat()
+          .equals(other.getFormat())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
+      hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+      hash = (53 * hash) + getFormat().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.jubiter.sdk.proto.RippleProtos.XrpMemo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JUB.Proto.Ripple.XrpMemo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.Ripple.XrpMemo)
+        com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.jubiter.sdk.proto.RippleProtos.XrpMemo.class, com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.RippleProtos.XrpMemo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        type_ = "";
+
+        data_ = "";
+
+        format_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+      }
+
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemo getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.RippleProtos.XrpMemo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemo build() {
+        com.jubiter.sdk.proto.RippleProtos.XrpMemo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemo buildPartial() {
+        com.jubiter.sdk.proto.RippleProtos.XrpMemo result = new com.jubiter.sdk.proto.RippleProtos.XrpMemo(this);
+        result.type_ = type_;
+        result.data_ = data_;
+        result.format_ = format_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.jubiter.sdk.proto.RippleProtos.XrpMemo) {
+          return mergeFrom((com.jubiter.sdk.proto.RippleProtos.XrpMemo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.jubiter.sdk.proto.RippleProtos.XrpMemo other) {
+        if (other == com.jubiter.sdk.proto.RippleProtos.XrpMemo.getDefaultInstance()) return this;
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getData().isEmpty()) {
+          data_ = other.data_;
+          onChanged();
+        }
+        if (!other.getFormat().isEmpty()) {
+          format_ = other.format_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.jubiter.sdk.proto.RippleProtos.XrpMemo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.jubiter.sdk.proto.RippleProtos.XrpMemo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <code>string type = 1;</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object data_ = "";
+      /**
+       * <code>string data = 2;</code>
+       */
+      public java.lang.String getData() {
+        java.lang.Object ref = data_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          data_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDataBytes() {
+        java.lang.Object ref = data_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          data_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder setData(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        data_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder clearData() {
+        
+        data_ = getDefaultInstance().getData();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder setDataBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        data_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object format_ = "";
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public java.lang.String getFormat() {
+        java.lang.Object ref = format_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          format_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFormatBytes() {
+        java.lang.Object ref = format_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          format_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder setFormat(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        format_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder clearFormat() {
+        
+        format_ = getDefaultInstance().getFormat();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder setFormatBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        format_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.Ripple.XrpMemo)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.Ripple.XrpMemo)
+    private static final com.jubiter.sdk.proto.RippleProtos.XrpMemo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.RippleProtos.XrpMemo();
+    }
+
+    public static com.jubiter.sdk.proto.RippleProtos.XrpMemo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<XrpMemo>
+        PARSER = new com.google.protobuf.AbstractParser<XrpMemo>() {
+      @java.lang.Override
+      public XrpMemo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new XrpMemo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<XrpMemo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<XrpMemo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.jubiter.sdk.proto.RippleProtos.XrpMemo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1197,7 +2062,7 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.ENUM_XRP_PYMT_TYPE type = 1;</code>
      */
-    ENUM_XRP_PYMT_TYPE getType();
+    com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE getType();
 
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
@@ -1206,16 +2071,16 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
      */
-    PymtAmount getAmount();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmount getAmount();
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
      */
-    PymtAmountOrBuilder getAmountOrBuilder();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getAmountOrBuilder();
 
     /**
      * <code>string destination = 3;</code>
      */
-    String getDestination();
+    java.lang.String getDestination();
     /**
      * <code>string destination = 3;</code>
      */
@@ -1225,7 +2090,7 @@ public final class RippleProtos {
     /**
      * <code>string destination_tag = 4;</code>
      */
-    String getDestinationTag();
+    java.lang.String getDestinationTag();
     /**
      * <code>string destination_tag = 4;</code>
      */
@@ -1239,7 +2104,7 @@ public final class RippleProtos {
      *
      * <code>string invoice_id = 5;</code>
      */
-    String getInvoiceId();
+    java.lang.String getInvoiceId();
     /**
      * <pre>
      * [Optional]
@@ -1265,7 +2130,7 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
      */
-    PymtAmount getSendMax();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmount getSendMax();
     /**
      * <pre>
      * [Optional]
@@ -1273,7 +2138,7 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
      */
-    PymtAmountOrBuilder getSendMaxOrBuilder();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getSendMaxOrBuilder();
 
     /**
      * <pre>
@@ -1290,7 +2155,7 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
      */
-    PymtAmount getDeliverMin();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmount getDeliverMin();
     /**
      * <pre>
      * [Optional]
@@ -1298,7 +2163,7 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
      */
-    PymtAmountOrBuilder getDeliverMinOrBuilder();
+    com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getDeliverMinOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Ripple.PymtXRP}
@@ -1319,14 +2184,14 @@ public final class RippleProtos {
       invoiceId_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new PymtXRP();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1337,7 +2202,7 @@ public final class RippleProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1356,11 +2221,11 @@ public final class RippleProtos {
               break;
             }
             case 18: {
-              PymtAmount.Builder subBuilder = null;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder subBuilder = null;
               if (amount_ != null) {
                 subBuilder = amount_.toBuilder();
               }
-              amount_ = input.readMessage(PymtAmount.parser(), extensionRegistry);
+              amount_ = input.readMessage(com.jubiter.sdk.proto.RippleProtos.PymtAmount.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(amount_);
                 amount_ = subBuilder.buildPartial();
@@ -1369,29 +2234,29 @@ public final class RippleProtos {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               destination_ = s;
               break;
             }
             case 34: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               destinationTag_ = s;
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               invoiceId_ = s;
               break;
             }
             case 50: {
-              PymtAmount.Builder subBuilder = null;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder subBuilder = null;
               if (sendMax_ != null) {
                 subBuilder = sendMax_.toBuilder();
               }
-              sendMax_ = input.readMessage(PymtAmount.parser(), extensionRegistry);
+              sendMax_ = input.readMessage(com.jubiter.sdk.proto.RippleProtos.PymtAmount.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(sendMax_);
                 sendMax_ = subBuilder.buildPartial();
@@ -1400,11 +2265,11 @@ public final class RippleProtos {
               break;
             }
             case 58: {
-              PymtAmount.Builder subBuilder = null;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder subBuilder = null;
               if (deliverMin_ != null) {
                 subBuilder = deliverMin_.toBuilder();
               }
-              deliverMin_ = input.readMessage(PymtAmount.parser(), extensionRegistry);
+              deliverMin_ = input.readMessage(com.jubiter.sdk.proto.RippleProtos.PymtAmount.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(deliverMin_);
                 deliverMin_ = subBuilder.buildPartial();
@@ -1433,15 +2298,15 @@ public final class RippleProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PymtXRP.class, Builder.class);
+              com.jubiter.sdk.proto.RippleProtos.PymtXRP.class, com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder.class);
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
@@ -1455,14 +2320,14 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.ENUM_XRP_PYMT_TYPE type = 1;</code>
      */
-    public ENUM_XRP_PYMT_TYPE getType() {
+    public com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE getType() {
       @SuppressWarnings("deprecation")
-      ENUM_XRP_PYMT_TYPE result = ENUM_XRP_PYMT_TYPE.valueOf(type_);
-      return result == null ? ENUM_XRP_PYMT_TYPE.UNRECOGNIZED : result;
+      com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE result = com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.valueOf(type_);
+      return result == null ? com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.UNRECOGNIZED : result;
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 2;
-    private PymtAmount amount_;
+    private com.jubiter.sdk.proto.RippleProtos.PymtAmount amount_;
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
      */
@@ -1472,29 +2337,29 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
      */
-    public PymtAmount getAmount() {
-      return amount_ == null ? PymtAmount.getDefaultInstance() : amount_;
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmount getAmount() {
+      return amount_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : amount_;
     }
     /**
      * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
      */
-    public PymtAmountOrBuilder getAmountOrBuilder() {
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getAmountOrBuilder() {
       return getAmount();
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 3;
-    private volatile Object destination_;
+    private volatile java.lang.Object destination_;
     /**
      * <code>string destination = 3;</code>
      */
-    public String getDestination() {
-      Object ref = destination_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getDestination() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
@@ -1504,11 +2369,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getDestinationBytes() {
-      Object ref = destination_;
-      if (ref instanceof String) {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         destination_ = b;
         return b;
       } else {
@@ -1517,18 +2382,18 @@ public final class RippleProtos {
     }
 
     public static final int DESTINATION_TAG_FIELD_NUMBER = 4;
-    private volatile Object destinationTag_;
+    private volatile java.lang.Object destinationTag_;
     /**
      * <code>string destination_tag = 4;</code>
      */
-    public String getDestinationTag() {
-      Object ref = destinationTag_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getDestinationTag() {
+      java.lang.Object ref = destinationTag_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         destinationTag_ = s;
         return s;
       }
@@ -1538,11 +2403,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getDestinationTagBytes() {
-      Object ref = destinationTag_;
-      if (ref instanceof String) {
+      java.lang.Object ref = destinationTag_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         destinationTag_ = b;
         return b;
       } else {
@@ -1551,7 +2416,7 @@ public final class RippleProtos {
     }
 
     public static final int INVOICE_ID_FIELD_NUMBER = 5;
-    private volatile Object invoiceId_;
+    private volatile java.lang.Object invoiceId_;
     /**
      * <pre>
      * [Optional]
@@ -1559,14 +2424,14 @@ public final class RippleProtos {
      *
      * <code>string invoice_id = 5;</code>
      */
-    public String getInvoiceId() {
-      Object ref = invoiceId_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getInvoiceId() {
+      java.lang.Object ref = invoiceId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         invoiceId_ = s;
         return s;
       }
@@ -1580,11 +2445,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getInvoiceIdBytes() {
-      Object ref = invoiceId_;
-      if (ref instanceof String) {
+      java.lang.Object ref = invoiceId_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         invoiceId_ = b;
         return b;
       } else {
@@ -1593,7 +2458,7 @@ public final class RippleProtos {
     }
 
     public static final int SEND_MAX_FIELD_NUMBER = 6;
-    private PymtAmount sendMax_;
+    private com.jubiter.sdk.proto.RippleProtos.PymtAmount sendMax_;
     /**
      * <pre>
      * [Optional]
@@ -1611,8 +2476,8 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
      */
-    public PymtAmount getSendMax() {
-      return sendMax_ == null ? PymtAmount.getDefaultInstance() : sendMax_;
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmount getSendMax() {
+      return sendMax_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : sendMax_;
     }
     /**
      * <pre>
@@ -1621,12 +2486,12 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
      */
-    public PymtAmountOrBuilder getSendMaxOrBuilder() {
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getSendMaxOrBuilder() {
       return getSendMax();
     }
 
     public static final int DELIVER_MIN_FIELD_NUMBER = 7;
-    private PymtAmount deliverMin_;
+    private com.jubiter.sdk.proto.RippleProtos.PymtAmount deliverMin_;
     /**
      * <pre>
      * [Optional]
@@ -1644,8 +2509,8 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
      */
-    public PymtAmount getDeliverMin() {
-      return deliverMin_ == null ? PymtAmount.getDefaultInstance() : deliverMin_;
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmount getDeliverMin() {
+      return deliverMin_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : deliverMin_;
     }
     /**
      * <pre>
@@ -1654,12 +2519,12 @@ public final class RippleProtos {
      *
      * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
      */
-    public PymtAmountOrBuilder getDeliverMinOrBuilder() {
+    public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getDeliverMinOrBuilder() {
       return getDeliverMin();
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1669,10 +2534,10 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != ENUM_XRP_PYMT_TYPE.DXRP.getNumber()) {
+      if (type_ != com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.DXRP.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (amount_ != null) {
@@ -1696,13 +2561,13 @@ public final class RippleProtos {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != ENUM_XRP_PYMT_TYPE.DXRP.getNumber()) {
+      if (type_ != com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.DXRP.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
@@ -1732,15 +2597,15 @@ public final class RippleProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PymtXRP)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.RippleProtos.PymtXRP)) {
         return super.equals(obj);
       }
-      PymtXRP other = (PymtXRP) obj;
+      com.jubiter.sdk.proto.RippleProtos.PymtXRP other = (com.jubiter.sdk.proto.RippleProtos.PymtXRP) obj;
 
       if (type_ != other.type_) return false;
       if (hasAmount() != other.hasAmount()) return false;
@@ -1768,7 +2633,7 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1800,69 +2665,69 @@ public final class RippleProtos {
       return hash;
     }
 
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtXRP parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PymtXRP parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PymtXRP parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PymtXRP parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PymtXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1870,23 +2735,23 @@ public final class RippleProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PymtXRP prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.RippleProtos.PymtXRP prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1896,18 +2761,18 @@ public final class RippleProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Ripple.PymtXRP)
-        PymtXRPOrBuilder {
+        com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PymtXRP.class, Builder.class);
+                com.jubiter.sdk.proto.RippleProtos.PymtXRP.class, com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.RippleProtos.PymtXRP.newBuilder()
@@ -1916,7 +2781,7 @@ public final class RippleProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1925,7 +2790,7 @@ public final class RippleProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         type_ = 0;
@@ -1957,29 +2822,29 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
       }
 
-      @Override
-      public PymtXRP getDefaultInstanceForType() {
-        return PymtXRP.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRP getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
       }
 
-      @Override
-      public PymtXRP build() {
-        PymtXRP result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRP build() {
+        com.jubiter.sdk.proto.RippleProtos.PymtXRP result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PymtXRP buildPartial() {
-        PymtXRP result = new PymtXRP(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRP buildPartial() {
+        com.jubiter.sdk.proto.RippleProtos.PymtXRP result = new com.jubiter.sdk.proto.RippleProtos.PymtXRP(this);
         result.type_ = type_;
         if (amountBuilder_ == null) {
           result.amount_ = amount_;
@@ -2003,50 +2868,50 @@ public final class RippleProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PymtXRP) {
-          return mergeFrom((PymtXRP)other);
+        if (other instanceof com.jubiter.sdk.proto.RippleProtos.PymtXRP) {
+          return mergeFrom((com.jubiter.sdk.proto.RippleProtos.PymtXRP)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PymtXRP other) {
-        if (other == PymtXRP.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.RippleProtos.PymtXRP other) {
+        if (other == com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
@@ -2076,21 +2941,21 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PymtXRP parsedMessage = null;
+        com.jubiter.sdk.proto.RippleProtos.PymtXRP parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PymtXRP) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.RippleProtos.PymtXRP) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2118,15 +2983,15 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.ENUM_XRP_PYMT_TYPE type = 1;</code>
        */
-      public ENUM_XRP_PYMT_TYPE getType() {
+      public com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE getType() {
         @SuppressWarnings("deprecation")
-        ENUM_XRP_PYMT_TYPE result = ENUM_XRP_PYMT_TYPE.valueOf(type_);
-        return result == null ? ENUM_XRP_PYMT_TYPE.UNRECOGNIZED : result;
+        com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE result = com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.valueOf(type_);
+        return result == null ? com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Ripple.ENUM_XRP_PYMT_TYPE type = 1;</code>
        */
-      public Builder setType(ENUM_XRP_PYMT_TYPE value) {
+      public Builder setType(com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_PYMT_TYPE value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2145,9 +3010,9 @@ public final class RippleProtos {
         return this;
       }
 
-      private PymtAmount amount_;
+      private com.jubiter.sdk.proto.RippleProtos.PymtAmount amount_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder> amountBuilder_;
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> amountBuilder_;
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
@@ -2157,9 +3022,9 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
-      public PymtAmount getAmount() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount getAmount() {
         if (amountBuilder_ == null) {
-          return amount_ == null ? PymtAmount.getDefaultInstance() : amount_;
+          return amount_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : amount_;
         } else {
           return amountBuilder_.getMessage();
         }
@@ -2167,7 +3032,7 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
-      public Builder setAmount(PymtAmount value) {
+      public Builder setAmount(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (amountBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2184,7 +3049,7 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
       public Builder setAmount(
-          PymtAmount.Builder builderForValue) {
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder builderForValue) {
         if (amountBuilder_ == null) {
           amount_ = builderForValue.build();
           onChanged();
@@ -2197,11 +3062,11 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
-      public Builder mergeAmount(PymtAmount value) {
+      public Builder mergeAmount(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (amountBuilder_ == null) {
           if (amount_ != null) {
             amount_ =
-              PymtAmount.newBuilder(amount_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.newBuilder(amount_).mergeFrom(value).buildPartial();
           } else {
             amount_ = value;
           }
@@ -2229,7 +3094,7 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
-      public PymtAmount.Builder getAmountBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder getAmountBuilder() {
         
         onChanged();
         return getAmountFieldBuilder().getBuilder();
@@ -2237,23 +3102,23 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
-      public PymtAmountOrBuilder getAmountOrBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getAmountOrBuilder() {
         if (amountBuilder_ != null) {
           return amountBuilder_.getMessageOrBuilder();
         } else {
           return amount_ == null ?
-              PymtAmount.getDefaultInstance() : amount_;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : amount_;
         }
       }
       /**
        * <code>.JUB.Proto.Ripple.PymtAmount amount = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> 
           getAmountFieldBuilder() {
         if (amountBuilder_ == null) {
           amountBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>(
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder>(
                   getAmount(),
                   getParentForChildren(),
                   isClean());
@@ -2262,20 +3127,20 @@ public final class RippleProtos {
         return amountBuilder_;
       }
 
-      private Object destination_ = "";
+      private java.lang.Object destination_ = "";
       /**
        * <code>string destination = 3;</code>
        */
-      public String getDestination() {
-        Object ref = destination_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           destination_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2283,11 +3148,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getDestinationBytes() {
-        Object ref = destination_;
+        java.lang.Object ref = destination_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           destination_ = b;
           return b;
         } else {
@@ -2298,7 +3163,7 @@ public final class RippleProtos {
        * <code>string destination = 3;</code>
        */
       public Builder setDestination(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2331,20 +3196,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object destinationTag_ = "";
+      private java.lang.Object destinationTag_ = "";
       /**
        * <code>string destination_tag = 4;</code>
        */
-      public String getDestinationTag() {
-        Object ref = destinationTag_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getDestinationTag() {
+        java.lang.Object ref = destinationTag_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           destinationTag_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2352,11 +3217,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getDestinationTagBytes() {
-        Object ref = destinationTag_;
+        java.lang.Object ref = destinationTag_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           destinationTag_ = b;
           return b;
         } else {
@@ -2367,7 +3232,7 @@ public final class RippleProtos {
        * <code>string destination_tag = 4;</code>
        */
       public Builder setDestinationTag(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2400,7 +3265,7 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object invoiceId_ = "";
+      private java.lang.Object invoiceId_ = "";
       /**
        * <pre>
        * [Optional]
@@ -2408,16 +3273,16 @@ public final class RippleProtos {
        *
        * <code>string invoice_id = 5;</code>
        */
-      public String getInvoiceId() {
-        Object ref = invoiceId_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getInvoiceId() {
+        java.lang.Object ref = invoiceId_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           invoiceId_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2429,11 +3294,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getInvoiceIdBytes() {
-        Object ref = invoiceId_;
+        java.lang.Object ref = invoiceId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           invoiceId_ = b;
           return b;
         } else {
@@ -2448,7 +3313,7 @@ public final class RippleProtos {
        * <code>string invoice_id = 5;</code>
        */
       public Builder setInvoiceId(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2489,9 +3354,9 @@ public final class RippleProtos {
         return this;
       }
 
-      private PymtAmount sendMax_;
+      private com.jubiter.sdk.proto.RippleProtos.PymtAmount sendMax_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder> sendMaxBuilder_;
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> sendMaxBuilder_;
       /**
        * <pre>
        * [Optional]
@@ -2509,9 +3374,9 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
-      public PymtAmount getSendMax() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount getSendMax() {
         if (sendMaxBuilder_ == null) {
-          return sendMax_ == null ? PymtAmount.getDefaultInstance() : sendMax_;
+          return sendMax_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : sendMax_;
         } else {
           return sendMaxBuilder_.getMessage();
         }
@@ -2523,7 +3388,7 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
-      public Builder setSendMax(PymtAmount value) {
+      public Builder setSendMax(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (sendMaxBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2544,7 +3409,7 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
       public Builder setSendMax(
-          PymtAmount.Builder builderForValue) {
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder builderForValue) {
         if (sendMaxBuilder_ == null) {
           sendMax_ = builderForValue.build();
           onChanged();
@@ -2561,11 +3426,11 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
-      public Builder mergeSendMax(PymtAmount value) {
+      public Builder mergeSendMax(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (sendMaxBuilder_ == null) {
           if (sendMax_ != null) {
             sendMax_ =
-              PymtAmount.newBuilder(sendMax_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.newBuilder(sendMax_).mergeFrom(value).buildPartial();
           } else {
             sendMax_ = value;
           }
@@ -2601,7 +3466,7 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
-      public PymtAmount.Builder getSendMaxBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder getSendMaxBuilder() {
         
         onChanged();
         return getSendMaxFieldBuilder().getBuilder();
@@ -2613,12 +3478,12 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
-      public PymtAmountOrBuilder getSendMaxOrBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getSendMaxOrBuilder() {
         if (sendMaxBuilder_ != null) {
           return sendMaxBuilder_.getMessageOrBuilder();
         } else {
           return sendMax_ == null ?
-              PymtAmount.getDefaultInstance() : sendMax_;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : sendMax_;
         }
       }
       /**
@@ -2629,11 +3494,11 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtAmount send_max = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> 
           getSendMaxFieldBuilder() {
         if (sendMaxBuilder_ == null) {
           sendMaxBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>(
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder>(
                   getSendMax(),
                   getParentForChildren(),
                   isClean());
@@ -2642,9 +3507,9 @@ public final class RippleProtos {
         return sendMaxBuilder_;
       }
 
-      private PymtAmount deliverMin_;
+      private com.jubiter.sdk.proto.RippleProtos.PymtAmount deliverMin_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder> deliverMinBuilder_;
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> deliverMinBuilder_;
       /**
        * <pre>
        * [Optional]
@@ -2662,9 +3527,9 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
-      public PymtAmount getDeliverMin() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount getDeliverMin() {
         if (deliverMinBuilder_ == null) {
-          return deliverMin_ == null ? PymtAmount.getDefaultInstance() : deliverMin_;
+          return deliverMin_ == null ? com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : deliverMin_;
         } else {
           return deliverMinBuilder_.getMessage();
         }
@@ -2676,7 +3541,7 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
-      public Builder setDeliverMin(PymtAmount value) {
+      public Builder setDeliverMin(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (deliverMinBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2697,7 +3562,7 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
       public Builder setDeliverMin(
-          PymtAmount.Builder builderForValue) {
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder builderForValue) {
         if (deliverMinBuilder_ == null) {
           deliverMin_ = builderForValue.build();
           onChanged();
@@ -2714,11 +3579,11 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
-      public Builder mergeDeliverMin(PymtAmount value) {
+      public Builder mergeDeliverMin(com.jubiter.sdk.proto.RippleProtos.PymtAmount value) {
         if (deliverMinBuilder_ == null) {
           if (deliverMin_ != null) {
             deliverMin_ =
-              PymtAmount.newBuilder(deliverMin_).mergeFrom(value).buildPartial();
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.newBuilder(deliverMin_).mergeFrom(value).buildPartial();
           } else {
             deliverMin_ = value;
           }
@@ -2754,7 +3619,7 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
-      public PymtAmount.Builder getDeliverMinBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder getDeliverMinBuilder() {
         
         onChanged();
         return getDeliverMinFieldBuilder().getBuilder();
@@ -2766,12 +3631,12 @@ public final class RippleProtos {
        *
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
-      public PymtAmountOrBuilder getDeliverMinOrBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder getDeliverMinOrBuilder() {
         if (deliverMinBuilder_ != null) {
           return deliverMinBuilder_.getMessageOrBuilder();
         } else {
           return deliverMin_ == null ?
-              PymtAmount.getDefaultInstance() : deliverMin_;
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount.getDefaultInstance() : deliverMin_;
         }
       }
       /**
@@ -2782,11 +3647,11 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtAmount deliver_min = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>
+          com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder> 
           getDeliverMinFieldBuilder() {
         if (deliverMinBuilder_ == null) {
           deliverMinBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PymtAmount, PymtAmount.Builder, PymtAmountOrBuilder>(
+              com.jubiter.sdk.proto.RippleProtos.PymtAmount, com.jubiter.sdk.proto.RippleProtos.PymtAmount.Builder, com.jubiter.sdk.proto.RippleProtos.PymtAmountOrBuilder>(
                   getDeliverMin(),
                   getParentForChildren(),
                   isClean());
@@ -2794,13 +3659,13 @@ public final class RippleProtos {
         }
         return deliverMinBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2811,18 +3676,18 @@ public final class RippleProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Ripple.PymtXRP)
-    private static final PymtXRP DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.RippleProtos.PymtXRP DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PymtXRP();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.RippleProtos.PymtXRP();
     }
 
-    public static PymtXRP getDefaultInstance() {
+    public static com.jubiter.sdk.proto.RippleProtos.PymtXRP getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PymtXRP>
         PARSER = new com.google.protobuf.AbstractParser<PymtXRP>() {
-      @Override
+      @java.lang.Override
       public PymtXRP parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2835,13 +3700,13 @@ public final class RippleProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PymtXRP> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PymtXRP getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.RippleProtos.PymtXRP getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2854,7 +3719,7 @@ public final class RippleProtos {
     /**
      * <code>string account = 1;</code>
      */
-    String getAccount();
+    java.lang.String getAccount();
     /**
      * <code>string account = 1;</code>
      */
@@ -2868,12 +3733,12 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.ENUM_XRP_TX_TYPE type = 2;</code>
      */
-    ENUM_XRP_TX_TYPE getType();
+    com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE getType();
 
     /**
      * <code>string fee = 3;</code>
      */
-    String getFee();
+    java.lang.String getFee();
     /**
      * <code>string fee = 3;</code>
      */
@@ -2883,7 +3748,7 @@ public final class RippleProtos {
     /**
      * <code>string sequence = 4;</code>
      */
-    String getSequence();
+    java.lang.String getSequence();
     /**
      * <code>string sequence = 4;</code>
      */
@@ -2897,7 +3762,7 @@ public final class RippleProtos {
      *
      * <code>string account_txn_id = 5;</code>
      */
-    String getAccountTxnId();
+    java.lang.String getAccountTxnId();
     /**
      * <pre>
      * [Optional]
@@ -2911,7 +3776,7 @@ public final class RippleProtos {
     /**
      * <code>string flags = 6;</code>
      */
-    String getFlags();
+    java.lang.String getFlags();
     /**
      * <code>string flags = 6;</code>
      */
@@ -2921,7 +3786,7 @@ public final class RippleProtos {
     /**
      * <code>string last_ledger_sequence = 7;</code>
      */
-    String getLastLedgerSequence();
+    java.lang.String getLastLedgerSequence();
     /**
      * <code>string last_ledger_sequence = 7;</code>
      */
@@ -2933,18 +3798,25 @@ public final class RippleProtos {
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    String getMemos();
+    boolean hasMemo();
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    com.google.protobuf.ByteString
-        getMemosBytes();
+    com.jubiter.sdk.proto.RippleProtos.XrpMemo getMemo();
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+     */
+    com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder getMemoOrBuilder();
 
     /**
      * <pre>
@@ -2953,7 +3825,7 @@ public final class RippleProtos {
      *
      * <code>string source_tag = 9;</code>
      */
-    String getSourceTag();
+    java.lang.String getSourceTag();
     /**
      * <pre>
      * [Optional]
@@ -2971,13 +3843,13 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
      */
-    PymtXRP getPymt();
+    com.jubiter.sdk.proto.RippleProtos.PymtXRP getPymt();
     /**
      * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
      */
-    PymtXRPOrBuilder getPymtOrBuilder();
+    com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder getPymtOrBuilder();
 
-    public TransactionXRP.ActionCase getActionCase();
+    public com.jubiter.sdk.proto.RippleProtos.TransactionXRP.ActionCase getActionCase();
   }
   /**
    * Protobuf type {@code JUB.Proto.Ripple.TransactionXRP}
@@ -2999,18 +3871,17 @@ public final class RippleProtos {
       accountTxnId_ = "";
       flags_ = "";
       lastLedgerSequence_ = "";
-      memos_ = "";
       sourceTag_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransactionXRP();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3021,7 +3892,7 @@ public final class RippleProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3034,7 +3905,7 @@ public final class RippleProtos {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               account_ = s;
               break;
@@ -3046,56 +3917,63 @@ public final class RippleProtos {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               fee_ = s;
               break;
             }
             case 34: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               sequence_ = s;
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               accountTxnId_ = s;
               break;
             }
             case 50: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               flags_ = s;
               break;
             }
             case 58: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               lastLedgerSequence_ = s;
               break;
             }
             case 66: {
-              String s = input.readStringRequireUtf8();
+              com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder subBuilder = null;
+              if (memo_ != null) {
+                subBuilder = memo_.toBuilder();
+              }
+              memo_ = input.readMessage(com.jubiter.sdk.proto.RippleProtos.XrpMemo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(memo_);
+                memo_ = subBuilder.buildPartial();
+              }
 
-              memos_ = s;
               break;
             }
             case 74: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               sourceTag_ = s;
               break;
             }
             case 82: {
-              PymtXRP.Builder subBuilder = null;
+              com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder subBuilder = null;
               if (actionCase_ == 10) {
-                subBuilder = ((PymtXRP) action_).toBuilder();
+                subBuilder = ((com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_).toBuilder();
               }
               action_ =
-                  input.readMessage(PymtXRP.parser(), extensionRegistry);
+                  input.readMessage(com.jubiter.sdk.proto.RippleProtos.PymtXRP.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((PymtXRP) action_);
+                subBuilder.mergeFrom((com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_);
                 action_ = subBuilder.buildPartial();
               }
               actionCase_ = 10;
@@ -3122,19 +4000,19 @@ public final class RippleProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable
+      return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              TransactionXRP.class, Builder.class);
+              com.jubiter.sdk.proto.RippleProtos.TransactionXRP.class, com.jubiter.sdk.proto.RippleProtos.TransactionXRP.Builder.class);
     }
 
     private int actionCase_ = 0;
-    private Object action_;
+    private java.lang.Object action_;
     public enum ActionCase
         implements com.google.protobuf.Internal.EnumLite {
       PYMT(10),
@@ -3146,7 +4024,7 @@ public final class RippleProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static ActionCase valueOf(int value) {
         return forNumber(value);
       }
@@ -3170,18 +4048,18 @@ public final class RippleProtos {
     }
 
     public static final int ACCOUNT_FIELD_NUMBER = 1;
-    private volatile Object account_;
+    private volatile java.lang.Object account_;
     /**
      * <code>string account = 1;</code>
      */
-    public String getAccount() {
-      Object ref = account_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getAccount() {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         account_ = s;
         return s;
       }
@@ -3191,11 +4069,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getAccountBytes() {
-      Object ref = account_;
-      if (ref instanceof String) {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         account_ = b;
         return b;
       } else {
@@ -3214,25 +4092,25 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.ENUM_XRP_TX_TYPE type = 2;</code>
      */
-    public ENUM_XRP_TX_TYPE getType() {
+    public com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE getType() {
       @SuppressWarnings("deprecation")
-      ENUM_XRP_TX_TYPE result = ENUM_XRP_TX_TYPE.valueOf(type_);
-      return result == null ? ENUM_XRP_TX_TYPE.UNRECOGNIZED : result;
+      com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE result = com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.valueOf(type_);
+      return result == null ? com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.UNRECOGNIZED : result;
     }
 
     public static final int FEE_FIELD_NUMBER = 3;
-    private volatile Object fee_;
+    private volatile java.lang.Object fee_;
     /**
      * <code>string fee = 3;</code>
      */
-    public String getFee() {
-      Object ref = fee_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getFee() {
+      java.lang.Object ref = fee_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         fee_ = s;
         return s;
       }
@@ -3242,11 +4120,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getFeeBytes() {
-      Object ref = fee_;
-      if (ref instanceof String) {
+      java.lang.Object ref = fee_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         fee_ = b;
         return b;
       } else {
@@ -3255,18 +4133,18 @@ public final class RippleProtos {
     }
 
     public static final int SEQUENCE_FIELD_NUMBER = 4;
-    private volatile Object sequence_;
+    private volatile java.lang.Object sequence_;
     /**
      * <code>string sequence = 4;</code>
      */
-    public String getSequence() {
-      Object ref = sequence_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSequence() {
+      java.lang.Object ref = sequence_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         sequence_ = s;
         return s;
       }
@@ -3276,11 +4154,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getSequenceBytes() {
-      Object ref = sequence_;
-      if (ref instanceof String) {
+      java.lang.Object ref = sequence_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         sequence_ = b;
         return b;
       } else {
@@ -3289,7 +4167,7 @@ public final class RippleProtos {
     }
 
     public static final int ACCOUNT_TXN_ID_FIELD_NUMBER = 5;
-    private volatile Object accountTxnId_;
+    private volatile java.lang.Object accountTxnId_;
     /**
      * <pre>
      * [Optional]
@@ -3297,14 +4175,14 @@ public final class RippleProtos {
      *
      * <code>string account_txn_id = 5;</code>
      */
-    public String getAccountTxnId() {
-      Object ref = accountTxnId_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getAccountTxnId() {
+      java.lang.Object ref = accountTxnId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         accountTxnId_ = s;
         return s;
       }
@@ -3318,11 +4196,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getAccountTxnIdBytes() {
-      Object ref = accountTxnId_;
-      if (ref instanceof String) {
+      java.lang.Object ref = accountTxnId_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         accountTxnId_ = b;
         return b;
       } else {
@@ -3331,18 +4209,18 @@ public final class RippleProtos {
     }
 
     public static final int FLAGS_FIELD_NUMBER = 6;
-    private volatile Object flags_;
+    private volatile java.lang.Object flags_;
     /**
      * <code>string flags = 6;</code>
      */
-    public String getFlags() {
-      Object ref = flags_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getFlags() {
+      java.lang.Object ref = flags_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         flags_ = s;
         return s;
       }
@@ -3352,11 +4230,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getFlagsBytes() {
-      Object ref = flags_;
-      if (ref instanceof String) {
+      java.lang.Object ref = flags_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         flags_ = b;
         return b;
       } else {
@@ -3365,18 +4243,18 @@ public final class RippleProtos {
     }
 
     public static final int LAST_LEDGER_SEQUENCE_FIELD_NUMBER = 7;
-    private volatile Object lastLedgerSequence_;
+    private volatile java.lang.Object lastLedgerSequence_;
     /**
      * <code>string last_ledger_sequence = 7;</code>
      */
-    public String getLastLedgerSequence() {
-      Object ref = lastLedgerSequence_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getLastLedgerSequence() {
+      java.lang.Object ref = lastLedgerSequence_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         lastLedgerSequence_ = s;
         return s;
       }
@@ -3386,11 +4264,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getLastLedgerSequenceBytes() {
-      Object ref = lastLedgerSequence_;
-      if (ref instanceof String) {
+      java.lang.Object ref = lastLedgerSequence_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         lastLedgerSequence_ = b;
         return b;
       } else {
@@ -3398,50 +4276,41 @@ public final class RippleProtos {
       }
     }
 
-    public static final int MEMOS_FIELD_NUMBER = 8;
-    private volatile Object memos_;
+    public static final int MEMO_FIELD_NUMBER = 8;
+    private com.jubiter.sdk.proto.RippleProtos.XrpMemo memo_;
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    public String getMemos() {
-      Object ref = memos_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        memos_ = s;
-        return s;
-      }
+    public boolean hasMemo() {
+      return memo_ != null;
     }
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    public com.google.protobuf.ByteString
-        getMemosBytes() {
-      Object ref = memos_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        memos_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public com.jubiter.sdk.proto.RippleProtos.XrpMemo getMemo() {
+      return memo_ == null ? com.jubiter.sdk.proto.RippleProtos.XrpMemo.getDefaultInstance() : memo_;
+    }
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+     */
+    public com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder getMemoOrBuilder() {
+      return getMemo();
     }
 
     public static final int SOURCE_TAG_FIELD_NUMBER = 9;
-    private volatile Object sourceTag_;
+    private volatile java.lang.Object sourceTag_;
     /**
      * <pre>
      * [Optional]
@@ -3449,14 +4318,14 @@ public final class RippleProtos {
      *
      * <code>string source_tag = 9;</code>
      */
-    public String getSourceTag() {
-      Object ref = sourceTag_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSourceTag() {
+      java.lang.Object ref = sourceTag_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         sourceTag_ = s;
         return s;
       }
@@ -3470,11 +4339,11 @@ public final class RippleProtos {
      */
     public com.google.protobuf.ByteString
         getSourceTagBytes() {
-      Object ref = sourceTag_;
-      if (ref instanceof String) {
+      java.lang.Object ref = sourceTag_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         sourceTag_ = b;
         return b;
       } else {
@@ -3492,24 +4361,24 @@ public final class RippleProtos {
     /**
      * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
      */
-    public PymtXRP getPymt() {
+    public com.jubiter.sdk.proto.RippleProtos.PymtXRP getPymt() {
       if (actionCase_ == 10) {
-         return (PymtXRP) action_;
+         return (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_;
       }
-      return PymtXRP.getDefaultInstance();
+      return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
      */
-    public PymtXRPOrBuilder getPymtOrBuilder() {
+    public com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder getPymtOrBuilder() {
       if (actionCase_ == 10) {
-         return (PymtXRP) action_;
+         return (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_;
       }
-      return PymtXRP.getDefaultInstance();
+      return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3519,13 +4388,13 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getAccountBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, account_);
       }
-      if (type_ != ENUM_XRP_TX_TYPE.PYMT.getNumber()) {
+      if (type_ != com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.PYMT.getNumber()) {
         output.writeEnum(2, type_);
       }
       if (!getFeeBytes().isEmpty()) {
@@ -3543,19 +4412,19 @@ public final class RippleProtos {
       if (!getLastLedgerSequenceBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, lastLedgerSequence_);
       }
-      if (!getMemosBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, memos_);
+      if (memo_ != null) {
+        output.writeMessage(8, getMemo());
       }
       if (!getSourceTagBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 9, sourceTag_);
       }
       if (actionCase_ == 10) {
-        output.writeMessage(10, (PymtXRP) action_);
+        output.writeMessage(10, (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_);
       }
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3564,7 +4433,7 @@ public final class RippleProtos {
       if (!getAccountBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, account_);
       }
-      if (type_ != ENUM_XRP_TX_TYPE.PYMT.getNumber()) {
+      if (type_ != com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.PYMT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, type_);
       }
@@ -3583,30 +4452,31 @@ public final class RippleProtos {
       if (!getLastLedgerSequenceBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, lastLedgerSequence_);
       }
-      if (!getMemosBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, memos_);
+      if (memo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getMemo());
       }
       if (!getSourceTagBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, sourceTag_);
       }
       if (actionCase_ == 10) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, (PymtXRP) action_);
+          .computeMessageSize(10, (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof TransactionXRP)) {
+      if (!(obj instanceof com.jubiter.sdk.proto.RippleProtos.TransactionXRP)) {
         return super.equals(obj);
       }
-      TransactionXRP other = (TransactionXRP) obj;
+      com.jubiter.sdk.proto.RippleProtos.TransactionXRP other = (com.jubiter.sdk.proto.RippleProtos.TransactionXRP) obj;
 
       if (!getAccount()
           .equals(other.getAccount())) return false;
@@ -3621,8 +4491,11 @@ public final class RippleProtos {
           .equals(other.getFlags())) return false;
       if (!getLastLedgerSequence()
           .equals(other.getLastLedgerSequence())) return false;
-      if (!getMemos()
-          .equals(other.getMemos())) return false;
+      if (hasMemo() != other.hasMemo()) return false;
+      if (hasMemo()) {
+        if (!getMemo()
+            .equals(other.getMemo())) return false;
+      }
       if (!getSourceTag()
           .equals(other.getSourceTag())) return false;
       if (!getActionCase().equals(other.getActionCase())) return false;
@@ -3638,7 +4511,7 @@ public final class RippleProtos {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3659,8 +4532,10 @@ public final class RippleProtos {
       hash = (53 * hash) + getFlags().hashCode();
       hash = (37 * hash) + LAST_LEDGER_SEQUENCE_FIELD_NUMBER;
       hash = (53 * hash) + getLastLedgerSequence().hashCode();
-      hash = (37 * hash) + MEMOS_FIELD_NUMBER;
-      hash = (53 * hash) + getMemos().hashCode();
+      if (hasMemo()) {
+        hash = (37 * hash) + MEMO_FIELD_NUMBER;
+        hash = (53 * hash) + getMemo().hashCode();
+      }
       hash = (37 * hash) + SOURCE_TAG_FIELD_NUMBER;
       hash = (53 * hash) + getSourceTag().hashCode();
       switch (actionCase_) {
@@ -3676,69 +4551,69 @@ public final class RippleProtos {
       return hash;
     }
 
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionXRP parseFrom(byte[] data)
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static TransactionXRP parseFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static TransactionXRP parseDelimitedFrom(java.io.InputStream input)
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static TransactionXRP parseDelimitedFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static TransactionXRP parseFrom(
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3746,23 +4621,23 @@ public final class RippleProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(TransactionXRP prototype) {
+    public static Builder newBuilder(com.jubiter.sdk.proto.RippleProtos.TransactionXRP prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3772,18 +4647,18 @@ public final class RippleProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Ripple.TransactionXRP)
-        TransactionXRPOrBuilder {
+        com.jubiter.sdk.proto.RippleProtos.TransactionXRPOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                TransactionXRP.class, Builder.class);
+                com.jubiter.sdk.proto.RippleProtos.TransactionXRP.class, com.jubiter.sdk.proto.RippleProtos.TransactionXRP.Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.RippleProtos.TransactionXRP.newBuilder()
@@ -3792,7 +4667,7 @@ public final class RippleProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3801,7 +4676,7 @@ public final class RippleProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         account_ = "";
@@ -3818,8 +4693,12 @@ public final class RippleProtos {
 
         lastLedgerSequence_ = "";
 
-        memos_ = "";
-
+        if (memoBuilder_ == null) {
+          memo_ = null;
+        } else {
+          memo_ = null;
+          memoBuilder_ = null;
+        }
         sourceTag_ = "";
 
         actionCase_ = 0;
@@ -3827,29 +4706,29 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
+        return com.jubiter.sdk.proto.RippleProtos.internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor;
       }
 
-      @Override
-      public TransactionXRP getDefaultInstanceForType() {
-        return TransactionXRP.getDefaultInstance();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.TransactionXRP getDefaultInstanceForType() {
+        return com.jubiter.sdk.proto.RippleProtos.TransactionXRP.getDefaultInstance();
       }
 
-      @Override
-      public TransactionXRP build() {
-        TransactionXRP result = buildPartial();
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.TransactionXRP build() {
+        com.jubiter.sdk.proto.RippleProtos.TransactionXRP result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public TransactionXRP buildPartial() {
-        TransactionXRP result = new TransactionXRP(this);
+      @java.lang.Override
+      public com.jubiter.sdk.proto.RippleProtos.TransactionXRP buildPartial() {
+        com.jubiter.sdk.proto.RippleProtos.TransactionXRP result = new com.jubiter.sdk.proto.RippleProtos.TransactionXRP(this);
         result.account_ = account_;
         result.type_ = type_;
         result.fee_ = fee_;
@@ -3857,7 +4736,11 @@ public final class RippleProtos {
         result.accountTxnId_ = accountTxnId_;
         result.flags_ = flags_;
         result.lastLedgerSequence_ = lastLedgerSequence_;
-        result.memos_ = memos_;
+        if (memoBuilder_ == null) {
+          result.memo_ = memo_;
+        } else {
+          result.memo_ = memoBuilder_.build();
+        }
         result.sourceTag_ = sourceTag_;
         if (actionCase_ == 10) {
           if (pymtBuilder_ == null) {
@@ -3871,50 +4754,50 @@ public final class RippleProtos {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof TransactionXRP) {
-          return mergeFrom((TransactionXRP)other);
+        if (other instanceof com.jubiter.sdk.proto.RippleProtos.TransactionXRP) {
+          return mergeFrom((com.jubiter.sdk.proto.RippleProtos.TransactionXRP)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(TransactionXRP other) {
-        if (other == TransactionXRP.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.jubiter.sdk.proto.RippleProtos.TransactionXRP other) {
+        if (other == com.jubiter.sdk.proto.RippleProtos.TransactionXRP.getDefaultInstance()) return this;
         if (!other.getAccount().isEmpty()) {
           account_ = other.account_;
           onChanged();
@@ -3942,9 +4825,8 @@ public final class RippleProtos {
           lastLedgerSequence_ = other.lastLedgerSequence_;
           onChanged();
         }
-        if (!other.getMemos().isEmpty()) {
-          memos_ = other.memos_;
-          onChanged();
+        if (other.hasMemo()) {
+          mergeMemo(other.getMemo());
         }
         if (!other.getSourceTag().isEmpty()) {
           sourceTag_ = other.sourceTag_;
@@ -3964,21 +4846,21 @@ public final class RippleProtos {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        TransactionXRP parsedMessage = null;
+        com.jubiter.sdk.proto.RippleProtos.TransactionXRP parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (TransactionXRP) e.getUnfinishedMessage();
+          parsedMessage = (com.jubiter.sdk.proto.RippleProtos.TransactionXRP) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3988,7 +4870,7 @@ public final class RippleProtos {
         return this;
       }
       private int actionCase_ = 0;
-      private Object action_;
+      private java.lang.Object action_;
       public ActionCase
           getActionCase() {
         return ActionCase.forNumber(
@@ -4003,20 +4885,20 @@ public final class RippleProtos {
       }
 
 
-      private Object account_ = "";
+      private java.lang.Object account_ = "";
       /**
        * <code>string account = 1;</code>
        */
-      public String getAccount() {
-        Object ref = account_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getAccount() {
+        java.lang.Object ref = account_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           account_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4024,11 +4906,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getAccountBytes() {
-        Object ref = account_;
+        java.lang.Object ref = account_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           account_ = b;
           return b;
         } else {
@@ -4039,7 +4921,7 @@ public final class RippleProtos {
        * <code>string account = 1;</code>
        */
       public Builder setAccount(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4090,15 +4972,15 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.ENUM_XRP_TX_TYPE type = 2;</code>
        */
-      public ENUM_XRP_TX_TYPE getType() {
+      public com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE getType() {
         @SuppressWarnings("deprecation")
-        ENUM_XRP_TX_TYPE result = ENUM_XRP_TX_TYPE.valueOf(type_);
-        return result == null ? ENUM_XRP_TX_TYPE.UNRECOGNIZED : result;
+        com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE result = com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.valueOf(type_);
+        return result == null ? com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.Ripple.ENUM_XRP_TX_TYPE type = 2;</code>
        */
-      public Builder setType(ENUM_XRP_TX_TYPE value) {
+      public Builder setType(com.jubiter.sdk.proto.RippleProtos.ENUM_XRP_TX_TYPE value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -4117,20 +4999,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object fee_ = "";
+      private java.lang.Object fee_ = "";
       /**
        * <code>string fee = 3;</code>
        */
-      public String getFee() {
-        Object ref = fee_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getFee() {
+        java.lang.Object ref = fee_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           fee_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4138,11 +5020,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getFeeBytes() {
-        Object ref = fee_;
+        java.lang.Object ref = fee_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           fee_ = b;
           return b;
         } else {
@@ -4153,7 +5035,7 @@ public final class RippleProtos {
        * <code>string fee = 3;</code>
        */
       public Builder setFee(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4186,20 +5068,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object sequence_ = "";
+      private java.lang.Object sequence_ = "";
       /**
        * <code>string sequence = 4;</code>
        */
-      public String getSequence() {
-        Object ref = sequence_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getSequence() {
+        java.lang.Object ref = sequence_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           sequence_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4207,11 +5089,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getSequenceBytes() {
-        Object ref = sequence_;
+        java.lang.Object ref = sequence_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sequence_ = b;
           return b;
         } else {
@@ -4222,7 +5104,7 @@ public final class RippleProtos {
        * <code>string sequence = 4;</code>
        */
       public Builder setSequence(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4255,7 +5137,7 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object accountTxnId_ = "";
+      private java.lang.Object accountTxnId_ = "";
       /**
        * <pre>
        * [Optional]
@@ -4263,16 +5145,16 @@ public final class RippleProtos {
        *
        * <code>string account_txn_id = 5;</code>
        */
-      public String getAccountTxnId() {
-        Object ref = accountTxnId_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getAccountTxnId() {
+        java.lang.Object ref = accountTxnId_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           accountTxnId_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4284,11 +5166,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getAccountTxnIdBytes() {
-        Object ref = accountTxnId_;
+        java.lang.Object ref = accountTxnId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           accountTxnId_ = b;
           return b;
         } else {
@@ -4303,7 +5185,7 @@ public final class RippleProtos {
        * <code>string account_txn_id = 5;</code>
        */
       public Builder setAccountTxnId(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4344,20 +5226,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object flags_ = "";
+      private java.lang.Object flags_ = "";
       /**
        * <code>string flags = 6;</code>
        */
-      public String getFlags() {
-        Object ref = flags_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getFlags() {
+        java.lang.Object ref = flags_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           flags_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4365,11 +5247,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getFlagsBytes() {
-        Object ref = flags_;
+        java.lang.Object ref = flags_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           flags_ = b;
           return b;
         } else {
@@ -4380,7 +5262,7 @@ public final class RippleProtos {
        * <code>string flags = 6;</code>
        */
       public Builder setFlags(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4413,20 +5295,20 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object lastLedgerSequence_ = "";
+      private java.lang.Object lastLedgerSequence_ = "";
       /**
        * <code>string last_ledger_sequence = 7;</code>
        */
-      public String getLastLedgerSequence() {
-        Object ref = lastLedgerSequence_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getLastLedgerSequence() {
+        java.lang.Object ref = lastLedgerSequence_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           lastLedgerSequence_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4434,11 +5316,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getLastLedgerSequenceBytes() {
-        Object ref = lastLedgerSequence_;
+        java.lang.Object ref = lastLedgerSequence_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           lastLedgerSequence_ = b;
           return b;
         } else {
@@ -4449,7 +5331,7 @@ public final class RippleProtos {
        * <code>string last_ledger_sequence = 7;</code>
        */
       public Builder setLastLedgerSequence(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4482,24 +5364,31 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object memos_ = "";
+      private com.jubiter.sdk.proto.RippleProtos.XrpMemo memo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.jubiter.sdk.proto.RippleProtos.XrpMemo, com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder, com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder> memoBuilder_;
       /**
        * <pre>
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public String getMemos() {
-        Object ref = memos_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          memos_ = s;
-          return s;
+      public boolean hasMemo() {
+        return memoBuilder_ != null || memo_ != null;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemo getMemo() {
+        if (memoBuilder_ == null) {
+          return memo_ == null ? com.jubiter.sdk.proto.RippleProtos.XrpMemo.getDefaultInstance() : memo_;
         } else {
-          return (String) ref;
+          return memoBuilder_.getMessage();
         }
       }
       /**
@@ -4507,19 +5396,104 @@ public final class RippleProtos {
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public com.google.protobuf.ByteString
-          getMemosBytes() {
-        Object ref = memos_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          memos_ = b;
-          return b;
+      public Builder setMemo(com.jubiter.sdk.proto.RippleProtos.XrpMemo value) {
+        if (memoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          memo_ = value;
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          memoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder setMemo(
+          com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder builderForValue) {
+        if (memoBuilder_ == null) {
+          memo_ = builderForValue.build();
+          onChanged();
+        } else {
+          memoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder mergeMemo(com.jubiter.sdk.proto.RippleProtos.XrpMemo value) {
+        if (memoBuilder_ == null) {
+          if (memo_ != null) {
+            memo_ =
+              com.jubiter.sdk.proto.RippleProtos.XrpMemo.newBuilder(memo_).mergeFrom(value).buildPartial();
+          } else {
+            memo_ = value;
+          }
+          onChanged();
+        } else {
+          memoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder clearMemo() {
+        if (memoBuilder_ == null) {
+          memo_ = null;
+          onChanged();
+        } else {
+          memo_ = null;
+          memoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder getMemoBuilder() {
+        
+        onChanged();
+        return getMemoFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder getMemoOrBuilder() {
+        if (memoBuilder_ != null) {
+          return memoBuilder_.getMessageOrBuilder();
+        } else {
+          return memo_ == null ?
+              com.jubiter.sdk.proto.RippleProtos.XrpMemo.getDefaultInstance() : memo_;
         }
       }
       /**
@@ -4527,51 +5501,23 @@ public final class RippleProtos {
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public Builder setMemos(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        memos_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * [Optional]
-       * </pre>
-       *
-       * <code>string memos = 8;</code>
-       */
-      public Builder clearMemos() {
-        
-        memos_ = getDefaultInstance().getMemos();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * [Optional]
-       * </pre>
-       *
-       * <code>string memos = 8;</code>
-       */
-      public Builder setMemosBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        memos_ = value;
-        onChanged();
-        return this;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.jubiter.sdk.proto.RippleProtos.XrpMemo, com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder, com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder> 
+          getMemoFieldBuilder() {
+        if (memoBuilder_ == null) {
+          memoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.jubiter.sdk.proto.RippleProtos.XrpMemo, com.jubiter.sdk.proto.RippleProtos.XrpMemo.Builder, com.jubiter.sdk.proto.RippleProtos.XrpMemoOrBuilder>(
+                  getMemo(),
+                  getParentForChildren(),
+                  isClean());
+          memo_ = null;
+        }
+        return memoBuilder_;
       }
 
-      private Object sourceTag_ = "";
+      private java.lang.Object sourceTag_ = "";
       /**
        * <pre>
        * [Optional]
@@ -4579,16 +5525,16 @@ public final class RippleProtos {
        *
        * <code>string source_tag = 9;</code>
        */
-      public String getSourceTag() {
-        Object ref = sourceTag_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getSourceTag() {
+        java.lang.Object ref = sourceTag_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           sourceTag_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4600,11 +5546,11 @@ public final class RippleProtos {
        */
       public com.google.protobuf.ByteString
           getSourceTagBytes() {
-        Object ref = sourceTag_;
+        java.lang.Object ref = sourceTag_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sourceTag_ = b;
           return b;
         } else {
@@ -4619,7 +5565,7 @@ public final class RippleProtos {
        * <code>string source_tag = 9;</code>
        */
       public Builder setSourceTag(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4661,7 +5607,7 @@ public final class RippleProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtXRP, PymtXRP.Builder, PymtXRPOrBuilder> pymtBuilder_;
+          com.jubiter.sdk.proto.RippleProtos.PymtXRP, com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder, com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder> pymtBuilder_;
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
@@ -4671,23 +5617,23 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
-      public PymtXRP getPymt() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRP getPymt() {
         if (pymtBuilder_ == null) {
           if (actionCase_ == 10) {
-            return (PymtXRP) action_;
+            return (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_;
           }
-          return PymtXRP.getDefaultInstance();
+          return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
         } else {
           if (actionCase_ == 10) {
             return pymtBuilder_.getMessage();
           }
-          return PymtXRP.getDefaultInstance();
+          return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
-      public Builder setPymt(PymtXRP value) {
+      public Builder setPymt(com.jubiter.sdk.proto.RippleProtos.PymtXRP value) {
         if (pymtBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4704,7 +5650,7 @@ public final class RippleProtos {
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
       public Builder setPymt(
-          PymtXRP.Builder builderForValue) {
+          com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder builderForValue) {
         if (pymtBuilder_ == null) {
           action_ = builderForValue.build();
           onChanged();
@@ -4717,11 +5663,11 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
-      public Builder mergePymt(PymtXRP value) {
+      public Builder mergePymt(com.jubiter.sdk.proto.RippleProtos.PymtXRP value) {
         if (pymtBuilder_ == null) {
           if (actionCase_ == 10 &&
-              action_ != PymtXRP.getDefaultInstance()) {
-            action_ = PymtXRP.newBuilder((PymtXRP) action_)
+              action_ != com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance()) {
+            action_ = com.jubiter.sdk.proto.RippleProtos.PymtXRP.newBuilder((com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_)
                 .mergeFrom(value).buildPartial();
           } else {
             action_ = value;
@@ -4758,35 +5704,35 @@ public final class RippleProtos {
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
-      public PymtXRP.Builder getPymtBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder getPymtBuilder() {
         return getPymtFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
-      public PymtXRPOrBuilder getPymtOrBuilder() {
+      public com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder getPymtOrBuilder() {
         if ((actionCase_ == 10) && (pymtBuilder_ != null)) {
           return pymtBuilder_.getMessageOrBuilder();
         } else {
           if (actionCase_ == 10) {
-            return (PymtXRP) action_;
+            return (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_;
           }
-          return PymtXRP.getDefaultInstance();
+          return com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.Ripple.PymtXRP pymt = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PymtXRP, PymtXRP.Builder, PymtXRPOrBuilder>
+          com.jubiter.sdk.proto.RippleProtos.PymtXRP, com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder, com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder> 
           getPymtFieldBuilder() {
         if (pymtBuilder_ == null) {
           if (!(actionCase_ == 10)) {
-            action_ = PymtXRP.getDefaultInstance();
+            action_ = com.jubiter.sdk.proto.RippleProtos.PymtXRP.getDefaultInstance();
           }
           pymtBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PymtXRP, PymtXRP.Builder, PymtXRPOrBuilder>(
-                  (PymtXRP) action_,
+              com.jubiter.sdk.proto.RippleProtos.PymtXRP, com.jubiter.sdk.proto.RippleProtos.PymtXRP.Builder, com.jubiter.sdk.proto.RippleProtos.PymtXRPOrBuilder>(
+                  (com.jubiter.sdk.proto.RippleProtos.PymtXRP) action_,
                   getParentForChildren(),
                   isClean());
           action_ = null;
@@ -4795,13 +5741,13 @@ public final class RippleProtos {
         onChanged();;
         return pymtBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4812,18 +5758,18 @@ public final class RippleProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Ripple.TransactionXRP)
-    private static final TransactionXRP DEFAULT_INSTANCE;
+    private static final com.jubiter.sdk.proto.RippleProtos.TransactionXRP DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new TransactionXRP();
+      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.RippleProtos.TransactionXRP();
     }
 
-    public static TransactionXRP getDefaultInstance() {
+    public static com.jubiter.sdk.proto.RippleProtos.TransactionXRP getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransactionXRP>
         PARSER = new com.google.protobuf.AbstractParser<TransactionXRP>() {
-      @Override
+      @java.lang.Override
       public TransactionXRP parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4836,13 +5782,13 @@ public final class RippleProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<TransactionXRP> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public TransactionXRP getDefaultInstanceForType() {
+    @java.lang.Override
+    public com.jubiter.sdk.proto.RippleProtos.TransactionXRP getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4853,6 +5799,11 @@ public final class RippleProtos {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
   private static final 
@@ -4871,28 +5822,30 @@ public final class RippleProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\020Jub_Ripple.proto\022\020JUB.Proto.Ripple\"=\n\n" +
       "PymtAmount\022\020\n\010currency\030\001 \001(\t\022\r\n\005value\030\002 " +
-      "\001(\t\022\016\n\006issuer\030\003 \001(\t\"\220\002\n\007PymtXRP\0222\n\004type\030" +
-      "\001 \001(\0162$.JUB.Proto.Ripple.ENUM_XRP_PYMT_T" +
-      "YPE\022,\n\006amount\030\002 \001(\0132\034.JUB.Proto.Ripple.P" +
-      "ymtAmount\022\023\n\013destination\030\003 \001(\t\022\027\n\017destin" +
-      "ation_tag\030\004 \001(\t\022\022\n\ninvoice_id\030\005 \001(\t\022.\n\010s" +
-      "end_max\030\006 \001(\0132\034.JUB.Proto.Ripple.PymtAmo" +
-      "unt\0221\n\013deliver_min\030\007 \001(\0132\034.JUB.Proto.Rip" +
-      "ple.PymtAmount\"\217\002\n\016TransactionXRP\022\017\n\007acc" +
-      "ount\030\001 \001(\t\0220\n\004type\030\002 \001(\0162\".JUB.Proto.Rip" +
-      "ple.ENUM_XRP_TX_TYPE\022\013\n\003fee\030\003 \001(\t\022\020\n\010seq" +
-      "uence\030\004 \001(\t\022\026\n\016account_txn_id\030\005 \001(\t\022\r\n\005f" +
-      "lags\030\006 \001(\t\022\034\n\024last_ledger_sequence\030\007 \001(\t" +
-      "\022\r\n\005memos\030\010 \001(\t\022\022\n\nsource_tag\030\t \001(\t\022)\n\004p" +
-      "ymt\030\n \001(\0132\031.JUB.Proto.Ripple.PymtXRPH\000B\010" +
-      "\n\006action*\034\n\020ENUM_XRP_TX_TYPE\022\010\n\004PYMT\020\000*R" +
-      "\n\022ENUM_XRP_PYMT_TYPE\022\010\n\004DXRP\020\000\022\006\n\002FX\020\001\022\n" +
-      "\n\006CHECKS\020\002\022\n\n\006ESCROW\020\003\022\010\n\004PRTL\020\004\022\010\n\004CHAN" +
-      "\020\005B4\n\025com.jubiter.sdk.protoB\014RippleProto" +
-      "s\242\002\014RippleProtosb\006proto3"
+      "\001(\t\022\016\n\006issuer\030\003 \001(\t\"5\n\007XrpMemo\022\014\n\004type\030\001" +
+      " \001(\t\022\014\n\004data\030\002 \001(\t\022\016\n\006format\030\003 \001(\t\"\220\002\n\007P" +
+      "ymtXRP\0222\n\004type\030\001 \001(\0162$.JUB.Proto.Ripple." +
+      "ENUM_XRP_PYMT_TYPE\022,\n\006amount\030\002 \001(\0132\034.JUB" +
+      ".Proto.Ripple.PymtAmount\022\023\n\013destination\030" +
+      "\003 \001(\t\022\027\n\017destination_tag\030\004 \001(\t\022\022\n\ninvoic" +
+      "e_id\030\005 \001(\t\022.\n\010send_max\030\006 \001(\0132\034.JUB.Proto" +
+      ".Ripple.PymtAmount\0221\n\013deliver_min\030\007 \001(\0132" +
+      "\034.JUB.Proto.Ripple.PymtAmount\"\251\002\n\016Transa" +
+      "ctionXRP\022\017\n\007account\030\001 \001(\t\0220\n\004type\030\002 \001(\0162" +
+      "\".JUB.Proto.Ripple.ENUM_XRP_TX_TYPE\022\013\n\003f" +
+      "ee\030\003 \001(\t\022\020\n\010sequence\030\004 \001(\t\022\026\n\016account_tx" +
+      "n_id\030\005 \001(\t\022\r\n\005flags\030\006 \001(\t\022\034\n\024last_ledger" +
+      "_sequence\030\007 \001(\t\022\'\n\004memo\030\010 \001(\0132\031.JUB.Prot" +
+      "o.Ripple.XrpMemo\022\022\n\nsource_tag\030\t \001(\t\022)\n\004" +
+      "pymt\030\n \001(\0132\031.JUB.Proto.Ripple.PymtXRPH\000B" +
+      "\010\n\006action*\034\n\020ENUM_XRP_TX_TYPE\022\010\n\004PYMT\020\000*" +
+      "R\n\022ENUM_XRP_PYMT_TYPE\022\010\n\004DXRP\020\000\022\006\n\002FX\020\001\022" +
+      "\n\n\006CHECKS\020\002\022\n\n\006ESCROW\020\003\022\010\n\004PRTL\020\004\022\010\n\004CHA" +
+      "N\020\005B4\n\025com.jubiter.sdk.protoB\014RippleProt" +
+      "os\242\002\014RippleProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4903,19 +5856,25 @@ public final class RippleProtos {
     internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_PymtAmount_descriptor,
-        new String[] { "Currency", "Value", "Issuer", });
-    internal_static_JUB_Proto_Ripple_PymtXRP_descriptor =
+        new java.lang.String[] { "Currency", "Value", "Issuer", });
+    internal_static_JUB_Proto_Ripple_XrpMemo_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_Ripple_XrpMemo_descriptor,
+        new java.lang.String[] { "Type", "Data", "Format", });
+    internal_static_JUB_Proto_Ripple_PymtXRP_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_PymtXRP_descriptor,
-        new String[] { "Type", "Amount", "Destination", "DestinationTag", "InvoiceId", "SendMax", "DeliverMin", });
+        new java.lang.String[] { "Type", "Amount", "Destination", "DestinationTag", "InvoiceId", "SendMax", "DeliverMin", });
     internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor,
-        new String[] { "Account", "Type", "Fee", "Sequence", "AccountTxnId", "Flags", "LastLedgerSequence", "Memos", "SourceTag", "Pymt", "Action", });
+        new java.lang.String[] { "Account", "Type", "Fee", "Sequence", "AccountTxnId", "Flags", "LastLedgerSequence", "Memo", "SourceTag", "Pymt", "Action", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
