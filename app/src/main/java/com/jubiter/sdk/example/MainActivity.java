@@ -114,12 +114,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             JuBiterWallet.initDevice();
+            int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext));
+            Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
 
-            Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            if (tag != null) {
-                int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext, tag));
-                Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
-            }
+//            Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+//            if (tag != null) {
+//                int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext, tag));
+//                Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
+//            }
         }
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
@@ -345,7 +347,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.checkMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = JuBiterWallet.checkMnemonic("gauge hole clog property soccer idea cycle stadium utility slice hold chief");
+                int result = JuBiterWallet.checkMnemonic("payment reopen pear timber corn salon goat elephant clump company swift spare");
+//                int result = JuBiterWallet.checkMnemonic("gauge hole clog property soccer idea cycle stadium utility slice hold chief");
 //                int result = JuBiterWallet.checkMnemonic(mnemonic);
                 Log.d(TAG, ">>> generateMnemonic - rv : " + result);
             }

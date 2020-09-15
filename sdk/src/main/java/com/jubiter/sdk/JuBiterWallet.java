@@ -282,7 +282,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int initDevice() {
-        return NativeApi.nativeInitDevice();
+        return NativeApi.nativeBLEInitDevice();
     }
 
     /**
@@ -294,7 +294,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static void startScan(final ScanResultCallback scanResultCallback) {
-        int rv = NativeApi.nativeStartScan(new InnerScanCallback() {
+        int rv = NativeApi.nativeBLEStartScan(new InnerScanCallback() {
             @Override
             public void onScanResult(String name, String uuid, int devType) {
                 JuBiterBLEDevice device = new JuBiterBLEDevice(name, uuid, devType);
@@ -324,7 +324,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int stopScan() {
-        return NativeApi.nativeStopScan();
+        return NativeApi.nativeBLEStopScan();
     }
 
     /**
@@ -345,7 +345,7 @@ public final class JuBiterWallet {
             @Override
             public void run() {
                 int[] deviceHandle = new int[1];
-                int rv = NativeApi.nativeConnectDevice(deviceName, deviceMAC, deviceHandle, timeout, new InnerDiscCallback() {
+                int rv = NativeApi.nativeBLEConnectDevice(deviceName, deviceMAC, deviceHandle, timeout, new InnerDiscCallback() {
                     @Override
                     public void onDisconnect(String mac) {
                         connectionStateCallback.onDisconnected(mac);
@@ -369,7 +369,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int cancelConnect(String deviceName, String deviceMAC) {
-        return NativeApi.nativeCancelConnect(deviceName, deviceMAC);
+        return NativeApi.nativeBLECancelConnect(deviceName, deviceMAC);
     }
 
     /**
@@ -379,7 +379,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int disconnectDevice(int deviceID) {
-        return NativeApi.nativeDisconnectDevice(deviceID);
+        return NativeApi.nativeBLEDisconnectDevice(deviceID);
     }
 
     /**
@@ -389,7 +389,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static boolean isConnected(int deviceID) {
-        int rv = NativeApi.nativeIsConnected(deviceID);
+        int rv = NativeApi.nativeBLEIsConnected(deviceID);
         if (0 == rv) {
             return true;
         }

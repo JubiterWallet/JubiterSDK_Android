@@ -1,7 +1,6 @@
 package com.jubiter.sdk.jni;
 
 import android.content.Context;
-import android.nfc.Tag;
 
 /**
  * @author fengshuo
@@ -10,10 +9,8 @@ import android.nfc.Tag;
  */
 public class NFCInitParam {
     public Context mContext;
-    public Tag mTag;
 
-    public NFCInitParam(Context context, Tag tag) {
+    public NFCInitParam(Context context) {
         mContext = context;
-        mTag = tag;
     }
 }

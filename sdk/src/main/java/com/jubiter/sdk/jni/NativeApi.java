@@ -23,23 +23,23 @@ public class NativeApi {
 
     //********************************* 蓝牙 ************************************
 
-    public static native int nativeInitDevice();
+    public static native int nativeBLEInitDevice();
 
-    public static native int nativeStartScan(InnerScanCallback scanCallback);
+    public static native int nativeBLEStartScan(InnerScanCallback scanCallback);
 
-    public static native int nativeStopScan();
+    public static native int nativeBLEStopScan();
 
-    public static native int nativeConnectDevice(String deviceName,
-                                                 String deviceMAC,
-                                                 int[] deviceHandle,
-                                                 int timeout,
-                                                 InnerDiscCallback discCallback);
+    public static native int nativeBLEConnectDevice(String deviceName,
+                                                    String deviceMAC,
+                                                    int[] deviceHandle,
+                                                    int timeout,
+                                                    InnerDiscCallback discCallback);
 
-    public static native int nativeCancelConnect(String deviceName, String deviceMAC);
+    public static native int nativeBLECancelConnect(String deviceName, String deviceMAC);
 
-    public static native int nativeDisconnectDevice(int deviceHandle);
+    public static native int nativeBLEDisconnectDevice(int deviceHandle);
 
-    public static native int nativeIsConnected(int deviceHandle);
+    public static native int nativeBLEIsConnected(int deviceHandle);
 
     //********************************* 硬件钱包 ************************************
 
