@@ -1,8 +1,8 @@
 package com.jubiter.sdk.example;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
@@ -31,6 +31,8 @@ import com.jubiter.sdk.JuBiterNFCWallet;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.ScanResultCallback;
 import com.jubiter.sdk.jni.NFCInitParam;
+import com.jubiter.sdk.jni.ble.NfcDiscCallback;
+import com.jubiter.sdk.jni.ble.NfcScanCallback;
 import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EOSProtos;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private String seed;
     private int deviceID;
     private int contextID;
-    private Context mContext;
+    private Activity mActivity;
     private List<JuBiterBLEDevice> mDeviceList;
     private BaseAdapter mAdapter;
     private JuBiterBLEDevice mConnectedDevice;
@@ -96,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             filterList.add(tagFilter);
 
             if (nfcAdapter != null) {
-                nfcAdapter.enableForegroundDispatch(this, pendingIntent, filterList.toArray(new IntentFilter[filterList.size()]), techList);
+                nfcAdapter.enableForegroundDispatch(this, pendingIntent,
+                        filterList.toArray(new IntentFilter[filterList.size()]),
+                        techList);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void init() {
-        mContext = MainActivity.this;
+        mActivity = MainActivity.this;
         mDeviceList = new ArrayList<>();
 
         if (!hasPermissions()) {
@@ -114,19 +118,30 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Manifest.permission.ACCESS_FINE_LOCATION);
         } else {
             JuBiterWallet.initDevice();
-            int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext));
+            int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mActivity, new NfcScanCallback() {
+                @Override
+                public void onScanResult(int errorCode, String uuid, int devType) {
+                    Log.d(TAG, "errorCode: " + errorCode + ", uuid: " + uuid + ", devType: " + devType);
+                    CommonProtos.ResultInt resultInt = JuBiterNFCWallet.nfcConnectDevice(uuid);
+                    Log.d(TAG, "nfcConnectDevice rv: " + resultInt.getStateCode() + ", value: " + resultInt.getValue());
+                    if (resultInt.getStateCode() != 0) {
+                        return;
+                    }
+                    CommonProtos.ResultString resultString = JuBiterWallet.getDeviceCert(resultInt.getValue());
+                    Log.d(TAG, "getDeviceCert rv: " + resultString.getStateCode() + ", value: " + resultString.getValue());
+                }
+            }, new NfcDiscCallback() {
+                @Override
+                public void onDisconnect(String mac) {
+                    Log.d(TAG, "mac: " + mac);
+                }
+            }));
             Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
-
-//            Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
-//            if (tag != null) {
-//                int nfcRv = JuBiterNFCWallet.nfcInitDevice(new NFCInitParam(mContext, tag));
-//                Log.d(TAG, "nfcInitDevice rv: " + nfcRv);
-//            }
         }
 
-        nfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
-        pendingIntent = PendingIntent.getActivity(mContext, 0, new Intent(
-                mContext, mContext.getClass())
+        nfcAdapter = NfcAdapter.getDefaultAdapter(mActivity);
+        pendingIntent = PendingIntent.getActivity(mActivity, 0, new Intent(
+                mActivity, mActivity.getClass())
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
         initUI();
@@ -203,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final DeviceListDialog dialog = new DeviceListDialog(mContext, new DeviceListDialog.DeviceCallback() {
+                        final DeviceListDialog dialog = new DeviceListDialog(mActivity, new DeviceListDialog.DeviceCallback() {
                             @Override
                             public void onShow() {
                                 Log.d(TAG, ">>> onShow");
@@ -222,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 JuBiterWallet.stopScan();
                             }
                         });
-                        dialog.setAdapter(mAdapter = new BleDeviceAdapter(mContext, mDeviceList));
+                        dialog.setAdapter(mAdapter = new BleDeviceAdapter(mActivity, mDeviceList));
                         dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -1249,7 +1264,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(mContext, tip, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, tip, Toast.LENGTH_SHORT).show();
             }
         });
     }

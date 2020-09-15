@@ -1,6 +1,9 @@
 package com.jubiter.sdk.jni;
 
-import android.content.Context;
+import android.app.Activity;
+
+import com.jubiter.sdk.jni.ble.NfcDiscCallback;
+import com.jubiter.sdk.jni.ble.NfcScanCallback;
 
 /**
  * @author fengshuo
@@ -8,9 +11,15 @@ import android.content.Context;
  * @time 14:02
  */
 public class NFCInitParam {
-    public Context mContext;
+    public Activity mContext;
+    public NfcScanCallback mNfcScanCallback;
+    public NfcDiscCallback mNfcDiscCallback;
 
-    public NFCInitParam(Context context) {
+    public NFCInitParam(Activity context,
+                        NfcScanCallback nfcScanCallback,
+                        NfcDiscCallback nfcDiscCallback) {
         mContext = context;
+        mNfcScanCallback = nfcScanCallback;
+        mNfcDiscCallback = nfcDiscCallback;
     }
 }
