@@ -4,15 +4,10 @@
 
 #include "include/jni_nfc.h"
 
-// todo: extra 待移除
-jobject jInitPara;
-
 JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
-    jInitPara = initParam;
-
     // 初始化参数转换
     NFC_DEVICE_INIT_PARAM nfcInitParam;
-    jobjectToNFCInitParam(env, g_vm, &nfcInitParam);
+    jobjectToNFCInitParam(env, g_vm, initParam, &nfcInitParam);
     JUB_RV rv = JUB_initNFCDevice(nfcInitParam);
     return rv;
 }

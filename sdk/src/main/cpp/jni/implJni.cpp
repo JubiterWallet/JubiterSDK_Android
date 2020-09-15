@@ -1284,8 +1284,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOG_ERR(">>> method count: %d", methodList.size());
 
     // 注册 JNI 方法
-//    if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
-    if (env->RegisterNatives(clazz, gMethods, sizeof(gMethods) / sizeof(gMethods[0])) < JNI_OK) {
+    if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
+//    if (env->RegisterNatives(clazz, gMethods, sizeof(gMethods) / sizeof(gMethods[0])) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives fail");
         return ret;
     }

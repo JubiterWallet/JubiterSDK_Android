@@ -24,7 +24,7 @@ JNIEXPORT int JNICALL native_BLEInitDevice(JNIEnv *env, jclass clz) {
 
 JNIEXPORT jint JNICALL native_BLEStartScan(JNIEnv *env, jclass clz, jobject scanCallback) {
     jobject objParam = env->NewGlobalRef(scanCallback);
-    setScanCallbackObj(g_vm, objParam);
+    setBleScanCallback(g_vm, objParam);
 
     JUB_RV rv = JUB_enumDevices();
     if (rv != JUBR_OK) {
@@ -51,7 +51,7 @@ JNIEXPORT jint JNICALL native_BLEConnectDevice(JNIEnv *env, jclass clz, jstring 
     JUB_UINT16 *pHandle = reinterpret_cast<JUB_UINT16 *>(env->GetIntArrayElements(handle, NULL));
 
     jobject objParam = env->NewGlobalRef(disCallback);
-    setDiscCallbackObj(g_vm, objParam);
+    setBleDiscCallback(g_vm, objParam);
 
     JUB_RV rv = JUB_connectDevice(pName, pAddress, 1, pHandle, timeout);
     if (rv != JUBR_OK) {
