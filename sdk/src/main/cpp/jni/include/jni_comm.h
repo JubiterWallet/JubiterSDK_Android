@@ -10,6 +10,7 @@
 #include <JUB_SDK_COMM.h>
 #include <Jub_Common.pb.h>
 #include <utils/utils.h>
+#include "utils/logUtils.h"
 
 
 extern JavaVM *g_vm;

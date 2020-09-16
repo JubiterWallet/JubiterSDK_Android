@@ -1,8 +1,7 @@
 //
 // Created by Journey on 2020/9/14.
 //
-
-#include <implJni.h>
+#include "jni_comm.h"
 
 // 保存 JavaVM
 JavaVM *g_vm = NULL;

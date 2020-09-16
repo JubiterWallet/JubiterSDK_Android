@@ -36,6 +36,7 @@ native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
 JNIEXPORT jint
 native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin);
 
+jclass getNfcClass(JNIEnv *env);
 
 std::vector<JNINativeMethod> getNfcNativeMethods();
 

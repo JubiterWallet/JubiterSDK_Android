@@ -1,4 +1,4 @@
-package com.jubiter.sdk.jni.ble;
+package com.jubiter.sdk.jni.nfc;
 
 /**
  * @author fengshuo

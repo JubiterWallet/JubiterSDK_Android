@@ -1,9 +1,6 @@
-package com.jubiter.sdk.jni;
+package com.jubiter.sdk.jni.nfc;
 
 import android.app.Activity;
-
-import com.jubiter.sdk.jni.ble.NfcDiscCallback;
-import com.jubiter.sdk.jni.ble.NfcScanCallback;
 
 /**
  * @author fengshuo

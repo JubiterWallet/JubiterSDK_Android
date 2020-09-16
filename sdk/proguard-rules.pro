@@ -28,8 +28,8 @@
     native <methods>;
 }
 
--keep class com.jubiter.sdk.jni.InnerDiscCallback{*;}
--keep class com.jubiter.sdk.jni.InnerScanCallback{*;}
+-keep class com.jubiter.sdk.jni.ble.InnerDiscCallback{*;}
+-keep class com.jubiter.sdk.jni.ble.InnerScanCallback{*;}
 -keep class com.jubiter.sdk.jni.NativeApi{*;}
 -keep class com.jubiter.sdk.jni.utils.JUB_DEVICE_INFO{*;}
 
