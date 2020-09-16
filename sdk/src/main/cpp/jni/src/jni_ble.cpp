@@ -3,8 +3,7 @@
 //
 #include "include/jni_ble.h"
 
-// todo: 待移除
-jobject jActivity;
+#define BLE_NATIVE_CLASS "com/jubiter/sdk/jni/BleNativeApi"
 
 JNIEXPORT int JNICALL native_BLEInitDevice(JNIEnv *env, jclass clz) {
     LOG_ERR(">>> in native_BLEInitDevice");
@@ -107,7 +106,7 @@ JNINativeMethod bleNativeMethods[] = {
         },
         {
                 "nativeBLEStartScan",
-                "(Lcom/jubiter/sdk/jni/InnerScanCallback;)I",
+                "(Lcom/jubiter/sdk/jni/ble/InnerScanCallback;)I",
                 (void *) native_BLEStartScan
         },
         {
@@ -117,7 +116,7 @@ JNINativeMethod bleNativeMethods[] = {
         },
         {
                 "nativeBLEConnectDevice",
-                "(Ljava/lang/String;Ljava/lang/String;[IILcom/jubiter/sdk/jni/InnerDiscCallback;)I",
+                "(Ljava/lang/String;Ljava/lang/String;[IILcom/jubiter/sdk/jni/ble/InnerDiscCallback;)I",
                 (void *) native_BLEConnectDevice
         },
         {
@@ -137,9 +136,15 @@ JNINativeMethod bleNativeMethods[] = {
         },
 };
 
+
+jclass getBleClass(JNIEnv *env) {
+    return env->FindClass(BLE_NATIVE_CLASS);
+}
+
 std::vector<JNINativeMethod> getBleNativeMethods() {
     std::vector<JNINativeMethod> methodList;
-    for (int i = 0, count = sizeof(bleNativeMethods) / sizeof(bleNativeMethods[0]); i < count; ++i) {
+    for (int i = 0, count = sizeof(bleNativeMethods) / sizeof(bleNativeMethods[0]);
+         i < count; ++i) {
         methodList.push_back(bleNativeMethods[i]);
     }
     return methodList;

@@ -103,11 +103,6 @@ native_SeedToMasterPrivateKey(JNIEnv *env, jclass clz, jstring seed, jbyteArray 
     return buildPbRvString(env, rv, xprv);
 }
 
-
-//================================= 蓝牙 ================================================
-
-
-
 //================================= JUB_SDK_DEV_h ================================================
 
 
@@ -1277,10 +1272,26 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         methodList.push_back(gMethods[i]);
     }
 
+    // BLE 注册
+    jclass bleClazz = getBleClass(env);
     std::vector<JNINativeMethod> bleMethodList = getBleNativeMethods();
+    if (env->RegisterNatives(bleClazz, bleMethodList.data(), bleMethodList.size()) < JNI_OK) {
+        LOG_ERR(">>> RegisterNatives BLE fail");
+        return ret;
+    } else{
+        LOG_ERR(">>> RegisterNatives BLE ok");
+    }
+
+    // NFC 注册
+    jclass nfcClazz = getNfcClass(env);
     std::vector<JNINativeMethod> nfcMethodList = getNfcNativeMethods();
-    methodList.insert(methodList.end(), bleMethodList.begin(), bleMethodList.end());
-    methodList.insert(methodList.end(), nfcMethodList.begin(), nfcMethodList.end());
+    if (env->RegisterNatives(nfcClazz, nfcMethodList.data(), nfcMethodList.size()) < JNI_OK) {
+        LOG_ERR(">>> RegisterNatives fail");
+        return ret;
+    } else{
+        LOG_ERR(">>> RegisterNatives NFC ok");
+    }
+
     LOG_ERR(">>> method count: %d", methodList.size());
 
     // 注册 JNI 方法

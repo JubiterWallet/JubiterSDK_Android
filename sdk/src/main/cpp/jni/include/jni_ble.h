@@ -5,20 +5,17 @@
 #ifndef JUBITERSDK_JNI_BLE_H
 #define JUBITERSDK_JNI_BLE_H
 
-
-#include <jni.h>
-#include <JUB_SDK.h>
-#include <utils/utils.h>
 #include "jni_comm.h"
-#include "utils/logUtils.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // #ifdef __cplusplus
 
+
+
+jclass getBleClass(JNIEnv *env);
+
 std::vector<JNINativeMethod> getBleNativeMethods();
-
-
 
 #ifdef __cplusplus
 }

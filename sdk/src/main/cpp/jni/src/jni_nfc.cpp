@@ -4,6 +4,8 @@
 
 #include "include/jni_nfc.h"
 
+#define NFC_NATIVE_CLASS "com/jubiter/sdk/jni/NfcNativeApi"
+
 JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
     // 初始化参数转换
     NFC_DEVICE_INIT_PARAM nfcInitParam;
@@ -76,7 +78,7 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
 JNINativeMethod nfcNativeMethods[] = {
         {
                 "nativeNFCInitDevice",
-                "(Lcom/jubiter/sdk/jni/NFCInitParam;)I",
+                "(Lcom/jubiter/sdk/jni/nfc/NFCInitParam;)I",
                 (void *) native_NFCInitDevice
         },
         {
@@ -120,6 +122,10 @@ JNINativeMethod nfcNativeMethods[] = {
                 (void *) native_NFCChangePIN
         },
 };
+
+jclass getNfcClass(JNIEnv *env) {
+    return env->FindClass(NFC_NATIVE_CLASS);
+}
 
 std::vector<JNINativeMethod> getNfcNativeMethods() {
     std::vector<JNINativeMethod> methodList;

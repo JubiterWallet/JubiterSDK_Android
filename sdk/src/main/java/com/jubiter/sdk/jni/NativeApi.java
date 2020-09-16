@@ -23,24 +23,6 @@ public class NativeApi {
 
     //********************************* 蓝牙 ************************************
 
-    public static native int nativeBLEInitDevice();
-
-    public static native int nativeBLEStartScan(InnerScanCallback scanCallback);
-
-    public static native int nativeBLEStopScan();
-
-    public static native int nativeBLEConnectDevice(String deviceName,
-                                                    String deviceMAC,
-                                                    int[] deviceHandle,
-                                                    int timeout,
-                                                    InnerDiscCallback discCallback);
-
-    public static native int nativeBLECancelConnect(String deviceName, String deviceMAC);
-
-    public static native int nativeBLEDisconnectDevice(int deviceHandle);
-
-    public static native int nativeBLEIsConnected(int deviceHandle);
-
     //********************************* 硬件钱包 ************************************
 
     public static native byte[] nativeGetDeviceInfo(int deviceID);
@@ -142,27 +124,5 @@ public class NativeApi {
     public static native byte[] nativeEOSBuildAction(int contextID, byte[] txInfo);
 
     public static native byte[] nativeEOSCalculateMemoHash(String memo);
-
-    //********************************* SDK NFC ************************************
-
-    public static native int nativeNFCInitDevice(NFCInitParam param);
-
-    public static native byte[] nativeNFCConnectDevice(String deviceUUID);
-
-    public static native int nativeNFCDisconnectDevice(int deviceID);
-
-    public static native int nativeNFCIsConnect(int deviceID);
-
-    public static native int nativeNFCReset(int deviceID);
-
-    public static native int nativeNFCGenerateSeed(int deviceID, String PIN, byte[] curve);
-
-    public static native int nativeNFCImportMnemonic(int deviceID, String PIN, String mnemonic);
-
-    public static native byte[] nativeNFCExportMnemonic(int deviceID, String PIN, String mnemonic);
-
-    public static native int nativeNFCChangePIN(int deviceID, String originPIN, String newPIN);
-
-    //***************************************************************************
 
 }
