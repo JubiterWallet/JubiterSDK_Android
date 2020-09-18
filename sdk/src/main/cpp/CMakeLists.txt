@@ -51,14 +51,12 @@ find_library(libLog
 if(CMAKE_BUILD_TYPE MATCHES "Debug"
         OR CMAKE_BUILD_TYPE MATCHES "None")
     message(">>>> link debug library")
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
     link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/debug)
-    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/debug)
 elseif(CMAKE_BUILD_TYPE MATCHES "Release")
     message(">>>> link release library")
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
-    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/)
-    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/release)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/release)
 endif()
 
 # 连接 protobuf 静态库

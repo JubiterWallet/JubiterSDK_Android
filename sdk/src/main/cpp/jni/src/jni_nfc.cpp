@@ -43,8 +43,7 @@ native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jby
 
     JUB::Proto::Common::CURVES enum_curve;
     JUB::Proto::Common::CURVES_Parse(strCurve, &enum_curve);
-    JUB_RV rv = JUB_GenerateSeed(deviceID, strPin.c_str(),
-                                 static_cast<JUB_ENUM_CURVES>(enum_curve));
+    JUB_RV rv = JUB_GenerateSeed(deviceID, strPin.c_str(), static_cast<JUB_ENUM_CURVES>(enum_curve));
     return rv;
 }
 
@@ -58,20 +57,21 @@ native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
 
 
 JNIEXPORT jbyteArray
-native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jstring jMnemonic) {
+native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
-    JUB_CHAR_PTR mnemonic = nullptr;
+    JUB_CHAR_PTR mnemonic;
 
     JUB_RV rv = JUB_ExportMnemonic(deviceID, strPin.c_str(), &mnemonic);
     return buildPbRvString(env, rv, mnemonic);
 }
 
-JNIEXPORT jint
+JNIEXPORT jbyteArray
 native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin) {
     auto strOriginPin = jstring2stdString(env, jOriginPin);
     auto strNewPin = jstring2stdString(env, jNewPin);
     JUB_ULONG retry = 0;
     JUB_RV rv = JUB_ChangePIN(deviceID, strOriginPin.c_str(), strNewPin.c_str(), &retry);
+    return buildPbRvUInt(env, rv, retry);
 }
 
 
@@ -113,12 +113,12 @@ JNINativeMethod nfcNativeMethods[] = {
         },
         {
                 "nativeNFCExportMnemonic",
-                "(ILjava/lang/String;Ljava/lang/String;)[B",
+                "(ILjava/lang/String;)[B",
                 (void *) native_NFCExportMnemonic
         },
         {
                 "nativeNFCChangePIN",
-                "(ILjava/lang/String;Ljava/lang/String;)I",
+                "(ILjava/lang/String;Ljava/lang/String;)[B",
                 (void *) native_NFCChangePIN
         },
 };

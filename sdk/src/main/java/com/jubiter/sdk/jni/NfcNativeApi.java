@@ -23,7 +23,7 @@ public class NfcNativeApi extends NativeApi {
 
     public static native int nativeNFCImportMnemonic(int deviceID, String PIN, String mnemonic);
 
-    public static native byte[] nativeNFCExportMnemonic(int deviceID, String PIN, String mnemonic);
+    public static native byte[] nativeNFCExportMnemonic(int deviceID, String PIN);
 
-    public static native int nativeNFCChangePIN(int deviceID, String originPIN, String newPIN);
+    public static native byte[] nativeNFCChangePIN(int deviceID, String originPIN, String newPIN);
 }

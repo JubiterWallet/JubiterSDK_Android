@@ -127,8 +127,57 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     if (resultInt.getStateCode() != 0) {
                         return;
                     }
-                    CommonProtos.ResultString resultString = JuBiterWallet.getDeviceCert(resultInt.getValue());
-                    Log.d(TAG, "getDeviceCert rv: " + resultString.getStateCode() + ", value: " + resultString.getValue());
+                    CommonProtos.ResultString certResult = JuBiterWallet.getDeviceCert(resultInt.getValue());
+                    Log.d(TAG, "getDeviceCert rv: " + certResult.getStateCode() + ", value: " + certResult.getValue());
+                    if (certResult.getStateCode() != 0) {
+                        return;
+                    }
+
+                    int resetResult = JuBiterNFCWallet.nfcReset(resultInt.getValue());
+                    Log.d(TAG, "nfcReset rv: " + resetResult);
+                    if (resetResult != 0) {
+                        return;
+                    }
+
+//                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(resultInt.getValue(), "", "123456");
+//                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
+//                    if (changeResult.getStateCode() != 0) {
+//                        return;
+//                    }
+
+                    // 出厂密码 5555
+                    int result = JuBiterNFCWallet.nfcGenerateSeed(resultInt.getValue(), "5555",
+                            CommonProtos.CURVES.SECP256K1);
+                    Log.d(TAG, "nfcGenerateSeed rv: " + result);
+                    if (result != 0) {
+                        return;
+                    }
+
+                    int resetResult2 = JuBiterNFCWallet.nfcReset(resultInt.getValue());
+                    Log.d(TAG, "nfcReset rv: " + resetResult2);
+                    if (resetResult2 != 0) {
+                        return;
+                    }
+
+                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(resultInt.getValue(), "5555",
+                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
+                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
+                    if (importResult != 0) {
+                        return;
+                    }
+
+                    CommonProtos.ResultString exportResult = JuBiterNFCWallet.nfcExportMnemonic(resultInt.getValue(), "5555");
+                    Log.d(TAG, "nfcExportMnemonic rv: " + exportResult.getStateCode() + ", value: " + exportResult.getValue());
+                    if (exportResult.getStateCode() != 0) {
+                        return;
+                    }
+
+                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(resultInt.getValue(), "5555", "123456");
+                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
+                    if (changeResult.getStateCode() != 0) {
+                        return;
+                    }
+
                 }
             }, new NfcDiscCallback() {
                 @Override
@@ -1170,15 +1219,18 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             public void onClick(View v) {
                 CommonProtos.ResultInt result = JuBiterNFCWallet.nfcConnectDevice("123456");
                 Log.d(TAG, "rv: " + result.getStateCode() + ", value: " + result.getValue());
+                nfcDeviceID = result.getValue();
             }
         });
     }
 
+    int nfcDeviceID = 0;
     private void addListenerOnNFCResetBtn() {
         findViewById(R.id.nfcReset_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int result = JuBiterNFCWallet.nfcReset(nfcDeviceID);
+                Log.d(TAG, "nfcReset rv: " + result);
             }
         });
     }
@@ -1187,7 +1239,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.nfcGenerateSeed_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                JuBiterNFCWallet.nfcGenerateSeed();
+                int result = JuBiterNFCWallet.nfcGenerateSeed(nfcDeviceID, "123456",
+                        CommonProtos.CURVES.SECP256K1);
+                Log.d(TAG, "nfcGenerateSeed rv: " + result);
             }
         });
     }
@@ -1196,7 +1250,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.nfcImportMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int result = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "123456",
+                        "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
+                Log.d(TAG, "nfcImportMnemonic rv: " + result);
             }
         });
     }
@@ -1205,7 +1261,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.nfcExportMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                CommonProtos.ResultString result = JuBiterNFCWallet.nfcExportMnemonic(deviceID, "123456");
+                Log.d(TAG, "rv: " + result.getStateCode() + ", value: " + result.getValue());
             }
         });
     }
@@ -1214,7 +1271,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.nfcChangePIN_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                CommonProtos.ResultInt result = JuBiterNFCWallet.nfcChangePIN(deviceID, "123456", "121212");
+                Log.d(TAG, "rv: " + result.getStateCode() + ", value: " + result.getValue());
             }
         });
     }
@@ -1251,13 +1309,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.e(TAG, ">>> Intent");
-
     }
 
     void showToast(final String tip) {

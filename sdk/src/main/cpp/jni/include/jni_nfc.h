@@ -31,10 +31,11 @@ JNIEXPORT jint
 native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jstring jMnemonic);
 
 JNIEXPORT jbyteArray
-native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jstring jMnemonic);
+native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin);
 
-JNIEXPORT jint
+JNIEXPORT jbyteArray
 native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin);
+
 
 jclass getNfcClass(JNIEnv *env);
 

@@ -21,8 +21,8 @@ android {
             cmake {
                 cppFlags "",
                         "-std=c++11",
-                        "-frtti",
-                        "-fexceptions",
+//                        "-frtti",   // Android Studio 3.3 开始默认支持
+//                        "-fexceptions",
                         "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
@@ -33,11 +33,11 @@ android {
             }
 
             ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
-//                abiFilters "armeabi-v7a",
-//                        "arm64-v8a"
-//                        "x86",
-//                        "x86_64"
+//                abiFilters "armeabi-v7a", "arm64-v8a"
+                abiFilters "armeabi-v7a",
+                        "arm64-v8a",
+                        "x86",
+                        "x86_64"
             }
 
         }
@@ -113,7 +113,8 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
     // release 依赖库
     releaseImplementation files('libs/BTSDK_release.jar')
+    releaseImplementation files('libs/nfcSDK_release.jar')
     // debug 依赖库
     debugImplementation files('libs/BTSDK_debug.jar')
-    implementation files('libs/nfcSDK.jar')
+    debugImplementation files('libs/nfcSDK_debug.jar')
 }
