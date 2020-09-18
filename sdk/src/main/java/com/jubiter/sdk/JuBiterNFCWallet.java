@@ -1,9 +1,11 @@
 package com.jubiter.sdk;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.jubiter.sdk.jni.nfc.NFCInitParam;
 import com.jubiter.sdk.jni.NfcNativeApi;
+import com.jubiter.sdk.jni.nfc.NFCInitParam;
 import com.jubiter.sdk.proto.CommonProtos;
+import com.jubiter.sdk.proto.CommonProtos.ResultInt;
+import com.jubiter.sdk.proto.CommonProtos.ResultString;
 
 /**
  * NFC
@@ -29,7 +31,7 @@ public class JuBiterNFCWallet {
      * @param deviceUUID
      * @return
      */
-    public static CommonProtos.ResultInt nfcConnectDevice(String deviceUUID) {
+    public static ResultInt nfcConnectDevice(String deviceUUID) {
         try {
             byte[] result = NfcNativeApi.nativeNFCConnectDevice(deviceUUID);
             return CommonProtos.ResultInt.parseFrom(result);
@@ -98,11 +100,16 @@ public class JuBiterNFCWallet {
      *
      * @param deviceID
      * @param PIN
-     * @param mnemonic
      * @return
      */
-    public static byte[] nfcExportMnemonic(int deviceID, String PIN, String mnemonic) {
-        return NfcNativeApi.nativeNFCExportMnemonic(deviceID, PIN, mnemonic);
+    public static ResultString nfcExportMnemonic(int deviceID, String PIN) {
+        try {
+            byte[] result = NfcNativeApi.nativeNFCExportMnemonic(deviceID, PIN);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -113,8 +120,14 @@ public class JuBiterNFCWallet {
      * @param newPIN
      * @return
      */
-    public static int nfcChangePIN(int deviceID, String originPIN, String newPIN) {
-        return NfcNativeApi.nativeNFCChangePIN(deviceID, originPIN, newPIN);
+    public static ResultInt nfcChangePIN(int deviceID, String originPIN, String newPIN) {
+        try {
+            byte[] result = NfcNativeApi.nativeNFCChangePIN(deviceID, originPIN, newPIN);
+            return CommonProtos.ResultInt.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
