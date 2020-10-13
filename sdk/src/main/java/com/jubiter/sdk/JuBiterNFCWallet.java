@@ -8,7 +8,7 @@ import com.jubiter.sdk.proto.CommonProtos.ResultInt;
 import com.jubiter.sdk.proto.CommonProtos.ResultString;
 
 /**
- * NFC
+ * NFC 钱包操作
  *
  * @author fengshuo
  * @date 2020/9/8
@@ -57,8 +57,12 @@ public class JuBiterNFCWallet {
      * @param deviceID
      * @return
      */
-    public static int nfcIsConnect(int deviceID) {
-        return NfcNativeApi.nativeNFCIsConnect(deviceID);
+    public static boolean nfcIsConnected(int deviceID) {
+        int rv = NfcNativeApi.nativeNFCIsConnect(deviceID);
+        if (0 == rv) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -130,4 +134,13 @@ public class JuBiterNFCWallet {
         return null;
     }
 
+    /**
+     * NFC 是否含有根私钥
+     *
+     * @param deviceID
+     * @return true - 包含； false - 不包含
+     */
+    public static boolean nfcHasRootKey(int deviceID) {
+        return NfcNativeApi.nativeNFCHasRootKey(deviceID);
+    }
 }

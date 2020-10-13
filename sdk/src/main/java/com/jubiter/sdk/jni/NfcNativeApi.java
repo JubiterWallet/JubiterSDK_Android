@@ -26,4 +26,6 @@ public class NfcNativeApi extends NativeApi {
     public static native byte[] nativeNFCExportMnemonic(int deviceID, String PIN);
 
     public static native byte[] nativeNFCChangePIN(int deviceID, String originPIN, String newPIN);
+
+    public static native boolean nativeNFCHasRootKey(int deviceID);
 }

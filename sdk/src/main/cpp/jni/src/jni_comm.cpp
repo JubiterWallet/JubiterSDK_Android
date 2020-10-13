@@ -21,7 +21,8 @@ jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str) {
 }
 
 
-jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
+jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
+    LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str);
     JUB::Proto::Common::ResultString resultString;
     resultString.set_state_code(rv);
     if (JUBR_OK == rv) { resultString.set_value(str); }
@@ -34,7 +35,8 @@ jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
     return stdString2jbyteArray(env, result);
 }
 
-jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
+jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, std::string str) {
+    LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str.c_str());
     JUB::Proto::Common::ResultString resultString;
     resultString.set_state_code(rv);
     if (JUBR_OK == rv) { resultString.set_value(str); }
@@ -44,8 +46,8 @@ jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str) {
     return stdString2jbyteArray(env, result);
 }
 
-jbyteArray buildPbRvUInt(JNIEnv *env, JUB_RV rv, uint32_t res) {
-    LOG_ERR("rv: %d, value: %d", rv, res);
+jbyteArray buildPbRvUInt(std::string funcName, JNIEnv *env, JUB_RV rv, uint32_t res) {
+    LOG_ERR("%s rv: %d, value: %d", funcName.c_str(), rv, res);
     JUB::Proto::Common::ResultInt resultInt;
     resultInt.set_state_code(rv);
     resultInt.set_value(res);
