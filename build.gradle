@@ -2,12 +2,18 @@
 
 buildscript {
     repositories {
-        jcenter(){ url 'https://jcenter.bintray.com/'}
-        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        mavenCentral()
+
+//        jcenter(){ url 'https://jcenter.bintray.com/'}
+//        google()
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
         
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,8 +23,14 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter(){ url 'https://jcenter.bintray.com/'}
-        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        mavenCentral()
+
+//        jcenter(){ url 'https://jcenter.bintray.com/'}
+//        google()
 
     }
 }

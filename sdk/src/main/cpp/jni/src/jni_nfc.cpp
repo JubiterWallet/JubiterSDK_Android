@@ -18,7 +18,7 @@ JNIEXPORT jbyteArray JNICALL native_NFCConnectDevice(JNIEnv *env, jclass clz, js
     auto strDeviceUUID = jstring2stdString(env, deviceUUID);
     JUB_UINT16 deviceID;
     JUB_RV rv = JUB_connectNFCDevice((JUB_BYTE_PTR) strDeviceUUID.c_str(), &deviceID);
-    return buildPbRvUInt(env, rv, deviceID);
+    return buildPbRvUInt("JUB_connectNFCDevice", env, rv, deviceID);
 }
 
 JNIEXPORT jint JNICALL native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID) {
@@ -55,14 +55,13 @@ native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
     return rv;
 }
 
-
 JNIEXPORT jbyteArray
 native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
     JUB_CHAR_PTR mnemonic;
 
     JUB_RV rv = JUB_ExportMnemonic(deviceID, strPin.c_str(), &mnemonic);
-    return buildPbRvString(env, rv, mnemonic);
+    return buildPbRvString("JUB_ExportMnemonic", env, rv, mnemonic);
 }
 
 JNIEXPORT jbyteArray
@@ -71,7 +70,13 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
     auto strNewPin = jstring2stdString(env, jNewPin);
     JUB_ULONG retry = 0;
     JUB_RV rv = JUB_ChangePIN(deviceID, strOriginPin.c_str(), strNewPin.c_str(), &retry);
-    return buildPbRvUInt(env, rv, retry);
+    return buildPbRvUInt("JUB_ChangePIN", env, rv, retry);
+}
+
+JNIEXPORT jboolean
+native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
+    JUB_ENUM_BOOL rv = JUB_HasRootKey(deviceID);
+    return rv == BOOL_TRUE ? true : false;
 }
 
 
@@ -120,6 +125,11 @@ JNINativeMethod nfcNativeMethods[] = {
                 "nativeNFCChangePIN",
                 "(ILjava/lang/String;Ljava/lang/String;)[B",
                 (void *) native_NFCChangePIN
+        },
+        {
+                "nativeNFCHasRootKey",
+                "(I)Z",
+                (void *) native_NFCHasRootKey
         },
 };
 

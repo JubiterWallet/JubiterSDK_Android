@@ -1,10 +1,12 @@
 package com.jubiter.sdk;
 
+import android.util.Log;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.BleNativeApi;
+import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.jni.ble.InnerDiscCallback;
 import com.jubiter.sdk.jni.ble.InnerScanCallback;
-import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
 
 /**
@@ -342,6 +344,7 @@ public final class JuBiterWallet {
     public static void connectDeviceAsync(final String deviceName, final String deviceMAC,
                                           final int timeout,
                                           final ConnectionStateCallback connectionStateCallback) {
+        Log.d("JuBiterWallet", ">>> connectDeviceAsync name: " + deviceName + ", address: " + deviceMAC + ", timeout: " + timeout);
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -19,11 +19,11 @@ std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes);
 
 jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str);
 
-jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str);
+jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str);
 
-jbyteArray buildPbRvString(JNIEnv *env, JUB_RV rv, std::string str);
+jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, std::string str);
 
-jbyteArray buildPbRvUInt(JNIEnv *env, JUB_RV rv, uint32_t res);
+jbyteArray buildPbRvUInt(std::string funcName, JNIEnv *env, JUB_RV rv, uint32_t res);
 
 std::string jstring2stdString(JNIEnv *env, jstring jstr);
 
