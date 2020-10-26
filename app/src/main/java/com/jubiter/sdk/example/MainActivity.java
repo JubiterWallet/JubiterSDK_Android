@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 @Override
                 public void onScanResult(int errorCode, String uuid, int devType) {
                     Log.d(TAG, "errorCode: " + errorCode + ", uuid: " + uuid + ", devType: " + devType);
+                    
                     CommonProtos.ResultInt resultInt = JuBiterNFCWallet.nfcConnectDevice(uuid);
                     Log.d(TAG, "nfcConnectDevice rv: " + resultInt.getStateCode() + ", value: " + resultInt.getValue());
                     assert(resultInt.getStateCode() == 0);
@@ -132,14 +133,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Log.d(TAG, "nfcReset rv: " + resetResult2);
                     assert(resetResult2 == 0);
 
-                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "5555");
+                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "111111111");
                     Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
                     assert(changeResult.getStateCode() == 0);
-
-                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "5555",
-                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
-                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
-                    assert(importResult == 0);
+//
+//                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "5555",
+//                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
+//                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
+//                    assert(importResult == 0);
 
 //                    boolean bootState = JuBiterWallet.isBootLoader(deviceID);
 //                    Log.d(TAG, "isBootLoader state: " + bootState);
@@ -148,12 +149,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 //                    boolean rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
 //                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
 
-                    EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
-                            .setMainPath("m/44'/60'/0'")
-                            .setChainId(1)
-                            .build();
-                    CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
-                    Log.d(TAG, ">>> createContext rv: " + result.getStateCode() + " contextID: " + result.getValue());
+//                    EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
+//                            .setMainPath("m/44'/60'/0'")
+//                            .setChainId(1)
+//                            .build();
+//                    CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
+//                    Log.d(TAG, ">>> createContext rv: " + result.getStateCode() + " contextID: " + result.getValue());
 
 //                    CommonProtos.ResultString certResult = JuBiterWallet.getDeviceCert(resultInt.getValue());
 //                    Log.d(TAG, "getDeviceCert rv: " + certResult.getStateCode() + ", value: " + certResult.getValue());
@@ -194,9 +195,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 //                        return;
 //                    }
 //
-                    CommonProtos.ResultString exportResult = JuBiterNFCWallet.nfcExportMnemonic(resultInt.getValue(), "5555");
-                    Log.d(TAG, "nfcExportMnemonic rv: " + exportResult.getStateCode() + ", value: " + exportResult.getValue());
-                    assert(exportResult.getStateCode() == 0);
+//                    CommonProtos.ResultString exportResult = JuBiterNFCWallet.nfcExportMnemonic(resultInt.getValue(), "5555");
+//                    Log.d(TAG, "nfcExportMnemonic rv: " + exportResult.getStateCode() + ", value: " + exportResult.getValue());
+//                    assert(exportResult.getStateCode() == 0);
 //
 //                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(resultInt.getValue(), "5555", "123456");
 //                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
