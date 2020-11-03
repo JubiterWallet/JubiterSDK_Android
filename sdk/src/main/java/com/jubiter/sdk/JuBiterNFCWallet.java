@@ -4,6 +4,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.NfcNativeApi;
 import com.jubiter.sdk.jni.nfc.NFCInitParam;
 import com.jubiter.sdk.proto.CommonProtos;
+import com.jubiter.sdk.proto.CommonProtos.ResultAny;
 import com.jubiter.sdk.proto.CommonProtos.ResultInt;
 import com.jubiter.sdk.proto.CommonProtos.ResultString;
 
@@ -138,9 +139,26 @@ public class JuBiterNFCWallet {
      * NFC 是否含有根私钥
      *
      * @param deviceID
-     * @return true - 包含； false - 不包含
+     * @return
      */
-    public static boolean nfcHasRootKey(int deviceID) {
-        return NfcNativeApi.nativeNFCHasRootKey(deviceID);
+    public static ResultAny nfcHasRootKey(int deviceID) {
+        try {
+            byte[] result = NfcNativeApi.nativeNFCHasRootKey(deviceID);
+            return CommonProtos.ResultAny.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    /**
+     * 设置卡片 label
+     * @param deviceID
+     * @param label
+     * @return
+     */
+    public static int nfcSetLabel(int deviceID, String label) {
+        return NfcNativeApi.nativeNFCSetLabel(deviceID, label);
+    }
+
 }

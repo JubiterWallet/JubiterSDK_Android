@@ -129,30 +129,115 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
                     int deviceID = resultInt.getValue();
 
-                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
-                    Log.d(TAG, "nfcReset rv: " + resetResult2);
-                    assert(resetResult2 == 0);
+                    boolean connectedState = JuBiterNFCWallet.nfcIsConnected(deviceID);
+                    Log.d(TAG, "isConnected rv: " + connectedState);
 
-                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "111111111");
-                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
-                    assert(changeResult.getStateCode() == 0);
-//
+                    int setResult = JuBiterNFCWallet.nfcSetLabel(deviceID, "JuBiter Label Test");
+                    Log.d(TAG, "nfcSetLabel rv: " + setResult);
+                    assert(setResult == 0);
+
+                    CommonProtos.ResultAny deviceInfoResult = JuBiterWallet.getDeviceInfo(deviceID);
+                    for (com.google.protobuf.Any detail : deviceInfoResult.getValueList()) {
+                        try {
+                            CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
+                            Log.d(TAG, "rv : " + deviceInfo.toString());
+                        } catch (InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+//                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
+//                    Log.d(TAG, "nfcReset rv: " + resetResult2);
+//                    assert(resetResult2 == 0);
+
+                    // payment reopen pear timber com salon goat elephant clump company swift spare
+
+//                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "11111111");
+//                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
+//                    assert(changeResult.getStateCode() == 0);
+
 //                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "5555",
 //                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
 //                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
 //                    assert(importResult == 0);
 
-//                    boolean bootState = JuBiterWallet.isBootLoader(deviceID);
-//                    Log.d(TAG, "isBootLoader state: " + bootState);
-//
-//                    // 是否已产生根私钥
-//                    boolean rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
-//                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
+//                    boolean bootState1 = JuBiterWallet.isBootLoader(deviceID);
+//                    Log.d(TAG, "isBootLoader state: " + bootState1);
 
-//                    EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
-//                            .setMainPath("m/44'/60'/0'")
-//                            .setChainId(1)
+                    // 是否已产生根私钥
+                    CommonProtos.ResultAny rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
+                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
+
+                    com.google.protobuf.Any detail = rootKeyState.getValueList().get(0);
+                    try {
+                        CommonProtos.RootKeyStatus rootKeyStatus = detail.unpack(CommonProtos.RootKeyStatus.class);
+                        Log.d(TAG, "rootKey rv : " + rootKeyStatus.getStatus());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 构建 EOS 交易
+//                    CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
+//                            .setMainPath("m/44'/194'/0'")
 //                            .build();
+//
+//                    CommonProtos.ResultInt eosContextResult = JuBiterEOS.createContext(contextCfg,
+//                            deviceID);
+//                    Log.d(TAG, "createContext : " + eosContextResult.getStateCode() + ", value: " + eosContextResult.getValue());
+//                    assert(eosContextResult.getStateCode() == 0);
+//
+//                    final int contextID = eosContextResult.getValue();
+//
+//                    EOSProtos.TransferAction transferAction = EOSProtos.TransferAction.newBuilder()
+//                            .setFrom("zijunzimo555")
+//                            .setTo("jubitertest4")
+//                            .setAsset("50.0000 EOS")
+//                            .setMemo("")
+//                            .build();
+//
+//                    EOSProtos.ActionEOS actionEOS = EOSProtos.ActionEOS.newBuilder()
+//                            .setType(EOSProtos.ENUM_EOS_ACTION_TYPE.XFER)
+//                            .setXferAction(transferAction)
+//                            .setCurrency("eosio.token")
+//                            .setName("transfer")
+//                            .build();
+//
+//                    EOSProtos.ActionListEOS listEOS = EOSProtos.ActionListEOS.newBuilder()
+//                            .addActions(0, actionEOS)
+//                            .build();
+//                    CommonProtos.ResultString action = JuBiterEOS.buildAction(contextID, listEOS);
+//
+//                    CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+//                            .setChange(false)
+//                            .setAddressIndex(0)
+//                            .build();
+//                    EOSProtos.TransactionEOS transactionEOS = EOSProtos.TransactionEOS.newBuilder()
+//                            .setPath(bip32Path)
+//                            .setChainID("aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906")
+//                            .setExpiration("900")
+//                            .setReferenceBlockId("08ed367dd3948e992813680e6896e8e8e0ad05421b0a6665517d47d3e53711e0")
+//                            .setReferenceBlockTime("1604028172")
+//                            .setActionsInJSON(action.getValue())
+//                            .build();
+
+//                    try {
+//                        MessageDigest md = MessageDigest.getInstance("SHA-256");
+//                        md.update("1qa2ws3edZ".getBytes());
+//                        String pin = HexUtils.convertBytesToString(md.digest()).substring(0, 8);
+//                        String pin = "11111111";
+//
+//                        CommonProtos.ResultInt verifyResult = JuBiterWallet.verifyPIN(contextID, pin);
+//                        Log.d(TAG, "nfcChangePIN rv: " + verifyResult.getStateCode() + ", value: " + verifyResult.getValue());
+//                        assert(verifyResult.getStateCode() == 0);
+//
+//                        CommonProtos.ResultString result = JuBiterEOS.signTransaction(contextID, transactionEOS);
+//                        Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
+//                        assert(result.getStateCode() == 0);
+//                    } catch (NoSuchAlgorithmException e) {
+//                        e.printStackTrace();
+//                    }
+
+
 //                    CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
 //                    Log.d(TAG, ">>> createContext rv: " + result.getStateCode() + " contextID: " + result.getValue());
 
@@ -1206,7 +1291,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .build();
 
         EOSProtos.ActionListEOS listEOS = EOSProtos.ActionListEOS.newBuilder()
-                .setActions(0,actionEOS).build();
+                .addActions(0,actionEOS).build();
+
         CommonProtos.ResultString action = JuBiterEOS.buildAction(contextID, listEOS);
 
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
