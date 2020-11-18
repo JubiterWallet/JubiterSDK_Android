@@ -406,6 +406,48 @@
             android:textAllCaps="false"
             android:text="NFC ChangePIN" />
 
+        <Button
+            android:id="@+id/xrpCreateContext_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Create Context" />
+
+        <Button
+            android:id="@+id/xrpCreateContext_software_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Create Context (software)" />
+
+        <Button
+            android:id="@+id/xrpGetMainHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Main HD Node" />
+
+        <Button
+            android:id="@+id/xrpGetHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP HD Node" />
+
+        <Button
+            android:id="@+id/xrpGetAddress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Get Address" />
+
+        <Button
+            android:id="@+id/xrpTransaction_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Transaction" />
+
     </LinearLayout>
 
 </ScrollView>

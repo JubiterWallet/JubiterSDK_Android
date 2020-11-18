@@ -29,6 +29,7 @@ import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterNFCWallet;
 import com.jubiter.sdk.JuBiterWallet;
+import com.jubiter.sdk.JuBiterXRP;
 import com.jubiter.sdk.ScanResultCallback;
 import com.jubiter.sdk.jni.nfc.NFCInitParam;
 import com.jubiter.sdk.jni.nfc.NfcDiscCallback;
@@ -37,6 +38,7 @@ import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EOSProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
+import com.jubiter.sdk.proto.RippleProtos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     enum COIN_TYPE {
         BTC,
         ETH,
-        EOS
+        EOS,
+        XRP,
     }
 
     @Override
@@ -284,6 +287,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnNFCImportMnemonicBtn();
         addListenerOnNFCExportMnemonicBtn();
         addListenerOnNFCChangePINBtn();
+
+        addListenerOnXRPCreateContext_SoftwareBtn();
+        addListenerOnXRPCreateContextBtn();
+        addListenerOnXRPGetMainHDNodetn();
+        addListenerOnXRPGetHDNodeBtn();
+        addListenerOnXRPGetAddressBtn();
+        addListenerOnXRPTransactionBtn();
     }
 
     private void addListenerOnScanDeviceBtn() {
@@ -811,6 +821,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     case EOS:
                         eosTransaction(contextID);
                         break;
+                    case XRP:
+                        xrpTransaction(contextID);
+                        break;
                 }
             }
         });
@@ -1306,7 +1319,168 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
-    ///////////////////////////////////////  NFC ///////////////////////////////////////////////
+    ///////////////////////////////////////  XRP ///////////////////////////////////////////////
+
+    private void addListenerOnXRPCreateContext_SoftwareBtn() {
+        findViewById(R.id.xrpCreateContext_software_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                        .setMainPath("m/44'/144'/0'")
+                        .build();
+                CommonProtos.ResultInt result = JuBiterXRP.createContext_Software(config,
+                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
+                Log.d(TAG,
+                        ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+                contextID = result.getValue();
+            }
+        });
+    }
+
+    private void addListenerOnXRPCreateContextBtn() {
+        findViewById(R.id.xrpCreateContext_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                                .setMainPath("m/44'/144'/0'")
+                                .build();
+                        CommonProtos.ResultInt result = JuBiterXRP.createContext(config, deviceID);
+                        Log.d(TAG,
+                                ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+                        contextID = result.getValue();
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnXRPGetMainHDNodetn() {
+        findViewById(R.id.xrpGetMainHDNode_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ResultString result = JuBiterXRP.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnXRPGetHDNodeBtn() {
+        findViewById(R.id.xrpGetHDNode_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                                .setAddressIndex(0)
+                                .setChange(false)
+                                .build();
+                        CommonProtos.ResultString result = JuBiterXRP.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnXRPGetAddressBtn() {
+        findViewById(R.id.xrpGetAddress_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                                .setAddressIndex(0)
+                                .setChange(false)
+                                .build();
+                        CommonProtos.ResultString result = JuBiterXRP.getAddress(contextID, bip32Path, false);
+                        Log.d(TAG, ">>> rv: " + result.getValue());
+                    }
+                });
+            }
+        });
+    }
+
+    private void addListenerOnXRPTransactionBtn() {
+        findViewById(R.id.xrpTransaction_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThreadUtils.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
+                                .setMainPath("m/44'/144'/0'")
+                                .build();
+                        CommonProtos.ResultInt result = JuBiterXRP.createContext(config, deviceID);
+                        if (0 != result.getStateCode()) {
+                            Log.d(TAG, "createContext : " + result.getStateCode());
+                            return;
+                        }
+
+                        final int contextID2 = result.getValue();
+                        int rv = JuBiterWallet.showVirtualPWD(contextID2);
+                        Log.d(TAG, "showVirtualPWD : " + rv);
+                        if (0 != rv) {
+                            return;
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showPINDialog(COIN_TYPE.XRP, contextID2);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    private void xrpTransaction(int contextID) {
+        RippleProtos.TransactionXRP transactionXRP = RippleProtos.TransactionXRP.newBuilder()
+                .setType(RippleProtos.ENUM_XRP_TX_TYPE.PYMT)
+                .setAccount("r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ")
+                .setFee("10")
+                .setSequence("1")
+                .setAccountTxnId("-")
+                .setFlags("2147483648")
+                .setLastLedgerSequence("0")
+                .setMemo(RippleProtos.XrpMemo.newBuilder()
+                        .setType("http://example.eom/memo/generic")
+                        .setData("rent")
+                        .setFormat("text/plain")
+                        .build())
+                .setSourceTag("-")
+                .setPymt(RippleProtos.PymtXRP.newBuilder()
+                        .setType(RippleProtos.ENUM_XRP_PYMT_TYPE.DXRP)
+                        .setAmount(RippleProtos.PymtAmount.newBuilder()
+                                .setCurrency("-")
+                                .setValue("1000")
+                                .setIssuer("-")
+                                .build())
+                        .setDestination("rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh")
+                        .setDestinationTag("0")
+                        .setInvoiceId("-")
+                        .build())
+                .build();
+
+
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setChange(false)
+                .setAddressIndex(0)
+                .build();
+        CommonProtos.ResultString result = JuBiterXRP.signTransaction(contextID, bip32Path, transactionXRP);
+        Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
+    }
 
 
     private void printDevice(String name, String mac, int deviceType) {

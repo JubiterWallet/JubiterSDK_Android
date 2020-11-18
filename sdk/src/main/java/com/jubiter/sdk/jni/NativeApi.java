@@ -125,4 +125,21 @@ public class NativeApi {
 
     public static native byte[] nativeEOSCalculateMemoHash(String memo);
 
+
+    //********************************* SDK XRP ************************************
+
+    public static native byte[] nativeXRPCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeXRPCreateContext_Software(byte[] config, String xPriKey);
+
+    public static native byte[] nativeXRPGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native byte[] nativeXRPGetHDNode(int contextID, byte[] format, byte[] bip32);
+
+    public static native byte[] nativeXRPGetMainHDNode(int contextID, byte[] format);
+
+    public static native byte[] nativeXRPSetAddress(int contextID, byte[] bip32);
+
+    public static native byte[] nativeXRPSignTransaction(int contextID, byte[] bip32, byte[] txInfo);
+
 }

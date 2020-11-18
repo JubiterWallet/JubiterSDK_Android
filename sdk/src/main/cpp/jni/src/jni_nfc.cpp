@@ -75,8 +75,9 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
 
 JNIEXPORT jboolean
 native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
-    JUB_ENUM_BOOL rv = JUB_HasRootKey(deviceID);
-    return rv == BOOL_TRUE ? true : false;
+    JUB_ENUM_NFC_ROOT_KEY_STATUS  statusPtr;
+    JUB_RV rv = JUB_GetRootKeyStatus(deviceID, &statusPtr);
+    return statusPtr == HAS_PIN ? true : false;
 }
 
 
