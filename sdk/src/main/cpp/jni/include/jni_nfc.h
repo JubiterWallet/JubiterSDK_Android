@@ -2,8 +2,8 @@
 // Created by Journey on 2020/9/14.
 //
 
-#ifndef JUBITERSDK_JNI_NFC_H
-#define JUBITERSDK_JNI_NFC_H
+#ifndef JUBITER_SDK_JNI_NFC_H
+#define JUBITER_SDK_JNI_NFC_H
 
 #include <jni.h>
 #include <JUB_SDK.h>
@@ -50,4 +50,4 @@ std::vector<JNINativeMethod> getNfcNativeMethods();
 }
 #endif // #ifdef __cplusplus
 
-#endif //JUBITERSDK_JNI_NFC_H
+#endif //JUBITER_SDK_JNI_NFC_H

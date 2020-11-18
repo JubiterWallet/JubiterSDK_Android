@@ -11,6 +11,7 @@ JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject ini
     NFC_DEVICE_INIT_PARAM nfcInitParam;
     jobjectToNFCInitParam(env, g_vm, initParam, &nfcInitParam);
     JUB_RV rv = JUB_initNFCDevice(nfcInitParam);
+    LOG_ERR("JUB_initNFCDevice rv: %d", rv);
     return rv;
 }
 
@@ -23,11 +24,13 @@ JNIEXPORT jbyteArray JNICALL native_NFCConnectDevice(JNIEnv *env, jclass clz, js
 
 JNIEXPORT jint JNICALL native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_disconnectNFCDevice(deviceID);
+    LOG_ERR("JUB_disconnectNFCDevice rv: %d", rv);
     return rv;
 }
 
 JNIEXPORT jint JNICALL native_NFCIsConnect(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_isDeviceNFCConnect(deviceID);
+    LOG_ERR("JUB_isDeviceNFCConnect rv: %d", rv);
     return rv;
 }
 
@@ -98,7 +101,7 @@ native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
 
     std::string result;
     rootKeyState.SerializeToString(&result);
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("JUB_GetRootKeyStatus", env, result);
 }
 
 JNIEXPORT jint native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel) {

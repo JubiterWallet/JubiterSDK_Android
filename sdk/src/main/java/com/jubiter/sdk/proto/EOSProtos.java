@@ -106,7 +106,7 @@ public final class EOSProtos {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -115,7 +115,7 @@ public final class EOSProtos {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ENUM_EOS_ACTION_TYPE valueOf(int value) {
       return forNumber(value);
     }
@@ -153,7 +153,7 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.getDescriptor().getEnumTypes().get(0);
+      return EOSProtos.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final ENUM_EOS_ACTION_TYPE[] VALUES = values();
@@ -161,7 +161,7 @@ public final class EOSProtos {
     public static ENUM_EOS_ACTION_TYPE valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -186,7 +186,7 @@ public final class EOSProtos {
     /**
      * <code>string from = 1;</code>
      */
-    java.lang.String getFrom();
+    String getFrom();
     /**
      * <code>string from = 1;</code>
      */
@@ -196,7 +196,7 @@ public final class EOSProtos {
     /**
      * <code>string to = 2;</code>
      */
-    java.lang.String getTo();
+    String getTo();
     /**
      * <code>string to = 2;</code>
      */
@@ -206,7 +206,7 @@ public final class EOSProtos {
     /**
      * <code>string asset = 3;</code>
      */
-    java.lang.String getAsset();
+    String getAsset();
     /**
      * <code>string asset = 3;</code>
      */
@@ -216,7 +216,7 @@ public final class EOSProtos {
     /**
      * <code>string memo = 4;</code>
      */
-    java.lang.String getMemo();
+    String getMemo();
     /**
      * <code>string memo = 4;</code>
      */
@@ -242,14 +242,14 @@ public final class EOSProtos {
       memo_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransferAction();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -260,7 +260,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -273,25 +273,25 @@ public final class EOSProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               from_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               to_ = s;
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               asset_ = s;
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               memo_ = s;
               break;
@@ -317,30 +317,30 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.TransferAction.class, com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder.class);
+              TransferAction.class, Builder.class);
     }
 
     public static final int FROM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object from_;
+    private volatile Object from_;
     /**
      * <code>string from = 1;</code>
      */
-    public java.lang.String getFrom() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getFrom() {
+      Object ref = from_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         from_ = s;
         return s;
       }
@@ -350,11 +350,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getFromBytes() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
+      Object ref = from_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         from_ = b;
         return b;
       } else {
@@ -363,18 +363,18 @@ public final class EOSProtos {
     }
 
     public static final int TO_FIELD_NUMBER = 2;
-    private volatile java.lang.Object to_;
+    private volatile Object to_;
     /**
      * <code>string to = 2;</code>
      */
-    public java.lang.String getTo() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getTo() {
+      Object ref = to_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         to_ = s;
         return s;
       }
@@ -384,11 +384,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getToBytes() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
+      Object ref = to_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         to_ = b;
         return b;
       } else {
@@ -397,18 +397,18 @@ public final class EOSProtos {
     }
 
     public static final int ASSET_FIELD_NUMBER = 3;
-    private volatile java.lang.Object asset_;
+    private volatile Object asset_;
     /**
      * <code>string asset = 3;</code>
      */
-    public java.lang.String getAsset() {
-      java.lang.Object ref = asset_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getAsset() {
+      Object ref = asset_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         asset_ = s;
         return s;
       }
@@ -418,11 +418,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getAssetBytes() {
-      java.lang.Object ref = asset_;
-      if (ref instanceof java.lang.String) {
+      Object ref = asset_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         asset_ = b;
         return b;
       } else {
@@ -431,18 +431,18 @@ public final class EOSProtos {
     }
 
     public static final int MEMO_FIELD_NUMBER = 4;
-    private volatile java.lang.Object memo_;
+    private volatile Object memo_;
     /**
      * <code>string memo = 4;</code>
      */
-    public java.lang.String getMemo() {
-      java.lang.Object ref = memo_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getMemo() {
+      Object ref = memo_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         memo_ = s;
         return s;
       }
@@ -452,11 +452,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getMemoBytes() {
-      java.lang.Object ref = memo_;
-      if (ref instanceof java.lang.String) {
+      Object ref = memo_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         memo_ = b;
         return b;
       } else {
@@ -465,7 +465,7 @@ public final class EOSProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -475,7 +475,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getFromBytes().isEmpty()) {
@@ -493,7 +493,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -516,15 +516,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.TransferAction)) {
+      if (!(obj instanceof TransferAction)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.TransferAction other = (com.jubiter.sdk.proto.EOSProtos.TransferAction) obj;
+      TransferAction other = (TransferAction) obj;
 
       if (!getFrom()
           .equals(other.getFrom())) return false;
@@ -538,7 +538,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -558,69 +558,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(byte[] data)
+    public static TransferAction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(java.io.InputStream input)
+    public static TransferAction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseDelimitedFrom(java.io.InputStream input)
+    public static TransferAction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseDelimitedFrom(
+    public static TransferAction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction parseFrom(
+    public static TransferAction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -628,23 +628,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.TransferAction prototype) {
+    public static Builder newBuilder(TransferAction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -654,18 +654,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.TransferAction)
-        com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder {
+        TransferActionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.TransferAction.class, com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder.class);
+                TransferAction.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.TransferAction.newBuilder()
@@ -674,7 +674,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -683,7 +683,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         from_ = "";
@@ -697,29 +697,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransferAction_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransferAction getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+      @Override
+      public TransferAction getDefaultInstanceForType() {
+        return TransferAction.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransferAction build() {
-        com.jubiter.sdk.proto.EOSProtos.TransferAction result = buildPartial();
+      @Override
+      public TransferAction build() {
+        TransferAction result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransferAction buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.TransferAction result = new com.jubiter.sdk.proto.EOSProtos.TransferAction(this);
+      @Override
+      public TransferAction buildPartial() {
+        TransferAction result = new TransferAction(this);
         result.from_ = from_;
         result.to_ = to_;
         result.asset_ = asset_;
@@ -728,50 +728,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.TransferAction) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.TransferAction)other);
+        if (other instanceof TransferAction) {
+          return mergeFrom((TransferAction)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.TransferAction other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance()) return this;
+      public Builder mergeFrom(TransferAction other) {
+        if (other == TransferAction.getDefaultInstance()) return this;
         if (!other.getFrom().isEmpty()) {
           from_ = other.from_;
           onChanged();
@@ -793,21 +793,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.TransferAction parsedMessage = null;
+        TransferAction parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.TransferAction) e.getUnfinishedMessage();
+          parsedMessage = (TransferAction) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -817,20 +817,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object from_ = "";
+      private Object from_ = "";
       /**
        * <code>string from = 1;</code>
        */
-      public java.lang.String getFrom() {
-        java.lang.Object ref = from_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getFrom() {
+        Object ref = from_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           from_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -838,11 +838,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getFromBytes() {
-        java.lang.Object ref = from_;
+        Object ref = from_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           from_ = b;
           return b;
         } else {
@@ -853,7 +853,7 @@ public final class EOSProtos {
        * <code>string from = 1;</code>
        */
       public Builder setFrom(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -886,20 +886,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object to_ = "";
+      private Object to_ = "";
       /**
        * <code>string to = 2;</code>
        */
-      public java.lang.String getTo() {
-        java.lang.Object ref = to_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getTo() {
+        Object ref = to_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           to_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -907,11 +907,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getToBytes() {
-        java.lang.Object ref = to_;
+        Object ref = to_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           to_ = b;
           return b;
         } else {
@@ -922,7 +922,7 @@ public final class EOSProtos {
        * <code>string to = 2;</code>
        */
       public Builder setTo(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -955,20 +955,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object asset_ = "";
+      private Object asset_ = "";
       /**
        * <code>string asset = 3;</code>
        */
-      public java.lang.String getAsset() {
-        java.lang.Object ref = asset_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getAsset() {
+        Object ref = asset_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           asset_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -976,11 +976,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getAssetBytes() {
-        java.lang.Object ref = asset_;
+        Object ref = asset_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           asset_ = b;
           return b;
         } else {
@@ -991,7 +991,7 @@ public final class EOSProtos {
        * <code>string asset = 3;</code>
        */
       public Builder setAsset(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1024,20 +1024,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object memo_ = "";
+      private Object memo_ = "";
       /**
        * <code>string memo = 4;</code>
        */
-      public java.lang.String getMemo() {
-        java.lang.Object ref = memo_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getMemo() {
+        Object ref = memo_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           memo_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1045,11 +1045,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getMemoBytes() {
-        java.lang.Object ref = memo_;
+        Object ref = memo_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           memo_ = b;
           return b;
         } else {
@@ -1060,7 +1060,7 @@ public final class EOSProtos {
        * <code>string memo = 4;</code>
        */
       public Builder setMemo(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1092,13 +1092,13 @@ public final class EOSProtos {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1109,18 +1109,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.TransferAction)
-    private static final com.jubiter.sdk.proto.EOSProtos.TransferAction DEFAULT_INSTANCE;
+    private static final TransferAction DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.TransferAction();
+      DEFAULT_INSTANCE = new TransferAction();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.TransferAction getDefaultInstance() {
+    public static TransferAction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransferAction>
         PARSER = new com.google.protobuf.AbstractParser<TransferAction>() {
-      @java.lang.Override
+      @Override
       public TransferAction parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1133,13 +1133,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<TransferAction> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.TransferAction getDefaultInstanceForType() {
+    @Override
+    public TransferAction getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1152,7 +1152,7 @@ public final class EOSProtos {
     /**
      * <code>string from = 1;</code>
      */
-    java.lang.String getFrom();
+    String getFrom();
     /**
      * <code>string from = 1;</code>
      */
@@ -1162,7 +1162,7 @@ public final class EOSProtos {
     /**
      * <code>string receiver = 2;</code>
      */
-    java.lang.String getReceiver();
+    String getReceiver();
     /**
      * <code>string receiver = 2;</code>
      */
@@ -1172,7 +1172,7 @@ public final class EOSProtos {
     /**
      * <code>string net_qty = 3;</code>
      */
-    java.lang.String getNetQty();
+    String getNetQty();
     /**
      * <code>string net_qty = 3;</code>
      */
@@ -1182,7 +1182,7 @@ public final class EOSProtos {
     /**
      * <code>string cpu_qty = 4;</code>
      */
-    java.lang.String getCpuQty();
+    String getCpuQty();
     /**
      * <code>string cpu_qty = 4;</code>
      */
@@ -1218,14 +1218,14 @@ public final class EOSProtos {
       cpuQty_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new DelegateAction();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1236,7 +1236,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1249,25 +1249,25 @@ public final class EOSProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               from_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               receiver_ = s;
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               netQty_ = s;
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               cpuQty_ = s;
               break;
@@ -1303,30 +1303,30 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.DelegateAction.class, com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder.class);
+              DelegateAction.class, Builder.class);
     }
 
     public static final int FROM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object from_;
+    private volatile Object from_;
     /**
      * <code>string from = 1;</code>
      */
-    public java.lang.String getFrom() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getFrom() {
+      Object ref = from_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         from_ = s;
         return s;
       }
@@ -1336,11 +1336,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getFromBytes() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
+      Object ref = from_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         from_ = b;
         return b;
       } else {
@@ -1349,18 +1349,18 @@ public final class EOSProtos {
     }
 
     public static final int RECEIVER_FIELD_NUMBER = 2;
-    private volatile java.lang.Object receiver_;
+    private volatile Object receiver_;
     /**
      * <code>string receiver = 2;</code>
      */
-    public java.lang.String getReceiver() {
-      java.lang.Object ref = receiver_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getReceiver() {
+      Object ref = receiver_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         receiver_ = s;
         return s;
       }
@@ -1370,11 +1370,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getReceiverBytes() {
-      java.lang.Object ref = receiver_;
-      if (ref instanceof java.lang.String) {
+      Object ref = receiver_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         receiver_ = b;
         return b;
       } else {
@@ -1383,18 +1383,18 @@ public final class EOSProtos {
     }
 
     public static final int NET_QTY_FIELD_NUMBER = 3;
-    private volatile java.lang.Object netQty_;
+    private volatile Object netQty_;
     /**
      * <code>string net_qty = 3;</code>
      */
-    public java.lang.String getNetQty() {
-      java.lang.Object ref = netQty_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getNetQty() {
+      Object ref = netQty_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         netQty_ = s;
         return s;
       }
@@ -1404,11 +1404,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getNetQtyBytes() {
-      java.lang.Object ref = netQty_;
-      if (ref instanceof java.lang.String) {
+      Object ref = netQty_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         netQty_ = b;
         return b;
       } else {
@@ -1417,18 +1417,18 @@ public final class EOSProtos {
     }
 
     public static final int CPU_QTY_FIELD_NUMBER = 4;
-    private volatile java.lang.Object cpuQty_;
+    private volatile Object cpuQty_;
     /**
      * <code>string cpu_qty = 4;</code>
      */
-    public java.lang.String getCpuQty() {
-      java.lang.Object ref = cpuQty_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getCpuQty() {
+      Object ref = cpuQty_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         cpuQty_ = s;
         return s;
       }
@@ -1438,11 +1438,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getCpuQtyBytes() {
-      java.lang.Object ref = cpuQty_;
-      if (ref instanceof java.lang.String) {
+      Object ref = cpuQty_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         cpuQty_ = b;
         return b;
       } else {
@@ -1469,7 +1469,7 @@ public final class EOSProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1479,7 +1479,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getFromBytes().isEmpty()) {
@@ -1503,7 +1503,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1534,15 +1534,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.DelegateAction)) {
+      if (!(obj instanceof DelegateAction)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.DelegateAction other = (com.jubiter.sdk.proto.EOSProtos.DelegateAction) obj;
+      DelegateAction other = (DelegateAction) obj;
 
       if (!getFrom()
           .equals(other.getFrom())) return false;
@@ -1560,7 +1560,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1586,69 +1586,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(byte[] data)
+    public static DelegateAction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(java.io.InputStream input)
+    public static DelegateAction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseDelimitedFrom(java.io.InputStream input)
+    public static DelegateAction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseDelimitedFrom(
+    public static DelegateAction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction parseFrom(
+    public static DelegateAction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1656,23 +1656,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.DelegateAction prototype) {
+    public static Builder newBuilder(DelegateAction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1682,18 +1682,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.DelegateAction)
-        com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder {
+        DelegateActionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.DelegateAction.class, com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder.class);
+                DelegateAction.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.DelegateAction.newBuilder()
@@ -1702,7 +1702,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1711,7 +1711,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         from_ = "";
@@ -1729,29 +1729,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_DelegateAction_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.DelegateAction getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+      @Override
+      public DelegateAction getDefaultInstanceForType() {
+        return DelegateAction.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.DelegateAction build() {
-        com.jubiter.sdk.proto.EOSProtos.DelegateAction result = buildPartial();
+      @Override
+      public DelegateAction build() {
+        DelegateAction result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.DelegateAction buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.DelegateAction result = new com.jubiter.sdk.proto.EOSProtos.DelegateAction(this);
+      @Override
+      public DelegateAction buildPartial() {
+        DelegateAction result = new DelegateAction(this);
         result.from_ = from_;
         result.receiver_ = receiver_;
         result.netQty_ = netQty_;
@@ -1762,50 +1762,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.DelegateAction) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.DelegateAction)other);
+        if (other instanceof DelegateAction) {
+          return mergeFrom((DelegateAction)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.DelegateAction other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance()) return this;
+      public Builder mergeFrom(DelegateAction other) {
+        if (other == DelegateAction.getDefaultInstance()) return this;
         if (!other.getFrom().isEmpty()) {
           from_ = other.from_;
           onChanged();
@@ -1833,21 +1833,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.DelegateAction parsedMessage = null;
+        DelegateAction parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.DelegateAction) e.getUnfinishedMessage();
+          parsedMessage = (DelegateAction) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1857,20 +1857,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object from_ = "";
+      private Object from_ = "";
       /**
        * <code>string from = 1;</code>
        */
-      public java.lang.String getFrom() {
-        java.lang.Object ref = from_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getFrom() {
+        Object ref = from_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           from_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1878,11 +1878,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getFromBytes() {
-        java.lang.Object ref = from_;
+        Object ref = from_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           from_ = b;
           return b;
         } else {
@@ -1893,7 +1893,7 @@ public final class EOSProtos {
        * <code>string from = 1;</code>
        */
       public Builder setFrom(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1926,20 +1926,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object receiver_ = "";
+      private Object receiver_ = "";
       /**
        * <code>string receiver = 2;</code>
        */
-      public java.lang.String getReceiver() {
-        java.lang.Object ref = receiver_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getReceiver() {
+        Object ref = receiver_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           receiver_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1947,11 +1947,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getReceiverBytes() {
-        java.lang.Object ref = receiver_;
+        Object ref = receiver_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           receiver_ = b;
           return b;
         } else {
@@ -1962,7 +1962,7 @@ public final class EOSProtos {
        * <code>string receiver = 2;</code>
        */
       public Builder setReceiver(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1995,20 +1995,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object netQty_ = "";
+      private Object netQty_ = "";
       /**
        * <code>string net_qty = 3;</code>
        */
-      public java.lang.String getNetQty() {
-        java.lang.Object ref = netQty_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getNetQty() {
+        Object ref = netQty_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           netQty_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2016,11 +2016,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getNetQtyBytes() {
-        java.lang.Object ref = netQty_;
+        Object ref = netQty_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           netQty_ = b;
           return b;
         } else {
@@ -2031,7 +2031,7 @@ public final class EOSProtos {
        * <code>string net_qty = 3;</code>
        */
       public Builder setNetQty(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2064,20 +2064,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object cpuQty_ = "";
+      private Object cpuQty_ = "";
       /**
        * <code>string cpu_qty = 4;</code>
        */
-      public java.lang.String getCpuQty() {
-        java.lang.Object ref = cpuQty_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getCpuQty() {
+        Object ref = cpuQty_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           cpuQty_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2085,11 +2085,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getCpuQtyBytes() {
-        java.lang.Object ref = cpuQty_;
+        Object ref = cpuQty_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           cpuQty_ = b;
           return b;
         } else {
@@ -2100,7 +2100,7 @@ public final class EOSProtos {
        * <code>string cpu_qty = 4;</code>
        */
       public Builder setCpuQty(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2184,13 +2184,13 @@ public final class EOSProtos {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2201,18 +2201,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.DelegateAction)
-    private static final com.jubiter.sdk.proto.EOSProtos.DelegateAction DEFAULT_INSTANCE;
+    private static final DelegateAction DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.DelegateAction();
+      DEFAULT_INSTANCE = new DelegateAction();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.DelegateAction getDefaultInstance() {
+    public static DelegateAction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<DelegateAction>
         PARSER = new com.google.protobuf.AbstractParser<DelegateAction>() {
-      @java.lang.Override
+      @Override
       public DelegateAction parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2225,13 +2225,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<DelegateAction> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.DelegateAction getDefaultInstanceForType() {
+    @Override
+    public DelegateAction getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2244,7 +2244,7 @@ public final class EOSProtos {
     /**
      * <code>string payer = 1;</code>
      */
-    java.lang.String getPayer();
+    String getPayer();
     /**
      * <code>string payer = 1;</code>
      */
@@ -2254,7 +2254,7 @@ public final class EOSProtos {
     /**
      * <code>string quant = 2;</code>
      */
-    java.lang.String getQuant();
+    String getQuant();
     /**
      * <code>string quant = 2;</code>
      */
@@ -2264,7 +2264,7 @@ public final class EOSProtos {
     /**
      * <code>string receiver = 3;</code>
      */
-    java.lang.String getReceiver();
+    String getReceiver();
     /**
      * <code>string receiver = 3;</code>
      */
@@ -2289,14 +2289,14 @@ public final class EOSProtos {
       receiver_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new BuyRamAction();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2307,7 +2307,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2320,19 +2320,19 @@ public final class EOSProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               payer_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               quant_ = s;
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               receiver_ = s;
               break;
@@ -2358,30 +2358,30 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.BuyRamAction.class, com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder.class);
+              BuyRamAction.class, Builder.class);
     }
 
     public static final int PAYER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object payer_;
+    private volatile Object payer_;
     /**
      * <code>string payer = 1;</code>
      */
-    public java.lang.String getPayer() {
-      java.lang.Object ref = payer_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getPayer() {
+      Object ref = payer_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         payer_ = s;
         return s;
       }
@@ -2391,11 +2391,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getPayerBytes() {
-      java.lang.Object ref = payer_;
-      if (ref instanceof java.lang.String) {
+      Object ref = payer_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         payer_ = b;
         return b;
       } else {
@@ -2404,18 +2404,18 @@ public final class EOSProtos {
     }
 
     public static final int QUANT_FIELD_NUMBER = 2;
-    private volatile java.lang.Object quant_;
+    private volatile Object quant_;
     /**
      * <code>string quant = 2;</code>
      */
-    public java.lang.String getQuant() {
-      java.lang.Object ref = quant_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getQuant() {
+      Object ref = quant_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         quant_ = s;
         return s;
       }
@@ -2425,11 +2425,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getQuantBytes() {
-      java.lang.Object ref = quant_;
-      if (ref instanceof java.lang.String) {
+      Object ref = quant_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         quant_ = b;
         return b;
       } else {
@@ -2438,18 +2438,18 @@ public final class EOSProtos {
     }
 
     public static final int RECEIVER_FIELD_NUMBER = 3;
-    private volatile java.lang.Object receiver_;
+    private volatile Object receiver_;
     /**
      * <code>string receiver = 3;</code>
      */
-    public java.lang.String getReceiver() {
-      java.lang.Object ref = receiver_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getReceiver() {
+      Object ref = receiver_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         receiver_ = s;
         return s;
       }
@@ -2459,11 +2459,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getReceiverBytes() {
-      java.lang.Object ref = receiver_;
-      if (ref instanceof java.lang.String) {
+      Object ref = receiver_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         receiver_ = b;
         return b;
       } else {
@@ -2472,7 +2472,7 @@ public final class EOSProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2482,7 +2482,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getPayerBytes().isEmpty()) {
@@ -2497,7 +2497,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2517,15 +2517,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.BuyRamAction)) {
+      if (!(obj instanceof BuyRamAction)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.BuyRamAction other = (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) obj;
+      BuyRamAction other = (BuyRamAction) obj;
 
       if (!getPayer()
           .equals(other.getPayer())) return false;
@@ -2537,7 +2537,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2555,69 +2555,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(byte[] data)
+    public static BuyRamAction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(java.io.InputStream input)
+    public static BuyRamAction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseDelimitedFrom(java.io.InputStream input)
+    public static BuyRamAction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseDelimitedFrom(
+    public static BuyRamAction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction parseFrom(
+    public static BuyRamAction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2625,23 +2625,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.BuyRamAction prototype) {
+    public static Builder newBuilder(BuyRamAction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2651,18 +2651,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.BuyRamAction)
-        com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder {
+        BuyRamActionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.BuyRamAction.class, com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder.class);
+                BuyRamAction.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.BuyRamAction.newBuilder()
@@ -2671,7 +2671,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2680,7 +2680,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         payer_ = "";
@@ -2692,29 +2692,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_BuyRamAction_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamAction getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+      @Override
+      public BuyRamAction getDefaultInstanceForType() {
+        return BuyRamAction.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamAction build() {
-        com.jubiter.sdk.proto.EOSProtos.BuyRamAction result = buildPartial();
+      @Override
+      public BuyRamAction build() {
+        BuyRamAction result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamAction buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.BuyRamAction result = new com.jubiter.sdk.proto.EOSProtos.BuyRamAction(this);
+      @Override
+      public BuyRamAction buildPartial() {
+        BuyRamAction result = new BuyRamAction(this);
         result.payer_ = payer_;
         result.quant_ = quant_;
         result.receiver_ = receiver_;
@@ -2722,50 +2722,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.BuyRamAction) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.BuyRamAction)other);
+        if (other instanceof BuyRamAction) {
+          return mergeFrom((BuyRamAction)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.BuyRamAction other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance()) return this;
+      public Builder mergeFrom(BuyRamAction other) {
+        if (other == BuyRamAction.getDefaultInstance()) return this;
         if (!other.getPayer().isEmpty()) {
           payer_ = other.payer_;
           onChanged();
@@ -2783,21 +2783,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.BuyRamAction parsedMessage = null;
+        BuyRamAction parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) e.getUnfinishedMessage();
+          parsedMessage = (BuyRamAction) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2807,20 +2807,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object payer_ = "";
+      private Object payer_ = "";
       /**
        * <code>string payer = 1;</code>
        */
-      public java.lang.String getPayer() {
-        java.lang.Object ref = payer_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getPayer() {
+        Object ref = payer_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           payer_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2828,11 +2828,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getPayerBytes() {
-        java.lang.Object ref = payer_;
+        Object ref = payer_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           payer_ = b;
           return b;
         } else {
@@ -2843,7 +2843,7 @@ public final class EOSProtos {
        * <code>string payer = 1;</code>
        */
       public Builder setPayer(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2876,20 +2876,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object quant_ = "";
+      private Object quant_ = "";
       /**
        * <code>string quant = 2;</code>
        */
-      public java.lang.String getQuant() {
-        java.lang.Object ref = quant_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getQuant() {
+        Object ref = quant_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           quant_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2897,11 +2897,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getQuantBytes() {
-        java.lang.Object ref = quant_;
+        Object ref = quant_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           quant_ = b;
           return b;
         } else {
@@ -2912,7 +2912,7 @@ public final class EOSProtos {
        * <code>string quant = 2;</code>
        */
       public Builder setQuant(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2945,20 +2945,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object receiver_ = "";
+      private Object receiver_ = "";
       /**
        * <code>string receiver = 3;</code>
        */
-      public java.lang.String getReceiver() {
-        java.lang.Object ref = receiver_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getReceiver() {
+        Object ref = receiver_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           receiver_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -2966,11 +2966,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getReceiverBytes() {
-        java.lang.Object ref = receiver_;
+        Object ref = receiver_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           receiver_ = b;
           return b;
         } else {
@@ -2981,7 +2981,7 @@ public final class EOSProtos {
        * <code>string receiver = 3;</code>
        */
       public Builder setReceiver(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3013,13 +3013,13 @@ public final class EOSProtos {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3030,18 +3030,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.BuyRamAction)
-    private static final com.jubiter.sdk.proto.EOSProtos.BuyRamAction DEFAULT_INSTANCE;
+    private static final BuyRamAction DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.BuyRamAction();
+      DEFAULT_INSTANCE = new BuyRamAction();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.BuyRamAction getDefaultInstance() {
+    public static BuyRamAction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<BuyRamAction>
         PARSER = new com.google.protobuf.AbstractParser<BuyRamAction>() {
-      @java.lang.Override
+      @Override
       public BuyRamAction parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3054,13 +3054,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<BuyRamAction> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.BuyRamAction getDefaultInstanceForType() {
+    @Override
+    public BuyRamAction getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3073,7 +3073,7 @@ public final class EOSProtos {
     /**
      * <code>string account = 1;</code>
      */
-    java.lang.String getAccount();
+    String getAccount();
     /**
      * <code>string account = 1;</code>
      */
@@ -3083,7 +3083,7 @@ public final class EOSProtos {
     /**
      * <code>string byte = 2;</code>
      */
-    java.lang.String getByte();
+    String getByte();
     /**
      * <code>string byte = 2;</code>
      */
@@ -3107,14 +3107,14 @@ public final class EOSProtos {
       byte_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new SellRamAction();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3125,7 +3125,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3138,13 +3138,13 @@ public final class EOSProtos {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               account_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               byte_ = s;
               break;
@@ -3170,30 +3170,30 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.SellRamAction.class, com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder.class);
+              SellRamAction.class, Builder.class);
     }
 
     public static final int ACCOUNT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object account_;
+    private volatile Object account_;
     /**
      * <code>string account = 1;</code>
      */
-    public java.lang.String getAccount() {
-      java.lang.Object ref = account_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getAccount() {
+      Object ref = account_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         account_ = s;
         return s;
       }
@@ -3203,11 +3203,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getAccountBytes() {
-      java.lang.Object ref = account_;
-      if (ref instanceof java.lang.String) {
+      Object ref = account_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         account_ = b;
         return b;
       } else {
@@ -3216,18 +3216,18 @@ public final class EOSProtos {
     }
 
     public static final int BYTE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object byte_;
+    private volatile Object byte_;
     /**
      * <code>string byte = 2;</code>
      */
-    public java.lang.String getByte() {
-      java.lang.Object ref = byte_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getByte() {
+      Object ref = byte_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         byte_ = s;
         return s;
       }
@@ -3237,11 +3237,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getByteBytes() {
-      java.lang.Object ref = byte_;
-      if (ref instanceof java.lang.String) {
+      Object ref = byte_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         byte_ = b;
         return b;
       } else {
@@ -3250,7 +3250,7 @@ public final class EOSProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3260,7 +3260,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getAccountBytes().isEmpty()) {
@@ -3272,7 +3272,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3289,15 +3289,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.SellRamAction)) {
+      if (!(obj instanceof SellRamAction)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.SellRamAction other = (com.jubiter.sdk.proto.EOSProtos.SellRamAction) obj;
+      SellRamAction other = (SellRamAction) obj;
 
       if (!getAccount()
           .equals(other.getAccount())) return false;
@@ -3307,7 +3307,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3323,69 +3323,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(byte[] data)
+    public static SellRamAction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(java.io.InputStream input)
+    public static SellRamAction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseDelimitedFrom(java.io.InputStream input)
+    public static SellRamAction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseDelimitedFrom(
+    public static SellRamAction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction parseFrom(
+    public static SellRamAction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3393,23 +3393,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.SellRamAction prototype) {
+    public static Builder newBuilder(SellRamAction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3419,18 +3419,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.SellRamAction)
-        com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder {
+        SellRamActionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.SellRamAction.class, com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder.class);
+                SellRamAction.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.SellRamAction.newBuilder()
@@ -3439,7 +3439,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3448,7 +3448,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         account_ = "";
@@ -3458,79 +3458,79 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_SellRamAction_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.SellRamAction getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+      @Override
+      public SellRamAction getDefaultInstanceForType() {
+        return SellRamAction.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.SellRamAction build() {
-        com.jubiter.sdk.proto.EOSProtos.SellRamAction result = buildPartial();
+      @Override
+      public SellRamAction build() {
+        SellRamAction result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.SellRamAction buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.SellRamAction result = new com.jubiter.sdk.proto.EOSProtos.SellRamAction(this);
+      @Override
+      public SellRamAction buildPartial() {
+        SellRamAction result = new SellRamAction(this);
         result.account_ = account_;
         result.byte_ = byte_;
         onBuilt();
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.SellRamAction) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.SellRamAction)other);
+        if (other instanceof SellRamAction) {
+          return mergeFrom((SellRamAction)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.SellRamAction other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance()) return this;
+      public Builder mergeFrom(SellRamAction other) {
+        if (other == SellRamAction.getDefaultInstance()) return this;
         if (!other.getAccount().isEmpty()) {
           account_ = other.account_;
           onChanged();
@@ -3544,21 +3544,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.SellRamAction parsedMessage = null;
+        SellRamAction parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.SellRamAction) e.getUnfinishedMessage();
+          parsedMessage = (SellRamAction) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3568,20 +3568,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object account_ = "";
+      private Object account_ = "";
       /**
        * <code>string account = 1;</code>
        */
-      public java.lang.String getAccount() {
-        java.lang.Object ref = account_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getAccount() {
+        Object ref = account_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           account_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -3589,11 +3589,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getAccountBytes() {
-        java.lang.Object ref = account_;
+        Object ref = account_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           account_ = b;
           return b;
         } else {
@@ -3604,7 +3604,7 @@ public final class EOSProtos {
        * <code>string account = 1;</code>
        */
       public Builder setAccount(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3637,20 +3637,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object byte_ = "";
+      private Object byte_ = "";
       /**
        * <code>string byte = 2;</code>
        */
-      public java.lang.String getByte() {
-        java.lang.Object ref = byte_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getByte() {
+        Object ref = byte_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           byte_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -3658,11 +3658,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getByteBytes() {
-        java.lang.Object ref = byte_;
+        Object ref = byte_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           byte_ = b;
           return b;
         } else {
@@ -3673,7 +3673,7 @@ public final class EOSProtos {
        * <code>string byte = 2;</code>
        */
       public Builder setByte(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3705,13 +3705,13 @@ public final class EOSProtos {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3722,18 +3722,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.SellRamAction)
-    private static final com.jubiter.sdk.proto.EOSProtos.SellRamAction DEFAULT_INSTANCE;
+    private static final SellRamAction DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.SellRamAction();
+      DEFAULT_INSTANCE = new SellRamAction();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.SellRamAction getDefaultInstance() {
+    public static SellRamAction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<SellRamAction>
         PARSER = new com.google.protobuf.AbstractParser<SellRamAction>() {
-      @java.lang.Override
+      @Override
       public SellRamAction parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3746,13 +3746,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<SellRamAction> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.SellRamAction getDefaultInstanceForType() {
+    @Override
+    public SellRamAction getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3769,12 +3769,12 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE type = 1;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE getType();
+    ENUM_EOS_ACTION_TYPE getType();
 
     /**
      * <code>string currency = 2;</code>
      */
-    java.lang.String getCurrency();
+    String getCurrency();
     /**
      * <code>string currency = 2;</code>
      */
@@ -3784,7 +3784,7 @@ public final class EOSProtos {
     /**
      * <code>string name = 3;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>string name = 3;</code>
      */
@@ -3798,11 +3798,11 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.TransferAction getXferAction();
+    TransferAction getXferAction();
     /**
      * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder getXferActionOrBuilder();
+    TransferActionOrBuilder getXferActionOrBuilder();
 
     /**
      * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
@@ -3811,11 +3811,11 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.DelegateAction getDeleAction();
+    DelegateAction getDeleAction();
     /**
      * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder getDeleActionOrBuilder();
+    DelegateActionOrBuilder getDeleActionOrBuilder();
 
     /**
      * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
@@ -3824,11 +3824,11 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.BuyRamAction getBuyRamAction();
+    BuyRamAction getBuyRamAction();
     /**
      * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder getBuyRamActionOrBuilder();
+    BuyRamActionOrBuilder getBuyRamActionOrBuilder();
 
     /**
      * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
@@ -3837,13 +3837,13 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.SellRamAction getSellRamAction();
+    SellRamAction getSellRamAction();
     /**
      * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder getSellRamActionOrBuilder();
+    SellRamActionOrBuilder getSellRamActionOrBuilder();
 
-    public com.jubiter.sdk.proto.EOSProtos.ActionEOS.ActionCase getActionCase();
+    public ActionEOS.ActionCase getActionCase();
   }
   /**
    * Protobuf type {@code JUB.Proto.EOS.ActionEOS}
@@ -3863,14 +3863,14 @@ public final class EOSProtos {
       name_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new ActionEOS();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3881,7 +3881,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3900,68 +3900,68 @@ public final class EOSProtos {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               currency_ = s;
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder subBuilder = null;
+              TransferAction.Builder subBuilder = null;
               if (actionCase_ == 4) {
-                subBuilder = ((com.jubiter.sdk.proto.EOSProtos.TransferAction) action_).toBuilder();
+                subBuilder = ((TransferAction) action_).toBuilder();
               }
               action_ =
-                  input.readMessage(com.jubiter.sdk.proto.EOSProtos.TransferAction.parser(), extensionRegistry);
+                  input.readMessage(TransferAction.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.EOSProtos.TransferAction) action_);
+                subBuilder.mergeFrom((TransferAction) action_);
                 action_ = subBuilder.buildPartial();
               }
               actionCase_ = 4;
               break;
             }
             case 42: {
-              com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder subBuilder = null;
+              DelegateAction.Builder subBuilder = null;
               if (actionCase_ == 5) {
-                subBuilder = ((com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_).toBuilder();
+                subBuilder = ((DelegateAction) action_).toBuilder();
               }
               action_ =
-                  input.readMessage(com.jubiter.sdk.proto.EOSProtos.DelegateAction.parser(), extensionRegistry);
+                  input.readMessage(DelegateAction.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_);
+                subBuilder.mergeFrom((DelegateAction) action_);
                 action_ = subBuilder.buildPartial();
               }
               actionCase_ = 5;
               break;
             }
             case 50: {
-              com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder subBuilder = null;
+              BuyRamAction.Builder subBuilder = null;
               if (actionCase_ == 6) {
-                subBuilder = ((com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_).toBuilder();
+                subBuilder = ((BuyRamAction) action_).toBuilder();
               }
               action_ =
-                  input.readMessage(com.jubiter.sdk.proto.EOSProtos.BuyRamAction.parser(), extensionRegistry);
+                  input.readMessage(BuyRamAction.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_);
+                subBuilder.mergeFrom((BuyRamAction) action_);
                 action_ = subBuilder.buildPartial();
               }
               actionCase_ = 6;
               break;
             }
             case 58: {
-              com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder subBuilder = null;
+              SellRamAction.Builder subBuilder = null;
               if (actionCase_ == 7) {
-                subBuilder = ((com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_).toBuilder();
+                subBuilder = ((SellRamAction) action_).toBuilder();
               }
               action_ =
-                  input.readMessage(com.jubiter.sdk.proto.EOSProtos.SellRamAction.parser(), extensionRegistry);
+                  input.readMessage(SellRamAction.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_);
+                subBuilder.mergeFrom((SellRamAction) action_);
                 action_ = subBuilder.buildPartial();
               }
               actionCase_ = 7;
@@ -3988,19 +3988,19 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.ActionEOS.class, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder.class);
+              ActionEOS.class, Builder.class);
     }
 
     private int actionCase_ = 0;
-    private java.lang.Object action_;
+    private Object action_;
     public enum ActionCase
         implements com.google.protobuf.Internal.EnumLite {
       XFER_ACTION(4),
@@ -4015,7 +4015,7 @@ public final class EOSProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @java.lang.Deprecated
+      @Deprecated
       public static ActionCase valueOf(int value) {
         return forNumber(value);
       }
@@ -4052,25 +4052,25 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE type = 1;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE getType() {
+    public ENUM_EOS_ACTION_TYPE getType() {
       @SuppressWarnings("deprecation")
-      com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE result = com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.valueOf(type_);
-      return result == null ? com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.UNRECOGNIZED : result;
+      ENUM_EOS_ACTION_TYPE result = ENUM_EOS_ACTION_TYPE.valueOf(type_);
+      return result == null ? ENUM_EOS_ACTION_TYPE.UNRECOGNIZED : result;
     }
 
     public static final int CURRENCY_FIELD_NUMBER = 2;
-    private volatile java.lang.Object currency_;
+    private volatile Object currency_;
     /**
      * <code>string currency = 2;</code>
      */
-    public java.lang.String getCurrency() {
-      java.lang.Object ref = currency_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getCurrency() {
+      Object ref = currency_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         currency_ = s;
         return s;
       }
@@ -4080,11 +4080,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getCurrencyBytes() {
-      java.lang.Object ref = currency_;
-      if (ref instanceof java.lang.String) {
+      Object ref = currency_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         currency_ = b;
         return b;
       } else {
@@ -4093,18 +4093,18 @@ public final class EOSProtos {
     }
 
     public static final int NAME_FIELD_NUMBER = 3;
-    private volatile java.lang.Object name_;
+    private volatile Object name_;
     /**
      * <code>string name = 3;</code>
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getName() {
+      Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -4114,11 +4114,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
+      Object ref = name_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         name_ = b;
         return b;
       } else {
@@ -4136,20 +4136,20 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.TransferAction getXferAction() {
+    public TransferAction getXferAction() {
       if (actionCase_ == 4) {
-         return (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_;
+         return (TransferAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+      return TransferAction.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder getXferActionOrBuilder() {
+    public TransferActionOrBuilder getXferActionOrBuilder() {
       if (actionCase_ == 4) {
-         return (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_;
+         return (TransferAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+      return TransferAction.getDefaultInstance();
     }
 
     public static final int DELE_ACTION_FIELD_NUMBER = 5;
@@ -4162,20 +4162,20 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.DelegateAction getDeleAction() {
+    public DelegateAction getDeleAction() {
       if (actionCase_ == 5) {
-         return (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_;
+         return (DelegateAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+      return DelegateAction.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder getDeleActionOrBuilder() {
+    public DelegateActionOrBuilder getDeleActionOrBuilder() {
       if (actionCase_ == 5) {
-         return (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_;
+         return (DelegateAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+      return DelegateAction.getDefaultInstance();
     }
 
     public static final int BUY_RAM_ACTION_FIELD_NUMBER = 6;
@@ -4188,20 +4188,20 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.BuyRamAction getBuyRamAction() {
+    public BuyRamAction getBuyRamAction() {
       if (actionCase_ == 6) {
-         return (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_;
+         return (BuyRamAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+      return BuyRamAction.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder getBuyRamActionOrBuilder() {
+    public BuyRamActionOrBuilder getBuyRamActionOrBuilder() {
       if (actionCase_ == 6) {
-         return (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_;
+         return (BuyRamAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+      return BuyRamAction.getDefaultInstance();
     }
 
     public static final int SELL_RAM_ACTION_FIELD_NUMBER = 7;
@@ -4214,24 +4214,24 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.SellRamAction getSellRamAction() {
+    public SellRamAction getSellRamAction() {
       if (actionCase_ == 7) {
-         return (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_;
+         return (SellRamAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+      return SellRamAction.getDefaultInstance();
     }
     /**
      * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder getSellRamActionOrBuilder() {
+    public SellRamActionOrBuilder getSellRamActionOrBuilder() {
       if (actionCase_ == 7) {
-         return (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_;
+         return (SellRamAction) action_;
       }
-      return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+      return SellRamAction.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4241,10 +4241,10 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.XFER.getNumber()) {
+      if (type_ != ENUM_EOS_ACTION_TYPE.XFER.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (!getCurrencyBytes().isEmpty()) {
@@ -4254,27 +4254,27 @@ public final class EOSProtos {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
       }
       if (actionCase_ == 4) {
-        output.writeMessage(4, (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_);
+        output.writeMessage(4, (TransferAction) action_);
       }
       if (actionCase_ == 5) {
-        output.writeMessage(5, (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_);
+        output.writeMessage(5, (DelegateAction) action_);
       }
       if (actionCase_ == 6) {
-        output.writeMessage(6, (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_);
+        output.writeMessage(6, (BuyRamAction) action_);
       }
       if (actionCase_ == 7) {
-        output.writeMessage(7, (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_);
+        output.writeMessage(7, (SellRamAction) action_);
       }
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.XFER.getNumber()) {
+      if (type_ != ENUM_EOS_ACTION_TYPE.XFER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
@@ -4286,34 +4286,34 @@ public final class EOSProtos {
       }
       if (actionCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_);
+          .computeMessageSize(4, (TransferAction) action_);
       }
       if (actionCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_);
+          .computeMessageSize(5, (DelegateAction) action_);
       }
       if (actionCase_ == 6) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_);
+          .computeMessageSize(6, (BuyRamAction) action_);
       }
       if (actionCase_ == 7) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_);
+          .computeMessageSize(7, (SellRamAction) action_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.ActionEOS)) {
+      if (!(obj instanceof ActionEOS)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.ActionEOS other = (com.jubiter.sdk.proto.EOSProtos.ActionEOS) obj;
+      ActionEOS other = (ActionEOS) obj;
 
       if (type_ != other.type_) return false;
       if (!getCurrency()
@@ -4345,7 +4345,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4383,69 +4383,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(byte[] data)
+    public static ActionEOS parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(java.io.InputStream input)
+    public static ActionEOS parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseDelimitedFrom(java.io.InputStream input)
+    public static ActionEOS parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseDelimitedFrom(
+    public static ActionEOS parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS parseFrom(
+    public static ActionEOS parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4453,23 +4453,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.ActionEOS prototype) {
+    public static Builder newBuilder(ActionEOS prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4479,18 +4479,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.ActionEOS)
-        com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder {
+        ActionEOSOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.ActionEOS.class, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder.class);
+                ActionEOS.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.ActionEOS.newBuilder()
@@ -4499,7 +4499,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4508,7 +4508,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         type_ = 0;
@@ -4522,29 +4522,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionEOS_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.ActionEOS.getDefaultInstance();
+      @Override
+      public ActionEOS getDefaultInstanceForType() {
+        return ActionEOS.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS build() {
-        com.jubiter.sdk.proto.EOSProtos.ActionEOS result = buildPartial();
+      @Override
+      public ActionEOS build() {
+        ActionEOS result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.ActionEOS result = new com.jubiter.sdk.proto.EOSProtos.ActionEOS(this);
+      @Override
+      public ActionEOS buildPartial() {
+        ActionEOS result = new ActionEOS(this);
         result.type_ = type_;
         result.currency_ = currency_;
         result.name_ = name_;
@@ -4581,50 +4581,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.ActionEOS) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.ActionEOS)other);
+        if (other instanceof ActionEOS) {
+          return mergeFrom((ActionEOS)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.ActionEOS other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.ActionEOS.getDefaultInstance()) return this;
+      public Builder mergeFrom(ActionEOS other) {
+        if (other == ActionEOS.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
@@ -4662,21 +4662,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.ActionEOS parsedMessage = null;
+        ActionEOS parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.ActionEOS) e.getUnfinishedMessage();
+          parsedMessage = (ActionEOS) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4686,7 +4686,7 @@ public final class EOSProtos {
         return this;
       }
       private int actionCase_ = 0;
-      private java.lang.Object action_;
+      private Object action_;
       public ActionCase
           getActionCase() {
         return ActionCase.forNumber(
@@ -4719,15 +4719,15 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE type = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE getType() {
+      public ENUM_EOS_ACTION_TYPE getType() {
         @SuppressWarnings("deprecation")
-        com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE result = com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.valueOf(type_);
-        return result == null ? com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE.UNRECOGNIZED : result;
+        ENUM_EOS_ACTION_TYPE result = ENUM_EOS_ACTION_TYPE.valueOf(type_);
+        return result == null ? ENUM_EOS_ACTION_TYPE.UNRECOGNIZED : result;
       }
       /**
        * <code>.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE type = 1;</code>
        */
-      public Builder setType(com.jubiter.sdk.proto.EOSProtos.ENUM_EOS_ACTION_TYPE value) {
+      public Builder setType(ENUM_EOS_ACTION_TYPE value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -4746,20 +4746,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object currency_ = "";
+      private Object currency_ = "";
       /**
        * <code>string currency = 2;</code>
        */
-      public java.lang.String getCurrency() {
-        java.lang.Object ref = currency_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getCurrency() {
+        Object ref = currency_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           currency_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -4767,11 +4767,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getCurrencyBytes() {
-        java.lang.Object ref = currency_;
+        Object ref = currency_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           currency_ = b;
           return b;
         } else {
@@ -4782,7 +4782,7 @@ public final class EOSProtos {
        * <code>string currency = 2;</code>
        */
       public Builder setCurrency(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4815,20 +4815,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object name_ = "";
+      private Object name_ = "";
       /**
        * <code>string name = 3;</code>
        */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getName() {
+        Object ref = name_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -4836,11 +4836,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        java.lang.Object ref = name_;
+        Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           name_ = b;
           return b;
         } else {
@@ -4851,7 +4851,7 @@ public final class EOSProtos {
        * <code>string name = 3;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4885,7 +4885,7 @@ public final class EOSProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.TransferAction, com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder, com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder> xferActionBuilder_;
+          TransferAction, TransferAction.Builder, TransferActionOrBuilder> xferActionBuilder_;
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
@@ -4895,23 +4895,23 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.TransferAction getXferAction() {
+      public TransferAction getXferAction() {
         if (xferActionBuilder_ == null) {
           if (actionCase_ == 4) {
-            return (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_;
+            return (TransferAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+          return TransferAction.getDefaultInstance();
         } else {
           if (actionCase_ == 4) {
             return xferActionBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+          return TransferAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
-      public Builder setXferAction(com.jubiter.sdk.proto.EOSProtos.TransferAction value) {
+      public Builder setXferAction(TransferAction value) {
         if (xferActionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4928,7 +4928,7 @@ public final class EOSProtos {
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
       public Builder setXferAction(
-          com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder builderForValue) {
+          TransferAction.Builder builderForValue) {
         if (xferActionBuilder_ == null) {
           action_ = builderForValue.build();
           onChanged();
@@ -4941,11 +4941,11 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
-      public Builder mergeXferAction(com.jubiter.sdk.proto.EOSProtos.TransferAction value) {
+      public Builder mergeXferAction(TransferAction value) {
         if (xferActionBuilder_ == null) {
           if (actionCase_ == 4 &&
-              action_ != com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance()) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.TransferAction.newBuilder((com.jubiter.sdk.proto.EOSProtos.TransferAction) action_)
+              action_ != TransferAction.getDefaultInstance()) {
+            action_ = TransferAction.newBuilder((TransferAction) action_)
                 .mergeFrom(value).buildPartial();
           } else {
             action_ = value;
@@ -4982,35 +4982,35 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder getXferActionBuilder() {
+      public TransferAction.Builder getXferActionBuilder() {
         return getXferActionFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder getXferActionOrBuilder() {
+      public TransferActionOrBuilder getXferActionOrBuilder() {
         if ((actionCase_ == 4) && (xferActionBuilder_ != null)) {
           return xferActionBuilder_.getMessageOrBuilder();
         } else {
           if (actionCase_ == 4) {
-            return (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_;
+            return (TransferAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+          return TransferAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.TransferAction xfer_action = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.TransferAction, com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder, com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder> 
+          TransferAction, TransferAction.Builder, TransferActionOrBuilder>
           getXferActionFieldBuilder() {
         if (xferActionBuilder_ == null) {
           if (!(actionCase_ == 4)) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.TransferAction.getDefaultInstance();
+            action_ = TransferAction.getDefaultInstance();
           }
           xferActionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.EOSProtos.TransferAction, com.jubiter.sdk.proto.EOSProtos.TransferAction.Builder, com.jubiter.sdk.proto.EOSProtos.TransferActionOrBuilder>(
-                  (com.jubiter.sdk.proto.EOSProtos.TransferAction) action_,
+              TransferAction, TransferAction.Builder, TransferActionOrBuilder>(
+                  (TransferAction) action_,
                   getParentForChildren(),
                   isClean());
           action_ = null;
@@ -5021,7 +5021,7 @@ public final class EOSProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.DelegateAction, com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder, com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder> deleActionBuilder_;
+          DelegateAction, DelegateAction.Builder, DelegateActionOrBuilder> deleActionBuilder_;
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
@@ -5031,23 +5031,23 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.DelegateAction getDeleAction() {
+      public DelegateAction getDeleAction() {
         if (deleActionBuilder_ == null) {
           if (actionCase_ == 5) {
-            return (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_;
+            return (DelegateAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+          return DelegateAction.getDefaultInstance();
         } else {
           if (actionCase_ == 5) {
             return deleActionBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+          return DelegateAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
-      public Builder setDeleAction(com.jubiter.sdk.proto.EOSProtos.DelegateAction value) {
+      public Builder setDeleAction(DelegateAction value) {
         if (deleActionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5064,7 +5064,7 @@ public final class EOSProtos {
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
       public Builder setDeleAction(
-          com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder builderForValue) {
+          DelegateAction.Builder builderForValue) {
         if (deleActionBuilder_ == null) {
           action_ = builderForValue.build();
           onChanged();
@@ -5077,11 +5077,11 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
-      public Builder mergeDeleAction(com.jubiter.sdk.proto.EOSProtos.DelegateAction value) {
+      public Builder mergeDeleAction(DelegateAction value) {
         if (deleActionBuilder_ == null) {
           if (actionCase_ == 5 &&
-              action_ != com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance()) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.DelegateAction.newBuilder((com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_)
+              action_ != DelegateAction.getDefaultInstance()) {
+            action_ = DelegateAction.newBuilder((DelegateAction) action_)
                 .mergeFrom(value).buildPartial();
           } else {
             action_ = value;
@@ -5118,35 +5118,35 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder getDeleActionBuilder() {
+      public DelegateAction.Builder getDeleActionBuilder() {
         return getDeleActionFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder getDeleActionOrBuilder() {
+      public DelegateActionOrBuilder getDeleActionOrBuilder() {
         if ((actionCase_ == 5) && (deleActionBuilder_ != null)) {
           return deleActionBuilder_.getMessageOrBuilder();
         } else {
           if (actionCase_ == 5) {
-            return (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_;
+            return (DelegateAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+          return DelegateAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.DelegateAction dele_action = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.DelegateAction, com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder, com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder> 
+          DelegateAction, DelegateAction.Builder, DelegateActionOrBuilder>
           getDeleActionFieldBuilder() {
         if (deleActionBuilder_ == null) {
           if (!(actionCase_ == 5)) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.DelegateAction.getDefaultInstance();
+            action_ = DelegateAction.getDefaultInstance();
           }
           deleActionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.EOSProtos.DelegateAction, com.jubiter.sdk.proto.EOSProtos.DelegateAction.Builder, com.jubiter.sdk.proto.EOSProtos.DelegateActionOrBuilder>(
-                  (com.jubiter.sdk.proto.EOSProtos.DelegateAction) action_,
+              DelegateAction, DelegateAction.Builder, DelegateActionOrBuilder>(
+                  (DelegateAction) action_,
                   getParentForChildren(),
                   isClean());
           action_ = null;
@@ -5157,7 +5157,7 @@ public final class EOSProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.BuyRamAction, com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder> buyRamActionBuilder_;
+          BuyRamAction, BuyRamAction.Builder, BuyRamActionOrBuilder> buyRamActionBuilder_;
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
@@ -5167,23 +5167,23 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamAction getBuyRamAction() {
+      public BuyRamAction getBuyRamAction() {
         if (buyRamActionBuilder_ == null) {
           if (actionCase_ == 6) {
-            return (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_;
+            return (BuyRamAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+          return BuyRamAction.getDefaultInstance();
         } else {
           if (actionCase_ == 6) {
             return buyRamActionBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+          return BuyRamAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
-      public Builder setBuyRamAction(com.jubiter.sdk.proto.EOSProtos.BuyRamAction value) {
+      public Builder setBuyRamAction(BuyRamAction value) {
         if (buyRamActionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5200,7 +5200,7 @@ public final class EOSProtos {
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
       public Builder setBuyRamAction(
-          com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder builderForValue) {
+          BuyRamAction.Builder builderForValue) {
         if (buyRamActionBuilder_ == null) {
           action_ = builderForValue.build();
           onChanged();
@@ -5213,11 +5213,11 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
-      public Builder mergeBuyRamAction(com.jubiter.sdk.proto.EOSProtos.BuyRamAction value) {
+      public Builder mergeBuyRamAction(BuyRamAction value) {
         if (buyRamActionBuilder_ == null) {
           if (actionCase_ == 6 &&
-              action_ != com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance()) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.BuyRamAction.newBuilder((com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_)
+              action_ != BuyRamAction.getDefaultInstance()) {
+            action_ = BuyRamAction.newBuilder((BuyRamAction) action_)
                 .mergeFrom(value).buildPartial();
           } else {
             action_ = value;
@@ -5254,35 +5254,35 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder getBuyRamActionBuilder() {
+      public BuyRamAction.Builder getBuyRamActionBuilder() {
         return getBuyRamActionFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder getBuyRamActionOrBuilder() {
+      public BuyRamActionOrBuilder getBuyRamActionOrBuilder() {
         if ((actionCase_ == 6) && (buyRamActionBuilder_ != null)) {
           return buyRamActionBuilder_.getMessageOrBuilder();
         } else {
           if (actionCase_ == 6) {
-            return (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_;
+            return (BuyRamAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+          return BuyRamAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.BuyRamAction buy_ram_action = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.BuyRamAction, com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder> 
+          BuyRamAction, BuyRamAction.Builder, BuyRamActionOrBuilder>
           getBuyRamActionFieldBuilder() {
         if (buyRamActionBuilder_ == null) {
           if (!(actionCase_ == 6)) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.BuyRamAction.getDefaultInstance();
+            action_ = BuyRamAction.getDefaultInstance();
           }
           buyRamActionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.EOSProtos.BuyRamAction, com.jubiter.sdk.proto.EOSProtos.BuyRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.BuyRamActionOrBuilder>(
-                  (com.jubiter.sdk.proto.EOSProtos.BuyRamAction) action_,
+              BuyRamAction, BuyRamAction.Builder, BuyRamActionOrBuilder>(
+                  (BuyRamAction) action_,
                   getParentForChildren(),
                   isClean());
           action_ = null;
@@ -5293,7 +5293,7 @@ public final class EOSProtos {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.SellRamAction, com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder> sellRamActionBuilder_;
+          SellRamAction, SellRamAction.Builder, SellRamActionOrBuilder> sellRamActionBuilder_;
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
@@ -5303,23 +5303,23 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.SellRamAction getSellRamAction() {
+      public SellRamAction getSellRamAction() {
         if (sellRamActionBuilder_ == null) {
           if (actionCase_ == 7) {
-            return (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_;
+            return (SellRamAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+          return SellRamAction.getDefaultInstance();
         } else {
           if (actionCase_ == 7) {
             return sellRamActionBuilder_.getMessage();
           }
-          return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+          return SellRamAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
-      public Builder setSellRamAction(com.jubiter.sdk.proto.EOSProtos.SellRamAction value) {
+      public Builder setSellRamAction(SellRamAction value) {
         if (sellRamActionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5336,7 +5336,7 @@ public final class EOSProtos {
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
       public Builder setSellRamAction(
-          com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder builderForValue) {
+          SellRamAction.Builder builderForValue) {
         if (sellRamActionBuilder_ == null) {
           action_ = builderForValue.build();
           onChanged();
@@ -5349,11 +5349,11 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
-      public Builder mergeSellRamAction(com.jubiter.sdk.proto.EOSProtos.SellRamAction value) {
+      public Builder mergeSellRamAction(SellRamAction value) {
         if (sellRamActionBuilder_ == null) {
           if (actionCase_ == 7 &&
-              action_ != com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance()) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.SellRamAction.newBuilder((com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_)
+              action_ != SellRamAction.getDefaultInstance()) {
+            action_ = SellRamAction.newBuilder((SellRamAction) action_)
                 .mergeFrom(value).buildPartial();
           } else {
             action_ = value;
@@ -5390,35 +5390,35 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder getSellRamActionBuilder() {
+      public SellRamAction.Builder getSellRamActionBuilder() {
         return getSellRamActionFieldBuilder().getBuilder();
       }
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder getSellRamActionOrBuilder() {
+      public SellRamActionOrBuilder getSellRamActionOrBuilder() {
         if ((actionCase_ == 7) && (sellRamActionBuilder_ != null)) {
           return sellRamActionBuilder_.getMessageOrBuilder();
         } else {
           if (actionCase_ == 7) {
-            return (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_;
+            return (SellRamAction) action_;
           }
-          return com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+          return SellRamAction.getDefaultInstance();
         }
       }
       /**
        * <code>.JUB.Proto.EOS.SellRamAction sell_ram_action = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.SellRamAction, com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder> 
+          SellRamAction, SellRamAction.Builder, SellRamActionOrBuilder>
           getSellRamActionFieldBuilder() {
         if (sellRamActionBuilder_ == null) {
           if (!(actionCase_ == 7)) {
-            action_ = com.jubiter.sdk.proto.EOSProtos.SellRamAction.getDefaultInstance();
+            action_ = SellRamAction.getDefaultInstance();
           }
           sellRamActionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.EOSProtos.SellRamAction, com.jubiter.sdk.proto.EOSProtos.SellRamAction.Builder, com.jubiter.sdk.proto.EOSProtos.SellRamActionOrBuilder>(
-                  (com.jubiter.sdk.proto.EOSProtos.SellRamAction) action_,
+              SellRamAction, SellRamAction.Builder, SellRamActionOrBuilder>(
+                  (SellRamAction) action_,
                   getParentForChildren(),
                   isClean());
           action_ = null;
@@ -5427,13 +5427,13 @@ public final class EOSProtos {
         onChanged();;
         return sellRamActionBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -5444,18 +5444,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.ActionEOS)
-    private static final com.jubiter.sdk.proto.EOSProtos.ActionEOS DEFAULT_INSTANCE;
+    private static final ActionEOS DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.ActionEOS();
+      DEFAULT_INSTANCE = new ActionEOS();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.ActionEOS getDefaultInstance() {
+    public static ActionEOS getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ActionEOS>
         PARSER = new com.google.protobuf.AbstractParser<ActionEOS>() {
-      @java.lang.Override
+      @Override
       public ActionEOS parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5468,13 +5468,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<ActionEOS> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.ActionEOS getDefaultInstanceForType() {
+    @Override
+    public ActionEOS getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5487,12 +5487,12 @@ public final class EOSProtos {
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS> 
+    java.util.List<ActionEOS>
         getActionsList();
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.ActionEOS getActions(int index);
+    ActionEOS getActions(int index);
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
@@ -5500,12 +5500,12 @@ public final class EOSProtos {
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    java.util.List<? extends com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder> 
+    java.util.List<? extends ActionEOSOrBuilder>
         getActionsOrBuilderList();
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder getActionsOrBuilder(
+    ActionEOSOrBuilder getActionsOrBuilder(
         int index);
   }
   /**
@@ -5524,14 +5524,14 @@ public final class EOSProtos {
       actions_ = java.util.Collections.emptyList();
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new ActionListEOS();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -5542,7 +5542,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -5557,11 +5557,11 @@ public final class EOSProtos {
               break;
             case 10: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                actions_ = new java.util.ArrayList<com.jubiter.sdk.proto.EOSProtos.ActionEOS>();
+                actions_ = new java.util.ArrayList<ActionEOS>();
                 mutable_bitField0_ |= 0x00000001;
               }
               actions_.add(
-                  input.readMessage(com.jubiter.sdk.proto.EOSProtos.ActionEOS.parser(), extensionRegistry));
+                  input.readMessage(ActionEOS.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -5588,29 +5588,29 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.ActionListEOS.class, com.jubiter.sdk.proto.EOSProtos.ActionListEOS.Builder.class);
+              ActionListEOS.class, Builder.class);
     }
 
     public static final int ACTIONS_FIELD_NUMBER = 1;
-    private java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS> actions_;
+    private java.util.List<ActionEOS> actions_;
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    public java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS> getActionsList() {
+    public java.util.List<ActionEOS> getActionsList() {
       return actions_;
     }
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    public java.util.List<? extends com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder> 
+    public java.util.List<? extends ActionEOSOrBuilder>
         getActionsOrBuilderList() {
       return actions_;
     }
@@ -5623,19 +5623,19 @@ public final class EOSProtos {
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.ActionEOS getActions(int index) {
+    public ActionEOS getActions(int index) {
       return actions_.get(index);
     }
     /**
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
-    public com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder getActionsOrBuilder(
+    public ActionEOSOrBuilder getActionsOrBuilder(
         int index) {
       return actions_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -5645,7 +5645,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < actions_.size(); i++) {
@@ -5654,7 +5654,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -5669,15 +5669,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.ActionListEOS)) {
+      if (!(obj instanceof ActionListEOS)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.ActionListEOS other = (com.jubiter.sdk.proto.EOSProtos.ActionListEOS) obj;
+      ActionListEOS other = (ActionListEOS) obj;
 
       if (!getActionsList()
           .equals(other.getActionsList())) return false;
@@ -5685,7 +5685,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -5701,69 +5701,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(byte[] data)
+    public static ActionListEOS parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(java.io.InputStream input)
+    public static ActionListEOS parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseDelimitedFrom(java.io.InputStream input)
+    public static ActionListEOS parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseDelimitedFrom(
+    public static ActionListEOS parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS parseFrom(
+    public static ActionListEOS parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5771,23 +5771,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.ActionListEOS prototype) {
+    public static Builder newBuilder(ActionListEOS prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -5797,18 +5797,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.ActionListEOS)
-        com.jubiter.sdk.proto.EOSProtos.ActionListEOSOrBuilder {
+        ActionListEOSOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.ActionListEOS.class, com.jubiter.sdk.proto.EOSProtos.ActionListEOS.Builder.class);
+                ActionListEOS.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.ActionListEOS.newBuilder()
@@ -5817,7 +5817,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5827,7 +5827,7 @@ public final class EOSProtos {
           getActionsFieldBuilder();
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         if (actionsBuilder_ == null) {
@@ -5839,29 +5839,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_ActionListEOS_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionListEOS getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.ActionListEOS.getDefaultInstance();
+      @Override
+      public ActionListEOS getDefaultInstanceForType() {
+        return ActionListEOS.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionListEOS build() {
-        com.jubiter.sdk.proto.EOSProtos.ActionListEOS result = buildPartial();
+      @Override
+      public ActionListEOS build() {
+        ActionListEOS result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.ActionListEOS buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.ActionListEOS result = new com.jubiter.sdk.proto.EOSProtos.ActionListEOS(this);
+      @Override
+      public ActionListEOS buildPartial() {
+        ActionListEOS result = new ActionListEOS(this);
         int from_bitField0_ = bitField0_;
         if (actionsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
@@ -5876,50 +5876,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.ActionListEOS) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.ActionListEOS)other);
+        if (other instanceof ActionListEOS) {
+          return mergeFrom((ActionListEOS)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.ActionListEOS other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.ActionListEOS.getDefaultInstance()) return this;
+      public Builder mergeFrom(ActionListEOS other) {
+        if (other == ActionListEOS.getDefaultInstance()) return this;
         if (actionsBuilder_ == null) {
           if (!other.actions_.isEmpty()) {
             if (actions_.isEmpty()) {
@@ -5951,21 +5951,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.ActionListEOS parsedMessage = null;
+        ActionListEOS parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.ActionListEOS) e.getUnfinishedMessage();
+          parsedMessage = (ActionListEOS) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5976,22 +5976,22 @@ public final class EOSProtos {
       }
       private int bitField0_;
 
-      private java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS> actions_ =
+      private java.util.List<ActionEOS> actions_ =
         java.util.Collections.emptyList();
       private void ensureActionsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          actions_ = new java.util.ArrayList<com.jubiter.sdk.proto.EOSProtos.ActionEOS>(actions_);
+          actions_ = new java.util.ArrayList<ActionEOS>(actions_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.ActionEOS, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder, com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder> actionsBuilder_;
+          ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder> actionsBuilder_;
 
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS> getActionsList() {
+      public java.util.List<ActionEOS> getActionsList() {
         if (actionsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(actions_);
         } else {
@@ -6011,7 +6011,7 @@ public final class EOSProtos {
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS getActions(int index) {
+      public ActionEOS getActions(int index) {
         if (actionsBuilder_ == null) {
           return actions_.get(index);
         } else {
@@ -6022,7 +6022,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder setActions(
-          int index, com.jubiter.sdk.proto.EOSProtos.ActionEOS value) {
+          int index, ActionEOS value) {
         if (actionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6039,7 +6039,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder setActions(
-          int index, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder builderForValue) {
+          int index, ActionEOS.Builder builderForValue) {
         if (actionsBuilder_ == null) {
           ensureActionsIsMutable();
           actions_.set(index, builderForValue.build());
@@ -6052,7 +6052,7 @@ public final class EOSProtos {
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public Builder addActions(com.jubiter.sdk.proto.EOSProtos.ActionEOS value) {
+      public Builder addActions(ActionEOS value) {
         if (actionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6069,7 +6069,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder addActions(
-          int index, com.jubiter.sdk.proto.EOSProtos.ActionEOS value) {
+          int index, ActionEOS value) {
         if (actionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6086,7 +6086,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder addActions(
-          com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder builderForValue) {
+          ActionEOS.Builder builderForValue) {
         if (actionsBuilder_ == null) {
           ensureActionsIsMutable();
           actions_.add(builderForValue.build());
@@ -6100,7 +6100,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder addActions(
-          int index, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder builderForValue) {
+          int index, ActionEOS.Builder builderForValue) {
         if (actionsBuilder_ == null) {
           ensureActionsIsMutable();
           actions_.add(index, builderForValue.build());
@@ -6114,7 +6114,7 @@ public final class EOSProtos {
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
       public Builder addAllActions(
-          java.lang.Iterable<? extends com.jubiter.sdk.proto.EOSProtos.ActionEOS> values) {
+          Iterable<? extends ActionEOS> values) {
         if (actionsBuilder_ == null) {
           ensureActionsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -6154,14 +6154,14 @@ public final class EOSProtos {
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder getActionsBuilder(
+      public ActionEOS.Builder getActionsBuilder(
           int index) {
         return getActionsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder getActionsOrBuilder(
+      public ActionEOSOrBuilder getActionsOrBuilder(
           int index) {
         if (actionsBuilder_ == null) {
           return actions_.get(index);  } else {
@@ -6171,7 +6171,7 @@ public final class EOSProtos {
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public java.util.List<? extends com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder> 
+      public java.util.List<? extends ActionEOSOrBuilder>
            getActionsOrBuilderList() {
         if (actionsBuilder_ != null) {
           return actionsBuilder_.getMessageOrBuilderList();
@@ -6182,31 +6182,31 @@ public final class EOSProtos {
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder addActionsBuilder() {
+      public ActionEOS.Builder addActionsBuilder() {
         return getActionsFieldBuilder().addBuilder(
-            com.jubiter.sdk.proto.EOSProtos.ActionEOS.getDefaultInstance());
+            ActionEOS.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder addActionsBuilder(
+      public ActionEOS.Builder addActionsBuilder(
           int index) {
         return getActionsFieldBuilder().addBuilder(
-            index, com.jubiter.sdk.proto.EOSProtos.ActionEOS.getDefaultInstance());
+            index, ActionEOS.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder> 
+      public java.util.List<ActionEOS.Builder>
            getActionsBuilderList() {
         return getActionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.EOSProtos.ActionEOS, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder, com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder> 
+          ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder>
           getActionsFieldBuilder() {
         if (actionsBuilder_ == null) {
           actionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.jubiter.sdk.proto.EOSProtos.ActionEOS, com.jubiter.sdk.proto.EOSProtos.ActionEOS.Builder, com.jubiter.sdk.proto.EOSProtos.ActionEOSOrBuilder>(
+              ActionEOS, ActionEOS.Builder, ActionEOSOrBuilder>(
                   actions_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -6215,13 +6215,13 @@ public final class EOSProtos {
         }
         return actionsBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -6232,18 +6232,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.ActionListEOS)
-    private static final com.jubiter.sdk.proto.EOSProtos.ActionListEOS DEFAULT_INSTANCE;
+    private static final ActionListEOS DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.ActionListEOS();
+      DEFAULT_INSTANCE = new ActionListEOS();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.ActionListEOS getDefaultInstance() {
+    public static ActionListEOS getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ActionListEOS>
         PARSER = new com.google.protobuf.AbstractParser<ActionListEOS>() {
-      @java.lang.Override
+      @Override
       public ActionListEOS parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6256,13 +6256,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<ActionListEOS> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.ActionListEOS getDefaultInstanceForType() {
+    @Override
+    public ActionListEOS getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6279,16 +6279,16 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
+    CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
 
     /**
      * <code>string chainID = 2;</code>
      */
-    java.lang.String getChainID();
+    String getChainID();
     /**
      * <code>string chainID = 2;</code>
      */
@@ -6298,7 +6298,7 @@ public final class EOSProtos {
     /**
      * <code>string expiration = 3;</code>
      */
-    java.lang.String getExpiration();
+    String getExpiration();
     /**
      * <code>string expiration = 3;</code>
      */
@@ -6308,7 +6308,7 @@ public final class EOSProtos {
     /**
      * <code>string referenceBlockId = 4;</code>
      */
-    java.lang.String getReferenceBlockId();
+    String getReferenceBlockId();
     /**
      * <code>string referenceBlockId = 4;</code>
      */
@@ -6318,7 +6318,7 @@ public final class EOSProtos {
     /**
      * <code>string referenceBlockTime = 5;</code>
      */
-    java.lang.String getReferenceBlockTime();
+    String getReferenceBlockTime();
     /**
      * <code>string referenceBlockTime = 5;</code>
      */
@@ -6328,7 +6328,7 @@ public final class EOSProtos {
     /**
      * <code>string actionsInJSON = 6;</code>
      */
-    java.lang.String getActionsInJSON();
+    String getActionsInJSON();
     /**
      * <code>string actionsInJSON = 6;</code>
      */
@@ -6355,14 +6355,14 @@ public final class EOSProtos {
       actionsInJSON_ = "";
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransactionEOS();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -6373,7 +6373,7 @@ public final class EOSProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -6386,11 +6386,11 @@ public final class EOSProtos {
               done = true;
               break;
             case 10: {
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
+              CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -6399,31 +6399,31 @@ public final class EOSProtos {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               chainID_ = s;
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               expiration_ = s;
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               referenceBlockId_ = s;
               break;
             }
             case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               referenceBlockTime_ = s;
               break;
             }
             case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               actionsInJSON_ = s;
               break;
@@ -6449,19 +6449,19 @@ public final class EOSProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
+      return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.EOSProtos.TransactionEOS.class, com.jubiter.sdk.proto.EOSProtos.TransactionEOS.Builder.class);
+              TransactionEOS.class, Builder.class);
     }
 
     public static final int PATH_FIELD_NUMBER = 1;
-    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+    private CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
@@ -6471,29 +6471,29 @@ public final class EOSProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
     public static final int CHAINID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object chainID_;
+    private volatile Object chainID_;
     /**
      * <code>string chainID = 2;</code>
      */
-    public java.lang.String getChainID() {
-      java.lang.Object ref = chainID_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getChainID() {
+      Object ref = chainID_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         chainID_ = s;
         return s;
       }
@@ -6503,11 +6503,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getChainIDBytes() {
-      java.lang.Object ref = chainID_;
-      if (ref instanceof java.lang.String) {
+      Object ref = chainID_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         chainID_ = b;
         return b;
       } else {
@@ -6516,18 +6516,18 @@ public final class EOSProtos {
     }
 
     public static final int EXPIRATION_FIELD_NUMBER = 3;
-    private volatile java.lang.Object expiration_;
+    private volatile Object expiration_;
     /**
      * <code>string expiration = 3;</code>
      */
-    public java.lang.String getExpiration() {
-      java.lang.Object ref = expiration_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getExpiration() {
+      Object ref = expiration_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         expiration_ = s;
         return s;
       }
@@ -6537,11 +6537,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getExpirationBytes() {
-      java.lang.Object ref = expiration_;
-      if (ref instanceof java.lang.String) {
+      Object ref = expiration_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         expiration_ = b;
         return b;
       } else {
@@ -6550,18 +6550,18 @@ public final class EOSProtos {
     }
 
     public static final int REFERENCEBLOCKID_FIELD_NUMBER = 4;
-    private volatile java.lang.Object referenceBlockId_;
+    private volatile Object referenceBlockId_;
     /**
      * <code>string referenceBlockId = 4;</code>
      */
-    public java.lang.String getReferenceBlockId() {
-      java.lang.Object ref = referenceBlockId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getReferenceBlockId() {
+      Object ref = referenceBlockId_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         referenceBlockId_ = s;
         return s;
       }
@@ -6571,11 +6571,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getReferenceBlockIdBytes() {
-      java.lang.Object ref = referenceBlockId_;
-      if (ref instanceof java.lang.String) {
+      Object ref = referenceBlockId_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         referenceBlockId_ = b;
         return b;
       } else {
@@ -6584,18 +6584,18 @@ public final class EOSProtos {
     }
 
     public static final int REFERENCEBLOCKTIME_FIELD_NUMBER = 5;
-    private volatile java.lang.Object referenceBlockTime_;
+    private volatile Object referenceBlockTime_;
     /**
      * <code>string referenceBlockTime = 5;</code>
      */
-    public java.lang.String getReferenceBlockTime() {
-      java.lang.Object ref = referenceBlockTime_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getReferenceBlockTime() {
+      Object ref = referenceBlockTime_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         referenceBlockTime_ = s;
         return s;
       }
@@ -6605,11 +6605,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getReferenceBlockTimeBytes() {
-      java.lang.Object ref = referenceBlockTime_;
-      if (ref instanceof java.lang.String) {
+      Object ref = referenceBlockTime_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         referenceBlockTime_ = b;
         return b;
       } else {
@@ -6618,18 +6618,18 @@ public final class EOSProtos {
     }
 
     public static final int ACTIONSINJSON_FIELD_NUMBER = 6;
-    private volatile java.lang.Object actionsInJSON_;
+    private volatile Object actionsInJSON_;
     /**
      * <code>string actionsInJSON = 6;</code>
      */
-    public java.lang.String getActionsInJSON() {
-      java.lang.Object ref = actionsInJSON_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getActionsInJSON() {
+      Object ref = actionsInJSON_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         actionsInJSON_ = s;
         return s;
       }
@@ -6639,11 +6639,11 @@ public final class EOSProtos {
      */
     public com.google.protobuf.ByteString
         getActionsInJSONBytes() {
-      java.lang.Object ref = actionsInJSON_;
-      if (ref instanceof java.lang.String) {
+      Object ref = actionsInJSON_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         actionsInJSON_ = b;
         return b;
       } else {
@@ -6652,7 +6652,7 @@ public final class EOSProtos {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -6662,7 +6662,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (path_ != null) {
@@ -6686,7 +6686,7 @@ public final class EOSProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -6716,15 +6716,15 @@ public final class EOSProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.EOSProtos.TransactionEOS)) {
+      if (!(obj instanceof TransactionEOS)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.EOSProtos.TransactionEOS other = (com.jubiter.sdk.proto.EOSProtos.TransactionEOS) obj;
+      TransactionEOS other = (TransactionEOS) obj;
 
       if (hasPath() != other.hasPath()) return false;
       if (hasPath()) {
@@ -6745,7 +6745,7 @@ public final class EOSProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -6771,69 +6771,69 @@ public final class EOSProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(byte[] data)
+    public static TransactionEOS parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(java.io.InputStream input)
+    public static TransactionEOS parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseDelimitedFrom(java.io.InputStream input)
+    public static TransactionEOS parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseDelimitedFrom(
+    public static TransactionEOS parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS parseFrom(
+    public static TransactionEOS parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6841,23 +6841,23 @@ public final class EOSProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.EOSProtos.TransactionEOS prototype) {
+    public static Builder newBuilder(TransactionEOS prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -6867,18 +6867,18 @@ public final class EOSProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.EOS.TransactionEOS)
-        com.jubiter.sdk.proto.EOSProtos.TransactionEOSOrBuilder {
+        TransactionEOSOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.EOSProtos.TransactionEOS.class, com.jubiter.sdk.proto.EOSProtos.TransactionEOS.Builder.class);
+                TransactionEOS.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.EOSProtos.TransactionEOS.newBuilder()
@@ -6887,7 +6887,7 @@ public final class EOSProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -6896,7 +6896,7 @@ public final class EOSProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         if (pathBuilder_ == null) {
@@ -6918,29 +6918,29 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
+        return EOSProtos.internal_static_JUB_Proto_EOS_TransactionEOS_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransactionEOS getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.EOSProtos.TransactionEOS.getDefaultInstance();
+      @Override
+      public TransactionEOS getDefaultInstanceForType() {
+        return TransactionEOS.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransactionEOS build() {
-        com.jubiter.sdk.proto.EOSProtos.TransactionEOS result = buildPartial();
+      @Override
+      public TransactionEOS build() {
+        TransactionEOS result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.EOSProtos.TransactionEOS buildPartial() {
-        com.jubiter.sdk.proto.EOSProtos.TransactionEOS result = new com.jubiter.sdk.proto.EOSProtos.TransactionEOS(this);
+      @Override
+      public TransactionEOS buildPartial() {
+        TransactionEOS result = new TransactionEOS(this);
         if (pathBuilder_ == null) {
           result.path_ = path_;
         } else {
@@ -6955,50 +6955,50 @@ public final class EOSProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.EOSProtos.TransactionEOS) {
-          return mergeFrom((com.jubiter.sdk.proto.EOSProtos.TransactionEOS)other);
+        if (other instanceof TransactionEOS) {
+          return mergeFrom((TransactionEOS)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.EOSProtos.TransactionEOS other) {
-        if (other == com.jubiter.sdk.proto.EOSProtos.TransactionEOS.getDefaultInstance()) return this;
+      public Builder mergeFrom(TransactionEOS other) {
+        if (other == TransactionEOS.getDefaultInstance()) return this;
         if (other.hasPath()) {
           mergePath(other.getPath());
         }
@@ -7027,21 +7027,21 @@ public final class EOSProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.EOSProtos.TransactionEOS parsedMessage = null;
+        TransactionEOS parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.EOSProtos.TransactionEOS) e.getUnfinishedMessage();
+          parsedMessage = (TransactionEOS) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -7051,9 +7051,9 @@ public final class EOSProtos {
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+      private CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
@@ -7063,9 +7063,9 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      public CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -7073,7 +7073,7 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder setPath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7090,7 +7090,7 @@ public final class EOSProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
+          CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -7103,11 +7103,11 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder mergePath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -7135,7 +7135,7 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -7143,23 +7143,23 @@ public final class EOSProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -7168,20 +7168,20 @@ public final class EOSProtos {
         return pathBuilder_;
       }
 
-      private java.lang.Object chainID_ = "";
+      private Object chainID_ = "";
       /**
        * <code>string chainID = 2;</code>
        */
-      public java.lang.String getChainID() {
-        java.lang.Object ref = chainID_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getChainID() {
+        Object ref = chainID_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           chainID_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -7189,11 +7189,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getChainIDBytes() {
-        java.lang.Object ref = chainID_;
+        Object ref = chainID_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           chainID_ = b;
           return b;
         } else {
@@ -7204,7 +7204,7 @@ public final class EOSProtos {
        * <code>string chainID = 2;</code>
        */
       public Builder setChainID(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -7237,20 +7237,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object expiration_ = "";
+      private Object expiration_ = "";
       /**
        * <code>string expiration = 3;</code>
        */
-      public java.lang.String getExpiration() {
-        java.lang.Object ref = expiration_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getExpiration() {
+        Object ref = expiration_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           expiration_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -7258,11 +7258,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getExpirationBytes() {
-        java.lang.Object ref = expiration_;
+        Object ref = expiration_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           expiration_ = b;
           return b;
         } else {
@@ -7273,7 +7273,7 @@ public final class EOSProtos {
        * <code>string expiration = 3;</code>
        */
       public Builder setExpiration(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -7306,20 +7306,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object referenceBlockId_ = "";
+      private Object referenceBlockId_ = "";
       /**
        * <code>string referenceBlockId = 4;</code>
        */
-      public java.lang.String getReferenceBlockId() {
-        java.lang.Object ref = referenceBlockId_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getReferenceBlockId() {
+        Object ref = referenceBlockId_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           referenceBlockId_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -7327,11 +7327,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getReferenceBlockIdBytes() {
-        java.lang.Object ref = referenceBlockId_;
+        Object ref = referenceBlockId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           referenceBlockId_ = b;
           return b;
         } else {
@@ -7342,7 +7342,7 @@ public final class EOSProtos {
        * <code>string referenceBlockId = 4;</code>
        */
       public Builder setReferenceBlockId(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -7375,20 +7375,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object referenceBlockTime_ = "";
+      private Object referenceBlockTime_ = "";
       /**
        * <code>string referenceBlockTime = 5;</code>
        */
-      public java.lang.String getReferenceBlockTime() {
-        java.lang.Object ref = referenceBlockTime_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getReferenceBlockTime() {
+        Object ref = referenceBlockTime_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           referenceBlockTime_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -7396,11 +7396,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getReferenceBlockTimeBytes() {
-        java.lang.Object ref = referenceBlockTime_;
+        Object ref = referenceBlockTime_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           referenceBlockTime_ = b;
           return b;
         } else {
@@ -7411,7 +7411,7 @@ public final class EOSProtos {
        * <code>string referenceBlockTime = 5;</code>
        */
       public Builder setReferenceBlockTime(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -7444,20 +7444,20 @@ public final class EOSProtos {
         return this;
       }
 
-      private java.lang.Object actionsInJSON_ = "";
+      private Object actionsInJSON_ = "";
       /**
        * <code>string actionsInJSON = 6;</code>
        */
-      public java.lang.String getActionsInJSON() {
-        java.lang.Object ref = actionsInJSON_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getActionsInJSON() {
+        Object ref = actionsInJSON_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           actionsInJSON_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -7465,11 +7465,11 @@ public final class EOSProtos {
        */
       public com.google.protobuf.ByteString
           getActionsInJSONBytes() {
-        java.lang.Object ref = actionsInJSON_;
+        Object ref = actionsInJSON_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           actionsInJSON_ = b;
           return b;
         } else {
@@ -7480,7 +7480,7 @@ public final class EOSProtos {
        * <code>string actionsInJSON = 6;</code>
        */
       public Builder setActionsInJSON(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -7512,13 +7512,13 @@ public final class EOSProtos {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -7529,18 +7529,18 @@ public final class EOSProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.EOS.TransactionEOS)
-    private static final com.jubiter.sdk.proto.EOSProtos.TransactionEOS DEFAULT_INSTANCE;
+    private static final TransactionEOS DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.EOSProtos.TransactionEOS();
+      DEFAULT_INSTANCE = new TransactionEOS();
     }
 
-    public static com.jubiter.sdk.proto.EOSProtos.TransactionEOS getDefaultInstance() {
+    public static TransactionEOS getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransactionEOS>
         PARSER = new com.google.protobuf.AbstractParser<TransactionEOS>() {
-      @java.lang.Override
+      @Override
       public TransactionEOS parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7553,13 +7553,13 @@ public final class EOSProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<TransactionEOS> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.EOSProtos.TransactionEOS getDefaultInstanceForType() {
+    @Override
+    public TransactionEOS getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7608,7 +7608,7 @@ public final class EOSProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\rJub_EOS.proto\022\rJUB.Proto.EOS\032\020Jub_Comm" +
       "on.proto\"G\n\016TransferAction\022\014\n\004from\030\001 \001(\t" +
       "\022\n\n\002to\030\002 \001(\t\022\r\n\005asset\030\003 \001(\t\022\014\n\004memo\030\004 \001(" +
@@ -7640,51 +7640,51 @@ public final class EOSProtos {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
+          CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_EOS_TransferAction_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_JUB_Proto_EOS_TransferAction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_TransferAction_descriptor,
-        new java.lang.String[] { "From", "To", "Asset", "Memo", });
+        new String[] { "From", "To", "Asset", "Memo", });
     internal_static_JUB_Proto_EOS_DelegateAction_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_DelegateAction_descriptor,
-        new java.lang.String[] { "From", "Receiver", "NetQty", "CpuQty", "Transfer", "Stake", });
+        new String[] { "From", "Receiver", "NetQty", "CpuQty", "Transfer", "Stake", });
     internal_static_JUB_Proto_EOS_BuyRamAction_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_BuyRamAction_descriptor,
-        new java.lang.String[] { "Payer", "Quant", "Receiver", });
+        new String[] { "Payer", "Quant", "Receiver", });
     internal_static_JUB_Proto_EOS_SellRamAction_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_EOS_SellRamAction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_SellRamAction_descriptor,
-        new java.lang.String[] { "Account", "Byte", });
+        new String[] { "Account", "Byte", });
     internal_static_JUB_Proto_EOS_ActionEOS_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_JUB_Proto_EOS_ActionEOS_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_ActionEOS_descriptor,
-        new java.lang.String[] { "Type", "Currency", "Name", "XferAction", "DeleAction", "BuyRamAction", "SellRamAction", "Action", });
+        new String[] { "Type", "Currency", "Name", "XferAction", "DeleAction", "BuyRamAction", "SellRamAction", "Action", });
     internal_static_JUB_Proto_EOS_ActionListEOS_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_JUB_Proto_EOS_ActionListEOS_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_ActionListEOS_descriptor,
-        new java.lang.String[] { "Actions", });
+        new String[] { "Actions", });
     internal_static_JUB_Proto_EOS_TransactionEOS_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_JUB_Proto_EOS_TransactionEOS_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_TransactionEOS_descriptor,
-        new java.lang.String[] { "Path", "ChainID", "Expiration", "ReferenceBlockId", "ReferenceBlockTime", "ActionsInJSON", });
-    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
+        new String[] { "Path", "ChainID", "Expiration", "ReferenceBlockId", "ReferenceBlockTime", "ActionsInJSON", });
+    CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -2,8 +2,8 @@
 // Created by Journey on 2020/9/14.
 //
 
-#ifndef JUBITERSDK_JNI_BLE_H
-#define JUBITERSDK_JNI_BLE_H
+#ifndef JUBITER_SDK_JNI_BLE_H
+#define JUBITER_SDK_JNI_BLE_H
 
 #include "jni_comm.h"
 
@@ -21,4 +21,4 @@ std::vector<JNINativeMethod> getBleNativeMethods();
 }
 #endif // #ifdef __cplusplus
 
-#endif //JUBITERSDK_JNI_BLE_H
+#endif //JUBITER_SDK_JNI_BLE_H
