@@ -13,7 +13,11 @@ std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes) {
     return std::string(data, data + size);
 }
 
-jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str) {
+jbyteArray stdString2jbyteArray(std::string funcName, JNIEnv *env, std::string str) {
+    if (funcName.length() != 0) {
+        LOG_ERR("%s value: %s", funcName.c_str(), str.c_str());
+    }
+
     jbyteArray jarray = env->NewByteArray(str.size());
     jsize size = str.size();
     env->SetByteArrayRegion(jarray, 0, size, (const jbyte *) &str[0]);
@@ -22,28 +26,38 @@ jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str) {
 
 
 jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
-    LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str);
+    if (str == nullptr) {
+        LOG_ERR("%s rv: %d", funcName.c_str(), rv);
+    } else {
+        LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str);
+    }
+
     JUB::Proto::Common::ResultString resultString;
     resultString.set_state_code(rv);
-    if (JUBR_OK == rv) { resultString.set_value(str); }
+    if (JUBR_OK == rv) {
+        resultString.set_value(str);
+    }
 
     std::string result;
     resultString.SerializeToString(&result);
     if (nullptr != str) {
         JUB_FreeMemory(str);
     }
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("", env, result);
 }
 
 jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, std::string str) {
     LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str.c_str());
+
     JUB::Proto::Common::ResultString resultString;
     resultString.set_state_code(rv);
-    if (JUBR_OK == rv) { resultString.set_value(str); }
+    if (JUBR_OK == rv) {
+        resultString.set_value(str);
+    }
 
     std::string result;
     resultString.SerializeToString(&result);
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("", env, result);
 }
 
 jbyteArray buildPbRvUInt(std::string funcName, JNIEnv *env, JUB_RV rv, uint32_t res) {
@@ -54,7 +68,7 @@ jbyteArray buildPbRvUInt(std::string funcName, JNIEnv *env, JUB_RV rv, uint32_t 
 
     std::string result;
     resultInt.SerializeToString(&result);
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("", env, result);
 }
 
 std::string jstring2stdString(JNIEnv *env, jstring jstr) {

@@ -30,11 +30,11 @@ public final class HcashProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
+    CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Hcash.InputHC}
@@ -51,14 +51,14 @@ public final class HcashProtos {
     private InputHC() {
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new InputHC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -69,7 +69,7 @@ public final class HcashProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -87,11 +87,11 @@ public final class HcashProtos {
               break;
             }
             case 18: {
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
+              CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -120,15 +120,15 @@ public final class HcashProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
+      return HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_fieldAccessorTable
+      return HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.HcashProtos.InputHC.class, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder.class);
+              InputHC.class, Builder.class);
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 1;
@@ -141,7 +141,7 @@ public final class HcashProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 2;
-    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+    private CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
@@ -151,18 +151,18 @@ public final class HcashProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -172,7 +172,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (amount_ != 0L) {
@@ -184,7 +184,7 @@ public final class HcashProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -203,15 +203,15 @@ public final class HcashProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.HcashProtos.InputHC)) {
+      if (!(obj instanceof InputHC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.HcashProtos.InputHC other = (com.jubiter.sdk.proto.HcashProtos.InputHC) obj;
+      InputHC other = (InputHC) obj;
 
       if (getAmount()
           != other.getAmount()) return false;
@@ -224,7 +224,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -243,69 +243,69 @@ public final class HcashProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(byte[] data)
+    public static InputHC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(java.io.InputStream input)
+    public static InputHC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseDelimitedFrom(java.io.InputStream input)
+    public static InputHC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseDelimitedFrom(
+    public static InputHC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC parseFrom(
+    public static InputHC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -313,23 +313,23 @@ public final class HcashProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.HcashProtos.InputHC prototype) {
+    public static Builder newBuilder(InputHC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -339,18 +339,18 @@ public final class HcashProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Hcash.InputHC)
-        com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder {
+        InputHCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_fieldAccessorTable
+        return HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.HcashProtos.InputHC.class, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder.class);
+                InputHC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.HcashProtos.InputHC.newBuilder()
@@ -359,7 +359,7 @@ public final class HcashProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -368,7 +368,7 @@ public final class HcashProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         amount_ = 0L;
@@ -382,29 +382,29 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_InputHC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.InputHC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.HcashProtos.InputHC.getDefaultInstance();
+      @Override
+      public InputHC getDefaultInstanceForType() {
+        return InputHC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.InputHC build() {
-        com.jubiter.sdk.proto.HcashProtos.InputHC result = buildPartial();
+      @Override
+      public InputHC build() {
+        InputHC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.InputHC buildPartial() {
-        com.jubiter.sdk.proto.HcashProtos.InputHC result = new com.jubiter.sdk.proto.HcashProtos.InputHC(this);
+      @Override
+      public InputHC buildPartial() {
+        InputHC result = new InputHC(this);
         result.amount_ = amount_;
         if (pathBuilder_ == null) {
           result.path_ = path_;
@@ -415,50 +415,50 @@ public final class HcashProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.HcashProtos.InputHC) {
-          return mergeFrom((com.jubiter.sdk.proto.HcashProtos.InputHC)other);
+        if (other instanceof InputHC) {
+          return mergeFrom((InputHC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.HcashProtos.InputHC other) {
-        if (other == com.jubiter.sdk.proto.HcashProtos.InputHC.getDefaultInstance()) return this;
+      public Builder mergeFrom(InputHC other) {
+        if (other == InputHC.getDefaultInstance()) return this;
         if (other.getAmount() != 0L) {
           setAmount(other.getAmount());
         }
@@ -470,21 +470,21 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.HcashProtos.InputHC parsedMessage = null;
+        InputHC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.HcashProtos.InputHC) e.getUnfinishedMessage();
+          parsedMessage = (InputHC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -520,9 +520,9 @@ public final class HcashProtos {
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+      private CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
@@ -532,9 +532,9 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      public CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -542,7 +542,7 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder setPath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -559,7 +559,7 @@ public final class HcashProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
+          CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -572,11 +572,11 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder mergePath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -604,7 +604,7 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -612,23 +612,23 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -636,13 +636,13 @@ public final class HcashProtos {
         }
         return pathBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -653,18 +653,18 @@ public final class HcashProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Hcash.InputHC)
-    private static final com.jubiter.sdk.proto.HcashProtos.InputHC DEFAULT_INSTANCE;
+    private static final InputHC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.HcashProtos.InputHC();
+      DEFAULT_INSTANCE = new InputHC();
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.InputHC getDefaultInstance() {
+    public static InputHC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<InputHC>
         PARSER = new com.google.protobuf.AbstractParser<InputHC>() {
-      @java.lang.Override
+      @Override
       public InputHC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -677,13 +677,13 @@ public final class HcashProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<InputHC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.HcashProtos.InputHC getDefaultInstanceForType() {
+    @Override
+    public InputHC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -705,11 +705,11 @@ public final class HcashProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
+    CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Hcash.OutputHC}
@@ -726,14 +726,14 @@ public final class HcashProtos {
     private OutputHC() {
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new OutputHC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -744,7 +744,7 @@ public final class HcashProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -762,11 +762,11 @@ public final class HcashProtos {
               break;
             }
             case 18: {
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
+              CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -795,15 +795,15 @@ public final class HcashProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
+      return HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_fieldAccessorTable
+      return HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.HcashProtos.OutputHC.class, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder.class);
+              OutputHC.class, Builder.class);
     }
 
     public static final int CHANGE_ADDRESS_FIELD_NUMBER = 1;
@@ -816,7 +816,7 @@ public final class HcashProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 2;
-    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+    private CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
@@ -826,18 +826,18 @@ public final class HcashProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -847,7 +847,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (changeAddress_ != false) {
@@ -859,7 +859,7 @@ public final class HcashProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -878,15 +878,15 @@ public final class HcashProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.HcashProtos.OutputHC)) {
+      if (!(obj instanceof OutputHC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.HcashProtos.OutputHC other = (com.jubiter.sdk.proto.HcashProtos.OutputHC) obj;
+      OutputHC other = (OutputHC) obj;
 
       if (getChangeAddress()
           != other.getChangeAddress()) return false;
@@ -899,7 +899,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -918,69 +918,69 @@ public final class HcashProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(byte[] data)
+    public static OutputHC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(java.io.InputStream input)
+    public static OutputHC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseDelimitedFrom(java.io.InputStream input)
+    public static OutputHC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseDelimitedFrom(
+    public static OutputHC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC parseFrom(
+    public static OutputHC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -988,23 +988,23 @@ public final class HcashProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.HcashProtos.OutputHC prototype) {
+    public static Builder newBuilder(OutputHC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1014,18 +1014,18 @@ public final class HcashProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Hcash.OutputHC)
-        com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder {
+        OutputHCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_fieldAccessorTable
+        return HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.HcashProtos.OutputHC.class, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder.class);
+                OutputHC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.HcashProtos.OutputHC.newBuilder()
@@ -1034,7 +1034,7 @@ public final class HcashProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1043,7 +1043,7 @@ public final class HcashProtos {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         changeAddress_ = false;
@@ -1057,29 +1057,29 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_OutputHC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.HcashProtos.OutputHC.getDefaultInstance();
+      @Override
+      public OutputHC getDefaultInstanceForType() {
+        return OutputHC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC build() {
-        com.jubiter.sdk.proto.HcashProtos.OutputHC result = buildPartial();
+      @Override
+      public OutputHC build() {
+        OutputHC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC buildPartial() {
-        com.jubiter.sdk.proto.HcashProtos.OutputHC result = new com.jubiter.sdk.proto.HcashProtos.OutputHC(this);
+      @Override
+      public OutputHC buildPartial() {
+        OutputHC result = new OutputHC(this);
         result.changeAddress_ = changeAddress_;
         if (pathBuilder_ == null) {
           result.path_ = path_;
@@ -1090,50 +1090,50 @@ public final class HcashProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.HcashProtos.OutputHC) {
-          return mergeFrom((com.jubiter.sdk.proto.HcashProtos.OutputHC)other);
+        if (other instanceof OutputHC) {
+          return mergeFrom((OutputHC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.HcashProtos.OutputHC other) {
-        if (other == com.jubiter.sdk.proto.HcashProtos.OutputHC.getDefaultInstance()) return this;
+      public Builder mergeFrom(OutputHC other) {
+        if (other == OutputHC.getDefaultInstance()) return this;
         if (other.getChangeAddress() != false) {
           setChangeAddress(other.getChangeAddress());
         }
@@ -1145,21 +1145,21 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.HcashProtos.OutputHC parsedMessage = null;
+        OutputHC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.HcashProtos.OutputHC) e.getUnfinishedMessage();
+          parsedMessage = (OutputHC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1195,9 +1195,9 @@ public final class HcashProtos {
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+      private CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
@@ -1207,9 +1207,9 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      public CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -1217,7 +1217,7 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder setPath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1234,7 +1234,7 @@ public final class HcashProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
+          CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -1247,11 +1247,11 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder mergePath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -1279,7 +1279,7 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -1287,23 +1287,23 @@ public final class HcashProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -1311,13 +1311,13 @@ public final class HcashProtos {
         }
         return pathBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1328,18 +1328,18 @@ public final class HcashProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Hcash.OutputHC)
-    private static final com.jubiter.sdk.proto.HcashProtos.OutputHC DEFAULT_INSTANCE;
+    private static final OutputHC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.HcashProtos.OutputHC();
+      DEFAULT_INSTANCE = new OutputHC();
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.OutputHC getDefaultInstance() {
+    public static OutputHC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<OutputHC>
         PARSER = new com.google.protobuf.AbstractParser<OutputHC>() {
-      @java.lang.Override
+      @Override
       public OutputHC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1352,13 +1352,13 @@ public final class HcashProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<OutputHC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.HcashProtos.OutputHC getDefaultInstanceForType() {
+    @Override
+    public OutputHC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1381,12 +1381,12 @@ public final class HcashProtos {
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC> 
+    java.util.List<InputHC>
         getInputsList();
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    com.jubiter.sdk.proto.HcashProtos.InputHC getInputs(int index);
+    InputHC getInputs(int index);
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
@@ -1394,23 +1394,23 @@ public final class HcashProtos {
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder> 
+    java.util.List<? extends InputHCOrBuilder>
         getInputsOrBuilderList();
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder getInputsOrBuilder(
+    InputHCOrBuilder getInputsOrBuilder(
         int index);
 
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC> 
+    java.util.List<OutputHC>
         getOutputsList();
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    com.jubiter.sdk.proto.HcashProtos.OutputHC getOutputs(int index);
+    OutputHC getOutputs(int index);
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
@@ -1418,12 +1418,12 @@ public final class HcashProtos {
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder> 
+    java.util.List<? extends OutputHCOrBuilder>
         getOutputsOrBuilderList();
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder getOutputsOrBuilder(
+    OutputHCOrBuilder getOutputsOrBuilder(
         int index);
   }
   /**
@@ -1443,14 +1443,14 @@ public final class HcashProtos {
       outputs_ = java.util.Collections.emptyList();
     }
 
-    @java.lang.Override
+    @Override
     @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
+    protected Object newInstance(
         UnusedPrivateParameter unused) {
       return new TransactionHC();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1461,7 +1461,7 @@ public final class HcashProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1486,20 +1486,20 @@ public final class HcashProtos {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                inputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.HcashProtos.InputHC>();
+                inputs_ = new java.util.ArrayList<InputHC>();
                 mutable_bitField0_ |= 0x00000001;
               }
               inputs_.add(
-                  input.readMessage(com.jubiter.sdk.proto.HcashProtos.InputHC.parser(), extensionRegistry));
+                  input.readMessage(InputHC.parser(), extensionRegistry));
               break;
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                outputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.HcashProtos.OutputHC>();
+                outputs_ = new java.util.ArrayList<OutputHC>();
                 mutable_bitField0_ |= 0x00000002;
               }
               outputs_.add(
-                  input.readMessage(com.jubiter.sdk.proto.HcashProtos.OutputHC.parser(), extensionRegistry));
+                  input.readMessage(OutputHC.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -1529,15 +1529,15 @@ public final class HcashProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
+      return HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_fieldAccessorTable
+      return HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.jubiter.sdk.proto.HcashProtos.TransactionHC.class, com.jubiter.sdk.proto.HcashProtos.TransactionHC.Builder.class);
+              TransactionHC.class, Builder.class);
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
@@ -1559,17 +1559,17 @@ public final class HcashProtos {
     }
 
     public static final int INPUTS_FIELD_NUMBER = 3;
-    private java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC> inputs_;
+    private java.util.List<InputHC> inputs_;
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    public java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC> getInputsList() {
+    public java.util.List<InputHC> getInputsList() {
       return inputs_;
     }
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    public java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder> 
+    public java.util.List<? extends InputHCOrBuilder>
         getInputsOrBuilderList() {
       return inputs_;
     }
@@ -1582,29 +1582,29 @@ public final class HcashProtos {
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    public com.jubiter.sdk.proto.HcashProtos.InputHC getInputs(int index) {
+    public InputHC getInputs(int index) {
       return inputs_.get(index);
     }
     /**
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
-    public com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder getInputsOrBuilder(
+    public InputHCOrBuilder getInputsOrBuilder(
         int index) {
       return inputs_.get(index);
     }
 
     public static final int OUTPUTS_FIELD_NUMBER = 4;
-    private java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC> outputs_;
+    private java.util.List<OutputHC> outputs_;
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    public java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC> getOutputsList() {
+    public java.util.List<OutputHC> getOutputsList() {
       return outputs_;
     }
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    public java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder> 
+    public java.util.List<? extends OutputHCOrBuilder>
         getOutputsOrBuilderList() {
       return outputs_;
     }
@@ -1617,19 +1617,19 @@ public final class HcashProtos {
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    public com.jubiter.sdk.proto.HcashProtos.OutputHC getOutputs(int index) {
+    public OutputHC getOutputs(int index) {
       return outputs_.get(index);
     }
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
-    public com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder getOutputsOrBuilder(
+    public OutputHCOrBuilder getOutputsOrBuilder(
         int index) {
       return outputs_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1639,7 +1639,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (version_ != 0) {
@@ -1657,7 +1657,7 @@ public final class HcashProtos {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1684,15 +1684,15 @@ public final class HcashProtos {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.jubiter.sdk.proto.HcashProtos.TransactionHC)) {
+      if (!(obj instanceof TransactionHC)) {
         return super.equals(obj);
       }
-      com.jubiter.sdk.proto.HcashProtos.TransactionHC other = (com.jubiter.sdk.proto.HcashProtos.TransactionHC) obj;
+      TransactionHC other = (TransactionHC) obj;
 
       if (getVersion()
           != other.getVersion()) return false;
@@ -1706,7 +1706,7 @@ public final class HcashProtos {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1730,69 +1730,69 @@ public final class HcashProtos {
       return hash;
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(byte[] data)
+    public static TransactionHC parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(java.io.InputStream input)
+    public static TransactionHC parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseDelimitedFrom(java.io.InputStream input)
+    public static TransactionHC parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseDelimitedFrom(
+    public static TransactionHC parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC parseFrom(
+    public static TransactionHC parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1800,23 +1800,23 @@ public final class HcashProtos {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.jubiter.sdk.proto.HcashProtos.TransactionHC prototype) {
+    public static Builder newBuilder(TransactionHC prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1826,18 +1826,18 @@ public final class HcashProtos {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:JUB.Proto.Hcash.TransactionHC)
-        com.jubiter.sdk.proto.HcashProtos.TransactionHCOrBuilder {
+        TransactionHCOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_fieldAccessorTable
+        return HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.jubiter.sdk.proto.HcashProtos.TransactionHC.class, com.jubiter.sdk.proto.HcashProtos.TransactionHC.Builder.class);
+                TransactionHC.class, Builder.class);
       }
 
       // Construct using com.jubiter.sdk.proto.HcashProtos.TransactionHC.newBuilder()
@@ -1846,7 +1846,7 @@ public final class HcashProtos {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1857,7 +1857,7 @@ public final class HcashProtos {
           getOutputsFieldBuilder();
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         version_ = 0;
@@ -1879,29 +1879,29 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.jubiter.sdk.proto.HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
+        return HcashProtos.internal_static_JUB_Proto_Hcash_TransactionHC_descriptor;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.TransactionHC getDefaultInstanceForType() {
-        return com.jubiter.sdk.proto.HcashProtos.TransactionHC.getDefaultInstance();
+      @Override
+      public TransactionHC getDefaultInstanceForType() {
+        return TransactionHC.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.TransactionHC build() {
-        com.jubiter.sdk.proto.HcashProtos.TransactionHC result = buildPartial();
+      @Override
+      public TransactionHC build() {
+        TransactionHC result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public com.jubiter.sdk.proto.HcashProtos.TransactionHC buildPartial() {
-        com.jubiter.sdk.proto.HcashProtos.TransactionHC result = new com.jubiter.sdk.proto.HcashProtos.TransactionHC(this);
+      @Override
+      public TransactionHC buildPartial() {
+        TransactionHC result = new TransactionHC(this);
         int from_bitField0_ = bitField0_;
         result.version_ = version_;
         result.locktime_ = locktime_;
@@ -1927,50 +1927,50 @@ public final class HcashProtos {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.jubiter.sdk.proto.HcashProtos.TransactionHC) {
-          return mergeFrom((com.jubiter.sdk.proto.HcashProtos.TransactionHC)other);
+        if (other instanceof TransactionHC) {
+          return mergeFrom((TransactionHC)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.jubiter.sdk.proto.HcashProtos.TransactionHC other) {
-        if (other == com.jubiter.sdk.proto.HcashProtos.TransactionHC.getDefaultInstance()) return this;
+      public Builder mergeFrom(TransactionHC other) {
+        if (other == TransactionHC.getDefaultInstance()) return this;
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
@@ -2034,21 +2034,21 @@ public final class HcashProtos {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.jubiter.sdk.proto.HcashProtos.TransactionHC parsedMessage = null;
+        TransactionHC parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.jubiter.sdk.proto.HcashProtos.TransactionHC) e.getUnfinishedMessage();
+          parsedMessage = (TransactionHC) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2111,22 +2111,22 @@ public final class HcashProtos {
         return this;
       }
 
-      private java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC> inputs_ =
+      private java.util.List<InputHC> inputs_ =
         java.util.Collections.emptyList();
       private void ensureInputsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          inputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.HcashProtos.InputHC>(inputs_);
+          inputs_ = new java.util.ArrayList<InputHC>(inputs_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.HcashProtos.InputHC, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder, com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder> inputsBuilder_;
+          InputHC, InputHC.Builder, InputHCOrBuilder> inputsBuilder_;
 
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC> getInputsList() {
+      public java.util.List<InputHC> getInputsList() {
         if (inputsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(inputs_);
         } else {
@@ -2146,7 +2146,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.InputHC getInputs(int index) {
+      public InputHC getInputs(int index) {
         if (inputsBuilder_ == null) {
           return inputs_.get(index);
         } else {
@@ -2157,7 +2157,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder setInputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.InputHC value) {
+          int index, InputHC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2174,7 +2174,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder setInputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder builderForValue) {
+          int index, InputHC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.set(index, builderForValue.build());
@@ -2187,7 +2187,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public Builder addInputs(com.jubiter.sdk.proto.HcashProtos.InputHC value) {
+      public Builder addInputs(InputHC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2204,7 +2204,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder addInputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.InputHC value) {
+          int index, InputHC value) {
         if (inputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2221,7 +2221,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder addInputs(
-          com.jubiter.sdk.proto.HcashProtos.InputHC.Builder builderForValue) {
+          InputHC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.add(builderForValue.build());
@@ -2235,7 +2235,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder addInputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder builderForValue) {
+          int index, InputHC.Builder builderForValue) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           inputs_.add(index, builderForValue.build());
@@ -2249,7 +2249,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
       public Builder addAllInputs(
-          java.lang.Iterable<? extends com.jubiter.sdk.proto.HcashProtos.InputHC> values) {
+          Iterable<? extends InputHC> values) {
         if (inputsBuilder_ == null) {
           ensureInputsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2289,14 +2289,14 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.InputHC.Builder getInputsBuilder(
+      public InputHC.Builder getInputsBuilder(
           int index) {
         return getInputsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder getInputsOrBuilder(
+      public InputHCOrBuilder getInputsOrBuilder(
           int index) {
         if (inputsBuilder_ == null) {
           return inputs_.get(index);  } else {
@@ -2306,7 +2306,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder> 
+      public java.util.List<? extends InputHCOrBuilder>
            getInputsOrBuilderList() {
         if (inputsBuilder_ != null) {
           return inputsBuilder_.getMessageOrBuilderList();
@@ -2317,31 +2317,31 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.InputHC.Builder addInputsBuilder() {
+      public InputHC.Builder addInputsBuilder() {
         return getInputsFieldBuilder().addBuilder(
-            com.jubiter.sdk.proto.HcashProtos.InputHC.getDefaultInstance());
+            InputHC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.InputHC.Builder addInputsBuilder(
+      public InputHC.Builder addInputsBuilder(
           int index) {
         return getInputsFieldBuilder().addBuilder(
-            index, com.jubiter.sdk.proto.HcashProtos.InputHC.getDefaultInstance());
+            index, InputHC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.HcashProtos.InputHC.Builder> 
+      public java.util.List<InputHC.Builder>
            getInputsBuilderList() {
         return getInputsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.HcashProtos.InputHC, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder, com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder> 
+          InputHC, InputHC.Builder, InputHCOrBuilder>
           getInputsFieldBuilder() {
         if (inputsBuilder_ == null) {
           inputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.jubiter.sdk.proto.HcashProtos.InputHC, com.jubiter.sdk.proto.HcashProtos.InputHC.Builder, com.jubiter.sdk.proto.HcashProtos.InputHCOrBuilder>(
+              InputHC, InputHC.Builder, InputHCOrBuilder>(
                   inputs_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2351,22 +2351,22 @@ public final class HcashProtos {
         return inputsBuilder_;
       }
 
-      private java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC> outputs_ =
+      private java.util.List<OutputHC> outputs_ =
         java.util.Collections.emptyList();
       private void ensureOutputsIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          outputs_ = new java.util.ArrayList<com.jubiter.sdk.proto.HcashProtos.OutputHC>(outputs_);
+          outputs_ = new java.util.ArrayList<OutputHC>(outputs_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.HcashProtos.OutputHC, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder, com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder> outputsBuilder_;
+          OutputHC, OutputHC.Builder, OutputHCOrBuilder> outputsBuilder_;
 
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC> getOutputsList() {
+      public java.util.List<OutputHC> getOutputsList() {
         if (outputsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(outputs_);
         } else {
@@ -2386,7 +2386,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC getOutputs(int index) {
+      public OutputHC getOutputs(int index) {
         if (outputsBuilder_ == null) {
           return outputs_.get(index);
         } else {
@@ -2397,7 +2397,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder setOutputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.OutputHC value) {
+          int index, OutputHC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2414,7 +2414,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder setOutputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder builderForValue) {
+          int index, OutputHC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.set(index, builderForValue.build());
@@ -2427,7 +2427,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public Builder addOutputs(com.jubiter.sdk.proto.HcashProtos.OutputHC value) {
+      public Builder addOutputs(OutputHC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2444,7 +2444,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder addOutputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.OutputHC value) {
+          int index, OutputHC value) {
         if (outputsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2461,7 +2461,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder addOutputs(
-          com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder builderForValue) {
+          OutputHC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.add(builderForValue.build());
@@ -2475,7 +2475,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder addOutputs(
-          int index, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder builderForValue) {
+          int index, OutputHC.Builder builderForValue) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           outputs_.add(index, builderForValue.build());
@@ -2489,7 +2489,7 @@ public final class HcashProtos {
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
       public Builder addAllOutputs(
-          java.lang.Iterable<? extends com.jubiter.sdk.proto.HcashProtos.OutputHC> values) {
+          Iterable<? extends OutputHC> values) {
         if (outputsBuilder_ == null) {
           ensureOutputsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2529,14 +2529,14 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder getOutputsBuilder(
+      public OutputHC.Builder getOutputsBuilder(
           int index) {
         return getOutputsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder getOutputsOrBuilder(
+      public OutputHCOrBuilder getOutputsOrBuilder(
           int index) {
         if (outputsBuilder_ == null) {
           return outputs_.get(index);  } else {
@@ -2546,7 +2546,7 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public java.util.List<? extends com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder> 
+      public java.util.List<? extends OutputHCOrBuilder>
            getOutputsOrBuilderList() {
         if (outputsBuilder_ != null) {
           return outputsBuilder_.getMessageOrBuilderList();
@@ -2557,31 +2557,31 @@ public final class HcashProtos {
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder addOutputsBuilder() {
+      public OutputHC.Builder addOutputsBuilder() {
         return getOutputsFieldBuilder().addBuilder(
-            com.jubiter.sdk.proto.HcashProtos.OutputHC.getDefaultInstance());
+            OutputHC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder addOutputsBuilder(
+      public OutputHC.Builder addOutputsBuilder(
           int index) {
         return getOutputsFieldBuilder().addBuilder(
-            index, com.jubiter.sdk.proto.HcashProtos.OutputHC.getDefaultInstance());
+            index, OutputHC.getDefaultInstance());
       }
       /**
        * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
        */
-      public java.util.List<com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder> 
+      public java.util.List<OutputHC.Builder>
            getOutputsBuilderList() {
         return getOutputsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.jubiter.sdk.proto.HcashProtos.OutputHC, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder, com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder> 
+          OutputHC, OutputHC.Builder, OutputHCOrBuilder>
           getOutputsFieldBuilder() {
         if (outputsBuilder_ == null) {
           outputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.jubiter.sdk.proto.HcashProtos.OutputHC, com.jubiter.sdk.proto.HcashProtos.OutputHC.Builder, com.jubiter.sdk.proto.HcashProtos.OutputHCOrBuilder>(
+              OutputHC, OutputHC.Builder, OutputHCOrBuilder>(
                   outputs_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -2590,13 +2590,13 @@ public final class HcashProtos {
         }
         return outputsBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2607,18 +2607,18 @@ public final class HcashProtos {
     }
 
     // @@protoc_insertion_point(class_scope:JUB.Proto.Hcash.TransactionHC)
-    private static final com.jubiter.sdk.proto.HcashProtos.TransactionHC DEFAULT_INSTANCE;
+    private static final TransactionHC DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.jubiter.sdk.proto.HcashProtos.TransactionHC();
+      DEFAULT_INSTANCE = new TransactionHC();
     }
 
-    public static com.jubiter.sdk.proto.HcashProtos.TransactionHC getDefaultInstance() {
+    public static TransactionHC getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<TransactionHC>
         PARSER = new com.google.protobuf.AbstractParser<TransactionHC>() {
-      @java.lang.Override
+      @Override
       public TransactionHC parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2631,13 +2631,13 @@ public final class HcashProtos {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<TransactionHC> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public com.jubiter.sdk.proto.HcashProtos.TransactionHC getDefaultInstanceForType() {
+    @Override
+    public TransactionHC getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2666,7 +2666,7 @@ public final class HcashProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\017Jub_Hcash.proto\022\017JUB.Proto.Hcash\032\020Jub_" +
       "Common.proto\"D\n\007InputHC\022\016\n\006amount\030\001 \001(\004\022" +
       ")\n\004path\030\002 \001(\0132\033.JUB.Proto.Common.Bip44Pa" +
@@ -2681,27 +2681,27 @@ public final class HcashProtos {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
+          CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_Hcash_InputHC_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_JUB_Proto_Hcash_InputHC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Hcash_InputHC_descriptor,
-        new java.lang.String[] { "Amount", "Path", });
+        new String[] { "Amount", "Path", });
     internal_static_JUB_Proto_Hcash_OutputHC_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_Hcash_OutputHC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Hcash_OutputHC_descriptor,
-        new java.lang.String[] { "ChangeAddress", "Path", });
+        new String[] { "ChangeAddress", "Path", });
     internal_static_JUB_Proto_Hcash_TransactionHC_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Hcash_TransactionHC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Hcash_TransactionHC_descriptor,
-        new java.lang.String[] { "Version", "Locktime", "Inputs", "Outputs", });
-    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
+        new String[] { "Version", "Locktime", "Inputs", "Outputs", });
+    CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

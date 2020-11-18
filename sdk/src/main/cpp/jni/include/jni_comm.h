@@ -2,8 +2,8 @@
 // Created by Journey on 2020/9/14.
 //
 
-#ifndef JUBITERSDK_JNI_COMM_H
-#define JUBITERSDK_JNI_COMM_H
+#ifndef JUBITER_SDK_JNI_COMM_H
+#define JUBITER_SDK_JNI_COMM_H
 
 #include <jni.h>
 #include <string>
@@ -17,7 +17,7 @@ extern JavaVM *g_vm;
 
 std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes);
 
-jbyteArray stdString2jbyteArray(JNIEnv *env, std::string str);
+jbyteArray stdString2jbyteArray(std::string funcName, JNIEnv *env, std::string str);
 
 jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str);
 
@@ -32,4 +32,4 @@ std::string jstring2stdString(JNIEnv *env, jstring jstr);
 
 //bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path);
 
-#endif //JUBITERSDK_JNI_COMM_H
+#endif //JUBITER_SDK_JNI_COMM_H

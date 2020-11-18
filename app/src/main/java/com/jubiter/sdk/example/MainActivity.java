@@ -146,23 +146,21 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         }
                     }
 
-//                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
-//                    Log.d(TAG, "nfcReset rv: " + resetResult2);
-//                    assert(resetResult2 == 0);
+                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
+                    Log.d(TAG, "nfcReset rv: " + resetResult2);
+                    assert(resetResult2 == 0);
 
-                    // payment reopen pear timber com salon goat elephant clump company swift spare
+                    boolean bootState2 = JuBiterWallet.isBootLoader(deviceID);
+                    Log.d(TAG, "isBootLoader state: " + bootState2);
 
-//                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "11111111");
-//                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
-//                    assert(changeResult.getStateCode() == 0);
+                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "11111111");
+                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
+                    assert(changeResult.getStateCode() == 0);
 
-//                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "5555",
-//                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
-//                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
-//                    assert(importResult == 0);
-
-//                    boolean bootState1 = JuBiterWallet.isBootLoader(deviceID);
-//                    Log.d(TAG, "isBootLoader state: " + bootState1);
+                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "11111111",
+                            "payment reopen pear timber corn salon goat elephant clump company swift spare");
+                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
+                    assert(importResult == 0);
 
                     // 是否已产生根私钥
                     CommonProtos.ResultAny rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
@@ -175,6 +173,43 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     } catch (InvalidProtocolBufferException e) {
                         e.printStackTrace();
                     }
+
+                    CommonProtos.ResultInt changeResult2 = JuBiterNFCWallet.nfcChangePIN(deviceID, "11111111", "22222222");
+                    Log.d(TAG, "nfcChangePIN rv: " + changeResult2.getStateCode() + ", value: " + changeResult2.getValue());
+                    assert(changeResult2.getStateCode() == 0);
+
+//
+//                    boolean bootState1 = JuBiterWallet.isBootLoader(deviceID);
+//                    Log.d(TAG, "isBootLoader state: " + bootState1);
+//
+//                    int setResult = JuBiterNFCWallet.nfcSetLabel(deviceID, "JuBiter Label 12345678912345678");
+//                    Log.d(TAG, "nfcSetLabel rv: " + setResult);
+//                    assert(setResult == 0);
+//
+//                    CommonProtos.ResultAny deviceInfoResult = JuBiterWallet.getDeviceInfo(deviceID);
+//                    for (com.google.protobuf.Any detail2 : deviceInfoResult.getValueList()) {
+//                        try {
+//                            CommonProtos.DeviceInfo deviceInfo = detail2.unpack(CommonProtos.DeviceInfo.class);
+//                            Log.d(TAG, "rv : " + deviceInfo.toString());
+//                        } catch (InvalidProtocolBufferException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    boolean bootState2 = JuBiterWallet.isBootLoader(deviceID);
+//                    Log.d(TAG, "isBootLoader state: " + bootState2);
+
+                    // 是否已产生根私钥
+//                    CommonProtos.ResultAny rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
+//                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
+//
+//                    com.google.protobuf.Any detail = rootKeyState.getValueList().get(0);
+//                    try {
+//                        CommonProtos.RootKeyStatus rootKeyStatus = detail.unpack(CommonProtos.RootKeyStatus.class);
+//                        Log.d(TAG, "rootKey rv : " + rootKeyStatus.getStatus());
+//                    } catch (InvalidProtocolBufferException e) {
+//                        e.printStackTrace();
+//                    }
 
                     // 构建 EOS 交易
 //                    CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
@@ -740,7 +775,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setMainPath("m/44'/0'/0'")
                         .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                         .build();
-                CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZZFX");
+                CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZ");
                 Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
 
                 if (result.getStateCode() == 0) {
@@ -763,7 +798,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
                         contextID = result.getValue();
                     }
                 });
@@ -779,7 +814,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     @Override
                     public void run() {
                         CommonProtos.ResultString result = JuBiterBitcoin.getMainHDNode(contextID);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
                     }
                 });
             }
@@ -798,7 +833,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setChange(false)
                                 .build();
                         CommonProtos.ResultString result = JuBiterBitcoin.getHDNode(contextID, bip32Path);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
                     }
                 });
             }
@@ -817,7 +852,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                                 .setChange(false)
                                 .build();
                         CommonProtos.ResultString result = JuBiterBitcoin.getAddress(contextID, bip32Path, true);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
+                        Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
                     }
                 });
             }
@@ -1005,7 +1040,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setMainPath("m/44\'/0\'/0\'")
                         .build();
                 CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config,
-                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
+                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynr");
                 Log.d(TAG,
                         ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
                 contextID = result.getValue();

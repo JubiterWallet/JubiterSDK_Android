@@ -3,6 +3,7 @@
 //
 
 #include "implJni.h"
+
 #ifdef HC
 #include <JUB_SDK_Hcash.h>
 #else
@@ -58,7 +59,7 @@ JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jb
             jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH128;
     }
 
-    JUB_CHAR_PTR pMnemonic;
+    JUB_CHAR_PTR pMnemonic = nullptr;
     JUB_RV rv = JUB_GenerateMnemonic_soft(jubStrength, &pMnemonic);
     return buildPbRvString("JUB_GenerateMnemonic_soft", env, rv, pMnemonic);
 }
@@ -130,11 +131,11 @@ JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jclass clz, jint 
 
     std::string result;
     resultDeviceInfo.SerializeToString(&result);
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("JUB_GetDeviceInfo", env, result);
 };
 
 JNIEXPORT jbyteArray JNICALL native_GetDeviceCert(JNIEnv *env, jclass clz, jint deviceID) {
-    JUB_CHAR_PTR cert = NULL;
+    JUB_CHAR_PTR cert = nullptr;
     JUB_RV rv = JUB_GetDeviceCert((JUB_UINT16) deviceID, &cert);
     return buildPbRvString("JUB_GetDeviceCert", env, rv, cert);
 }
@@ -161,13 +162,13 @@ JNIEXPORT jint JNICALL native_SetTimeOut(JNIEnv *env, jclass clz, jint contextID
 }
 
 JNIEXPORT jbyteArray JNICALL native_EnumApplets(JNIEnv *env, jclass clz, jint deviceID) {
-    JUB_CHAR_PTR appList = NULL;
+    JUB_CHAR_PTR appList = nullptr;
     JUB_RV rv = JUB_EnumApplets((JUB_UINT16) deviceID, &appList);
     return buildPbRvString("JUB_EnumApplets", env, rv, appList);
 }
 
 JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, jint deviceID) {
-    JUB_CHAR_PTR appList = NULL;
+    JUB_CHAR_PTR appList = nullptr;
     JUB_RV rv = JUB_EnumSupportCoins((JUB_UINT16) deviceID, &appList);
     return buildPbRvString("JUB_EnumSupportCoins", env, rv, appList);
 }
@@ -175,7 +176,7 @@ JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, ji
 JNIEXPORT jbyteArray JNICALL
 native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
-    JUB_CHAR_PTR appVersion = NULL;
+    JUB_CHAR_PTR appVersion = nullptr;
     JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
                                      &appVersion);
     return buildPbRvString("JUB_GetAppletVersion", env, rv, appVersion);
@@ -244,7 +245,7 @@ native_CreateContextBTC(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL native_GetMainHDNodeBTC(JNIEnv *env, jclass clz, jint contextID) {
-    JUB_CHAR_PTR xpub;
+    JUB_CHAR_PTR xpub = nullptr;
     JUB_RV rv = JUB_GetMainHDNodeBTC(contextID, &xpub);
     return buildPbRvString("JUB_GetMainHDNodeBTC", env, rv, xpub);
 }
@@ -254,7 +255,7 @@ native_GetHDNodeBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR xpub;
+        JUB_CHAR_PTR xpub = nullptr;
         JUB_RV rv = JUB_GetHDNodeBTC(contextID, bip32Path, &xpub);
         return buildPbRvString("JUB_GetHDNodeBTC 1", env, rv, xpub);
     }
@@ -265,7 +266,7 @@ JNIEXPORT jbyteArray JNICALL
 native_GetAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address;
+        JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_GetAddressBTC(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
         return buildPbRvString("JUB_GetAddressBTC 1", env, rv, address);
     }
@@ -275,7 +276,9 @@ native_GetAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 JNIEXPORT jint JNICALL
 native_CheckAddressBTC(JNIEnv *env, jclass clz, jint contextID, jstring address) {
     auto strAddress = jstring2stdString(env, address);
-    return (jint) JUB_CheckAddressBTC(contextID, strAddress.c_str());
+    JUB_RV rv = JUB_CheckAddressBTC(contextID, strAddress.c_str());
+    LOG_ERR("JUB_CheckAddressBTC rv: %d", rv);
+    return rv;
 }
 
 
@@ -283,7 +286,7 @@ JNIEXPORT jbyteArray JNICALL
 native_SetMyAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address;
+        JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_SetMyAddressBTC(contextID, bip32Path, &address);
         return buildPbRvString("JUB_SetMyAddressBTC 1", env, rv, address);
     }
@@ -320,7 +323,8 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
             switch (output.type) {
                 case P2PKH:
                     if (!tx.outputs(i).has_std_output())
-                        return buildPbRvString("JUB_SignTransactionBTC 1", env, JUBR_ARGUMENTS_BAD, "");
+                        return buildPbRvString("JUB_SignTransactionBTC 1", env, JUBR_ARGUMENTS_BAD,
+                                               "");
                     output.stdOutput.amount = tx.outputs(i).std_output().amount();
                     output.stdOutput.address = (JUB_CHAR_PTR) tx.outputs(
                             i).std_output().address().c_str();
@@ -333,9 +337,11 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
                     break;
                 case RETURN0:
                     if (!tx.outputs(i).has_return0_output())
-                        return buildPbRvString("JUB_SignTransactionBTC 2", env, JUBR_ARGUMENTS_BAD, "");
+                        return buildPbRvString("JUB_SignTransactionBTC 2", env, JUBR_ARGUMENTS_BAD,
+                                               "");
                     if (tx.outputs(i).return0_output().data().size() > 40)
-                        return buildPbRvString("JUB_SignTransactionBTC 3", env, JUBR_ARGUMENTS_BAD, "");
+                        return buildPbRvString("JUB_SignTransactionBTC 3", env, JUBR_ARGUMENTS_BAD,
+                                               "");
                     output.return0.amount = tx.outputs(i).return0_output().amount();
                     {
                         auto byteData = HexStr2CharPtr(tx.outputs(i).return0_output().data());
@@ -355,9 +361,12 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
         // 2： BIP34
         // 3： BIP66
         // 4： BIP65
-        JUB_RV rv = JUB_SignTransactionBTC(contextID, version, &inputs[0], inputs.size(),
-                                           &outputs[0],
-                                           outputs.size(), lockTime, &raw);
+        JUB_RV rv = JUB_SignTransactionBTC(contextID,
+                                           version,
+                                           &inputs[0], inputs.size(),
+                                           &outputs[0], outputs.size(),
+                                           lockTime,
+                                           &raw);
         return buildPbRvString("JUB_SignTransactionBTC 5", env, rv, raw);
     }
 
@@ -413,7 +422,7 @@ native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO,
 
     std::string result;
     resultOutputs.SerializeToString(&result);
-    return stdString2jbyteArray(env, result);
+    return stdString2jbyteArray("JUB_BuildUSDTOutputs", env, result);
 }
 
 
@@ -459,7 +468,7 @@ native_GetMainHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
 
-    JUB_CHAR_PTR xpub;
+    JUB_CHAR_PTR xpub = nullptr;
     JUB_RV rv = JUB_GetMainHDNodeETH(contextID, (JUB_ENUM_PUB_FORMAT) _format, &xpub);
     return buildPbRvString("JUB_GetMainHDNodeETH", env, rv, xpub);
 }
@@ -473,7 +482,7 @@ native_GetHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 
     BIP44_Path bip44Path;
     if (parseBip44Path(env, bip32, &bip44Path)) {
-        JUB_CHAR_PTR xpub;
+        JUB_CHAR_PTR xpub = nullptr;
         JUB_RV rv = JUB_GetHDNodeETH(contextID, (JUB_ENUM_PUB_FORMAT) _format, bip44Path, &xpub);
         return buildPbRvString("JUB_GetHDNodeETH 1", env, rv, xpub);
     }
@@ -485,7 +494,7 @@ native_GetAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address;
+        JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_GetAddressETH(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
         return buildPbRvString("JUB_GetAddressETH 1", env, rv, address);
     }
@@ -579,7 +588,7 @@ native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address;
+        JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_GetAddressEOS(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
         LOG_ERR("JUB_GetAddressEOS : %s", address);
         return buildPbRvString("JUB_GetAddressEOS 1", env, rv, address);
@@ -596,7 +605,7 @@ native_GetHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 
     BIP44_Path bip44Path;
     if (parseBip44Path(env, bip32, &bip44Path)) {
-        JUB_CHAR_PTR xpub;
+        JUB_CHAR_PTR xpub = nullptr;
         JUB_RV rv = JUB_GetHDNodeEOS(contextID, (JUB_ENUM_PUB_FORMAT) _format, bip44Path, &xpub);
         return buildPbRvString("JUB_GetHDNodeEOS 1", env, rv, xpub);
     }
@@ -609,7 +618,7 @@ native_GetMainHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
 
-    JUB_CHAR_PTR xpub;
+    JUB_CHAR_PTR xpub = nullptr;
     JUB_RV rv = JUB_GetMainHDNodeEOS(contextID, (JUB_ENUM_PUB_FORMAT) _format, &xpub);
     return buildPbRvString("JUB_GetMainHDNodeEOS", env, rv, xpub);
 }
@@ -1065,11 +1074,6 @@ JNINativeMethod gMethods[] = {
                 "(ILjava/lang/String;J)[B",
                 (void *) native_BuildUSDTOutputs
         },
-////    {
-////        "nativeParseTransaction",
-////        "(JLjava/lang/String;)Ljava/lang/String;",
-////        (void *) native_ParseTransactionRaw
-////    },
         {
                 "nativeETHCreateContext",
                 "([BI)[B",
@@ -1203,31 +1207,31 @@ JNINativeMethod gMethods[] = {
         },
         // NFC
 #ifdef HC
-{
-    "nativeHCCreateContext",
-    "([IZLjava/lang/String;J)I",
-    (void *) native_HCCreateContext
-},
-{
-    "nativeHCGetAddress",
-    "(JLjava/lang/String;)[Ljava/lang/String;",
-    (void *) native_HCGetAddress
-},
-{
-    "nativeHCShowAddress",
-    "(JII)Ljava/lang/String;",
-    (void *) native_HCShowAddress
-},
-{
-    "nativeHCGetMainHDNode",
-    "(J)Ljava/lang/String;",
-    (void *) native_HCGetMainHDNode
-},
-{
-    "nativeHCTransaction",
-    "(JLjava/lang/String;)Ljava/lang/String;",
-    (void *) native_HCTransaction
-},
+        {
+            "nativeHCCreateContext",
+            "([IZLjava/lang/String;J)I",
+            (void *) native_HCCreateContext
+        },
+        {
+            "nativeHCGetAddress",
+            "(JLjava/lang/String;)[Ljava/lang/String;",
+            (void *) native_HCGetAddress
+        },
+        {
+            "nativeHCShowAddress",
+            "(JII)Ljava/lang/String;",
+            (void *) native_HCShowAddress
+        },
+        {
+            "nativeHCGetMainHDNode",
+            "(J)Ljava/lang/String;",
+            (void *) native_HCGetMainHDNode
+        },
+        {
+            "nativeHCTransaction",
+            "(JLjava/lang/String;)Ljava/lang/String;",
+            (void *) native_HCTransaction
+        },
 
 #endif
 };
@@ -1239,7 +1243,7 @@ JNINativeMethod gMethods[] = {
  */
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env = NULL;
-    jint ret = JNI_FALSE;
+    jint ret = JNI_ERR;
 
     // 获取 env 指针
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) {
@@ -1248,7 +1252,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
 
     jint version = env->GetVersion();
-    LOG_ERR(">>> jni verion: %d", version);
+    LOG_ERR(">>> jni version: %x", version);
 
     // 保存全局 JVM 以便在动态注册的皆空中使用 env 环境
     ret = env->GetJavaVM(&g_vm);
@@ -1277,7 +1281,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (env->RegisterNatives(bleClazz, bleMethodList.data(), bleMethodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives BLE fail");
         return ret;
-    } else{
+    } else {
         LOG_ERR(">>> RegisterNatives BLE ok");
     }
 
@@ -1285,9 +1289,9 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     jclass nfcClazz = getNfcClass(env);
     std::vector<JNINativeMethod> nfcMethodList = getNfcNativeMethods();
     if (env->RegisterNatives(nfcClazz, nfcMethodList.data(), nfcMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives fail");
+        LOG_ERR(">>> RegisterNatives NFC fail");
         return ret;
-    } else{
+    } else {
         LOG_ERR(">>> RegisterNatives NFC ok");
     }
 
@@ -1295,7 +1299,6 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
     // 注册 JNI 方法
     if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
-//    if (env->RegisterNatives(clazz, gMethods, sizeof(gMethods) / sizeof(gMethods[0])) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives fail");
         return ret;
     }
