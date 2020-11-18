@@ -13,6 +13,7 @@
 #include <Jub_Bitcoin.pb.h>
 #include <Jub_Ethereum.pb.h>
 #include <Jub_EOS.pb.h>
+#include <Jub_Ripple.pb.h>
 
 #include "include/jni_ble.h"
 #include "include/jni_nfc.h"
