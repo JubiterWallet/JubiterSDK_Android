@@ -8,4 +8,4 @@
 [submodule "cpp/JubiterSDK"]
 	path = cpp/JubiterSDK
 	url = https://github.com/JubiterWallet/JubiterSDK_C.git
-	branch = dev_3.0
+	tag = v2.0.1_rc
