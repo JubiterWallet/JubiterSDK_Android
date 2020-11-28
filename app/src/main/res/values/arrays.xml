@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="btc">
+        <item>BTC_P2PKH</item>
+        <item>BTC_P2WPKH</item>
+        <item>LTC</item>
+        <item>DASH</item>
+        <item>BCH</item>
+        <item>QTUM</item>
+        <item>USDT</item>
+    </string-array>
+
+    <string-array name="eos">
+        <item>EOS</item>
+        <item>EOS_TOKEN</item>
+        <item>EOS_BUY_RAM</item>
+        <item>EOS_SELL_RAM</item>
+        <item>EOS_STAKE</item>
+        <item>EOS_UNSTAKE</item>
+    </string-array>
+
+    <string-array name="eth">
+        <item>ETH</item>
+        <item>ETH_ERC20</item>
+    </string-array>
+
+    <string-array name="xrp">
+        <item>XRP</item>
+    </string-array>
+</resources>

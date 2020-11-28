@@ -1,49 +1,73 @@
-package com.jubiter.sdk.example;
+package com.jubiter.sdk.example.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnShowListener;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 
-/**
- * @author fengshuo
- * @date 2019/9/30
- * @time 11:43
- */
-public class DeviceListDialog extends Dialog implements View.OnClickListener,
-        DialogInterface.OnShowListener, DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
+import com.jubiter.sdk.JuBiterBLEDevice;
+import com.jubiter.sdk.JuBiterWallet;
+import com.jubiter.sdk.ScanResultCallback;
+import com.jubiter.sdk.example.R;
+import com.jubiter.sdk.example.utils.ThreadUtils;
 
-    private static final String TAG = "DeviceListDialog";
+import java.util.ArrayList;
+import java.util.List;
+
+public class SelectDeviceDialog extends Dialog implements View.OnClickListener, OnItemClickListener, OnShowListener, OnCancelListener {
+
+    public static final int TYPE_BLUETOOTH_3 = 1;
+    public static final int TYPE_BLUETOOTH_4 = 2;
+
+    // Debugging
+    protected static final String TAG = SelectDeviceDialog.class.getSimpleName();
+    protected static final boolean D = true;
 
     private TextView tvTitle;
     private ProgressBar progressBar;
     private ListView mListView;
     private Button btnClose;
-    private Button btnRefresh;
-    private DeviceCallback mDeviceCallback;
+    private Button btnRrfresh;
+
+    private OnSelectedListener mOnSelectedListener;
+
+    private static BtDeviceAdapter mDeviceListAdapter;
+    private List<JuBiterBLEDevice> mDeviceNameList;
 
 
-    public DeviceListDialog(@NonNull Context context, DeviceCallback callback) {
+    public SelectDeviceDialog(Context context,
+                              OnSelectedListener selectedListener) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDeviceCallback = callback;
-        initUI(context);
+        intiUI(context);
+
+
+        mDeviceNameList = new ArrayList<>();
+        this.mOnSelectedListener = selectedListener;
+
+        mDeviceListAdapter = new BtDeviceAdapter(context, mDeviceNameList);
+        mListView.setAdapter(mDeviceListAdapter);
+        mListView.setOnItemClickListener(this);
+        setCancelable(false);
+        this.setOnShowListener(this);
+        this.setOnCancelListener(this);
     }
 
-    private void initUI(Context context) {
+    private void intiUI(Context context) {
+
         ViewGroup.LayoutParams lp1 = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewGroup.LayoutParams lp2 = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         LinearLayout.LayoutParams lp5 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
@@ -76,25 +100,25 @@ public class DeviceListDialog extends Dialog implements View.OnClickListener,
         buttonsLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonsLayout.setLayoutParams(lp1);
         btnClose = new Button(context);
-        btnRefresh = new Button(context);
+        btnRrfresh = new Button(context);
 
 
         btnClose.setLayoutParams(lp5);
-        btnRefresh.setLayoutParams(lp5);
+        btnRrfresh.setLayoutParams(lp5);
 
         btnClose.setText("关闭");
         btnClose.setTextColor(Color.WHITE);
         btnClose.setBackgroundResource(R.drawable.bg_btn);
 
-        btnRefresh.setText("刷新");
-        btnRefresh.setTextColor(Color.WHITE);
-        btnRefresh.setBackgroundResource(R.drawable.bg_btn);
+        btnRrfresh.setText("刷新");
+        btnRrfresh.setTextColor(Color.WHITE);
+        btnRrfresh.setBackgroundResource(R.drawable.bg_btn);
 
         btnClose.setOnClickListener(this);
-        btnRefresh.setOnClickListener(this);
+        btnRrfresh.setOnClickListener(this);
 
         buttonsLayout.addView(btnClose);
-        buttonsLayout.addView(btnRefresh);
+        buttonsLayout.addView(btnRrfresh);
 
         // ===================== 中部的 ListView 布局 =================
 
@@ -113,56 +137,68 @@ public class DeviceListDialog extends Dialog implements View.OnClickListener,
         rootLayout.addView(buttonsLayout);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(rootLayout);
-
-        setOnShowListener(this);
-        setOnCancelListener(this);
-        setOnDismissListener(this);
     }
+
+    public interface OnSelectedListener {
+        void onSelected(JuBiterBLEDevice device);
+    }
+
+
+    public ScanResultCallback callback = new ScanResultCallback() {
+        @Override
+        public void onScanResult(JuBiterBLEDevice device) {
+            mDeviceListAdapter.addItem(device);
+            mDeviceListAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onStop() {
+
+        }
+
+        @Override
+        public void onError(int errorCode) {
+
+        }
+    };
+
+
 
     @Override
     public void onClick(View v) {
         if (v == btnClose) {
-            cancel();
-        } else if (v == btnRefresh) {
-            mDeviceCallback.onRefresh();
+            this.cancel();
+            mOnSelectedListener.onSelected(null);
+        } else if (v == btnRrfresh) {
+            JuBiterWallet.stopScan();
+            mDeviceNameList.clear();
+            mDeviceListAdapter.notifyDataSetChanged();
+            JuBiterWallet.startScan(callback);
         }
     }
 
     @Override
-    public void onCancel(DialogInterface dialog) {
-        Log.d(TAG, ">>> onCancel");
-        mDeviceCallback.onCancel();
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        SelectDeviceDialog.this.cancel();
+        //先停止扫描，再进行下一步操作。解决华为手机连接慢的问题
+        JuBiterWallet.stopScan();
+        ThreadUtils.toMainThread(new Runnable() {
+            @Override
+            public void run() {
+                mOnSelectedListener.onSelected(mDeviceListAdapter.getItem(position));
+            }
+        });
     }
 
     @Override
     public void onShow(DialogInterface dialog) {
-        Log.d(TAG, ">>> onShow");
+        JuBiterWallet.startScan(callback);
         progressBar.setVisibility(View.VISIBLE);
-        mDeviceCallback.onShow();
     }
+
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
-        Log.d(TAG, ">>> onDismiss");
+    public void onCancel(DialogInterface dialog) {
+        JuBiterWallet.stopScan();
     }
-
-    public void setAdapter(BaseAdapter adapter) {
-        mListView.setAdapter(adapter);
-    }
-
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
-        mListView.setOnItemClickListener(listener);
-    }
-
-
-    static interface DeviceCallback {
-
-        void onShow();
-
-        void onRefresh();
-
-        void onCancel();
-
-    }
-
 }
