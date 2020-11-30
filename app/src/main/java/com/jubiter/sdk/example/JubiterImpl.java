@@ -557,8 +557,85 @@ public class JubiterImpl {
         });
     }
 
-    private void usdtTransaction(int contextID, String transferInputValue, JubCallback<String> callback) {
+    private void usdtTransaction(final int contextID, String transferInputValue, final JubCallback<String> callback) {
+        long inputValue = Long.parseLong(transferInputValue);
 
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(0)
+                .setChange(false)
+                .build();
+
+        CommonProtos.Bip44Path bip32PathChange = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(0)
+                .setChange(true)
+                .build();
+
+        // inputs
+        BitcoinProtos.InputBTC inputBTC_0 = BitcoinProtos.InputBTC.newBuilder()
+                .setPath(bip32Path)
+                .setPreHash("2a2e910f9fb2b04f7f1ddbfb4ab05785250c2b395f572ce591167c8451f0891e")
+                .setAmount(4944420633545L)
+                .setPreIndex(0)
+                .build();
+
+        BitcoinProtos.InputBTC inputBTC_1 = BitcoinProtos.InputBTC.newBuilder()
+                .setPath(bip32PathChange)
+                .setPreHash("0fe4fafd846b18fe545bbc2dcb70ecb1290ec0de6219cd2299cd0a1561c8d583")
+                .setAmount(10492)
+                .setPreIndex(0)
+                .build();
+
+
+        // outputs
+        CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, bip32Path, false);
+        String outputSelfAddress = "";
+        if (address.getStateCode() == 0) {
+            outputSelfAddress = address.getValue();
+        }
+
+        BitcoinProtos.OutputBTC outputBTC_0 = BitcoinProtos.OutputBTC.newBuilder()
+                .setStdOutput(BitcoinProtos.StandardOutput.newBuilder()
+                        .setAddress(outputSelfAddress)
+                        .setAmount(3744400045565L)
+                        .setChangeAddress(true)
+                        .setPath(bip32Path)
+                        .build())
+                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.SC_P2PKH)
+                .build();
+
+        CommonProtos.ResultAny result = JuBiterBitcoin.buildUSDTOutput(contextID, "1EXoDusjGwvnjZUyKkxZ4UHEf77z6A5S4P", Long.parseLong(transferInputValue));
+        List<BitcoinProtos.OutputBTC> outputBTCList = new ArrayList<>();
+        for (com.google.protobuf.Any res : result.getValueList()) {
+            try {
+                BitcoinProtos.OutputBTC output = res.unpack(BitcoinProtos.OutputBTC.class);
+                outputBTCList.add(output);
+            } catch (InvalidProtocolBufferException e) {
+                e.printStackTrace();
+            }
+        }
+
+        BitcoinProtos.TransactionBTC.Builder builder = BitcoinProtos.TransactionBTC.newBuilder()
+                .setVersion(1)
+                .addInputs(0, inputBTC_0)
+                .addInputs(1, inputBTC_1)
+                .addOutputs(0, outputBTC_0);
+        for (BitcoinProtos.OutputBTC outputBTC : outputBTCList) {
+            builder.addOutputs(outputBTC);
+        }
+        final BitcoinProtos.TransactionBTC transactionBTC = builder
+                .setLocktime(0)
+                .build();
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
+                }
+            }
+        });
     }
 
 

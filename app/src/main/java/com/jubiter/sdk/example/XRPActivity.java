@@ -126,7 +126,7 @@ public class XRPActivity extends AppCompatActivity {
     private void showSelectVerifyTypeDialog() {
 //        DeviceType deviceType = mJubiter.getDeviceType();
 //        if (deviceType.getDEVICE() == 0) {
-            showVirtualPwd(1);
+            showVirtualPwd(0);
 //            return;
 //        }
 //        mSelectDialog.show();
