@@ -200,7 +200,7 @@
         android:textAlignment="textEnd"
         android:textSize="9sp"
         android:textColor="@color/colorPrimary"
-        android:text="20201124+0" />
+        android:text="20201203+0" />
 
 
 </LinearLayout>

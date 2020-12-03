@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.jubiter.sdk.example.dialog.InputDialog;
+import com.jubiter.sdk.example.dialog.PathDialog;
 import com.jubiter.sdk.example.dialog.SelectDialog;
 import com.jubiter.sdk.example.utils.DecimalDigitsInputFilter;
 import com.jubiter.sdk.example.utils.JubCallback;
@@ -294,7 +295,7 @@ public class XRPActivity extends AppCompatActivity {
     }
 
     private void getAddress() {
-        new InputDialog(mContext, "Input a path index", new InputDialog.callback() {
+        new PathDialog(mContext, "Input a path address_index", new PathDialog.callback() {
             @Override
             public void onClickListener(String value) {
                 if (TextUtils.isEmpty(value)) {
