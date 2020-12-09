@@ -17,14 +17,15 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v1
-      with:
-         submodules: true
+
+    - name: submodule
+      run: git submodule update --init --recursive
               
     - name: permission
       run: |
         sudo chmod 777 ./gradlew
         sudo chmod 777 ./ActionBuild.sh
-        
+
     - name: Android Build env
       uses: vgaidarji/android-github-actions-build@v1.0.1
       with: 
