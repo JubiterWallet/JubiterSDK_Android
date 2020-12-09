@@ -22,11 +22,10 @@ jobs:
               
     - name: Android Build env
       uses: vgaidarji/android-github-actions-build@v1.0.1
+      with: 
+         args: "./ActionBuild.sh"
 
-    - name: Android Build
+    - name: Zip Build
       run: |
-        sudo chmod 777 ./gradlew
-        sdkmanager --install "ndk;21.1.6352462" "cmake;3.10.2.4988404"
-        ./gradlew :sdk:assembleRelease
         zip -u JubSDK-Android.zip ./sdk/build/outputs/aar/sdk-release.aar 
         zip -u JubSDK-Android.zip ./app/build/outputs/apk/release/app-release-unsigned.apk 
