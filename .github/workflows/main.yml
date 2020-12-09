@@ -4,9 +4,7 @@ name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    branches: [ master ]
+on: [push]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,15 +18,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v1
       with:
-         token: ${{secrets.GITHUB_TOKEN}}
          submodules: true
-        
-    - name: permission
+              
+    - name: Android Build env
+      uses: vgaidarji/android-github-actions-build@v1.0.1
+
+    - name: Android Build
       run: |
         sudo chmod 777 ./gradlew
-        sudo chmod 777 ./ActionBuild.sh
-      
-    - name: Android Build
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      with:
-        args: "./ActionBuild.sh"
+        sdkmanager --install "ndk;21.1.6352462" "cmake;3.10.2.4988404"
+        ./gradlew :sdk:assembleRelease
+        zip -u JubSDK-Android.zip ./sdk/build/outputs/aar/sdk-release.aar 
+        zip -u JubSDK-Android.zip ./app/build/outputs/apk/release/app-release-unsigned.apk 
