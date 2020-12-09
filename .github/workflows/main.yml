@@ -33,5 +33,6 @@ jobs:
 
     - name: Zip Build
       run: |
+        zip -y JubSDK-Android.zip ./app/build/outputs/apk/release/app-release-unsigned.apk 
         zip -u JubSDK-Android.zip ./sdk/build/outputs/aar/sdk-release.aar 
-        zip -u JubSDK-Android.zip ./app/build/outputs/apk/release/app-release-unsigned.apk 
+        
