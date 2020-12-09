@@ -20,6 +20,11 @@ jobs:
       with:
          submodules: true
               
+    - name: permission
+      run: |
+        sudo chmod 777 ./gradlew
+        sudo chmod 777 ./ActionBuild.sh
+        
     - name: Android Build env
       uses: vgaidarji/android-github-actions-build@v1.0.1
       with: 
