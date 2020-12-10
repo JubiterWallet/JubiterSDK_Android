@@ -40,6 +40,7 @@ public class BTCActivity extends AppCompatActivity {
     private String transferInputValue;
     private int unitIndx;
     private ArrayList<String> mUnits;
+    private String mCoinTypeMsg = "BTC";
 
     private ProgressDialog mDialog;
 
@@ -63,24 +64,31 @@ public class BTCActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         mTransType = JubiterImpl.BTC_TransType.BTC_P2PKH;
+                        mCoinTypeMsg = "BTC";
                         break;
                     case 1:
                         mTransType = JubiterImpl.BTC_TransType.BTC_P2WPKH;
+                        mCoinTypeMsg = "BTC";
                         break;
                     case 2:
                         mTransType = JubiterImpl.BTC_TransType.LTC;
+                        mCoinTypeMsg = "LTC";
                         break;
                     case 3:
                         mTransType = JubiterImpl.BTC_TransType.DASH;
+                        mCoinTypeMsg = "DASH";
                         break;
                     case 4:
                         mTransType = JubiterImpl.BTC_TransType.BCH;
+                        mCoinTypeMsg = "BCH";
                         break;
                     case 5:
                         mTransType = JubiterImpl.BTC_TransType.QTUM;
+                        mCoinTypeMsg = "QTUM";
                         break;
                     case 6:
                         mTransType = JubiterImpl.BTC_TransType.USDT;
+                        mCoinTypeMsg = "USDT";
                         break;
                 }
                 rebuildContext();
@@ -316,7 +324,7 @@ public class BTCActivity extends AppCompatActivity {
     }
 
     private void executeTrans() {
-        mDialog.setMessage("BTC Transaction in progress....");
+        mDialog.setMessage(mCoinTypeMsg + " Transaction in progress....");
         mDialog.show();
         int decimal = getDecimal();
         mJubiter.btcTransaction(mBtcContextID, mTransType, decimal, transferInputValue, new JubCallback<String>() {
