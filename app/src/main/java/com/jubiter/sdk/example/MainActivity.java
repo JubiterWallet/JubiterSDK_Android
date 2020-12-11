@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     enum COIN_TYPE {
         BTC,
         ETH,
+        ETH_SignBytestring,
         EOS,
         XRP,
     }
@@ -391,6 +392,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnETHGetHDNodeBtn();
         addListenerOnETHGetAddressBtn();
         addListenerOnETHTransactionBtn();
+        addListenerOnETHSignBytestringBtn();
         addListenerOnBuildERC20AbiBtn();
 
         addListenerOnEOSCreateContext_SoftwareBtn();
@@ -938,6 +940,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     case ETH:
                         ethTransaction(contextID);
                         break;
+                    case ETH_SignBytestring:
+                        ethSignBytestring(contextID);
+                        break;
                     case EOS:
                         eosTransaction(contextID);
                         break;
@@ -1169,6 +1174,37 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
+    private void addListenerOnETHSignBytestringBtn() {
+        findViewById(R.id.ethSignBytestring_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
+                        .setMainPath("m/44'/60'/0'")
+                        .setChainId(1)
+                        .build();
+                CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
+                if (0 != result.getStateCode()) {
+                    Log.d(TAG, "createContext : " + result.getStateCode());
+                    return;
+                }
+
+                final int contextID2 = result.getValue();
+                int rv = JuBiterWallet.showVirtualPWD(contextID2);
+                Log.d(TAG, "showVirtualPWD : " + rv);
+                if (0 != rv) {
+                    return;
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showPINDialog(COIN_TYPE.ETH_SignBytestring, contextID2);
+                    }
+                });
+            }
+        });
+    }
+
     private void ethTransaction(int contextID) {
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setChange(false)
@@ -1185,6 +1221,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .build();
         CommonProtos.ResultString result = JuBiterEthereum.signTransaction(contextID, transactionETH);
         Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
+    }
+
+    private void ethSignBytestring(int contextID) {
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(0)
+                .setChange(false)
+                .build();
+        JuBiterEthereum.signBytestring(contextID,bip32Path,"0x7ff36ab500000000000000000000000000000000000000000000006cf31f799affe07bea00000000000000000000000000000000000000000000000000000000000000800000000000000000000000002c70f383699004f9e7eff8d595b354f5785dc10b000000000000000000000000000000000000000000000000000000005fd2da6d0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000744d70fdbe2ba4cf95131626614a1763df805b9e");
     }
 
 
