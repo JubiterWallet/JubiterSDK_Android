@@ -107,6 +107,8 @@ public class NativeApi {
 
     public static native byte[] nativeETHSignBytestring(int contextID, byte[] bip32, String data);
 
+    public static native byte[] nativeETHSignContract(int contextID, byte[] txInfo);
+
     //********************************* SDK EOS ************************************
 
     public static native byte[] nativeEOSCreateContext(byte[] config, int deviceID);
