@@ -316,6 +316,13 @@
             android:text="ETH SignBytestring" />
 
         <Button
+            android:id="@+id/ethSignContract_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="ETH SignContract" />
+
+        <Button
             android:id="@+id/eosCreateContext_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

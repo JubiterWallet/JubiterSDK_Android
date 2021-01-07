@@ -178,4 +178,21 @@ public final class JuBiterEthereum {
         }
         return null;
     }
+
+    /**
+     * ETH 协议签名
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param txInfo
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString signContract(int contextID, EthereumProtos.TransactionETH txInfo) {
+        try {
+            byte[] result = NativeApi.nativeETHSignContract(contextID, txInfo.toByteArray());
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
