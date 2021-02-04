@@ -135,7 +135,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     boolean connectedState = JuBiterNFCWallet.nfcIsConnected(deviceID);
                     Log.d(TAG, "isConnected rv: " + connectedState);
 
-                    int setResult = JuBiterNFCWallet.nfcSetLabel(deviceID, "JuBiter Label Test");
+                    boolean bootState2 = JuBiterWallet.isBootLoader(deviceID);
+                    Log.d(TAG, "isBootLoader state: " + bootState2);
+
+                    int setResult = JuBiterNFCWallet.nfcSetLabel(deviceID, "JuBiter Label");
                     Log.d(TAG, "nfcSetLabel rv: " + setResult);
                     assert(setResult == 0);
 
@@ -149,37 +152,37 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         }
                     }
 
-                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
-                    Log.d(TAG, "nfcReset rv: " + resetResult2);
-                    assert(resetResult2 == 0);
-
-                    boolean bootState2 = JuBiterWallet.isBootLoader(deviceID);
-                    Log.d(TAG, "isBootLoader state: " + bootState2);
-
-                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "11111111");
-                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
-                    assert(changeResult.getStateCode() == 0);
-
-                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "11111111",
-                            "payment reopen pear timber corn salon goat elephant clump company swift spare");
-                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
-                    assert(importResult == 0);
-
-                    // 是否已产生根私钥
-                    CommonProtos.ResultAny rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
-                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
-
-                    com.google.protobuf.Any detail = rootKeyState.getValueList().get(0);
-                    try {
-                        CommonProtos.RootKeyStatus rootKeyStatus = detail.unpack(CommonProtos.RootKeyStatus.class);
-                        Log.d(TAG, "rootKey rv : " + rootKeyStatus.getStatus());
-                    } catch (InvalidProtocolBufferException e) {
-                        e.printStackTrace();
-                    }
-
-                    CommonProtos.ResultInt changeResult2 = JuBiterNFCWallet.nfcChangePIN(deviceID, "11111111", "22222222");
-                    Log.d(TAG, "nfcChangePIN rv: " + changeResult2.getStateCode() + ", value: " + changeResult2.getValue());
-                    assert(changeResult2.getStateCode() == 0);
+//                    int resetResult2 = JuBiterNFCWallet.nfcReset(deviceID);
+//                    Log.d(TAG, "nfcReset rv: " + resetResult2);
+//                    assert(resetResult2 == 0);
+//
+//                    boolean bootState2 = JuBiterWallet.isBootLoader(deviceID);
+//                    Log.d(TAG, "isBootLoader state: " + bootState2);
+//
+//                    CommonProtos.ResultInt changeResult = JuBiterNFCWallet.nfcChangePIN(deviceID, "", "11111111");
+//                    Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
+//                    assert(changeResult.getStateCode() == 0);
+//
+//                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "11111111",
+//                            "payment reopen pear timber corn salon goat elephant clump company swift spare");
+//                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
+//                    assert(importResult == 0);
+//
+//                    // 是否已产生根私钥
+//                    CommonProtos.ResultAny rootKeyState = JuBiterNFCWallet.nfcHasRootKey(deviceID);
+//                    Log.d(TAG, "nfcHasRootKey state: " + rootKeyState);
+//
+//                    com.google.protobuf.Any detail = rootKeyState.getValueList().get(0);
+//                    try {
+//                        CommonProtos.RootKeyStatus rootKeyStatus = detail.unpack(CommonProtos.RootKeyStatus.class);
+//                        Log.d(TAG, "rootKey rv : " + rootKeyStatus.getStatus());
+//                    } catch (InvalidProtocolBufferException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    CommonProtos.ResultInt changeResult2 = JuBiterNFCWallet.nfcChangePIN(deviceID, "11111111", "22222222");
+//                    Log.d(TAG, "nfcChangePIN rv: " + changeResult2.getStateCode() + ", value: " + changeResult2.getValue());
+//                    assert(changeResult2.getStateCode() == 0);
 
 //
 //                    boolean bootState1 = JuBiterWallet.isBootLoader(deviceID);
@@ -495,15 +498,17 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 deviceID = handle;
 
                 Log.d(TAG, ">>> thread id: " + Thread.currentThread().getId());
-                CommonProtos.ResultAny result = JuBiterWallet.getDeviceInfo(deviceID);
-                for (com.google.protobuf.Any detail : result.getValueList()) {
-                    try {
-                        CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
-                        Log.d(TAG, "rv : " + deviceInfo.toString());
-                    } catch (InvalidProtocolBufferException e) {
-                        e.printStackTrace();
-                    }
-                }
+//                CommonProtos.ResultAny result = JuBiterWallet.getDeviceInfo(deviceID);
+//                for (com.google.protobuf.Any detail : result.getValueList()) {
+//                    try {
+//                        CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
+//                        Log.d(TAG, "rv : " + deviceInfo.toString());
+//                    } catch (InvalidProtocolBufferException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
+                JuBiterWallet.queryBattery(deviceID);
             }
 
             @Override
