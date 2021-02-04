@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 4
-        versionName "2.2.1"
+        versionCode 5
+        versionName "2.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -22,7 +22,7 @@ android {
                         "-std=c++11",
 //                        "-frtti",   // Android Studio 3.3 开始默认支持
 //                        "-fexceptions",
-                        "-DDEBUG",
+//                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments "-DANDROID_TOOLCHAIN=clang",
