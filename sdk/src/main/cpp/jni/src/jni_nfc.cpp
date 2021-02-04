@@ -6,7 +6,8 @@
 
 #define NFC_NATIVE_CLASS "com/jubiter/sdk/jni/NfcNativeApi"
 
-JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
+JNIEXPORT jint JNICALL
+native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
     // 初始化参数转换
     NFC_DEVICE_INIT_PARAM nfcInitParam;
     jobjectToNFCInitParam(env, g_vm, initParam, &nfcInitParam);
@@ -15,26 +16,30 @@ JNIEXPORT jint JNICALL native_NFCInitDevice(JNIEnv *env, jclass clz, jobject ini
     return rv;
 }
 
-JNIEXPORT jbyteArray JNICALL native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID) {
+JNIEXPORT jbyteArray JNICALL
+native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID) {
     auto strDeviceUUID = jstring2stdString(env, deviceUUID);
     JUB_UINT16 deviceID;
     JUB_RV rv = JUB_connectNFCDevice((JUB_BYTE_PTR) strDeviceUUID.c_str(), &deviceID);
     return buildPbRvUInt("JUB_connectNFCDevice", env, rv, deviceID);
 }
 
-JNIEXPORT jint JNICALL native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jint JNICALL
+native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_disconnectNFCDevice(deviceID);
     LOG_ERR("JUB_disconnectNFCDevice rv: %d", rv);
     return rv;
 }
 
-JNIEXPORT jint JNICALL native_NFCIsConnect(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jint JNICALL
+native_NFCIsConnect(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_isDeviceNFCConnect(deviceID);
     LOG_ERR("JUB_isDeviceNFCConnect rv: %d", rv);
     return rv;
 }
 
-JNIEXPORT jint JNICALL native_NFCReset(JNIEnv *env, jclass clz, jint contextID) {
+JNIEXPORT jint JNICALL
+native_NFCReset(JNIEnv *env, jclass clz, jint contextID) {
     JUB_RV rv = JUB_Reset(contextID);
     LOG_ERR("JUB_Reset rv: %d", rv);
     return rv;
@@ -47,7 +52,8 @@ native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jby
 
     JUB::Proto::Common::CURVES enum_curve;
     JUB::Proto::Common::CURVES_Parse(strCurve, &enum_curve);
-    JUB_RV rv = JUB_GenerateSeed(deviceID, strPin.c_str(), static_cast<JUB_ENUM_CURVES>(enum_curve));
+    JUB_RV rv = JUB_GenerateSeed(deviceID, strPin.c_str(),
+                                 static_cast<JUB_ENUM_CURVES>(enum_curve));
     LOG_ERR("JUB_GenerateSeed rv: %d", rv);
     return rv;
 }
@@ -61,7 +67,7 @@ native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
     return rv;
 }
 
-JNIEXPORT jbyteArray
+JNIEXPORT jbyteArray JNICALL
 native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
     JUB_CHAR_PTR mnemonic;
@@ -70,7 +76,7 @@ native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
     return buildPbRvString("JUB_ExportMnemonic", env, rv, mnemonic);
 }
 
-JNIEXPORT jbyteArray
+JNIEXPORT jbyteArray JNICALL
 native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin) {
     auto strOriginPin = jstring2stdString(env, jOriginPin);
     auto strNewPin = jstring2stdString(env, jNewPin);
@@ -79,7 +85,7 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
     return buildPbRvUInt("JUB_ChangePIN", env, rv, retry);
 }
 
-JNIEXPORT jbyteArray
+JNIEXPORT jbyteArray JNICALL
 native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_ENUM_NFC_ROOT_KEY_STATUS status;
     JUB_RV rv = JUB_GetRootKeyStatus(deviceID, &status);
@@ -104,7 +110,8 @@ native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
     return stdString2jbyteArray("JUB_GetRootKeyStatus", env, result);
 }
 
-JNIEXPORT jint native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel) {
+JNIEXPORT jint JNICALL
+native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel) {
     auto label = jstring2stdString(env, jLabel);
     JUB_RV rv = JUB_SetLabel(deviceID, label.c_str());
     LOG_ERR("JUB_SetLabel rv: %d", rv);

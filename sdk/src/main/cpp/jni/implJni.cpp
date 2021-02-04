@@ -1423,7 +1423,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     jint version = env->GetVersion();
     LOG_ERR(">>> jni version: %x", version);
 
-    // 保存全局 JVM 以便在动态注册的皆空中使用 env 环境
+    // 保存全局 JVM 以便在动态注册的接口中使用 env 环境
     ret = env->GetJavaVM(&g_vm);
     if (ret != JNI_OK) {
         LOG_ERR(">>> GetJavaVM fail");
@@ -1450,9 +1450,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (env->RegisterNatives(bleClazz, bleMethodList.data(), bleMethodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives BLE fail");
         return ret;
-    } else {
-        LOG_ERR(">>> RegisterNatives BLE ok");
     }
+    LOG_ERR(">>> RegisterNatives BLE ok");
 
     // NFC 注册
     jclass nfcClazz = getNfcClass(env);
@@ -1460,9 +1459,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (env->RegisterNatives(nfcClazz, nfcMethodList.data(), nfcMethodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives NFC fail");
         return ret;
-    } else {
-        LOG_ERR(">>> RegisterNatives NFC ok");
     }
+    LOG_ERR(">>> RegisterNatives NFC ok");
 
     LOG_ERR(">>> method count: %d", methodList.size());
 
@@ -1471,7 +1469,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> RegisterNatives fail");
         return ret;
     }
-    LOG_ERR(">>> jni onload success");
+    LOG_ERR(">>> jni onLoad success");
 
     // 成功
     return JNI_VERSION_1_6;
