@@ -552,6 +552,38 @@ native_SignTransactionETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
     }
     return buildPbRvString("JUB_SignTransactionETH", env, JUBR_ARGUMENTS_BAD, "");
 }
+
+JNIEXPORT jbyteArray JNICALL
+native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jstring data) {
+    BIP44_Path bip32Path;
+    auto strData = jstring2stdString(env, data);
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR signature = nullptr;
+        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR)strData.c_str(), &signature);
+        return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
+    }
+    return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+    JUB::Proto::Ethereum::TransactionETH pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        BIP44_Path bip32Path;
+        bip32Path.change = (JUB_ENUM_BOOL) pbTx.path().change();
+        bip32Path.addressIndex = pbTx.path().address_index();
+
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_RV rv = JUB_SignContractETH(contextID, bip32Path, pbTx.nonce(), pbTx.gas_limit(),
+                                           (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.to().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
+
+        return buildPbRvString("JUB_SignContractETH", env, rv, raw);
+    }
+    return buildPbRvString("JUB_SignContractETH", env, JUBR_ARGUMENTS_BAD, "");
+}
 //=================================== EOS Wallet =========================================
 
 JNIEXPORT jbyteArray JNICALL
@@ -1247,6 +1279,16 @@ JNINativeMethod gMethods[] = {
                 "nativeETHSignTransaction",
                 "(I[B)[B",
                 (void *) native_SignTransactionETH
+        },
+        {
+                "nativeETHSignBytestring",
+                "(I[BLjava/lang/String;)[B",
+                (void *) native_SignBytestringETH
+        },
+        {
+                "nativeETHSignContract",
+                "(I[B)[B",
+                (void *) native_SignContractETH
         },
         {
                 "nativeEnumSupportCoins",
