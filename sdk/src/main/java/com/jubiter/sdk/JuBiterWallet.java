@@ -1,9 +1,12 @@
 package com.jubiter.sdk;
 
+import android.util.Log;
+
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.jubiter.sdk.jni.InnerDiscCallback;
-import com.jubiter.sdk.jni.InnerScanCallback;
+import com.jubiter.sdk.jni.BleNativeApi;
 import com.jubiter.sdk.jni.NativeApi;
+import com.jubiter.sdk.jni.ble.InnerDiscCallback;
+import com.jubiter.sdk.jni.ble.InnerScanCallback;
 import com.jubiter.sdk.proto.CommonProtos;
 
 /**
@@ -114,7 +117,7 @@ public final class JuBiterWallet {
      */
     public static CommonProtos.ResultString sendApdu(int deviceID, String apdu) {
         try {
-            byte[] result = NativeApi.nativeSendApdu(deviceID, apdu);
+            byte[] result = NativeApi.nativeSendAPDU(deviceID, apdu);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -216,7 +219,7 @@ public final class JuBiterWallet {
      */
     public static CommonProtos.ResultInt queryBattery(int deviceID) {
         try {
-            byte[] result = NativeApi.nativeQuerryBattery(deviceID);
+            byte[] result = NativeApi.nativeQueryBattery(deviceID);
             return CommonProtos.ResultInt.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -282,7 +285,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int initDevice() {
-        return NativeApi.nativeInitDevice();
+        return BleNativeApi.nativeBLEInitDevice();
     }
 
     /**
@@ -294,7 +297,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static void startScan(final ScanResultCallback scanResultCallback) {
-        int rv = NativeApi.nativeStartScan(new InnerScanCallback() {
+        int rv = BleNativeApi.nativeBLEStartScan(new InnerScanCallback() {
             @Override
             public void onScanResult(String name, String uuid, int devType) {
                 JuBiterBLEDevice device = new JuBiterBLEDevice(name, uuid, devType);
@@ -324,7 +327,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int stopScan() {
-        return NativeApi.nativeStopScan();
+        return BleNativeApi.nativeBLEStopScan();
     }
 
     /**
@@ -333,18 +336,20 @@ public final class JuBiterWallet {
      * 注: 异步接口，该接口只支持单设备连接，若要连接其他设备，需断开当前连接
      * <p>
      *
-     * @param address                 待连接设备的 MAC 地址
+     * @param deviceMAC               待连接设备的 MAC 地址
      * @param timeout                 连接超时时间，单位毫秒（ms）
      * @param connectionStateCallback 设备断开连接回调
      * @return 0：成功；非0：失败
      */
-    public static void connectDeviceAsync(final String address, final int timeout,
+    public static void connectDeviceAsync(final String deviceName, final String deviceMAC,
+                                          final int timeout,
                                           final ConnectionStateCallback connectionStateCallback) {
+        Log.d("JuBiterWallet", ">>> connectDeviceAsync name: " + deviceName + ", address: " + deviceMAC + ", timeout: " + timeout);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int[] deviceHandle = new int[1];
-                int rv = NativeApi.nativeConnectDevice(address, deviceHandle, timeout, new InnerDiscCallback() {
+                int rv = BleNativeApi.nativeBLEConnectDevice(deviceName, deviceMAC, deviceHandle, timeout, new InnerDiscCallback() {
                     @Override
                     public void onDisconnect(String mac) {
                         connectionStateCallback.onDisconnected(mac);
@@ -353,7 +358,7 @@ public final class JuBiterWallet {
                 if (0 != rv) {
                     connectionStateCallback.onError(rv);
                 } else {
-                    connectionStateCallback.onConnected(address, deviceHandle[0]);
+                    connectionStateCallback.onConnected(deviceMAC, deviceHandle[0]);
                 }
             }
         }).start();
@@ -364,11 +369,11 @@ public final class JuBiterWallet {
      * <p>
      * 该使用场景：正在连接指定设备，但尚未连接成功，此时因某些原因想要终止当前操作
      *
-     * @param address 待取消连接的设备 MAC 地址
+     * @param deviceMAC 待取消连接的设备 MAC 地址
      * @return 0：成功；非0：失败
      */
-    public static int cancelConnect(String address) {
-        return NativeApi.nativeCancelConnect(address);
+    public static int cancelConnect(String deviceName, String deviceMAC) {
+        return BleNativeApi.nativeBLECancelConnect(deviceName, deviceMAC);
     }
 
     /**
@@ -378,7 +383,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static int disconnectDevice(int deviceID) {
-        return NativeApi.nativeDisconnectDevice(deviceID);
+        return BleNativeApi.nativeBLEDisconnectDevice(deviceID);
     }
 
     /**
@@ -388,7 +393,7 @@ public final class JuBiterWallet {
      * @return 0：成功；非0：失败
      */
     public static boolean isConnected(int deviceID) {
-        int rv = NativeApi.nativeIsConnected(deviceID);
+        int rv = BleNativeApi.nativeBLEIsConnected(deviceID);
         if (0 == rv) {
             return true;
         }

@@ -22,6 +22,7 @@ include_directories(${OUT_DIRECTORY}/JubiterSDK/include)
 include_directories(${OUT_DIRECTORY}/Protobuffer/src)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils)
 
 
@@ -33,6 +34,7 @@ aux_source_directory(${OUT_DIRECTORY}/deps/jsoncpp/src/lib_json SRC_LIST)
 aux_source_directory(${OUT_DIRECTORY}/JubiterPB/cpp SRC_LIST)
 
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni SRC_LIST)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/src SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils SRC_LIST)
 
 
@@ -49,12 +51,12 @@ find_library(libLog
 if(CMAKE_BUILD_TYPE MATCHES "Debug"
         OR CMAKE_BUILD_TYPE MATCHES "None")
     message(">>>> link debug library")
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
     link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/debug)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/debug)
 elseif(CMAKE_BUILD_TYPE MATCHES "Release")
     message(">>>> link release library")
-#    link_directories(${OUT_DIRECTORY}/deps/bleTransmit/android/${ANDROID_ABI})
     link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/bleTransmit/android/${ANDROID_ABI}/release)
+    link_directories(${OUT_DIRECTORY}/JubiterSDK/deps/nfcTransmit/android/${ANDROID_ABI}/release)
 endif()
 
 # 连接 protobuf 静态库
@@ -81,7 +83,7 @@ target_link_libraries(
                       JUB_SDK
                       TrezorCrypto
                       BTSDK
+                      NFCSDK
                       libprotobuf
-#                      protobufd
                       ${libLog}
 )

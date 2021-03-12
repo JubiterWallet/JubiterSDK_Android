@@ -1186,6 +1186,871 @@ public final class RippleProtos {
 
   }
 
+  public interface XrpMemoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.Ripple.XrpMemo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string type = 1;</code>
+     */
+    String getType();
+    /**
+     * <code>string type = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <code>string data = 2;</code>
+     */
+    String getData();
+    /**
+     * <code>string data = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getDataBytes();
+
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    String getFormat();
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getFormatBytes();
+  }
+  /**
+   * Protobuf type {@code JUB.Proto.Ripple.XrpMemo}
+   */
+  public  static final class XrpMemo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.Ripple.XrpMemo)
+      XrpMemoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use XrpMemo.newBuilder() to construct.
+    private XrpMemo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private XrpMemo() {
+      type_ = "";
+      data_ = "";
+      format_ = "";
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new XrpMemo();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private XrpMemo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 18: {
+              String s = input.readStringRequireUtf8();
+
+              data_ = s;
+              break;
+            }
+            case 26: {
+              String s = input.readStringRequireUtf8();
+
+              format_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              XrpMemo.class, Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private volatile Object type_;
+    /**
+     * <code>string type = 1;</code>
+     */
+    public String getType() {
+      Object ref = type_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string type = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      Object ref = type_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATA_FIELD_NUMBER = 2;
+    private volatile Object data_;
+    /**
+     * <code>string data = 2;</code>
+     */
+    public String getData() {
+      Object ref = data_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        data_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string data = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDataBytes() {
+      Object ref = data_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        data_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FORMAT_FIELD_NUMBER = 3;
+    private volatile Object format_;
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    public String getFormat() {
+      Object ref = format_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        format_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>string format = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFormatBytes() {
+      Object ref = format_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        format_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+      }
+      if (!getDataBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, data_);
+      }
+      if (!getFormatBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, format_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+      }
+      if (!getDataBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, data_);
+      }
+      if (!getFormatBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, format_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof XrpMemo)) {
+        return super.equals(obj);
+      }
+      XrpMemo other = (XrpMemo) obj;
+
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (!getData()
+          .equals(other.getData())) return false;
+      if (!getFormat()
+          .equals(other.getFormat())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
+      hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+      hash = (53 * hash) + getFormat().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static XrpMemo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static XrpMemo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static XrpMemo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static XrpMemo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static XrpMemo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static XrpMemo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static XrpMemo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static XrpMemo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static XrpMemo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static XrpMemo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static XrpMemo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static XrpMemo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(XrpMemo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JUB.Proto.Ripple.XrpMemo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.Ripple.XrpMemo)
+        XrpMemoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                XrpMemo.class, Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.RippleProtos.XrpMemo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        type_ = "";
+
+        data_ = "";
+
+        format_ = "";
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return RippleProtos.internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+      }
+
+      @Override
+      public XrpMemo getDefaultInstanceForType() {
+        return XrpMemo.getDefaultInstance();
+      }
+
+      @Override
+      public XrpMemo build() {
+        XrpMemo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public XrpMemo buildPartial() {
+        XrpMemo result = new XrpMemo(this);
+        result.type_ = type_;
+        result.data_ = data_;
+        result.format_ = format_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof XrpMemo) {
+          return mergeFrom((XrpMemo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(XrpMemo other) {
+        if (other == XrpMemo.getDefaultInstance()) return this;
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getData().isEmpty()) {
+          data_ = other.data_;
+          onChanged();
+        }
+        if (!other.getFormat().isEmpty()) {
+          format_ = other.format_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        XrpMemo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (XrpMemo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object type_ = "";
+      /**
+       * <code>string type = 1;</code>
+       */
+      public String getType() {
+        Object ref = type_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder setType(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 1;</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object data_ = "";
+      /**
+       * <code>string data = 2;</code>
+       */
+      public String getData() {
+        Object ref = data_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          data_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDataBytes() {
+        Object ref = data_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          data_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder setData(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        data_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder clearData() {
+        
+        data_ = getDefaultInstance().getData();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string data = 2;</code>
+       */
+      public Builder setDataBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        data_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object format_ = "";
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public String getFormat() {
+        Object ref = format_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          format_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFormatBytes() {
+        Object ref = format_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          format_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder setFormat(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        format_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder clearFormat() {
+        
+        format_ = getDefaultInstance().getFormat();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>string format = 3;</code>
+       */
+      public Builder setFormatBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        format_ = value;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.Ripple.XrpMemo)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.Ripple.XrpMemo)
+    private static final XrpMemo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new XrpMemo();
+    }
+
+    public static XrpMemo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<XrpMemo>
+        PARSER = new com.google.protobuf.AbstractParser<XrpMemo>() {
+      @Override
+      public XrpMemo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new XrpMemo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<XrpMemo> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<XrpMemo> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public XrpMemo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PymtXRPOrBuilder extends
       // @@protoc_insertion_point(interface_extends:JUB.Proto.Ripple.PymtXRP)
       com.google.protobuf.MessageOrBuilder {
@@ -2933,18 +3798,25 @@ public final class RippleProtos {
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    String getMemos();
+    boolean hasMemo();
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    com.google.protobuf.ByteString
-        getMemosBytes();
+    XrpMemo getMemo();
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+     */
+    XrpMemoOrBuilder getMemoOrBuilder();
 
     /**
      * <pre>
@@ -2999,7 +3871,6 @@ public final class RippleProtos {
       accountTxnId_ = "";
       flags_ = "";
       lastLedgerSequence_ = "";
-      memos_ = "";
       sourceTag_ = "";
     }
 
@@ -3076,9 +3947,16 @@ public final class RippleProtos {
               break;
             }
             case 66: {
-              String s = input.readStringRequireUtf8();
+              XrpMemo.Builder subBuilder = null;
+              if (memo_ != null) {
+                subBuilder = memo_.toBuilder();
+              }
+              memo_ = input.readMessage(XrpMemo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(memo_);
+                memo_ = subBuilder.buildPartial();
+              }
 
-              memos_ = s;
               break;
             }
             case 74: {
@@ -3398,46 +4276,37 @@ public final class RippleProtos {
       }
     }
 
-    public static final int MEMOS_FIELD_NUMBER = 8;
-    private volatile Object memos_;
+    public static final int MEMO_FIELD_NUMBER = 8;
+    private XrpMemo memo_;
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    public String getMemos() {
-      Object ref = memos_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        memos_ = s;
-        return s;
-      }
+    public boolean hasMemo() {
+      return memo_ != null;
     }
     /**
      * <pre>
      * [Optional]
      * </pre>
      *
-     * <code>string memos = 8;</code>
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
      */
-    public com.google.protobuf.ByteString
-        getMemosBytes() {
-      Object ref = memos_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        memos_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public XrpMemo getMemo() {
+      return memo_ == null ? XrpMemo.getDefaultInstance() : memo_;
+    }
+    /**
+     * <pre>
+     * [Optional]
+     * </pre>
+     *
+     * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+     */
+    public XrpMemoOrBuilder getMemoOrBuilder() {
+      return getMemo();
     }
 
     public static final int SOURCE_TAG_FIELD_NUMBER = 9;
@@ -3543,8 +4412,8 @@ public final class RippleProtos {
       if (!getLastLedgerSequenceBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, lastLedgerSequence_);
       }
-      if (!getMemosBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, memos_);
+      if (memo_ != null) {
+        output.writeMessage(8, getMemo());
       }
       if (!getSourceTagBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 9, sourceTag_);
@@ -3583,8 +4452,9 @@ public final class RippleProtos {
       if (!getLastLedgerSequenceBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, lastLedgerSequence_);
       }
-      if (!getMemosBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, memos_);
+      if (memo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getMemo());
       }
       if (!getSourceTagBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, sourceTag_);
@@ -3621,8 +4491,11 @@ public final class RippleProtos {
           .equals(other.getFlags())) return false;
       if (!getLastLedgerSequence()
           .equals(other.getLastLedgerSequence())) return false;
-      if (!getMemos()
-          .equals(other.getMemos())) return false;
+      if (hasMemo() != other.hasMemo()) return false;
+      if (hasMemo()) {
+        if (!getMemo()
+            .equals(other.getMemo())) return false;
+      }
       if (!getSourceTag()
           .equals(other.getSourceTag())) return false;
       if (!getActionCase().equals(other.getActionCase())) return false;
@@ -3659,8 +4532,10 @@ public final class RippleProtos {
       hash = (53 * hash) + getFlags().hashCode();
       hash = (37 * hash) + LAST_LEDGER_SEQUENCE_FIELD_NUMBER;
       hash = (53 * hash) + getLastLedgerSequence().hashCode();
-      hash = (37 * hash) + MEMOS_FIELD_NUMBER;
-      hash = (53 * hash) + getMemos().hashCode();
+      if (hasMemo()) {
+        hash = (37 * hash) + MEMO_FIELD_NUMBER;
+        hash = (53 * hash) + getMemo().hashCode();
+      }
       hash = (37 * hash) + SOURCE_TAG_FIELD_NUMBER;
       hash = (53 * hash) + getSourceTag().hashCode();
       switch (actionCase_) {
@@ -3818,8 +4693,12 @@ public final class RippleProtos {
 
         lastLedgerSequence_ = "";
 
-        memos_ = "";
-
+        if (memoBuilder_ == null) {
+          memo_ = null;
+        } else {
+          memo_ = null;
+          memoBuilder_ = null;
+        }
         sourceTag_ = "";
 
         actionCase_ = 0;
@@ -3857,7 +4736,11 @@ public final class RippleProtos {
         result.accountTxnId_ = accountTxnId_;
         result.flags_ = flags_;
         result.lastLedgerSequence_ = lastLedgerSequence_;
-        result.memos_ = memos_;
+        if (memoBuilder_ == null) {
+          result.memo_ = memo_;
+        } else {
+          result.memo_ = memoBuilder_.build();
+        }
         result.sourceTag_ = sourceTag_;
         if (actionCase_ == 10) {
           if (pymtBuilder_ == null) {
@@ -3942,9 +4825,8 @@ public final class RippleProtos {
           lastLedgerSequence_ = other.lastLedgerSequence_;
           onChanged();
         }
-        if (!other.getMemos().isEmpty()) {
-          memos_ = other.memos_;
-          onChanged();
+        if (other.hasMemo()) {
+          mergeMemo(other.getMemo());
         }
         if (!other.getSourceTag().isEmpty()) {
           sourceTag_ = other.sourceTag_;
@@ -4482,24 +5364,31 @@ public final class RippleProtos {
         return this;
       }
 
-      private Object memos_ = "";
+      private XrpMemo memo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          XrpMemo, XrpMemo.Builder, XrpMemoOrBuilder> memoBuilder_;
       /**
        * <pre>
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public String getMemos() {
-        Object ref = memos_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          memos_ = s;
-          return s;
+      public boolean hasMemo() {
+        return memoBuilder_ != null || memo_ != null;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public XrpMemo getMemo() {
+        if (memoBuilder_ == null) {
+          return memo_ == null ? XrpMemo.getDefaultInstance() : memo_;
         } else {
-          return (String) ref;
+          return memoBuilder_.getMessage();
         }
       }
       /**
@@ -4507,19 +5396,104 @@ public final class RippleProtos {
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public com.google.protobuf.ByteString
-          getMemosBytes() {
-        Object ref = memos_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          memos_ = b;
-          return b;
+      public Builder setMemo(XrpMemo value) {
+        if (memoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          memo_ = value;
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          memoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder setMemo(
+          XrpMemo.Builder builderForValue) {
+        if (memoBuilder_ == null) {
+          memo_ = builderForValue.build();
+          onChanged();
+        } else {
+          memoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder mergeMemo(XrpMemo value) {
+        if (memoBuilder_ == null) {
+          if (memo_ != null) {
+            memo_ =
+              XrpMemo.newBuilder(memo_).mergeFrom(value).buildPartial();
+          } else {
+            memo_ = value;
+          }
+          onChanged();
+        } else {
+          memoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public Builder clearMemo() {
+        if (memoBuilder_ == null) {
+          memo_ = null;
+          onChanged();
+        } else {
+          memo_ = null;
+          memoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public XrpMemo.Builder getMemoBuilder() {
+        
+        onChanged();
+        return getMemoFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * [Optional]
+       * </pre>
+       *
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
+       */
+      public XrpMemoOrBuilder getMemoOrBuilder() {
+        if (memoBuilder_ != null) {
+          return memoBuilder_.getMessageOrBuilder();
+        } else {
+          return memo_ == null ?
+              XrpMemo.getDefaultInstance() : memo_;
         }
       }
       /**
@@ -4527,48 +5501,20 @@ public final class RippleProtos {
        * [Optional]
        * </pre>
        *
-       * <code>string memos = 8;</code>
+       * <code>.JUB.Proto.Ripple.XrpMemo memo = 8;</code>
        */
-      public Builder setMemos(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        memos_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * [Optional]
-       * </pre>
-       *
-       * <code>string memos = 8;</code>
-       */
-      public Builder clearMemos() {
-        
-        memos_ = getDefaultInstance().getMemos();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * [Optional]
-       * </pre>
-       *
-       * <code>string memos = 8;</code>
-       */
-      public Builder setMemosBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        memos_ = value;
-        onChanged();
-        return this;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          XrpMemo, XrpMemo.Builder, XrpMemoOrBuilder>
+          getMemoFieldBuilder() {
+        if (memoBuilder_ == null) {
+          memoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              XrpMemo, XrpMemo.Builder, XrpMemoOrBuilder>(
+                  getMemo(),
+                  getParentForChildren(),
+                  isClean());
+          memo_ = null;
+        }
+        return memoBuilder_;
       }
 
       private Object sourceTag_ = "";
@@ -4854,6 +5800,11 @@ public final class RippleProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Ripple_PymtAmount_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_Ripple_XrpMemo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Ripple_PymtXRP_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -4874,25 +5825,27 @@ public final class RippleProtos {
     String[] descriptorData = {
       "\n\020Jub_Ripple.proto\022\020JUB.Proto.Ripple\"=\n\n" +
       "PymtAmount\022\020\n\010currency\030\001 \001(\t\022\r\n\005value\030\002 " +
-      "\001(\t\022\016\n\006issuer\030\003 \001(\t\"\220\002\n\007PymtXRP\0222\n\004type\030" +
-      "\001 \001(\0162$.JUB.Proto.Ripple.ENUM_XRP_PYMT_T" +
-      "YPE\022,\n\006amount\030\002 \001(\0132\034.JUB.Proto.Ripple.P" +
-      "ymtAmount\022\023\n\013destination\030\003 \001(\t\022\027\n\017destin" +
-      "ation_tag\030\004 \001(\t\022\022\n\ninvoice_id\030\005 \001(\t\022.\n\010s" +
-      "end_max\030\006 \001(\0132\034.JUB.Proto.Ripple.PymtAmo" +
-      "unt\0221\n\013deliver_min\030\007 \001(\0132\034.JUB.Proto.Rip" +
-      "ple.PymtAmount\"\217\002\n\016TransactionXRP\022\017\n\007acc" +
-      "ount\030\001 \001(\t\0220\n\004type\030\002 \001(\0162\".JUB.Proto.Rip" +
-      "ple.ENUM_XRP_TX_TYPE\022\013\n\003fee\030\003 \001(\t\022\020\n\010seq" +
-      "uence\030\004 \001(\t\022\026\n\016account_txn_id\030\005 \001(\t\022\r\n\005f" +
-      "lags\030\006 \001(\t\022\034\n\024last_ledger_sequence\030\007 \001(\t" +
-      "\022\r\n\005memos\030\010 \001(\t\022\022\n\nsource_tag\030\t \001(\t\022)\n\004p" +
-      "ymt\030\n \001(\0132\031.JUB.Proto.Ripple.PymtXRPH\000B\010" +
-      "\n\006action*\034\n\020ENUM_XRP_TX_TYPE\022\010\n\004PYMT\020\000*R" +
-      "\n\022ENUM_XRP_PYMT_TYPE\022\010\n\004DXRP\020\000\022\006\n\002FX\020\001\022\n" +
-      "\n\006CHECKS\020\002\022\n\n\006ESCROW\020\003\022\010\n\004PRTL\020\004\022\010\n\004CHAN" +
-      "\020\005B4\n\025com.jubiter.sdk.protoB\014RippleProto" +
-      "s\242\002\014RippleProtosb\006proto3"
+      "\001(\t\022\016\n\006issuer\030\003 \001(\t\"5\n\007XrpMemo\022\014\n\004type\030\001" +
+      " \001(\t\022\014\n\004data\030\002 \001(\t\022\016\n\006format\030\003 \001(\t\"\220\002\n\007P" +
+      "ymtXRP\0222\n\004type\030\001 \001(\0162$.JUB.Proto.Ripple." +
+      "ENUM_XRP_PYMT_TYPE\022,\n\006amount\030\002 \001(\0132\034.JUB" +
+      ".Proto.Ripple.PymtAmount\022\023\n\013destination\030" +
+      "\003 \001(\t\022\027\n\017destination_tag\030\004 \001(\t\022\022\n\ninvoic" +
+      "e_id\030\005 \001(\t\022.\n\010send_max\030\006 \001(\0132\034.JUB.Proto" +
+      ".Ripple.PymtAmount\0221\n\013deliver_min\030\007 \001(\0132" +
+      "\034.JUB.Proto.Ripple.PymtAmount\"\251\002\n\016Transa" +
+      "ctionXRP\022\017\n\007account\030\001 \001(\t\0220\n\004type\030\002 \001(\0162" +
+      "\".JUB.Proto.Ripple.ENUM_XRP_TX_TYPE\022\013\n\003f" +
+      "ee\030\003 \001(\t\022\020\n\010sequence\030\004 \001(\t\022\026\n\016account_tx" +
+      "n_id\030\005 \001(\t\022\r\n\005flags\030\006 \001(\t\022\034\n\024last_ledger" +
+      "_sequence\030\007 \001(\t\022\'\n\004memo\030\010 \001(\0132\031.JUB.Prot" +
+      "o.Ripple.XrpMemo\022\022\n\nsource_tag\030\t \001(\t\022)\n\004" +
+      "pymt\030\n \001(\0132\031.JUB.Proto.Ripple.PymtXRPH\000B" +
+      "\010\n\006action*\034\n\020ENUM_XRP_TX_TYPE\022\010\n\004PYMT\020\000*" +
+      "R\n\022ENUM_XRP_PYMT_TYPE\022\010\n\004DXRP\020\000\022\006\n\002FX\020\001\022" +
+      "\n\n\006CHECKS\020\002\022\n\n\006ESCROW\020\003\022\010\n\004PRTL\020\004\022\010\n\004CHA" +
+      "N\020\005B4\n\025com.jubiter.sdk.protoB\014RippleProt" +
+      "os\242\002\014RippleProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4904,18 +5857,24 @@ public final class RippleProtos {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_PymtAmount_descriptor,
         new String[] { "Currency", "Value", "Issuer", });
-    internal_static_JUB_Proto_Ripple_PymtXRP_descriptor =
+    internal_static_JUB_Proto_Ripple_XrpMemo_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_JUB_Proto_Ripple_XrpMemo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_Ripple_XrpMemo_descriptor,
+        new String[] { "Type", "Data", "Format", });
+    internal_static_JUB_Proto_Ripple_PymtXRP_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Ripple_PymtXRP_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_PymtXRP_descriptor,
         new String[] { "Type", "Amount", "Destination", "DestinationTag", "InvoiceId", "SendMax", "DeliverMin", });
     internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Ripple_TransactionXRP_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ripple_TransactionXRP_descriptor,
-        new String[] { "Account", "Type", "Fee", "Sequence", "AccountTxnId", "Flags", "LastLedgerSequence", "Memos", "SourceTag", "Pymt", "Action", });
+        new String[] { "Account", "Type", "Fee", "Sequence", "AccountTxnId", "Flags", "LastLedgerSequence", "Memo", "SourceTag", "Pymt", "Action", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

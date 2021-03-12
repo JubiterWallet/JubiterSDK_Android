@@ -3,14 +3,14 @@ package com.jubiter.sdk;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
-import com.jubiter.sdk.proto.EthereumProtos;
+import com.jubiter.sdk.proto.RippleProtos;
 
 /**
- * @author fengshuo
- * @date 2019/9/24
- * @time 17:22
+ * @author jifeng
+ * @date 2020/11/16
+ * @time 09:46
  */
-public final class JuBiterEthereum {
+public final class JuBiterXRP {
 
     /**
      * 创建硬件钱包上下文
@@ -19,9 +19,9 @@ public final class JuBiterEthereum {
      * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultInt createContext(EthereumProtos.ContextCfgETH config, int deviceID) {
+    public static CommonProtos.ResultInt createContext(CommonProtos.ContextCfg config, int deviceID) {
         try {
-            byte[] result = NativeApi.nativeETHCreateContext(config.toByteArray(), deviceID);
+            byte[] result = NativeApi.nativeXRPCreateContext(config.toByteArray(), deviceID);
             return CommonProtos.ResultInt.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -36,9 +36,9 @@ public final class JuBiterEthereum {
      * @param xPrikey 待使用钱包对应的主私钥
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultInt createContext_Software(EthereumProtos.ContextCfgETH config, String xPrikey) {
+    public static CommonProtos.ResultInt createContext_Software(CommonProtos.ContextCfg config, String xPrikey) {
         try {
-            byte[] result = NativeApi.nativeETHCreateContext_Software(config.toByteArray(), xPrikey);
+            byte[] result = NativeApi.nativeXRPCreateContext_Software(config.toByteArray(), xPrikey);
             return CommonProtos.ResultInt.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public final class JuBiterEthereum {
      */
     public static CommonProtos.ResultString getMainHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format) {
         try {
-            byte[] result = NativeApi.nativeETHGetMainHDNode(contextID, format.toString().getBytes());
+            byte[] result = NativeApi.nativeXRPGetMainHDNode(contextID, format.toString().getBytes());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public final class JuBiterEthereum {
     public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format,
                                                       CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeETHGetHDNode(contextID, format.toString().getBytes(), bip44.toByteArray());
+            byte[] result = NativeApi.nativeXRPGetHDNode(contextID, format.toString().getBytes(), bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -92,7 +92,7 @@ public final class JuBiterEthereum {
      */
     public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip44Path bip44, boolean isShow) {
         try {
-            byte[] result = NativeApi.nativeETHGetAddress(contextID, bip44.toByteArray(), isShow);
+            byte[] result = NativeApi.nativeXRPGetAddress(contextID, bip44.toByteArray(), isShow);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -101,7 +101,7 @@ public final class JuBiterEthereum {
     }
 
     /**
-     * 设置ETH快捷收款地址
+     * 设置XRP快捷收款地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param bip44     符合bip44格式的分层路径
@@ -110,7 +110,7 @@ public final class JuBiterEthereum {
     public static CommonProtos.ResultString setAddress(int contextID,
                                                        CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeETHSetAddress(contextID, bip44.toByteArray());
+            byte[] result = NativeApi.nativeXRPSetAddress(contextID, bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -118,43 +118,17 @@ public final class JuBiterEthereum {
         return null;
     }
 
-    /**
-     * 构建ERC20交易体
-     *
-     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param tokenName       币种名称
-     * @param unitDP          允许的小数点后位数
-     * @param contractAddress 合约地址
-     * @param address         接收地址
-     * @param amountInWei     转账金额，以 wei 为单位
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString buildERC20Abi(int contextID,
-                                                          String tokenName,
-                                                          int unitDP,
-                                                          String contractAddress,
-                                                          String address,
-                                                          String amountInWei) {
-        try {
-            byte[] result = NativeApi.nativeETHBuildERC20Abi(contextID, tokenName, unitDP,
-                    contractAddress, address, amountInWei);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     /**
-     * ETH 交易签名
+     * XRP 交易签名
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param txInfo
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString signTransaction(int contextID, EthereumProtos.TransactionETH txInfo) {
+    public static CommonProtos.ResultString signTransaction(int contextID, CommonProtos.Bip44Path bip44, RippleProtos.TransactionXRP txInfo) {
         try {
-            byte[] result = NativeApi.nativeETHSignTransaction(contextID, txInfo.toByteArray());
+            byte[] result = NativeApi.nativeXRPSignTransaction(contextID, bip44.toByteArray(), txInfo.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -162,37 +136,4 @@ public final class JuBiterEthereum {
         return null;
     }
 
-    /**
-     *
-     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip44
-     * @param data
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString signBytestring(int contextID, CommonProtos.Bip44Path bip44, String data) {
-        try {
-            byte[] result = NativeApi.nativeETHSignBytestring(contextID, bip44.toByteArray(),data);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * ETH 协议签名
-     *
-     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param txInfo
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString signContract(int contextID, EthereumProtos.TransactionETH txInfo) {
-        try {
-            byte[] result = NativeApi.nativeETHSignContract(contextID, txInfo.toByteArray());
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

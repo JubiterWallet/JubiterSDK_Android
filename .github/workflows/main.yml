@@ -1,12 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Release
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,16 +20,48 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v1
-      with:
-         token: ${{secrets.GITHUB_TOKEN}}
-         submodules: true
-        
+
+    - name: submodule
+      run: git submodule update --init --recursive
+              
     - name: permission
       run: |
         sudo chmod 777 ./gradlew
         sudo chmod 777 ./ActionBuild.sh
-      
-    - name: Android Build
+
+    - name: Android Build env
       uses: vgaidarji/android-github-actions-build@v1.0.1
+      with: 
+         args: "./ActionBuild.sh"
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: "./ActionBuild.sh"
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload APK
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./app/build/outputs/apk/release/app-release-unsigned.apk 
+        asset_name: demo.apk
+        asset_content_type: application/vnd.android.package-archive
+
+
+    - name: Upload AAR
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./sdk/build/outputs/aar/sdk-release.aar 
+        asset_name: sdk-release.aar
+        asset_content_type: application/vnd.android.package-archive
