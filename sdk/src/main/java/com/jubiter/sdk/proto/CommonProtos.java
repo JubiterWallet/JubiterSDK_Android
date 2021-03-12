@@ -16,6 +16,264 @@ public final class CommonProtos {
   }
   /**
    * <pre>
+   * The communication of devices
+   * </pre>
+   *
+   * Protobuf enum {@code JUB.Proto.Common.ENUM_COMMODE}
+   */
+  public enum ENUM_COMMODE
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>SWI = 0;</code>
+     */
+    SWI(0),
+    /**
+     * <code>HID = 1;</code>
+     */
+    HID(1),
+    /**
+     * <code>BLE = 2;</code>
+     */
+    BLE(2),
+    /**
+     * <code>NFC = 3;</code>
+     */
+    NFC(3),
+    /**
+     * <code>COMMODE_NS_ITEM = 4;</code>
+     */
+    COMMODE_NS_ITEM(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>SWI = 0;</code>
+     */
+    public static final int SWI_VALUE = 0;
+    /**
+     * <code>HID = 1;</code>
+     */
+    public static final int HID_VALUE = 1;
+    /**
+     * <code>BLE = 2;</code>
+     */
+    public static final int BLE_VALUE = 2;
+    /**
+     * <code>NFC = 3;</code>
+     */
+    public static final int NFC_VALUE = 3;
+    /**
+     * <code>COMMODE_NS_ITEM = 4;</code>
+     */
+    public static final int COMMODE_NS_ITEM_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static ENUM_COMMODE valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ENUM_COMMODE forNumber(int value) {
+      switch (value) {
+        case 0: return SWI;
+        case 1: return HID;
+        case 2: return BLE;
+        case 3: return NFC;
+        case 4: return COMMODE_NS_ITEM;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ENUM_COMMODE>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ENUM_COMMODE> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ENUM_COMMODE>() {
+            public ENUM_COMMODE findValueByNumber(int number) {
+              return ENUM_COMMODE.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return CommonProtos.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final ENUM_COMMODE[] VALUES = values();
+
+    public static ENUM_COMMODE valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ENUM_COMMODE(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.ENUM_COMMODE)
+  }
+
+  /**
+   * <pre>
+   * The product class
+   * </pre>
+   *
+   * Protobuf enum {@code JUB.Proto.Common.ENUM_DEVICE}
+   */
+  public enum ENUM_DEVICE
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>VD = 0;</code>
+     */
+    VD(0),
+    /**
+     * <code>BLADE = 1;</code>
+     */
+    BLADE(1),
+    /**
+     * <code>BIO = 2;</code>
+     */
+    BIO(2),
+    /**
+     * <code>LITE = 3;</code>
+     */
+    LITE(3),
+    /**
+     * <code>DEVICE_NS_ITEM = 4;</code>
+     */
+    DEVICE_NS_ITEM(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>VD = 0;</code>
+     */
+    public static final int VD_VALUE = 0;
+    /**
+     * <code>BLADE = 1;</code>
+     */
+    public static final int BLADE_VALUE = 1;
+    /**
+     * <code>BIO = 2;</code>
+     */
+    public static final int BIO_VALUE = 2;
+    /**
+     * <code>LITE = 3;</code>
+     */
+    public static final int LITE_VALUE = 3;
+    /**
+     * <code>DEVICE_NS_ITEM = 4;</code>
+     */
+    public static final int DEVICE_NS_ITEM_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static ENUM_DEVICE valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ENUM_DEVICE forNumber(int value) {
+      switch (value) {
+        case 0: return VD;
+        case 1: return BLADE;
+        case 2: return BIO;
+        case 3: return LITE;
+        case 4: return DEVICE_NS_ITEM;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ENUM_DEVICE>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ENUM_DEVICE> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ENUM_DEVICE>() {
+            public ENUM_DEVICE findValueByNumber(int number) {
+              return ENUM_DEVICE.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return CommonProtos.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final ENUM_DEVICE[] VALUES = values();
+
+    public static ENUM_DEVICE valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ENUM_DEVICE(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.ENUM_DEVICE)
+  }
+
+  /**
+   * <pre>
    * Graphene role
    * </pre>
    *
@@ -90,7 +348,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(0);
+      return CommonProtos.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final ENUM_GRAPHENE_ROLE[] VALUES = values();
@@ -201,7 +459,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(1);
+      return CommonProtos.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final ENUM_MNEMONIC_STRENGTH[] VALUES = values();
@@ -312,7 +570,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(2);
+      return CommonProtos.getDescriptor().getEnumTypes().get(4);
     }
 
     private static final CURVES[] VALUES = values();
@@ -410,7 +668,7 @@ public final class CommonProtos {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return CommonProtos.getDescriptor().getEnumTypes().get(3);
+      return CommonProtos.getDescriptor().getEnumTypes().get(5);
     }
 
     private static final ENUM_PUB_FORMAT[] VALUES = values();
@@ -434,6 +692,633 @@ public final class CommonProtos {
     }
 
     // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.ENUM_PUB_FORMAT)
+  }
+
+  public interface RootKeyStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.Common.RootKeyStatus)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+     */
+    int getStatusValue();
+    /**
+     * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+     */
+    RootKeyStatus.Status getStatus();
+  }
+  /**
+   * <pre>
+   * for NFC
+   * </pre>
+   *
+   * Protobuf type {@code JUB.Proto.Common.RootKeyStatus}
+   */
+  public  static final class RootKeyStatus extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.Common.RootKeyStatus)
+      RootKeyStatusOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RootKeyStatus.newBuilder() to construct.
+    private RootKeyStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RootKeyStatus() {
+      status_ = 0;
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RootKeyStatus();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RootKeyStatus(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              status_ = rawValue;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return CommonProtos.internal_static_JUB_Proto_Common_RootKeyStatus_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return CommonProtos.internal_static_JUB_Proto_Common_RootKeyStatus_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              RootKeyStatus.class, Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code JUB.Proto.Common.RootKeyStatus.Status}
+     */
+    public enum Status
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>HAS_PIN = 0;</code>
+       */
+      HAS_PIN(0),
+      /**
+       * <code>RESETTED = 2;</code>
+       */
+      RESETTED(2),
+      /**
+       * <code>HAS_ROOT_KEY = 90;</code>
+       */
+      HAS_ROOT_KEY(90),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>HAS_PIN = 0;</code>
+       */
+      public static final int HAS_PIN_VALUE = 0;
+      /**
+       * <code>RESETTED = 2;</code>
+       */
+      public static final int RESETTED_VALUE = 2;
+      /**
+       * <code>HAS_ROOT_KEY = 90;</code>
+       */
+      public static final int HAS_ROOT_KEY_VALUE = 90;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @Deprecated
+      public static Status valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Status forNumber(int value) {
+        switch (value) {
+          case 0: return HAS_PIN;
+          case 2: return RESETTED;
+          case 90: return HAS_ROOT_KEY;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Status>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Status> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Status>() {
+              public Status findValueByNumber(int number) {
+                return Status.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return RootKeyStatus.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Status[] VALUES = values();
+
+      public static Status valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Status(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:JUB.Proto.Common.RootKeyStatus.Status)
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_;
+    /**
+     * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+     */
+    public int getStatusValue() {
+      return status_;
+    }
+    /**
+     * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+     */
+    public Status getStatus() {
+      @SuppressWarnings("deprecation")
+      Status result = Status.valueOf(status_);
+      return result == null ? Status.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != Status.HAS_PIN.getNumber()) {
+        output.writeEnum(1, status_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != Status.HAS_PIN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, status_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof RootKeyStatus)) {
+        return super.equals(obj);
+      }
+      RootKeyStatus other = (RootKeyStatus) obj;
+
+      if (status_ != other.status_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + status_;
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static RootKeyStatus parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RootKeyStatus parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RootKeyStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RootKeyStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RootKeyStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static RootKeyStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static RootKeyStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RootKeyStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RootKeyStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static RootKeyStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static RootKeyStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static RootKeyStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(RootKeyStatus prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * for NFC
+     * </pre>
+     *
+     * Protobuf type {@code JUB.Proto.Common.RootKeyStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.Common.RootKeyStatus)
+        RootKeyStatusOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return CommonProtos.internal_static_JUB_Proto_Common_RootKeyStatus_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return CommonProtos.internal_static_JUB_Proto_Common_RootKeyStatus_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                RootKeyStatus.class, Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.CommonProtos.RootKeyStatus.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        status_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return CommonProtos.internal_static_JUB_Proto_Common_RootKeyStatus_descriptor;
+      }
+
+      @Override
+      public RootKeyStatus getDefaultInstanceForType() {
+        return RootKeyStatus.getDefaultInstance();
+      }
+
+      @Override
+      public RootKeyStatus build() {
+        RootKeyStatus result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public RootKeyStatus buildPartial() {
+        RootKeyStatus result = new RootKeyStatus(this);
+        result.status_ = status_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof RootKeyStatus) {
+          return mergeFrom((RootKeyStatus)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(RootKeyStatus other) {
+        if (other == RootKeyStatus.getDefaultInstance()) return this;
+        if (other.status_ != 0) {
+          setStatusValue(other.getStatusValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        RootKeyStatus parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (RootKeyStatus) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int status_ = 0;
+      /**
+       * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+       */
+      public int getStatusValue() {
+        return status_;
+      }
+      /**
+       * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+       */
+      public Builder setStatusValue(int value) {
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+       */
+      public Status getStatus() {
+        @SuppressWarnings("deprecation")
+        Status result = Status.valueOf(status_);
+        return result == null ? Status.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+       */
+      public Builder setStatus(Status value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        status_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.RootKeyStatus.Status status = 1;</code>
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.Common.RootKeyStatus)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.Common.RootKeyStatus)
+    private static final RootKeyStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new RootKeyStatus();
+    }
+
+    public static RootKeyStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RootKeyStatus>
+        PARSER = new com.google.protobuf.AbstractParser<RootKeyStatus>() {
+      @Override
+      public RootKeyStatus parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RootKeyStatus(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RootKeyStatus> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<RootKeyStatus> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public RootKeyStatus getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface Bip44PathOrBuilder extends
@@ -4562,7 +5447,7 @@ public final class CommonProtos {
      * <code>repeated .google.protobuf.Any value = 2;</code>
      */
     com.google.protobuf.AnyOrBuilder getValueOrBuilder(
-            int index);
+        int index);
   }
   /**
    * <pre>
@@ -5391,6 +6276,11 @@ public final class CommonProtos {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_Common_RootKeyStatus_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_Common_RootKeyStatus_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Common_Bip44Path_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5435,71 +6325,84 @@ public final class CommonProtos {
   static {
     String[] descriptorData = {
       "\n\020Jub_Common.proto\022\020JUB.Proto.Common\032\031go" +
-      "ogle/protobuf/any.proto\"2\n\tBip44Path\022\016\n\006" +
-      "change\030\001 \001(\010\022\025\n\raddress_index\030\002 \001(\004\"{\n\nS" +
-      "lip48Path\022\017\n\007network\030\001 \001(\004\0222\n\004role\030\002 \001(\016" +
-      "2$.JUB.Proto.Common.ENUM_GRAPHENE_ROLE\022\025" +
-      "\n\raddress_index\030\003 \001(\004\022\021\n\tkey_index\030\004 \001(\004" +
-      "\"\037\n\nContextCfg\022\021\n\tmain_path\030\001 \001(\t\"\200\001\n\nDe" +
-      "viceInfo\022\n\n\002sn\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\023\n\013b" +
-      "le_version\030\003 \001(\t\022\030\n\020firmware_version\030\004 \001" +
-      "(\t\022\021\n\tpin_retry\030\005 \001(\r\022\025\n\rpin_max_retry\030\006" +
-      " \001(\r\".\n\tResultInt\022\022\n\nstate_code\030\001 \001(\004\022\r\n" +
-      "\005value\030\002 \001(\r\"1\n\014ResultString\022\022\n\nstate_co" +
-      "de\030\001 \001(\004\022\r\n\005value\030\002 \001(\t\"D\n\tResultAny\022\022\n\n" +
-      "state_code\030\001 \001(\004\022#\n\005value\030\002 \003(\0132\024.google" +
-      ".protobuf.Any*+\n\022ENUM_GRAPHENE_ROLE\022\t\n\005O" +
-      "WNER\020\000\022\n\n\006ACTIVE\020\001*K\n\026ENUM_MNEMONIC_STRE" +
-      "NGTH\022\017\n\013STRENGTH128\020\000\022\017\n\013STRENGTH192\020\001\022\017" +
-      "\n\013STRENGTH256\020\002*3\n\006CURVES\022\r\n\tSECP256K1\020\000" +
-      "\022\013\n\007ED25519\020\001\022\r\n\tNIST256P1\020\002*$\n\017ENUM_PUB" +
-      "_FORMAT\022\007\n\003HEX\020\000\022\010\n\004XPUB\020\001B4\n\025com.jubite" +
-      "r.sdk.protoB\014CommonProtos\242\002\014CommonProtos" +
-      "b\006proto3"
+      "ogle/protobuf/any.proto\"~\n\rRootKeyStatus" +
+      "\0226\n\006status\030\001 \001(\0162&.JUB.Proto.Common.Root" +
+      "KeyStatus.Status\"5\n\006Status\022\013\n\007HAS_PIN\020\000\022" +
+      "\014\n\010RESETTED\020\002\022\020\n\014HAS_ROOT_KEY\020Z\"2\n\tBip44" +
+      "Path\022\016\n\006change\030\001 \001(\010\022\025\n\raddress_index\030\002 " +
+      "\001(\004\"{\n\nSlip48Path\022\017\n\007network\030\001 \001(\004\0222\n\004ro" +
+      "le\030\002 \001(\0162$.JUB.Proto.Common.ENUM_GRAPHEN" +
+      "E_ROLE\022\025\n\raddress_index\030\003 \001(\004\022\021\n\tkey_ind" +
+      "ex\030\004 \001(\004\"\037\n\nContextCfg\022\021\n\tmain_path\030\001 \001(" +
+      "\t\"\200\001\n\nDeviceInfo\022\n\n\002sn\030\001 \001(\t\022\r\n\005label\030\002 " +
+      "\001(\t\022\023\n\013ble_version\030\003 \001(\t\022\030\n\020firmware_ver" +
+      "sion\030\004 \001(\t\022\021\n\tpin_retry\030\005 \001(\r\022\025\n\rpin_max" +
+      "_retry\030\006 \001(\r\".\n\tResultInt\022\022\n\nstate_code\030" +
+      "\001 \001(\004\022\r\n\005value\030\002 \001(\r\"1\n\014ResultString\022\022\n\n" +
+      "state_code\030\001 \001(\004\022\r\n\005value\030\002 \001(\t\"D\n\tResul" +
+      "tAny\022\022\n\nstate_code\030\001 \001(\004\022#\n\005value\030\002 \003(\0132" +
+      "\024.google.protobuf.Any*G\n\014ENUM_COMMODE\022\007\n" +
+      "\003SWI\020\000\022\007\n\003HID\020\001\022\007\n\003BLE\020\002\022\007\n\003NFC\020\003\022\023\n\017COM" +
+      "MODE_NS_ITEM\020\004*G\n\013ENUM_DEVICE\022\006\n\002VD\020\000\022\t\n" +
+      "\005BLADE\020\001\022\007\n\003BIO\020\002\022\010\n\004LITE\020\003\022\022\n\016DEVICE_NS" +
+      "_ITEM\020\004*+\n\022ENUM_GRAPHENE_ROLE\022\t\n\005OWNER\020\000" +
+      "\022\n\n\006ACTIVE\020\001*K\n\026ENUM_MNEMONIC_STRENGTH\022\017" +
+      "\n\013STRENGTH128\020\000\022\017\n\013STRENGTH192\020\001\022\017\n\013STRE" +
+      "NGTH256\020\002*3\n\006CURVES\022\r\n\tSECP256K1\020\000\022\013\n\007ED" +
+      "25519\020\001\022\r\n\tNIST256P1\020\002*$\n\017ENUM_PUB_FORMA" +
+      "T\022\007\n\003HEX\020\000\022\010\n\004XPUB\020\001B4\n\025com.jubiter.sdk." +
+      "protoB\014CommonProtos\242\002\014CommonProtosb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.AnyProto.getDescriptor(),
         });
-    internal_static_JUB_Proto_Common_Bip44Path_descriptor =
+    internal_static_JUB_Proto_Common_RootKeyStatus_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_JUB_Proto_Common_RootKeyStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_Common_RootKeyStatus_descriptor,
+        new String[] { "Status", });
+    internal_static_JUB_Proto_Common_Bip44Path_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_JUB_Proto_Common_Bip44Path_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_Bip44Path_descriptor,
         new String[] { "Change", "AddressIndex", });
     internal_static_JUB_Proto_Common_Slip48Path_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_Common_Slip48Path_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_Slip48Path_descriptor,
         new String[] { "Network", "Role", "AddressIndex", "KeyIndex", });
     internal_static_JUB_Proto_Common_ContextCfg_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_JUB_Proto_Common_ContextCfg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ContextCfg_descriptor,
         new String[] { "MainPath", });
     internal_static_JUB_Proto_Common_DeviceInfo_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_JUB_Proto_Common_DeviceInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_DeviceInfo_descriptor,
         new String[] { "Sn", "Label", "BleVersion", "FirmwareVersion", "PinRetry", "PinMaxRetry", });
     internal_static_JUB_Proto_Common_ResultInt_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_JUB_Proto_Common_ResultInt_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultInt_descriptor,
         new String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultString_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_JUB_Proto_Common_ResultString_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultString_descriptor,
         new String[] { "StateCode", "Value", });
     internal_static_JUB_Proto_Common_ResultAny_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_JUB_Proto_Common_ResultAny_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Common_ResultAny_descriptor,

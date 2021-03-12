@@ -1190,7 +1190,12 @@ public final class EOSProtos {
         getCpuQtyBytes();
 
     /**
-     * <code>bool stake = 5;</code>
+     * <code>bool transfer = 5;</code>
+     */
+    boolean getTransfer();
+
+    /**
+     * <code>bool stake = 6;</code>
      */
     boolean getStake();
   }
@@ -1268,6 +1273,11 @@ public final class EOSProtos {
               break;
             }
             case 40: {
+
+              transfer_ = input.readBool();
+              break;
+            }
+            case 48: {
 
               stake_ = input.readBool();
               break;
@@ -1440,10 +1450,19 @@ public final class EOSProtos {
       }
     }
 
-    public static final int STAKE_FIELD_NUMBER = 5;
+    public static final int TRANSFER_FIELD_NUMBER = 5;
+    private boolean transfer_;
+    /**
+     * <code>bool transfer = 5;</code>
+     */
+    public boolean getTransfer() {
+      return transfer_;
+    }
+
+    public static final int STAKE_FIELD_NUMBER = 6;
     private boolean stake_;
     /**
-     * <code>bool stake = 5;</code>
+     * <code>bool stake = 6;</code>
      */
     public boolean getStake() {
       return stake_;
@@ -1475,8 +1494,11 @@ public final class EOSProtos {
       if (!getCpuQtyBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, cpuQty_);
       }
+      if (transfer_ != false) {
+        output.writeBool(5, transfer_);
+      }
       if (stake_ != false) {
-        output.writeBool(5, stake_);
+        output.writeBool(6, stake_);
       }
       unknownFields.writeTo(output);
     }
@@ -1499,9 +1521,13 @@ public final class EOSProtos {
       if (!getCpuQtyBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, cpuQty_);
       }
+      if (transfer_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, transfer_);
+      }
       if (stake_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, stake_);
+          .computeBoolSize(6, stake_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1526,6 +1552,8 @@ public final class EOSProtos {
           .equals(other.getNetQty())) return false;
       if (!getCpuQty()
           .equals(other.getCpuQty())) return false;
+      if (getTransfer()
+          != other.getTransfer()) return false;
       if (getStake()
           != other.getStake()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -1547,6 +1575,9 @@ public final class EOSProtos {
       hash = (53 * hash) + getNetQty().hashCode();
       hash = (37 * hash) + CPU_QTY_FIELD_NUMBER;
       hash = (53 * hash) + getCpuQty().hashCode();
+      hash = (37 * hash) + TRANSFER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTransfer());
       hash = (37 * hash) + STAKE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getStake());
@@ -1691,6 +1722,8 @@ public final class EOSProtos {
 
         cpuQty_ = "";
 
+        transfer_ = false;
+
         stake_ = false;
 
         return this;
@@ -1723,6 +1756,7 @@ public final class EOSProtos {
         result.receiver_ = receiver_;
         result.netQty_ = netQty_;
         result.cpuQty_ = cpuQty_;
+        result.transfer_ = transfer_;
         result.stake_ = stake_;
         onBuilt();
         return result;
@@ -1787,6 +1821,9 @@ public final class EOSProtos {
         if (!other.getCpuQty().isEmpty()) {
           cpuQty_ = other.cpuQty_;
           onChanged();
+        }
+        if (other.getTransfer() != false) {
+          setTransfer(other.getTransfer());
         }
         if (other.getStake() != false) {
           setStake(other.getStake());
@@ -2096,15 +2133,41 @@ public final class EOSProtos {
         return this;
       }
 
+      private boolean transfer_ ;
+      /**
+       * <code>bool transfer = 5;</code>
+       */
+      public boolean getTransfer() {
+        return transfer_;
+      }
+      /**
+       * <code>bool transfer = 5;</code>
+       */
+      public Builder setTransfer(boolean value) {
+        
+        transfer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool transfer = 5;</code>
+       */
+      public Builder clearTransfer() {
+        
+        transfer_ = false;
+        onChanged();
+        return this;
+      }
+
       private boolean stake_ ;
       /**
-       * <code>bool stake = 5;</code>
+       * <code>bool stake = 6;</code>
        */
       public boolean getStake() {
         return stake_;
       }
       /**
-       * <code>bool stake = 5;</code>
+       * <code>bool stake = 6;</code>
        */
       public Builder setStake(boolean value) {
         
@@ -2113,7 +2176,7 @@ public final class EOSProtos {
         return this;
       }
       /**
-       * <code>bool stake = 5;</code>
+       * <code>bool stake = 6;</code>
        */
       public Builder clearStake() {
         
@@ -5443,7 +5506,7 @@ public final class EOSProtos {
      * <code>repeated .JUB.Proto.EOS.ActionEOS actions = 1;</code>
      */
     ActionEOSOrBuilder getActionsOrBuilder(
-            int index);
+        int index);
   }
   /**
    * Protobuf type {@code JUB.Proto.EOS.ActionListEOS}
@@ -7549,29 +7612,30 @@ public final class EOSProtos {
       "\n\rJub_EOS.proto\022\rJUB.Proto.EOS\032\020Jub_Comm" +
       "on.proto\"G\n\016TransferAction\022\014\n\004from\030\001 \001(\t" +
       "\022\n\n\002to\030\002 \001(\t\022\r\n\005asset\030\003 \001(\t\022\014\n\004memo\030\004 \001(" +
-      "\t\"a\n\016DelegateAction\022\014\n\004from\030\001 \001(\t\022\020\n\010rec" +
+      "\t\"s\n\016DelegateAction\022\014\n\004from\030\001 \001(\t\022\020\n\010rec" +
       "eiver\030\002 \001(\t\022\017\n\007net_qty\030\003 \001(\t\022\017\n\007cpu_qty\030" +
-      "\004 \001(\t\022\r\n\005stake\030\005 \001(\010\">\n\014BuyRamAction\022\r\n\005" +
-      "payer\030\001 \001(\t\022\r\n\005quant\030\002 \001(\t\022\020\n\010receiver\030\003" +
-      " \001(\t\".\n\rSellRamAction\022\017\n\007account\030\001 \001(\t\022\014" +
-      "\n\004byte\030\002 \001(\t\"\304\002\n\tActionEOS\0221\n\004type\030\001 \001(\016" +
-      "2#.JUB.Proto.EOS.ENUM_EOS_ACTION_TYPE\022\020\n" +
-      "\010currency\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\0224\n\013xfer_ac" +
-      "tion\030\004 \001(\0132\035.JUB.Proto.EOS.TransferActio" +
-      "nH\000\0224\n\013dele_action\030\005 \001(\0132\035.JUB.Proto.EOS" +
-      ".DelegateActionH\000\0225\n\016buy_ram_action\030\006 \001(" +
-      "\0132\033.JUB.Proto.EOS.BuyRamActionH\000\0227\n\017sell" +
-      "_ram_action\030\007 \001(\0132\034.JUB.Proto.EOS.SellRa" +
-      "mActionH\000B\010\n\006action\":\n\rActionListEOS\022)\n\007" +
-      "actions\030\001 \003(\0132\030.JUB.Proto.EOS.ActionEOS\"" +
-      "\255\001\n\016TransactionEOS\022)\n\004path\030\001 \001(\0132\033.JUB.P" +
-      "roto.Common.Bip44Path\022\017\n\007chainID\030\002 \001(\t\022\022" +
-      "\n\nexpiration\030\003 \001(\t\022\030\n\020referenceBlockId\030\004" +
-      " \001(\t\022\032\n\022referenceBlockTime\030\005 \001(\t\022\025\n\racti" +
-      "onsInJSON\030\006 \001(\t*O\n\024ENUM_EOS_ACTION_TYPE\022" +
-      "\010\n\004XFER\020\000\022\010\n\004DELE\020\001\022\n\n\006UNDELE\020\002\022\n\n\006BUYRA" +
-      "M\020\003\022\013\n\007SELLRAM\020\004B.\n\025com.jubiter.sdk.prot" +
-      "oB\tEOSProtos\242\002\tEOSProtosb\006proto3"
+      "\004 \001(\t\022\020\n\010transfer\030\005 \001(\010\022\r\n\005stake\030\006 \001(\010\">" +
+      "\n\014BuyRamAction\022\r\n\005payer\030\001 \001(\t\022\r\n\005quant\030\002" +
+      " \001(\t\022\020\n\010receiver\030\003 \001(\t\".\n\rSellRamAction\022" +
+      "\017\n\007account\030\001 \001(\t\022\014\n\004byte\030\002 \001(\t\"\304\002\n\tActio" +
+      "nEOS\0221\n\004type\030\001 \001(\0162#.JUB.Proto.EOS.ENUM_" +
+      "EOS_ACTION_TYPE\022\020\n\010currency\030\002 \001(\t\022\014\n\004nam" +
+      "e\030\003 \001(\t\0224\n\013xfer_action\030\004 \001(\0132\035.JUB.Proto" +
+      ".EOS.TransferActionH\000\0224\n\013dele_action\030\005 \001" +
+      "(\0132\035.JUB.Proto.EOS.DelegateActionH\000\0225\n\016b" +
+      "uy_ram_action\030\006 \001(\0132\033.JUB.Proto.EOS.BuyR" +
+      "amActionH\000\0227\n\017sell_ram_action\030\007 \001(\0132\034.JU" +
+      "B.Proto.EOS.SellRamActionH\000B\010\n\006action\":\n" +
+      "\rActionListEOS\022)\n\007actions\030\001 \003(\0132\030.JUB.Pr" +
+      "oto.EOS.ActionEOS\"\255\001\n\016TransactionEOS\022)\n\004" +
+      "path\030\001 \001(\0132\033.JUB.Proto.Common.Bip44Path\022" +
+      "\017\n\007chainID\030\002 \001(\t\022\022\n\nexpiration\030\003 \001(\t\022\030\n\020" +
+      "referenceBlockId\030\004 \001(\t\022\032\n\022referenceBlock" +
+      "Time\030\005 \001(\t\022\025\n\ractionsInJSON\030\006 \001(\t*O\n\024ENU" +
+      "M_EOS_ACTION_TYPE\022\010\n\004XFER\020\000\022\010\n\004DELE\020\001\022\n\n" +
+      "\006UNDELE\020\002\022\n\n\006BUYRAM\020\003\022\013\n\007SELLRAM\020\004B.\n\025co" +
+      "m.jubiter.sdk.protoB\tEOSProtos\242\002\tEOSProt" +
+      "osb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7589,7 +7653,7 @@ public final class EOSProtos {
     internal_static_JUB_Proto_EOS_DelegateAction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_EOS_DelegateAction_descriptor,
-        new String[] { "From", "Receiver", "NetQty", "CpuQty", "Stake", });
+        new String[] { "From", "Receiver", "NetQty", "CpuQty", "Transfer", "Stake", });
     internal_static_JUB_Proto_EOS_BuyRamAction_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_JUB_Proto_EOS_BuyRamAction_fieldAccessorTable = new

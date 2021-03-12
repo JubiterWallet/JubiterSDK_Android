@@ -1400,7 +1400,7 @@ public final class HcashProtos {
      * <code>repeated .JUB.Proto.Hcash.InputHC inputs = 3;</code>
      */
     InputHCOrBuilder getInputsOrBuilder(
-            int index);
+        int index);
 
     /**
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
@@ -1424,7 +1424,7 @@ public final class HcashProtos {
      * <code>repeated .JUB.Proto.Hcash.OutputHC outputs = 4;</code>
      */
     OutputHCOrBuilder getOutputsOrBuilder(
-            int index);
+        int index);
   }
   /**
    * Protobuf type {@code JUB.Proto.Hcash.TransactionHC}

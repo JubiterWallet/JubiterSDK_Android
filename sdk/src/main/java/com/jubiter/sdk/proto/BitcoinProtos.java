@@ -1270,11 +1270,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
+    CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.InputBTC}
@@ -1339,11 +1339,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
+              CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -1436,7 +1436,7 @@ public final class BitcoinProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+    private CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
@@ -1446,13 +1446,13 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
@@ -1944,9 +1944,9 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+      private CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
@@ -1956,9 +1956,9 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      public CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -1966,7 +1966,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder setPath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1983,7 +1983,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
+          CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -1996,11 +1996,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder mergePath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2028,7 +2028,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -2036,23 +2036,23 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -2144,11 +2144,11 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath();
+    CommonProtos.Bip44Path getPath();
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.StandardOutput}
@@ -2213,11 +2213,11 @@ public final class BitcoinProtos {
               break;
             }
             case 34: {
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder subBuilder = null;
+              CommonProtos.Bip44Path.Builder subBuilder = null;
               if (path_ != null) {
                 subBuilder = path_.toBuilder();
               }
-              path_ = input.readMessage(com.jubiter.sdk.proto.CommonProtos.Bip44Path.parser(), extensionRegistry);
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(path_);
                 path_ = subBuilder.buildPartial();
@@ -2310,7 +2310,7 @@ public final class BitcoinProtos {
     }
 
     public static final int PATH_FIELD_NUMBER = 4;
-    private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+    private CommonProtos.Bip44Path path_;
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
@@ -2320,13 +2320,13 @@ public final class BitcoinProtos {
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
-      return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
     }
     /**
      * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
      */
-    public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
       return getPath();
     }
 
@@ -2819,9 +2819,9 @@ public final class BitcoinProtos {
         return this;
       }
 
-      private com.jubiter.sdk.proto.CommonProtos.Bip44Path path_;
+      private CommonProtos.Bip44Path path_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
@@ -2831,9 +2831,9 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path getPath() {
+      public CommonProtos.Bip44Path getPath() {
         if (pathBuilder_ == null) {
-          return path_ == null ? com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
         } else {
           return pathBuilder_.getMessage();
         }
@@ -2841,7 +2841,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder setPath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder setPath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2858,7 +2858,7 @@ public final class BitcoinProtos {
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       public Builder setPath(
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder builderForValue) {
+          CommonProtos.Bip44Path.Builder builderForValue) {
         if (pathBuilder_ == null) {
           path_ = builderForValue.build();
           onChanged();
@@ -2871,11 +2871,11 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public Builder mergePath(com.jubiter.sdk.proto.CommonProtos.Bip44Path value) {
+      public Builder mergePath(CommonProtos.Bip44Path value) {
         if (pathBuilder_ == null) {
           if (path_ != null) {
             path_ =
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
           } else {
             path_ = value;
           }
@@ -2903,7 +2903,7 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder getPathBuilder() {
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
         
         onChanged();
         return getPathFieldBuilder().getBuilder();
@@ -2911,23 +2911,23 @@ public final class BitcoinProtos {
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
-      public com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
         if (pathBuilder_ != null) {
           return pathBuilder_.getMessageOrBuilder();
         } else {
           return path_ == null ?
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path.getDefaultInstance() : path_;
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
         }
       }
       /**
        * <code>.JUB.Proto.Common.Bip44Path path = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder> 
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
           getPathFieldBuilder() {
         if (pathBuilder_ == null) {
           pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.jubiter.sdk.proto.CommonProtos.Bip44Path, com.jubiter.sdk.proto.CommonProtos.Bip44Path.Builder, com.jubiter.sdk.proto.CommonProtos.Bip44PathOrBuilder>(
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
                   getPath(),
                   getParentForChildren(),
                   isClean());
@@ -5428,7 +5428,7 @@ public final class BitcoinProtos {
      * <code>repeated .JUB.Proto.Bitcoin.InputBTC inputs = 3;</code>
      */
     InputBTCOrBuilder getInputsOrBuilder(
-            int index);
+        int index);
 
     /**
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
@@ -5452,7 +5452,7 @@ public final class BitcoinProtos {
      * <code>repeated .JUB.Proto.Bitcoin.OutputBTC outputs = 4;</code>
      */
     OutputBTCOrBuilder getOutputsOrBuilder(
-            int index);
+        int index);
   }
   /**
    * Protobuf type {@code JUB.Proto.Bitcoin.TransactionBTC}
@@ -6752,7 +6752,7 @@ public final class BitcoinProtos {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.jubiter.sdk.proto.CommonProtos.getDescriptor(),
+          CommonProtos.getDescriptor(),
         });
     internal_static_JUB_Proto_Bitcoin_ContextCfgBTC_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -6796,7 +6796,7 @@ public final class BitcoinProtos {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Bitcoin_TransactionBTC_descriptor,
         new String[] { "Version", "Locktime", "Inputs", "Outputs", });
-    com.jubiter.sdk.proto.CommonProtos.getDescriptor();
+    CommonProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

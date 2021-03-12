@@ -1,4 +1,4 @@
-package com.jubiter.sdk.jni;
+package com.jubiter.sdk.jni.ble;
 
 /**
  * 版权所有：(C)飞天诚信科技股份有限公司
@@ -31,6 +31,5 @@ public interface InnerScanCallback {
      * @param errorCode
      */
     public void onError(int errorCode);
-
 
 }

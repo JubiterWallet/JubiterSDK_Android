@@ -23,34 +23,19 @@ public class NativeApi {
 
     //********************************* 蓝牙 ************************************
 
-    public static native int nativeInitDevice();
-
-    public static native int nativeStartScan(InnerScanCallback scanCallback);
-
-    public static native int nativeStopScan();
-
-    public static native int nativeConnectDevice(String address, int[] deviceHandle, int timeout, InnerDiscCallback discCallback);
-
-    public static native int nativeCancelConnect(String address);
-
-    public static native int nativeDisconnectDevice(int deviceHandle);
-
-    public static native int nativeIsConnected(int deviceHandle);
-
     //********************************* 硬件钱包 ************************************
 
     public static native byte[] nativeGetDeviceInfo(int deviceID);
 
     public static native byte[] nativeGetDeviceCert(int deviceID);
 
-    public static native byte[] nativeSendApdu(int deviceID, String apdu);
+    public static native byte[] nativeSendAPDU(int deviceID, String apdu);
 
     public static native boolean nativeIsInitialize(int deviceID);
 
     public static native boolean nativeIsBootLoader(int deviceID);
 
     /**
-     *
      * @param contextID
      * @param timeout
      * @return
@@ -63,7 +48,7 @@ public class NativeApi {
 
     public static native byte[] nativeGetAppletVersion(int deviceID, String appID);
 
-    public static native byte[] nativeQuerryBattery(int deviceID);
+    public static native byte[] nativeQueryBattery(int deviceID);
 
     //********************************* SDK Common ************************************
 
@@ -77,7 +62,7 @@ public class NativeApi {
 
     //********************************* SDK BTC ************************************
 
-    public static native byte[] nativeBTCCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeBTCCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeBTCCreateContext(byte[] config, int deviceID);
 
@@ -93,7 +78,7 @@ public class NativeApi {
 
     public static native byte[] nativeBTCSignTransaction(int contextID, byte[] txArray);
 
-    public static native int nativeBTCSetUnit(int contextID, byte[] uint);
+    public static native int nativeBTCSetUnit(int contextID, byte[] unit);
 
     public static native byte[] nativeBuildUSDTOutput(int contextID, String usdtTo, long amount);
 
@@ -101,7 +86,7 @@ public class NativeApi {
 
     public static native byte[] nativeETHCreateContext(byte[] config, int deviceID);
 
-    public static native byte[] nativeETHCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeETHCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeETHGetMainHDNode(int contextID, byte[] format);
 
@@ -120,11 +105,15 @@ public class NativeApi {
 
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 
+    public static native byte[] nativeETHSignBytestring(int contextID, byte[] bip32, String data);
+
+    public static native byte[] nativeETHSignContract(int contextID, byte[] txInfo);
+
     //********************************* SDK EOS ************************************
 
     public static native byte[] nativeEOSCreateContext(byte[] config, int deviceID);
 
-    public static native byte[] nativeEOSCreateContext_Software(byte[] config, String xPrikey);
+    public static native byte[] nativeEOSCreateContext_Software(byte[] config, String xPriKey);
 
     public static native byte[] nativeEOSGetAddress(int contextID, byte[] bip32, boolean isShow);
 
@@ -139,5 +128,22 @@ public class NativeApi {
     public static native byte[] nativeEOSBuildAction(int contextID, byte[] txInfo);
 
     public static native byte[] nativeEOSCalculateMemoHash(String memo);
+
+
+    //********************************* SDK XRP ************************************
+
+    public static native byte[] nativeXRPCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeXRPCreateContext_Software(byte[] config, String xPriKey);
+
+    public static native byte[] nativeXRPGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native byte[] nativeXRPGetHDNode(int contextID, byte[] format, byte[] bip32);
+
+    public static native byte[] nativeXRPGetMainHDNode(int contextID, byte[] format);
+
+    public static native byte[] nativeXRPSetAddress(int contextID, byte[] bip32);
+
+    public static native byte[] nativeXRPSignTransaction(int contextID, byte[] bip32, byte[] txInfo);
 
 }
