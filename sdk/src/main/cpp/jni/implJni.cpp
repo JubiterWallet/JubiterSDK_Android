@@ -559,8 +559,7 @@ native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip
     auto strData = jstring2stdString(env, data);
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR signature = nullptr;
-        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR) strData.c_str(),
-                                          &signature);
+        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR)strData.c_str(), &signature);
         return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
     }
     return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -576,10 +575,10 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
 
         JUB_CHAR_PTR raw = nullptr;
         JUB_RV rv = JUB_SignContractETH(contextID, bip32Path, pbTx.nonce(), pbTx.gas_limit(),
-                                        (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
-                                        (JUB_CHAR_PTR) pbTx.to().c_str(),
-                                        (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
-                                        (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
+                                           (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.to().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
 
         return buildPbRvString("JUB_SignContractETH", env, rv, raw);
     }
@@ -843,8 +842,7 @@ native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
-                          jbyteArray tx) {
+native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jbyteArray tx) {
     JUB::Proto::Ripple::TransactionXRP pbTx;
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -861,12 +859,12 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
                     tx.lastLedgerSequence = (JUB_CHAR_PTR) pbTx.last_ledger_sequence().c_str();
                     tx.pymt;
                     switch (pbTx.pymt().type()) {
-                        case JUB::Proto::Ripple::ENUM_XRP_PYMT_TYPE::DXRP: {
-                            tx.pymt.type = JUB_ENUM_XRP_PYMT_TYPE::DXRP;
+                        case JUB::Proto::Ripple::ENUM_XRP_PYMT_TYPE ::DXRP: {
+                            tx.pymt.type =  JUB_ENUM_XRP_PYMT_TYPE::DXRP;
                             tx.pymt.amount;
-                            tx.pymt.amount.value = (JUB_CHAR_PTR) pbTx.pymt().amount().value().c_str();
-                            tx.pymt.destination = (JUB_CHAR_PTR) pbTx.pymt().destination().c_str();
-                            tx.pymt.destinationTag = (JUB_CHAR_PTR) pbTx.pymt().destination_tag().c_str();
+                            tx.pymt.amount.value =(JUB_CHAR_PTR)  pbTx.pymt().amount().value().c_str();
+                            tx.pymt.destination = (JUB_CHAR_PTR)  pbTx.pymt().destination().c_str();
+                            tx.pymt.destinationTag = (JUB_CHAR_PTR)  pbTx.pymt().destination_tag().c_str();
                             break;
                         }
                         default:
