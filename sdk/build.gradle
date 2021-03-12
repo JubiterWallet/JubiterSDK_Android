@@ -11,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 5
-        versionName "2.2.7"
+        versionName "2.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -20,7 +20,9 @@ android {
             cmake {
                 cppFlags "",
                         "-std=c++11",
-//                        "-DDEBUG",
+//                        "-frtti",   // Android Studio 3.3 开始默认支持
+//                        "-fexceptions",
+                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments "-DANDROID_TOOLCHAIN=clang",
