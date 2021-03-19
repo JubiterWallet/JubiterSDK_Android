@@ -21,7 +21,6 @@ public class NativeApi {
 
     public static native byte[] nativeSeedToMasterPrivateKey(String seed, byte[] curve);
 
-    //********************************* 蓝牙 ************************************
 
     //********************************* 硬件钱包 ************************************
 
@@ -145,5 +144,33 @@ public class NativeApi {
     public static native byte[] nativeXRPSetAddress(int contextID, byte[] bip32);
 
     public static native byte[] nativeXRPSignTransaction(int contextID, byte[] bip32, byte[] txInfo);
+
+
+    //********************************* SDK TRX ************************************
+
+    public static native byte[] nativeTRXCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeTRXCreateContext_Software(byte[] config, String xPriKey);
+
+    public static native byte[] nativeTRXGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native byte[] nativeTRXCheckAddress(int contextID, String address);
+
+    public static native byte[] nativeTRXGetHDNode(int contextID, byte[] format, byte[] bip32);
+
+    public static native byte[] nativeTRXGetMainHDNode(int contextID, byte[] format);
+
+    public static native byte[] nativeTRXSetAddress(int contextID, byte[] bip32);
+
+    public static native byte[] nativeTRXSignTransaction(int contextID, byte[] bip32,
+                                                         byte[] jPackedContractInPb);
+
+    public static native byte[] nativeTRXBuildTRC20Abi(int contextID, String tokenName,
+                                                       int unitDP,
+                                                       String contractAddress,
+                                                       String address,
+                                                       String amount);
+
+    public static native byte[] nativeTRXPackContract(int contextID, byte[] tx);
 
 }

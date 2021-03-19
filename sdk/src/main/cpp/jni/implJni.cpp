@@ -20,22 +20,6 @@
 #endif
 
 
-template<typename T>
-bool parseFromJbyteArray(JNIEnv *env, jbyteArray jbytes, T *pb) {
-    auto pStr = jbyteArray2stdString(env, jbytes);
-    return pb->ParseFromString(pStr);
-}
-
-bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path) {
-    JUB::Proto::Common::Bip44Path pbBip44Path;
-    bool rv = parseFromJbyteArray(env, jbytes, &pbBip44Path);
-    if (rv) {
-        bip44Path->addressIndex = pbBip44Path.address_index();
-        bip44Path->change = (JUB_ENUM_BOOL) pbBip44Path.change();
-    }
-    return rv;
-}
-
 //================================== 软件钱包 ===========================================
 
 JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jbyteArray param) {
@@ -172,14 +156,14 @@ JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, ji
 JNIEXPORT jbyteArray JNICALL
 native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
-    JUB_VERSION_PTR appVersion;
+    JUB_VERSION_PTR appletVersion;
     JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
-                                     appVersion);
+                                     appletVersion);
 
     JUB::Proto::Common::Version pbVersion;
-    pbVersion.set_major(appVersion->major);
-    pbVersion.set_minor(appVersion->minor);
-    pbVersion.set_patch(appVersion->patch);
+    pbVersion.set_major(appletVersion->major);
+    pbVersion.set_minor(appletVersion->minor);
+    pbVersion.set_patch(appletVersion->patch);
 
     std::string result;
     pbVersion.SerializeToString(&result);
@@ -1504,7 +1488,15 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
     LOG_ERR(">>> RegisterNatives NFC ok");
 
-    LOG_ERR(">>> method count: %d", methodList.size());
+    // TRX 注册
+    jclass trxClazz = getTrxClass(env);
+    std::vector<JNINativeMethod> trxMethodList = getTrxNativeMethods();
+    if (env->RegisterNatives(trxClazz, trxMethodList.data(), trxMethodList.size()) < JNI_OK) {
+        LOG_ERR(">>> RegisterNatives TRX fail");
+        return ret;
+    }
+    LOG_ERR(">>> RegisterNatives TRX ok");
+
 
     // 注册 JNI 方法
     if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
