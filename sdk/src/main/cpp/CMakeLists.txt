@@ -2,8 +2,6 @@ project(coreNDK)
 
 cmake_minimum_required(VERSION 3.6.0)
 
-message(">>>> ndk")
-
 # **************************************************************************************************
 #                               引入相关头文件
 # 注：因为是分开编译且涉及相互调用，所以需要引入其他库模块中的头文件
@@ -17,7 +15,7 @@ message(">>>外部目录： ${OUT_DIRECTORY}")
 
 #############################################################################################
 
-include_directories(${OUT_DIRECTORY}/JubiterPB/cpp)
+include_directories(${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp)
 include_directories(${OUT_DIRECTORY}/JubiterSDK/include)
 include_directories(${OUT_DIRECTORY}/Protobuffer/src)
 
@@ -31,11 +29,15 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils)
 # **************************************************************************************************
 
 aux_source_directory(${OUT_DIRECTORY}/deps/jsoncpp/src/lib_json SRC_LIST)
-aux_source_directory(${OUT_DIRECTORY}/JubiterPB/cpp SRC_LIST)
+aux_source_directory(${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp SRC_LIST)
 
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/src SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils SRC_LIST)
+
+#file(SRC_LIST to_remove ${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp/jubiter_bridge.grpc.pb.cc)
+# 删除无用的 grpc 文件
+list(REMOVE_ITEM SRC_LIST ${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp/jubiter_bridge.grpc.pb.cc)
 
 
 # **************************************************************************************************
@@ -80,7 +82,7 @@ add_library(
 
 target_link_libraries(
                       coreNDK
-                      JUB_SDK
+                      JubSDK
                       TrezorCrypto
                       BTSDK
                       NFCSDK
