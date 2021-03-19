@@ -38,8 +38,6 @@
 -keep class com.jubiter.sdk.jni.nfc.NfcDiscCallback{*;}
 -keep class com.jubiter.sdk.jni.nfc.NFCInitParam{*;}
 
--keep class com.jubiter.sdk.jni.utils.JUB_DEVICE_INFO{*;}
-
 -keep class com.ftsafe.bluetooth.key.ckey.FTBtKeyNativeApi{*;}
 -keep class com.ftsafe.bluetooth.key.ckey.FTBluetoothKey{*;}
 

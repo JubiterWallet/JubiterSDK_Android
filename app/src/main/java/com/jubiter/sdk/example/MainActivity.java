@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnIsConnectedBtn();
         addListenerOnDisconnectDevice();
 
-        addListenerOnIsInitializeBtn();
+//        addListenerOnIsInitializeBtn();
         addListenerOnIsBootloaderBtn();
         addListenerOnSetTimeoutBtn();
         addListenerOnEnumAppletsBtn();
@@ -668,15 +668,15 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
-    private void addListenerOnIsInitializeBtn() {
-        findViewById(R.id.isInitialize_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean result = JuBiterWallet.isInitialize(deviceID);
-                Log.d(TAG, ">>> isInitialize : " + result);
-            }
-        });
-    }
+//    private void addListenerOnIsInitializeBtn() {
+//        findViewById(R.id.isInitialize_btn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean result = JuBiterWallet.isInitialize(deviceID);
+//                Log.d(TAG, ">>> isInitialize : " + result);
+//            }
+//        });
+//    }
 
     private void addListenerOnIsBootloaderBtn() {
         findViewById(R.id.isBootLoader_btn).setOnClickListener(new View.OnClickListener() {
