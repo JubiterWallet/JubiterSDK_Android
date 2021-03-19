@@ -21,6 +21,7 @@ include_directories(${OUT_DIRECTORY}/Protobuffer/src)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/include/token)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils)
 
 
@@ -33,6 +34,7 @@ aux_source_directory(${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp S
 
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/src SRC_LIST)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/src/token SRC_LIST)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/jni/utils SRC_LIST)
 
 #file(SRC_LIST to_remove ${OUT_DIRECTORY}/JubiterSDK/deps/JubiterSDK_Common_pb/cpp/jubiter_bridge.grpc.pb.cc)

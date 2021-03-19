@@ -19,6 +19,8 @@
 #include "include/jni_nfc.h"
 #include "include/jni_comm.h"
 
+#include "include/token/jni_trx.h"
+
 #include "utils/logUtils.h"
 #include "utils/utils.h"
 

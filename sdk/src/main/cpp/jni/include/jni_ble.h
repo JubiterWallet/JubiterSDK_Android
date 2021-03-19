@@ -12,6 +12,30 @@ extern "C" {
 #endif // #ifdef __cplusplus
 
 
+JNIEXPORT int JNICALL
+native_BLEInitDevice(JNIEnv *env, jclass clz);
+
+JNIEXPORT jint JNICALL
+native_BLEStartScan(JNIEnv *env, jclass clz, jobject scanCallback);
+
+JNIEXPORT jint JNICALL
+native_BLEStopScan(JNIEnv *env, jclass clz);
+
+JNIEXPORT jint JNICALL
+native_BLEConnectDevice(JNIEnv *env, jclass clz, jstring name,
+                        jstring deviceMAC, jintArray handle, jint timeout,
+                        jobject disCallback);
+
+JNIEXPORT jint JNICALL
+native_BLECancelConnect(JNIEnv *env, jclass clz, jstring name, jstring address);
+
+JNIEXPORT jint JNICALL
+native_BLEDisconnectDevice(JNIEnv *env, jclass clz, jint deviceHandle);
+
+JNIEXPORT jint JNICALL
+native_BLEIsConnectDevice(JNIEnv *env, jclass clz, jint deviceHandle);
+
+
 
 jclass getBleClass(JNIEnv *env);
 

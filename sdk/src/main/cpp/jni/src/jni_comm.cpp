@@ -7,6 +7,18 @@
 JavaVM *g_vm = NULL;
 
 
+
+bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path) {
+    JUB::Proto::Common::Bip44Path pbBip44Path;
+    bool rv = parseFromJbyteArray(env, jbytes, &pbBip44Path);
+    if (rv) {
+        bip44Path->addressIndex = pbBip44Path.address_index();
+        bip44Path->change = (JUB_ENUM_BOOL) pbBip44Path.change();
+    }
+    return rv;
+}
+
+
 std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes) {
     jbyte *data = (jbyte *) env->GetByteArrayElements(jbytes, 0);
     jsize size = env->GetArrayLength(jbytes);
