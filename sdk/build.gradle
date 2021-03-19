@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.google.protobuf'
 
 
 android {
@@ -10,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 5
-        versionName "2.2.7"
+        versionCode 6
+        versionName "2.3.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -62,10 +61,6 @@ android {
             java {
                 srcDirs = ['src/main/java', 'generated/main/java']
             }
-//            proto {
-//                // .proto 文件所在路径
-//                srcDir '../cpp/Jub_SDK_CXX/protos'
-//            }
         }
     }
     compileOptions {
@@ -74,45 +69,15 @@ android {
     }
 }
 
-//protobuf {
-////     Configure the protoc executable
-////       配置 protobuf 编译器
-//    protoc {
-//        // Download from repositories
-//        artifact = 'com.google.protobuf:protoc:3.9.1'
-//
-//        // 自定义编译器位置
-////        path = 'D:\\Softwares\\protobuf-java-3.9.1\\protobuf-3.9.1'
-//    }
-//    plugins {
-//        javalite {
-//            // The codegen for lite comes as a separate artifact
-//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-//        }
-//    }
-//
-////     配置生成目录，编译后在 build 目录下生成对应的 java 文件
-////     Starting from Protobuf 3.8.0, lite code generation is built into protoc's "java" output
-//    generateProtoTasks {
-//        all().each { task ->
-//            task.builtins  {
-//                java {
-////                    option "lite"
-//                }
-//            }
-//        }
-//    }
-//}
-
 
 dependencies {
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    // android 推荐使用 protobuf-lite
-    //    implementation 'com.google.protobuf:protobuf-javalite:3.9.1'
+
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
     // release 依赖库
     releaseImplementation files('libs/BTSDK_release.jar')

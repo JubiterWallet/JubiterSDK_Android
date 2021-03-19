@@ -22,7 +22,7 @@ public class HexUtils {
      * @param data byte array
      * @return unsigned array
      */
-    public static int[] convertToUint(final byte[] data) {
+    public static int[] convertToUnit(final byte[] data) {
         int[] converted = new int[data.length];
         for (int i = 0; i < data.length; i++) {
             converted[i] = data[i] & 0xFF;
