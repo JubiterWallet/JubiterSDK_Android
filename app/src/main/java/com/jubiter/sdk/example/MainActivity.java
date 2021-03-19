@@ -391,6 +391,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnBTCCheckAddressBtn();
         addListenerOnBTCTransactionBtn();
         addListenerOnBuildUSDTOutputBtn();
+        addListenerOnBuildQRC20OutputBtn();
         addListenerOnSetUintBtn();
 
         addListenerOnETHCreateContext_SoftwareBtn();
@@ -1039,6 +1040,41 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             @Override
             public void onClick(View v) {
                 CommonProtos.ResultAny result = JuBiterBitcoin.buildUSDTOutput(contextID, "1JpuFuiBfMzm99JzZG4rpZexxjortaH42t", 2000);
+
+                List<BitcoinProtos.OutputBTC> outputBTCList = new ArrayList<>();
+                for (com.google.protobuf.Any res : result.getValueList()) {
+                    try {
+                        BitcoinProtos.OutputBTC output = res.unpack(BitcoinProtos.OutputBTC.class);
+                        outputBTCList.add(output);
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.d(TAG, "rv : " + outputBTCList.toString());
+            }
+        });
+    }
+
+    private void addListenerOnBuildQRC20OutputBtn() {
+        findViewById(R.id.buildQRC20output_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
+                        .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINQTUM)
+                        .setMainPath("m/44'/88'/0'")
+                        .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
+                        .build();
+                CommonProtos.ResultInt contextRes = JuBiterBitcoin.createContext(config, deviceID);
+
+                CommonProtos.ResultAny result = JuBiterBitcoin.buildQRC20Output(
+                        contextRes.getValue(),
+                        "Qiht6buX71CQj9nooTjZ1mpQMpC8F9Q4eE",
+                        8,
+                        "HPY",
+                        250000,
+                        40,
+                        "QfKNgG2LD854nKCLD2ArDnbJ8iY4EmWC5u",
+                        "1000");
 
                 List<BitcoinProtos.OutputBTC> outputBTCList = new ArrayList<>();
                 for (com.google.protobuf.Any res : result.getValueList()) {

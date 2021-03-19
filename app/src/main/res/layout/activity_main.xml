@@ -247,6 +247,13 @@
             android:text="Build USDT Output"/>
 
         <Button
+            android:id="@+id/buildQRC20output_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Build QRC20 Output"/>
+
+        <Button
             android:id="@+id/setUint_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
