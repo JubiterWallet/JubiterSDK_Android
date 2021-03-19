@@ -148,9 +148,6 @@ native_SendAPDU(JNIEnv *env, jclass clz, jint deviceID, jstring jApdu) {
     return buildPbRvString("JUB_SendOneApdu", env, rv, response);
 }
 
-JNIEXPORT jboolean JNICALL native_IsInitialize(JNIEnv *env, jclass clz, jint deviceID) {
-    return (jboolean) JUB_IsInitialize((JUB_UINT16) deviceID);
-}
 
 JNIEXPORT jboolean JNICALL native_IsBootLoader(JNIEnv *env, jclass clz, jint deviceID) {
     return (jboolean) JUB_IsBootLoader((JUB_UINT16) deviceID);
@@ -176,10 +173,10 @@ JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, ji
 JNIEXPORT jbyteArray JNICALL
 native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
-    JUB_CHAR_PTR appVersion = nullptr;
+    JUB_VERSION appVersion;
     JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
                                      &appVersion);
-    return buildPbRvString("JUB_GetAppletVersion", env, rv, appVersion);
+    return buildPbRvString("JUB_GetAppletVersion", env, rv,"");
 }
 
 JNIEXPORT jbyteArray JNICALL native_QueryBattery(JNIEnv *env, jclass clz, jint deviceID) {
@@ -425,6 +422,41 @@ native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO,
     return stdString2jbyteArray("JUB_BuildUSDTOutputs", env, result);
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_BuildQRC20Output(JNIEnv *env, jclass clz, jint contextID,
+                         jstring contractAddr, jint decimal,
+                         jstring symbol, jlong gasLimit,
+                         jlong gasPrice, jstring to,
+                         jstring amount) {
+
+    auto strContractAddr = jstring2stdString(env, contractAddr);
+    auto strSymbol = jstring2stdString(env, symbol);
+    auto strTo = jstring2stdString(env, to);
+    auto strAmount = jstring2stdString(env, amount);
+
+    JUB::Proto::Common::ResultAny resultOutputs;
+    OUTPUT_BTC QRC20_outputs[1] = {};
+    JUB_RV rv = JUB_BuildQRC20Outputs(contextID, (JUB_CHAR_PTR) strContractAddr.c_str(), decimal,
+                                      (JUB_CHAR_PTR) strSymbol.c_str(), gasLimit, gasPrice,
+                                      (JUB_CHAR_PTR) strTo.c_str(), (JUB_CHAR_PTR) strAmount.c_str(),
+                                      QRC20_outputs);
+    resultOutputs.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Bitcoin::OutputBTC output;
+        JUB::Proto::Bitcoin::QRC20Output *qrc20 = new JUB::Proto::Bitcoin::QRC20Output();
+        qrc20->set_data(CharPtr2HexStr(QRC20_outputs[0].qrc20.data,
+                                       QRC20_outputs[0].qrc20.dataLen));
+        output.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC) QRC20_outputs[0].type);
+
+        output.set_allocated_qrc20_output(qrc20);
+        resultOutputs.add_value()->PackFrom(output);
+    }
+
+    std::string result;
+    resultOutputs.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_BuildQRC20Outputs", env, result);
+}
+
 
 //==================================== JUB_SDK_ETH_H ==========================================
 
@@ -559,7 +591,8 @@ native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip
     auto strData = jstring2stdString(env, data);
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR signature = nullptr;
-        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR)strData.c_str(), &signature);
+        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR) strData.c_str(),
+                                          &signature);
         return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
     }
     return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -575,10 +608,10 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
 
         JUB_CHAR_PTR raw = nullptr;
         JUB_RV rv = JUB_SignContractETH(contextID, bip32Path, pbTx.nonce(), pbTx.gas_limit(),
-                                           (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
-                                           (JUB_CHAR_PTR) pbTx.to().c_str(),
-                                           (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
-                                           (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
+                                        (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
+                                        (JUB_CHAR_PTR) pbTx.to().c_str(),
+                                        (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
+                                        (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
 
         return buildPbRvString("JUB_SignContractETH", env, rv, raw);
     }
@@ -842,7 +875,8 @@ native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jbyteArray tx) {
+native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
+                          jbyteArray tx) {
     JUB::Proto::Ripple::TransactionXRP pbTx;
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -859,12 +893,12 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
                     tx.lastLedgerSequence = (JUB_CHAR_PTR) pbTx.last_ledger_sequence().c_str();
                     tx.pymt;
                     switch (pbTx.pymt().type()) {
-                        case JUB::Proto::Ripple::ENUM_XRP_PYMT_TYPE ::DXRP: {
-                            tx.pymt.type =  JUB_ENUM_XRP_PYMT_TYPE::DXRP;
+                        case JUB::Proto::Ripple::ENUM_XRP_PYMT_TYPE::DXRP: {
+                            tx.pymt.type = JUB_ENUM_XRP_PYMT_TYPE::DXRP;
                             tx.pymt.amount;
-                            tx.pymt.amount.value =(JUB_CHAR_PTR)  pbTx.pymt().amount().value().c_str();
-                            tx.pymt.destination = (JUB_CHAR_PTR)  pbTx.pymt().destination().c_str();
-                            tx.pymt.destinationTag = (JUB_CHAR_PTR)  pbTx.pymt().destination_tag().c_str();
+                            tx.pymt.amount.value = (JUB_CHAR_PTR) pbTx.pymt().amount().value().c_str();
+                            tx.pymt.destination = (JUB_CHAR_PTR) pbTx.pymt().destination().c_str();
+                            tx.pymt.destinationTag = (JUB_CHAR_PTR) pbTx.pymt().destination_tag().c_str();
                             break;
                         }
                         default:
@@ -893,7 +927,233 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
     return buildPbRvString("JUB_SignTransactionXRP 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_CheckAddressXRP(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+    JUB::Proto::Common::ResultAny resultAddrParse;
+    auto strAddress = jstring2stdString(env, address);
+    JUB_CHAR_PTR addr = nullptr;
+    JUB_CHAR_PTR tag = nullptr;
+    JUB_RV rv = JUB_CheckAddressXRP(contextID, strAddress.c_str(), &addr, &tag);
+    resultAddrParse.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Ripple::XrpAddrParse xrpAddrParse;
+        xrpAddrParse.set_r_address(addr);
+        xrpAddrParse.set_tag(tag);
+        resultAddrParse.add_value()->PackFrom(xrpAddrParse);
+    }
+    std::string result;
+    resultAddrParse.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_CheckAddressXRP", env, result);
+}
 
+//=================================== TRX Wallet =========================================
+
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextTRX(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+    JUB::Proto::Common::ContextCfg pbCfg;
+    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
+        CONTEXT_CONFIG_TRX cfg;
+        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
+        JUB_UINT16 contextID;
+        JUB_RV rv = JUB_CreateContextTRX(cfg, deviceID, &contextID);
+        return buildPbRvUInt("JUB_CreateContextTRX 1", env, rv, contextID);
+    } else {
+        return buildPbRvUInt("JUB_CreateContextTRX 2", env, JUBR_ARGUMENTS_BAD, 0);
+    };
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextTRX_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+    auto strXPRV = jstring2stdString(env, xprv);
+    JUB::Proto::Common::ContextCfg pbCfg;
+    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
+        CONTEXT_CONFIG_TRX cfg;
+        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
+        JUB_UINT16 contextID;
+        JUB_RV rv = JUB_CreateContextTRX_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
+        return buildPbRvUInt("JUB_CreateContextTRX_soft 1", env, rv, contextID);
+    } else {
+        return buildPbRvUInt("JUB_CreateContextTRX_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
+    }
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR address;
+        JUB_RV rv = JUB_GetAddressTRX(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
+        LOG_ERR("JUB_GetAddressTRX : %s", address);
+        return buildPbRvString("JUB_GetAddressTRX 1", env, rv, address);
+    }
+    return buildPbRvString("JUB_GetAddressTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_CheckAddressTRX(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+    auto strAddress = jstring2stdString(env, address);
+    JUB_CHAR_PTR addrInHex;
+    JUB_RV rv = JUB_CheckAddressTRX(contextID, strAddress.c_str(), &addrInHex);
+    LOG_ERR("JUB_CheckAddressTRX : %s", addrInHex);
+    return buildPbRvString("JUB_CheckAddressTRX 1", env, rv, addrInHex);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+
+    auto strFormat = jbyteArray2stdString(env, format);
+    JUB::Proto::Common::ENUM_PUB_FORMAT _format;
+    JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
+
+    BIP44_Path bip44Path;
+    if (parseBip44Path(env, bip32, &bip44Path)) {
+        JUB_CHAR_PTR xpub;
+        JUB_RV rv = JUB_GetHDNodeTRX(contextID, (JUB_ENUM_PUB_FORMAT) _format, bip44Path, &xpub);
+        return buildPbRvString("JUB_GetHDNodeTRX 1", env, rv, xpub);
+    }
+    return buildPbRvString("JUB_GetHDNodeTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_GetMainHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
+    auto strFormat = jbyteArray2stdString(env, format);
+    JUB::Proto::Common::ENUM_PUB_FORMAT _format;
+    JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
+
+    JUB_CHAR_PTR xpub;
+    JUB_RV rv = JUB_GetMainHDNodeTRX(contextID, (JUB_ENUM_PUB_FORMAT) _format, &xpub);
+    return buildPbRvString("JUB_GetMainHDNodeTRX", env, rv, xpub);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR address = nullptr;
+        JUB_RV rv = JUB_SetMyAddressTRX(contextID, bip32Path, &address);
+        return buildPbRvString("JUB_SetMyAddressTRX 1", env, rv, address);
+    }
+    return buildPbRvString("JUB_SetMyAddressTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
+                          jstring jPackedContractInPb) {
+    BIP44_Path bip32Path;
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        auto strContract = jstring2stdString(env, jPackedContractInPb);
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_RV rv = JUB_SignTransactionTRX(static_cast<JUB_UINT16>(contextID),
+                                           bip32Path,
+                                           strContract.c_str(),
+                                           &raw);
+        return buildPbRvString("JUB_SignTransactionTRX 1", env, rv, raw);
+    }
+    return buildPbRvString("JUB_SignTransactionTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenName,
+                        jint unitDP,
+                        jstring contractAddress,
+                        jstring address,
+                        jstring amount) {
+    auto strAddress = jstring2stdString(env, address);
+    auto strAmount = jstring2stdString(env, amount);
+    auto strTokenName = jstring2stdString(env, tokenName);
+    auto strContractAddress = jstring2stdString(env, contractAddress);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_BuildTRC20Abi(contextID, (JUB_CHAR_PTR) strTokenName.c_str(), unitDP,
+                                  (JUB_CHAR_PTR) strContractAddress.c_str(),
+                                  (JUB_CHAR_PTR) strAddress.c_str(),
+                                  (JUB_CHAR_PTR) strAmount.c_str(), &abi);
+
+    return buildPbRvString("JUB_BuildTRC20Abi 1", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
+    protocol::Transaction pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_TX_TRX tx;
+        tx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
+        tx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
+        tx.ref_block_num = nullptr;
+        tx.data = nullptr;
+        tx.expiration = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().expiration()).c_str();
+        tx.timestamp = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().timestamp()).c_str();
+        tx.fee_limit = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().fee_limit()).c_str();
+
+        std::vector<JUB_CONTRACT_TRX> contractTrxs;
+        JUB_CONTRACT_TRX contractTrx;
+        contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::NS_ITEM_TRX_CONTRACT;
+        switch (pbTx.raw_data().contract(0).type()) {
+            case protocol::Transaction::Contract::TransferContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_CONTRACT;
+                protocol::TransferContract pbTrxCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTrxCrt);
+                JUB_XFER_CONTRACT_TRX transfer;
+                transfer.owner_address = (JUB_CHAR_PTR)pbTrxCrt.owner_address().c_str();
+                transfer.to_address = (JUB_CHAR_PTR)pbTrxCrt.to_address().c_str();
+                transfer.amount = pbTrxCrt.amount();
+                contractTrx.transfer = transfer;
+                break;
+            }
+            case protocol::Transaction::Contract::TransferAssetContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_ASSET_CONTRACT;
+                protocol::TransferAssetContract pbAssetCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbAssetCrt);
+                JUB_XFER_ASSET_CONTRACT_TRX transferAsset;
+                transferAsset.owner_address = (JUB_CHAR_PTR)pbAssetCrt.owner_address().c_str();
+                transferAsset.asset_name = (JUB_CHAR_PTR)pbAssetCrt.asset_name().c_str();
+                transferAsset.to_address = (JUB_CHAR_PTR)pbAssetCrt.to_address().c_str();
+                transferAsset.amount = pbAssetCrt.amount();
+                contractTrx.transferAsset = transferAsset;
+                break;
+            }
+            case protocol::Transaction::Contract::CreateSmartContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::CREATE_SMART_CONTRACT;
+                protocol::CreateSmartContract pbCreateCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbCreateCrt);
+                JUB_CREATE_SMART_CONTRACT_TRX createSmart;
+                createSmart.owner_address = (JUB_CHAR_PTR)pbCreateCrt.owner_address().c_str();
+                createSmart.call_token_value = pbCreateCrt.call_token_value();
+                createSmart.token_id = pbCreateCrt.token_id();
+                createSmart.bytecode = (JUB_CHAR_PTR)pbCreateCrt.new_contract().bytecode().c_str();
+                contractTrx.createSmart = createSmart;
+                break;
+            }
+            case protocol::Transaction::Contract::TriggerSmartContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::TRIG_SMART_CONTRACT;
+                protocol::TriggerSmartContract pbTriggerCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTriggerCrt);
+                JUB_TRIG_SMART_CONTRACT_TRX triggerSmart;
+                triggerSmart.owner_address = (JUB_CHAR_PTR)pbTriggerCrt.owner_address().c_str();
+                triggerSmart.contract_address = (JUB_CHAR_PTR)pbTriggerCrt.contract_address().c_str();
+                triggerSmart.call_value = pbTriggerCrt.call_value();
+                triggerSmart.data = (JUB_CHAR_PTR)pbTriggerCrt.data().c_str();
+                triggerSmart.call_token_value = pbTriggerCrt.call_token_value();
+                triggerSmart.token_id = pbTriggerCrt.token_id();
+                contractTrx.triggerSmart = triggerSmart;
+                break;
+            }
+            default:
+                break;
+        }
+        contractTrxs.push_back(contractTrx);
+        tx.contracts = &contractTrxs[0];
+        tx.contractCount = 1;
+
+        JUB_CHAR_PTR packedContractInPB = nullptr;
+        JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), tx,
+                                        &packedContractInPB);
+
+        return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
+    }
+    return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
 //=================================== HC Wallet =========================================
 
 #ifdef HC
@@ -1241,6 +1501,11 @@ JNINativeMethod gMethods[] = {
                 (void *) native_BuildUSDTOutputs
         },
         {
+                "nativeBuildQRC20Output",
+                "(ILjava/lang/String;ILjava/lang/String;JJLjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildQRC20Output
+        },
+        {
                 "nativeETHCreateContext",
                 "([BI)[B",
                 (void *) native_CreateContextETH
@@ -1299,11 +1564,6 @@ JNINativeMethod gMethods[] = {
                 "nativeClearContext",
                 "(I)I",
                 (void *) native_ClearContext
-        },
-        {
-                "nativeIsInitialize",
-                "(I)Z",
-                (void *) native_IsInitialize
         },
         {
                 "nativeIsBootLoader",
@@ -1416,6 +1676,62 @@ JNINativeMethod gMethods[] = {
                 "nativeXRPSignTransaction",
                 "(I[B[B)[B",
                 (void *) native_SignTransactionXRP
+        },
+        {
+                "nativeXRPCheckAddress",
+                "(ILjava/lang/String;)[B",
+                (void *) native_CheckAddressXRP
+        },
+        // TRX
+        {
+                "nativeTRXCreateContext",
+                "([BI)[B",
+                (void *) native_CreateContextTRX
+        },
+        {
+                "nativeTRXCreateContext_Software",
+                "([BLjava/lang/String;)[B",
+                (void *) native_CreateContextTRX_soft
+        },
+        {
+                "nativeTRXGetAddress",
+                "(I[BZ)[B",
+                (void *) native_GetAddressTRX
+        },
+        {
+                "nativeTRXCheckAddress",
+                "(ILjava/lang/String;)[B",
+                (void *) native_CheckAddressTRX
+        },
+        {
+                "nativeTRXGetHDNode",
+                "(I[B[B)[B",
+                (void *) native_GetHDNodeTRX
+        },
+        {
+                "nativeTRXGetMainHDNode",
+                "(I[B)[B",
+                (void *) native_GetMainHDNodeTRX
+        },
+        {
+                "nativeTRXSetAddress",
+                "(I[B)[B",
+                (void *) native_SetMyAddressTRX
+        },
+        {
+                "nativeTRXSignTransaction",
+                "(I[BLjava/lang/String;)[B",
+                (void *) native_SignTransactionTRX
+        },
+        {
+                "nativeTRXBuildTRC20Abi",
+                "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_TRXBuildTRC20Abi
+        },
+        {
+                "nativeTRXPackContract",
+                "(I[B)[B",
+                (void *) native_TRXPackContract
         },
 #ifdef HC
         {

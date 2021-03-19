@@ -87,19 +87,19 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
 
 JNIEXPORT jbyteArray JNICALL
 native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
-    JUB_ENUM_NFC_ROOT_KEY_STATUS status;
-    JUB_RV rv = JUB_GetRootKeyStatus(deviceID, &status);
+    JUB_ENUM_DEVICE_ROOT_KEY_STATUS status;
+    JUB_RV rv = JUB_GetDeviceRootKeyStatus(deviceID, &status);
 
     JUB::Proto::Common::ResultAny rootKeyState;
     rootKeyState.set_state_code(rv);
 
     if (rv == JUBR_OK) {
         JUB::Proto::Common::RootKeyStatus rootKeyStatus;
-        if (status == JUB_ENUM_NFC_ROOT_KEY_STATUS::HAS_PIN) {
+        if (status == JUB_ENUM_DEVICE_ROOT_KEY_STATUS::HAS_PIN) {
             rootKeyStatus.set_status(JUB::Proto::Common::RootKeyStatus::HAS_PIN);
-        } else if (status == JUB_ENUM_NFC_ROOT_KEY_STATUS::HAS_ROOT_KEY) {
+        } else if (status == JUB_ENUM_DEVICE_ROOT_KEY_STATUS::HAS_ROOT_KEY) {
             rootKeyStatus.set_status(JUB::Proto::Common::RootKeyStatus::HAS_ROOT_KEY);
-        } else if (status == JUB_ENUM_NFC_ROOT_KEY_STATUS::RESETTED) {
+        } else if (status == JUB_ENUM_DEVICE_ROOT_KEY_STATUS::RESETTED) {
             rootKeyStatus.set_status(JUB::Proto::Common::RootKeyStatus::RESETTED);
         }
         rootKeyState.add_value()->PackFrom(rootKeyStatus);

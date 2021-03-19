@@ -90,12 +90,6 @@
             android:textAllCaps="false"
             android:text="Send APDU" />
 
-        <Button
-            android:id="@+id/isInitialize_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Is Initialize?" />
 
         <Button
             android:id="@+id/generateMnemonic_btn"
@@ -461,6 +455,62 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="XRP Transaction" />
+
+        <Button
+            android:id="@+id/trxCreateContext_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX Create Context" />
+
+        <Button
+            android:id="@+id/trxCreateContext_software_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX Create Context (software)" />
+
+        <Button
+            android:id="@+id/trxGetMainHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX Main HD Node" />
+
+        <Button
+            android:id="@+id/trxGetHDNode_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX HD Node" />
+
+        <Button
+            android:id="@+id/trxGetAddress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX Get Address" />
+
+        <Button
+            android:id="@+id/trxCheckAddress_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX Check Address" />
+
+        <Button
+            android:id="@+id/trxTransaction_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="XRP Transaction" />
+
+        <Button
+            android:id="@+id/trxBuildTRC20Abi_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="TRX BuildTRC20Abi" />
 
     </LinearLayout>
 
