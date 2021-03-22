@@ -10,7 +10,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 6
-        versionName "2.3.1"
+        versionName "2.3.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -19,7 +19,7 @@ android {
             cmake {
                 cppFlags "",
                         "-std=c++11",
-                        "-DDEBUG",
+//                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments "-DANDROID_TOOLCHAIN=clang",
@@ -49,6 +49,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    android.libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "jubiter-${buildType.name}.aar"
+        }
+    }
+
+
 
     externalNativeBuild {
         cmake {
