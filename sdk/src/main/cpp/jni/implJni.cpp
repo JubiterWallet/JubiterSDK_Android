@@ -266,7 +266,7 @@ JNIEXPORT jint JNICALL
 native_CheckAddressBTC(JNIEnv *env, jclass clz, jint contextID, jstring address) {
     auto strAddress = jstring2stdString(env, address);
     JUB_RV rv = JUB_CheckAddressBTC(contextID, strAddress.c_str());
-    LOG_ERR("JUB_CheckAddressBTC rv: %d", rv);
+    LOG_DEBUG("JUB_CheckAddressBTC rv: %d", rv);
     return rv;
 }
 
@@ -292,8 +292,8 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
         JUB_UINT32 lockTime = tx.locktime();
         JUB_UINT32 version = tx.version();
 
-        LOG_ERR("lockTime： %d", lockTime);
-        LOG_ERR("version： %d", version);
+        LOG_DEBUG("lockTime： %d", lockTime);
+        LOG_DEBUG("version： %d", version);
 
         for (auto i = 0; i < tx.inputs_size(); i++) {
             INPUT_BTC input;
@@ -611,7 +611,7 @@ native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_GetAddressEOS(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
-        LOG_ERR("JUB_GetAddressEOS : %s", address);
+        LOG_DEBUG("JUB_GetAddressEOS : %s", address);
         return buildPbRvString("JUB_GetAddressEOS 1", env, rv, address);
     }
     return buildPbRvString("JUB_GetAddressEOS 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -786,7 +786,7 @@ native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressXRP(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
-        LOG_ERR("JUB_GetAddressXRP : %s", address);
+        LOG_DEBUG("JUB_GetAddressXRP : %s", address);
         return buildPbRvString("JUB_GetAddressXRP 1", env, rv, address);
     }
     return buildPbRvString("JUB_GetAddressXRP 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -1447,7 +1447,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
 
     jint version = env->GetVersion();
-    LOG_ERR(">>> jni version: %x", version);
+    LOG_DEBUG(">>> jni version: %x", version);
 
     // 保存全局 JVM 以便在动态注册的接口中使用 env 环境
     ret = env->GetJavaVM(&g_vm);
@@ -1455,7 +1455,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> GetJavaVM fail");
         return ret;
     }
-    LOG_ERR(">>> GetJavaVM success");
+    LOG_DEBUG(">>> GetJavaVM success");
 
     // 获取类引用
     jclass clazz = env->FindClass(NATIVE_API_CLASS);
@@ -1463,7 +1463,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> clazz == NULL");
         return ret;
     }
-    LOG_ERR(">>> FindClass success");
+    LOG_DEBUG(">>> FindClass success");
 
     std::vector<JNINativeMethod> methodList;
     for (int i = 0, count = sizeof(gMethods) / sizeof(gMethods[0]); i < count; ++i) {
@@ -1477,7 +1477,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> RegisterNatives BLE fail");
         return ret;
     }
-    LOG_ERR(">>> RegisterNatives BLE ok");
+    LOG_DEBUG(">>> RegisterNatives BLE ok");
 
     // NFC 注册
     jclass nfcClazz = getNfcClass(env);
@@ -1486,7 +1486,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> RegisterNatives NFC fail");
         return ret;
     }
-    LOG_ERR(">>> RegisterNatives NFC ok");
+    LOG_DEBUG(">>> RegisterNatives NFC ok");
 
     // TRX 注册
     jclass trxClazz = getTrxClass(env);
@@ -1495,7 +1495,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> RegisterNatives TRX fail");
         return ret;
     }
-    LOG_ERR(">>> RegisterNatives TRX ok");
+    LOG_DEBUG(">>> RegisterNatives TRX ok");
 
 
     // 注册 JNI 方法
@@ -1503,7 +1503,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> RegisterNatives fail");
         return ret;
     }
-    LOG_ERR(">>> jni onLoad success");
+    LOG_DEBUG(">>> jni onLoad success");
 
     // 成功
     return JNI_VERSION_1_6;

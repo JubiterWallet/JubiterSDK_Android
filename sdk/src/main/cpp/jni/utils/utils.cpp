@@ -63,7 +63,7 @@ void setNfcInitParam(JavaVM *javaVM, jobject initParam) {
 
 
 void callback(unsigned int type) {
-    LOG_ERR("callback type: %d", type);
+    LOG_DEBUG("callback type: %d", type);
 
     JNIEnv *env = NULL;
     if ((jVM->GetEnv((void **) &env, JNI_VERSION_1_6)) != JNI_OK) {
@@ -92,7 +92,7 @@ void callback(unsigned int type) {
 }
 
 void bleScanCallback(JUB_BYTE_PTR name, JUB_BYTE_PTR uuid, JUB_ULONG devType) {
-    LOG_ERR("scanCallback devName: %s  uuid: %s  devType: %lu", name, uuid, devType);
+    LOG_DEBUG("scanCallback devName: %s  uuid: %s  devType: %lu", name, uuid, devType);
 
     JNIEnv *env = NULL;
     if ((jVM->GetEnv((void **) &env, JNI_VERSION_1_6)) != JNI_OK) {
@@ -126,7 +126,7 @@ void bleScanCallback(JUB_BYTE_PTR name, JUB_BYTE_PTR uuid, JUB_ULONG devType) {
 }
 
 void bleDiscCallback(JUB_BYTE_PTR devname) {
-    LOG_ERR("disconnectCallback name: %s", devname);
+    LOG_DEBUG("disconnectCallback name: %s", devname);
 
     JNIEnv *env = NULL;
     if ((jVM->GetEnv((void **) &env, JNI_VERSION_1_6)) != JNI_OK) {
@@ -162,7 +162,7 @@ void bleDiscCallback(JUB_BYTE_PTR devname) {
  * @param devType
  */
 void nfcScanCallback(int errorCode, JUB_BYTE_PTR uuid, JUB_ULONG devType) {
-    LOG_ERR("NFC callback errorCode: %d  uuid: %s  devType: %lu", errorCode, uuid, devType);
+    LOG_DEBUG("NFC callback errorCode: %d  uuid: %s  devType: %lu", errorCode, uuid, devType);
 
     JNIEnv *env = NULL;
     if ((jVM->GetEnv((void **) &env, JNI_VERSION_1_6)) != JNI_OK) {
@@ -257,7 +257,7 @@ jobject newJavaObject(JNIEnv *env, const char *className, int errorCode, jstring
         LOG_ERR(">>>> clazz == NULL");
         return nullptr;
     }
-    LOG_ERR(">>>> FindClass success");
+    LOG_DEBUG(">>>> FindClass success");
 
     jmethodID constructor = env->GetMethodID(clazz, "<init>", "(ILjava/lang/String;)V");
     jobject newObject = env->NewObject(clazz, constructor, errorCode, message);

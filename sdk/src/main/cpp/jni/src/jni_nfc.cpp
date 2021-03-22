@@ -12,7 +12,7 @@ native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
     NFC_DEVICE_INIT_PARAM nfcInitParam;
     jobjectToNFCInitParam(env, g_vm, initParam, &nfcInitParam);
     JUB_RV rv = JUB_initNFCDevice(nfcInitParam);
-    LOG_ERR("JUB_initNFCDevice rv: %d", rv);
+    LOG_DEBUG("JUB_initNFCDevice rv: %d", rv);
     return rv;
 }
 
@@ -27,21 +27,21 @@ native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID) {
 JNIEXPORT jint JNICALL
 native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_disconnectNFCDevice(deviceID);
-    LOG_ERR("JUB_disconnectNFCDevice rv: %d", rv);
+    LOG_DEBUG("JUB_disconnectNFCDevice rv: %d", rv);
     return rv;
 }
 
 JNIEXPORT jint JNICALL
 native_NFCIsConnect(JNIEnv *env, jclass clz, jint deviceID) {
     JUB_RV rv = JUB_isDeviceNFCConnect(deviceID);
-    LOG_ERR("JUB_isDeviceNFCConnect rv: %d", rv);
+    LOG_DEBUG("JUB_isDeviceNFCConnect rv: %d", rv);
     return rv;
 }
 
 JNIEXPORT jint JNICALL
 native_NFCReset(JNIEnv *env, jclass clz, jint contextID) {
     JUB_RV rv = JUB_Reset(contextID);
-    LOG_ERR("JUB_Reset rv: %d", rv);
+    LOG_DEBUG("JUB_Reset rv: %d", rv);
     return rv;
 }
 
@@ -54,7 +54,7 @@ native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jby
     JUB::Proto::Common::CURVES_Parse(strCurve, &enum_curve);
     JUB_RV rv = JUB_GenerateSeed(deviceID, strPin.c_str(),
                                  static_cast<JUB_ENUM_CURVES>(enum_curve));
-    LOG_ERR("JUB_GenerateSeed rv: %d", rv);
+    LOG_DEBUG("JUB_GenerateSeed rv: %d", rv);
     return rv;
 }
 
@@ -63,7 +63,7 @@ native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
     auto strPin = jstring2stdString(env, jPin);
     auto strMnemonic = jstring2stdString(env, jMnemonic);
     JUB_RV rv = JUB_ImportMnemonic(deviceID, strPin.c_str(), strMnemonic.c_str());
-    LOG_ERR("JUB_ImportMnemonic rv: %d", rv);
+    LOG_DEBUG("JUB_ImportMnemonic rv: %d", rv);
     return rv;
 }
 
@@ -114,7 +114,7 @@ JNIEXPORT jint JNICALL
 native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel) {
     auto label = jstring2stdString(env, jLabel);
     JUB_RV rv = JUB_SetLabel(deviceID, label.c_str());
-    LOG_ERR("JUB_SetLabel rv: %d", rv);
+    LOG_DEBUG("JUB_SetLabel rv: %d", rv);
     return rv;
 }
 

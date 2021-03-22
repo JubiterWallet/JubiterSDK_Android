@@ -41,7 +41,7 @@ native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressTRX(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
-        LOG_ERR("JUB_GetAddressTRX : %s", address);
+        LOG_DEBUG("JUB_GetAddressTRX : %s", address);
         return buildPbRvString("JUB_GetAddressTRX 1", env, rv, address);
     }
     return buildPbRvString("JUB_GetAddressTRX 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -52,7 +52,7 @@ native_CheckAddressTRX(JNIEnv *env, jclass clz, jint contextID, jstring address)
     auto strAddress = jstring2stdString(env, address);
     JUB_CHAR_PTR addrInHex;
     JUB_RV rv = JUB_CheckAddressTRX(contextID, strAddress.c_str(), &addrInHex);
-    LOG_ERR("JUB_CheckAddressTRX : %s", addrInHex);
+    LOG_DEBUG("JUB_CheckAddressTRX : %s", addrInHex);
     return buildPbRvString("JUB_CheckAddressTRX 1", env, rv, addrInHex);
 }
 
@@ -130,88 +130,88 @@ native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenNa
     return buildPbRvString("JUB_BuildTRC20Abi 1", env, rv, abi);
 }
 
-//JNIEXPORT jbyteArray JNICALL
-//native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
-//    protocol::Transaction pbTx;
-//    if (parseFromJbyteArray(env, tx, &pbTx)) {
-//        JUB_CHAR_PTR raw = nullptr;
-//        JUB_TX_TRX tx;
-//        tx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
-//        tx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
-//        tx.ref_block_num = nullptr;
-//        tx.data = nullptr;
-//        tx.expiration = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().expiration()).c_str();
-//        tx.timestamp = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().timestamp()).c_str();
-//        tx.fee_limit = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().fee_limit()).c_str();
-//
-//        std::vector <JUB_CONTRACT_TRX> contractTrxs;
-//        JUB_CONTRACT_TRX contractTrx;
-//        contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::NS_ITEM_TRX_CONTRACT;
-//        switch (pbTx.raw_data().contract(0).type()) {
-//            case protocol::Transaction::Contract::TransferContract: {
-//                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_CONTRACT;
-//                protocol::TransferContract pbTrxCrt;
-//                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTrxCrt);
-//                JUB_XFER_CONTRACT_TRX transfer;
-//                transfer.owner_address = (JUB_CHAR_PTR) pbTrxCrt.owner_address().c_str();
-//                transfer.to_address = (JUB_CHAR_PTR) pbTrxCrt.to_address().c_str();
-//                transfer.amount = pbTrxCrt.amount();
-//                contractTrx.transfer = transfer;
-//                break;
-//            }
-//            case protocol::Transaction::Contract::TransferAssetContract: {
-//                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_ASSET_CONTRACT;
-//                protocol::TransferAssetContract pbAssetCrt;
-//                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbAssetCrt);
-//                JUB_XFER_ASSET_CONTRACT_TRX transferAsset;
-//                transferAsset.owner_address = (JUB_CHAR_PTR) pbAssetCrt.owner_address().c_str();
-//                transferAsset.asset_name = (JUB_CHAR_PTR) pbAssetCrt.asset_name().c_str();
-//                transferAsset.to_address = (JUB_CHAR_PTR) pbAssetCrt.to_address().c_str();
-//                transferAsset.amount = pbAssetCrt.amount();
-//                contractTrx.transferAsset = transferAsset;
-//                break;
-//            }
-//            case protocol::Transaction::Contract::CreateSmartContract: {
-//                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::CREATE_SMART_CONTRACT;
-//                protocol::CreateSmartContract pbCreateCrt;
-//                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbCreateCrt);
-//                JUB_CREATE_SMART_CONTRACT_TRX createSmart;
-//                createSmart.owner_address = (JUB_CHAR_PTR) pbCreateCrt.owner_address().c_str();
-//                createSmart.call_token_value = pbCreateCrt.call_token_value();
-//                createSmart.token_id = pbCreateCrt.token_id();
-//                createSmart.bytecode = (JUB_CHAR_PTR) pbCreateCrt.new_contract().bytecode().c_str();
-//                contractTrx.createSmart = createSmart;
-//                break;
-//            }
-//            case protocol::Transaction::Contract::TriggerSmartContract: {
-//                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::TRIG_SMART_CONTRACT;
-//                protocol::TriggerSmartContract pbTriggerCrt;
-//                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTriggerCrt);
-//                JUB_TRIG_SMART_CONTRACT_TRX triggerSmart;
-//                triggerSmart.owner_address = (JUB_CHAR_PTR) pbTriggerCrt.owner_address().c_str();
-//                triggerSmart.contract_address = (JUB_CHAR_PTR) pbTriggerCrt.contract_address().c_str();
-//                triggerSmart.call_value = pbTriggerCrt.call_value();
-//                triggerSmart.data = (JUB_CHAR_PTR) pbTriggerCrt.data().c_str();
-//                triggerSmart.call_token_value = pbTriggerCrt.call_token_value();
-//                triggerSmart.token_id = pbTriggerCrt.token_id();
-//                contractTrx.triggerSmart = triggerSmart;
-//                break;
-//            }
-//            default:
-//                break;
-//        }
-//        contractTrxs.push_back(contractTrx);
-//        tx.contracts = &contractTrxs[0];
-//        tx.contractCount = 1;
-//
-//        JUB_CHAR_PTR packedContractInPB = nullptr;
-//        JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), tx,
-//                                        &packedContractInPB);
-//
-//        return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
-//    }
-//    return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
-//}
+JNIEXPORT jbyteArray JNICALL
+native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
+    protocol::Transaction pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_TX_TRX tx;
+        tx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
+        tx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
+        tx.ref_block_num = nullptr;
+        tx.data = nullptr;
+        tx.expiration = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().expiration()).c_str();
+        tx.timestamp = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().timestamp()).c_str();
+        tx.fee_limit = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().fee_limit()).c_str();
+
+        std::vector <JUB_CONTRACT_TRX> contractTrxs;
+        JUB_CONTRACT_TRX contractTrx;
+        contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::NS_ITEM_TRX_CONTRACT;
+        switch (pbTx.raw_data().contract(0).type()) {
+            case protocol::Transaction::Contract::TransferContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_CONTRACT;
+                protocol::TransferContract pbTrxCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTrxCrt);
+                JUB_XFER_CONTRACT_TRX transfer;
+                transfer.owner_address = (JUB_CHAR_PTR) pbTrxCrt.owner_address().c_str();
+                transfer.to_address = (JUB_CHAR_PTR) pbTrxCrt.to_address().c_str();
+                transfer.amount = pbTrxCrt.amount();
+                contractTrx.transfer = transfer;
+                break;
+            }
+            case protocol::Transaction::Contract::TransferAssetContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_ASSET_CONTRACT;
+                protocol::TransferAssetContract pbAssetCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbAssetCrt);
+                JUB_XFER_ASSET_CONTRACT_TRX transferAsset;
+                transferAsset.owner_address = (JUB_CHAR_PTR) pbAssetCrt.owner_address().c_str();
+                transferAsset.asset_name = (JUB_CHAR_PTR) pbAssetCrt.asset_name().c_str();
+                transferAsset.to_address = (JUB_CHAR_PTR) pbAssetCrt.to_address().c_str();
+                transferAsset.amount = pbAssetCrt.amount();
+                contractTrx.transferAsset = transferAsset;
+                break;
+            }
+            case protocol::Transaction::Contract::CreateSmartContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::CREATE_SMART_CONTRACT;
+                protocol::CreateSmartContract pbCreateCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbCreateCrt);
+                JUB_CREATE_SMART_CONTRACT_TRX createSmart;
+                createSmart.owner_address = (JUB_CHAR_PTR) pbCreateCrt.owner_address().c_str();
+                createSmart.call_token_value = pbCreateCrt.call_token_value();
+                createSmart.token_id = pbCreateCrt.token_id();
+                createSmart.bytecode = (JUB_CHAR_PTR) pbCreateCrt.new_contract().bytecode().c_str();
+                contractTrx.createSmart = createSmart;
+                break;
+            }
+            case protocol::Transaction::Contract::TriggerSmartContract: {
+                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::TRIG_SMART_CONTRACT;
+                protocol::TriggerSmartContract pbTriggerCrt;
+                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTriggerCrt);
+                JUB_TRIG_SMART_CONTRACT_TRX triggerSmart;
+                triggerSmart.owner_address = (JUB_CHAR_PTR) pbTriggerCrt.owner_address().c_str();
+                triggerSmart.contract_address = (JUB_CHAR_PTR) pbTriggerCrt.contract_address().c_str();
+                triggerSmart.call_value = pbTriggerCrt.call_value();
+                triggerSmart.data = (JUB_CHAR_PTR) pbTriggerCrt.data().c_str();
+                triggerSmart.call_token_value = pbTriggerCrt.call_token_value();
+                triggerSmart.token_id = pbTriggerCrt.token_id();
+                contractTrx.triggerSmart = triggerSmart;
+                break;
+            }
+            default:
+                break;
+        }
+        contractTrxs.push_back(contractTrx);
+        tx.contracts = &contractTrxs[0];
+        tx.contractCount = 1;
+
+        JUB_CHAR_PTR packedContractInPB = nullptr;
+        JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), tx,
+                                        &packedContractInPB);
+
+        return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
+    }
+    return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+}
 
 
 JNINativeMethod trxNativeMethods[] = {
@@ -260,11 +260,11 @@ JNINativeMethod trxNativeMethods[] = {
                 "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
                 (void *) native_TRXBuildTRC20Abi
         },
-//        {
-//                "nativeTRXPackContract",
-//                "(I[B)[B",
-//                (void *) native_TRXPackContract
-//        },
+        {
+                "nativeTRXPackContract",
+                "(I[B)[B",
+                (void *) native_TRXPackContract
+        },
 };
 
 #define TRX_NATIVE_CLASS "com/jubiter/sdk/jni/NativeApi"
