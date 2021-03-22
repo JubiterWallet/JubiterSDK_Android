@@ -7,6 +7,11 @@
 
 #include <jni.h>
 #include "jni_comm.h"
+#include <Tron.pb.h>
+#include <Discover.pb.h>
+#include <balance_contract.pb.h>
+#include <asset_issue_contract.pb.h>
+#include <smart_contract.pb.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,8 +49,8 @@ native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenNa
                         jstring address,
                         jstring amount);
 
-//JNIEXPORT jbyteArray JNICALL
-//native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx);
+JNIEXPORT jbyteArray JNICALL
+native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx);
 
 
 jclass getTrxClass(JNIEnv *env);

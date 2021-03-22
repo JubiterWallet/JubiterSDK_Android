@@ -52,9 +52,9 @@ JNIEXPORT jint JNICALL native_BLEConnectDevice(JNIEnv *env, jclass clz, jstring 
     jobject objParam = env->NewGlobalRef(disCallback);
     setBleDiscCallback(g_vm, objParam);
 
-    LOG_ERR("JUB_connectDevice name: %s", pName);
-    LOG_ERR("JUB_connectDevice address: %s", pAddress);
-    LOG_ERR("JUB_connectDevice timeout: %ld", timeout);
+    LOG_DEBUG("JUB_connectDevice name: %s", pName);
+    LOG_DEBUG("JUB_connectDevice address: %s", pAddress);
+    LOG_DEBUG("JUB_connectDevice timeout: %ld", timeout);
 
     JUB_RV rv = JUB_connectDevice(pName, pAddress, 1, pHandle, timeout);
     if (rv != JUBR_OK) {

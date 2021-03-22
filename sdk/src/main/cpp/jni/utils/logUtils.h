@@ -68,6 +68,10 @@ void LogBinary(const char* msg, const unsigned char *pBuf, unsigned long ulSize)
     PRINTI(__VA_ARGS__);                                                                  \
 }
 
+#define LOG_DEBUG(...) {                                                                    \
+    PRINTD(__VA_ARGS__);                                                                  \
+}
+
 #define LOG_BIN(msg, src, len) {                                                         \
     LogBinary(msg, src, len);                                                             \
 }
@@ -77,6 +81,7 @@ void LogBinary(const char* msg, const unsigned char *pBuf, unsigned long ulSize)
 #define LOG_ERR(...)
 #define LOG_WRN(...)
 #define LOG_INF(...)
+#define LOG_DEBUG(...)
 #define LOG_BIN(...)
 
 #endif /* DEBUG */
