@@ -3,6 +3,7 @@ package com.jubiter.sdk;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
+import com.jubiter.sdk.proto.RippleProtos;
 
 /**
  * @author jifeng
@@ -145,8 +146,7 @@ public final class JuBiterTRX {
     public static CommonProtos.ResultString signTransaction(int contextID, CommonProtos.Bip44Path bip44,
                                                             String packedContractInPb) {
         try {
-            // todo: fix
-            byte[] result = NativeApi.nativeTRXSignTransaction(contextID, bip44.toByteArray(), packedContractInPb.getBytes());
+            byte[] result = NativeApi.nativeTRXSignTransaction(contextID, bip44.toByteArray(), packedContractInPb);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

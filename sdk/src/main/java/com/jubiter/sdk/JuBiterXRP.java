@@ -136,4 +136,21 @@ public final class JuBiterXRP {
         return null;
     }
 
+    /**
+     * 检测收款地址
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param address   待检测地址
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultAny checkAddress(int contextID, String address) {
+        try {
+            byte[] result = NativeApi.nativeXRPCheckAddress(contextID, address);
+            return CommonProtos.ResultAny.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
