@@ -22,30 +22,24 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class BTCTest {
 
-    private static final String TAG = "BTCInstrumentedTest";
+    private static final String TAG = "BTCTest";
+
+    private static final String MAIN_PATH = "m/44\'/0\'/0\'";
 
     @Before
     public void setUp() throws Exception {
         System.loadLibrary("coreNDK");
     }
 
-//    @Test
-//    public void useAppContext() {
-//        // Context of the app under test.
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//
-//        assertEquals("com.jubiter.sdk.example", appContext.getPackageName());
-//    }
-
     @Test
     public void createContext_Software() {
         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                .setMainPath("m/44'/0'/0'")
+                .setMainPath(MAIN_PATH)
                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                 .build();
-        CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZ");
-        Log.d(TAG, ">>> createContext_Software rv: " + result.getStateCode() + ", value: " + result.getValue());
+        CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, BaseTest.ROOT_KEY);
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> createContext_Software value: " + result.getValue());
     }
 }
