@@ -22,30 +22,22 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class ETHTest {
 
-    private static final String TAG = "ETHInstrumentedTest";
+    private static final String TAG = "ETHTest";
+
+    private static final String MAIN_PATH = "m/44\'/60\'/0\'";
 
     @Before
     public void setUp() throws Exception {
-        Log.d(TAG, "ETH 测试");
         System.loadLibrary("coreNDK");
     }
 
-//    @Test
-//    public void useAppContext() {
-//        // Context of the app under test.
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//
-//        assertEquals("com.jubiter.sdk.example", appContext.getPackageName());
-//    }
-
     @Test
-    public void createContext_Software() {
+    public void step1_createContext_Software() {
         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
-                .setMainPath("m/44\'/0\'/0\'")
+                .setMainPath(MAIN_PATH)
                 .build();
-        CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config,
-                "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynr");
-        Log.d(TAG, ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
+        CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config, BaseTest.ROOT_KEY);
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> createContext_Software value : " + result.getValue());
     }
 }

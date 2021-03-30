@@ -7,8 +7,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
 import com.jubiter.sdk.JuBiterTRX;
+import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.proto.CommonProtos;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,100 +25,98 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TRXTest {
+public class TRXTest extends BaseTest {
 
     private static final String TAG = "TRXTest";
 
+    private static final String MAIN_PATH = "m/44\'/195\'/0\'";
+
     private static int contextID;
 
-//    @Before
-//    public void setUp() throws Exception {
-//        System.loadLibrary("coreNDK");
-//    }
-
-//    @Test
-//    public void useAppContext() {
-//        // Context of the app under test.
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//
-//        assertEquals("com.jubiter.sdk.example", appContext.getPackageName());
-//    }
-
-    public void init() {
+    @Before
+    public void setUp() throws Exception {
         System.loadLibrary("coreNDK");
     }
 
     @Test
-    public void stage1_createContext_Software() {
-        init();
+    public void step1_createContext_Software() {
+        String mnemonic = BaseTest.MNEMONIC;
 
+        CommonProtos.ResultString seedResult = JuBiterWallet.generateSeed(mnemonic, "");
+        assertEquals(0, seedResult.getStateCode());
+        Log.d(TAG, ">>> generateSeed value: " + seedResult.getValue());
+
+        CommonProtos.ResultString priKeyResult = JuBiterWallet.seedToMasterPrivateKey(seedResult.getValue(), CommonProtos.CURVES.SECP256K1);
+        assertEquals(0, priKeyResult.getStateCode());
+        Log.d(TAG, ">>> seedToMasterPrivateKey value: " + priKeyResult.getValue());
+
+        String priKey = priKeyResult.getValue();
         CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
-                .setMainPath("m/44'/195'/0'")
+                .setMainPath(MAIN_PATH)
                 .build();
-        CommonProtos.ResultInt result = JuBiterTRX.createContext_Software(config,
-                "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
-        Log.d(TAG, ">>> createContext_Software rv: " + result.getStateCode() + " contextID: " + result.getValue());
+        CommonProtos.ResultInt result = JuBiterTRX.createContext_Software(config, priKey);
         assertEquals(0, result.getStateCode());
 
         contextID = result.getValue();
+        Log.d(TAG, ">>> createContext_Software value: " + result.getValue());
     }
 
     @Test
-    public void stage2_getMainHDNode() {
+    public void step2_getMainHDNode() {
         CommonProtos.ResultString result = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
-        Log.d(TAG, ">>> getMainHDNode rv: " + result.getValue());
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> getMainHDNode value: " + result.getValue());
     }
 
     @Test
-    public void stage3_getHDNode() {
+    public void step3_getHDNode() {
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
-        CommonProtos.ResultString result = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
-        Log.d(TAG, ">>> getHDNode rv: " + result.getValue());
+        CommonProtos.ResultString result = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, bip32Path);
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> getHDNode value: " + result.getValue());
     }
 
     @Test
-    public void stage4_getAddress() {
+    public void step4_getAddress() {
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
                 .build();
         CommonProtos.ResultString result = JuBiterTRX.getAddress(contextID, bip32Path, false);
-        Log.d(TAG, ">>> getAddress rv: " + result.getValue());
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> getAddress value: " + result.getValue());
     }
 
     @Test
-    public void stage5_setAddress() {
+    public void step5_setAddress() {
 
     }
 
 
     @Test
-    public void stage6_buildTRC20Abi() {
+    public void step6_buildTRC20Abi() {
         CommonProtos.ResultString result = JuBiterTRX.buildTRC20Abi(
                 contextID,
                 "USDT",
                 6,
-                "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                "TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG",
                 "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ",
                 "156000000");
-        Log.d(TAG, ">>> buildERC20Abi rv: " + result);
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> buildERC20Abi value: " + result.getValue());
     }
 
     @Test
-    public void stage7_packContract() {
+    public void step7_packContract() {
         org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
                 .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 .setType(org.tron.protos.Protocol.Transaction.Contract.ContractType.TransferContract)
                                 .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.TransferContract.newBuilder()
-                                        .setOwnerAddress(ByteString.copyFrom("TWqFgX6kK4WN4bzq2CySTCmP9UTYfSHRrE".getBytes()))
+                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
                                         .setToAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
                                         .setAmount(1)
                                         .build()))
@@ -130,19 +130,19 @@ public class TRXTest {
                 .build();
 
         CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
-        Log.d(TAG, ">>> packContract - rv : " + result.getStateCode() + " value: " + result.getValue());
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> packContract value : " + result.getValue());
     }
 
     @Test
-    public void stage8_signTransaction() {
+    public void step8_signTransaction() {
 
         org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
                 .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 .setType(org.tron.protos.Protocol.Transaction.Contract.ContractType.TransferContract)
                                 .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.TransferContract.newBuilder()
-                                        .setOwnerAddress(ByteString.copyFrom("TWqFgX6kK4WN4bzq2CySTCmP9UTYfSHRrE".getBytes()))
+                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
                                         .setToAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
                                         .setAmount(1)
                                         .build()))
@@ -162,13 +162,13 @@ public class TRXTest {
         // 无数据缓存，跳过 verifyPIN
 
         CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
-        Log.d(TAG, ">>> packContract - rv : " + result.getStateCode() + " value: " + result.getValue());
         assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> packContract value : " + result.getValue());
 
-        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
-        Log.d(TAG, ">>> signTransaction - rv : " + signRes.getStateCode() + " value: " + signRes.getValue());
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue().getBytes());
 
         assertEquals(0, signRes.getStateCode());
+        Log.d(TAG, ">>> signTransaction value : " + signRes.getValue());
     }
 
 }

@@ -3,7 +3,6 @@ package com.jubiter.sdk;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
-import com.jubiter.sdk.proto.RippleProtos;
 
 /**
  * @author jifeng
