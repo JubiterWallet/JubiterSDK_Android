@@ -1075,6 +1075,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                                 .setMainPath(MAIN_PATH_ETH)
+                                .setChainId(1)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
                         Log.d(TAG,
@@ -1148,6 +1149,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                                 .setMainPath(MAIN_PATH_ETH)
+                                .setChainId(1)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
                         if (0 != result.getStateCode()) {
@@ -1248,7 +1250,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setGasPriceInWei("10000000000")
                 .setTo("0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9")
                 .setValueInWei("500000000000000")
-                .setInput("")
+                .setInput("4A75626974657257616C6C6574")
                 .build();
         CommonProtos.ResultString result = JuBiterEthereum.signTransaction(contextID, transactionETH);
         Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
