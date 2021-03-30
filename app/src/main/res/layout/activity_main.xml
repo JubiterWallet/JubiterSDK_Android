@@ -91,13 +91,6 @@
             android:text="Send APDU" />
 
         <Button
-            android:id="@+id/isInitialize_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Is Initialize?" />
-
-        <Button
             android:id="@+id/generateMnemonic_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -126,16 +126,6 @@ public final class JuBiterWallet {
     }
 
     /**
-     * 硬件是否初始化
-     *
-     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
-     * @return true：初始化成功，false : 未初始化
-     */
-    public static boolean isInitialize(int deviceID) {
-        return NativeApi.nativeIsInitialize(deviceID);
-    }
-
-    /**
      * 硬件是否处于 bootLoader 模式
      *
      * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回

@@ -373,7 +373,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnIsConnectedBtn();
         addListenerOnDisconnectDevice();
 
-        addListenerOnIsInitializeBtn();
         addListenerOnIsBootloaderBtn();
         addListenerOnSetTimeoutBtn();
         addListenerOnEnumAppletsBtn();
@@ -671,16 +670,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         Log.d(TAG, ">>> sendApdu - rv : " + result.getStateCode() + " value: " + result.getValue());
                     }
                 });
-            }
-        });
-    }
-
-    private void addListenerOnIsInitializeBtn() {
-        findViewById(R.id.isInitialize_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean result = JuBiterWallet.isInitialize(deviceID);
-                Log.d(TAG, ">>> isInitialize : " + result);
             }
         });
     }
@@ -1259,7 +1248,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .setGasPriceInWei("10000000000")
                 .setTo("0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9")
                 .setValueInWei("500000000000000")
-                .setInput("4A75626974657257616C6C6574")
+                .setInput("")
                 .build();
         CommonProtos.ResultString result = JuBiterEthereum.signTransaction(contextID, transactionETH);
         Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());

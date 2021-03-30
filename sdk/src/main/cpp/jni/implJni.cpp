@@ -148,10 +148,6 @@ native_SendAPDU(JNIEnv *env, jclass clz, jint deviceID, jstring jApdu) {
     return buildPbRvString("JUB_SendOneApdu", env, rv, response);
 }
 
-JNIEXPORT jboolean JNICALL native_IsInitialize(JNIEnv *env, jclass clz, jint deviceID) {
-    return (jboolean) JUB_IsInitialize((JUB_UINT16) deviceID);
-}
-
 JNIEXPORT jboolean JNICALL native_IsBootLoader(JNIEnv *env, jclass clz, jint deviceID) {
     return (jboolean) JUB_IsBootLoader((JUB_UINT16) deviceID);
 }
@@ -176,10 +172,19 @@ JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, ji
 JNIEXPORT jbyteArray JNICALL
 native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
-    JUB_CHAR_PTR appVersion = nullptr;
+    JUB_VERSION_PTR appletVersion;
     JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
-                                     &appVersion);
-    return buildPbRvString("JUB_GetAppletVersion", env, rv, appVersion);
+                                     appletVersion);
+
+    JUB::Proto::Common::Version pbVersion;
+    pbVersion.set_major(appletVersion->major);
+    pbVersion.set_minor(appletVersion->minor);
+    pbVersion.set_patch(appletVersion->patch);
+
+    std::string result;
+    pbVersion.SerializeToString(&result);
+
+    return buildPbRvString("JUB_GetAppletVersion", env, rv, result);
 }
 
 JNIEXPORT jbyteArray JNICALL native_QueryBattery(JNIEnv *env, jclass clz, jint deviceID) {
@@ -1299,11 +1304,6 @@ JNINativeMethod gMethods[] = {
                 "nativeClearContext",
                 "(I)I",
                 (void *) native_ClearContext
-        },
-        {
-                "nativeIsInitialize",
-                "(I)Z",
-                (void *) native_IsInitialize
         },
         {
                 "nativeIsBootLoader",

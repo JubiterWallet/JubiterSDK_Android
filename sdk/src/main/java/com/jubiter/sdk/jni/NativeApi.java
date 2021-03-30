@@ -31,8 +31,6 @@ public class NativeApi {
 
     public static native byte[] nativeSendAPDU(int deviceID, String apdu);
 
-    public static native boolean nativeIsInitialize(int deviceID);
-
     public static native boolean nativeIsBootLoader(int deviceID);
 
     /**
