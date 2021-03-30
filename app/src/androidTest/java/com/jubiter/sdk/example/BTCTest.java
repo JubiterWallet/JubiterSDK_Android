@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class BTCTest {
+public class BTCTest extends BaseTest {
 
     private static final String TAG = "BTCTest";
 
@@ -32,7 +32,7 @@ public class BTCTest {
     }
 
     @Test
-    public void createContext_Software() {
+    public void step1_createContext_Software() {
         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
                 .setMainPath(MAIN_PATH)
