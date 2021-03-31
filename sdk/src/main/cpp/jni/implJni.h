@@ -14,11 +14,6 @@
 #include <Jub_Ethereum.pb.h>
 #include <Jub_EOS.pb.h>
 #include <Jub_Ripple.pb.h>
-#include <Tron.pb.h>
-#include <Discover.pb.h>
-#include <balance_contract.pb.h>
-#include <asset_issue_contract.pb.h>
-#include <smart_contract.pb.h>
 
 #include "include/jni_ble.h"
 #include "include/jni_nfc.h"
