@@ -3,14 +3,13 @@ package com.jubiter.sdk;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.NativeApi;
 import com.jubiter.sdk.proto.CommonProtos;
-import com.jubiter.sdk.proto.RippleProtos;
 
 /**
  * @author jifeng
- * @date 2020/11/16
- * @time 09:46
+ * @date 2021/03/17
+ * @time 10:46
  */
-public final class JuBiterXRP {
+public final class JuBiterTRX {
 
     /**
      * 创建硬件钱包上下文
@@ -21,7 +20,7 @@ public final class JuBiterXRP {
      */
     public static CommonProtos.ResultInt createContext(CommonProtos.ContextCfg config, int deviceID) {
         try {
-            byte[] result = NativeApi.nativeXRPCreateContext(config.toByteArray(), deviceID);
+            byte[] result = NativeApi.nativeTRXCreateContext(config.toByteArray(), deviceID);
             return CommonProtos.ResultInt.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -38,7 +37,7 @@ public final class JuBiterXRP {
      */
     public static CommonProtos.ResultInt createContext_Software(CommonProtos.ContextCfg config, String xPrikey) {
         try {
-            byte[] result = NativeApi.nativeXRPCreateContext_Software(config.toByteArray(), xPrikey);
+            byte[] result = NativeApi.nativeTRXCreateContext_Software(config.toByteArray(), xPrikey);
             return CommonProtos.ResultInt.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -55,7 +54,7 @@ public final class JuBiterXRP {
      */
     public static CommonProtos.ResultString getMainHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format) {
         try {
-            byte[] result = NativeApi.nativeXRPGetMainHDNode(contextID, format.toString().getBytes());
+            byte[] result = NativeApi.nativeTRXGetMainHDNode(contextID, format.toString().getBytes());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -74,7 +73,7 @@ public final class JuBiterXRP {
     public static CommonProtos.ResultString getHDNode(int contextID, CommonProtos.ENUM_PUB_FORMAT format,
                                                       CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeXRPGetHDNode(contextID, format.toString().getBytes(), bip44.toByteArray());
+            byte[] result = NativeApi.nativeTRXGetHDNode(contextID, format.toString().getBytes(), bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -92,7 +91,7 @@ public final class JuBiterXRP {
      */
     public static CommonProtos.ResultString getAddress(int contextID, CommonProtos.Bip44Path bip44, boolean isShow) {
         try {
-            byte[] result = NativeApi.nativeXRPGetAddress(contextID, bip44.toByteArray(), isShow);
+            byte[] result = NativeApi.nativeTRXGetAddress(contextID, bip44.toByteArray(), isShow);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -101,7 +100,7 @@ public final class JuBiterXRP {
     }
 
     /**
-     * 设置XRP快捷收款地址
+     * 设置TRX快捷收款地址
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param bip44     符合bip44格式的分层路径
@@ -110,25 +109,7 @@ public final class JuBiterXRP {
     public static CommonProtos.ResultString setAddress(int contextID,
                                                        CommonProtos.Bip44Path bip44) {
         try {
-            byte[] result = NativeApi.nativeXRPSetAddress(contextID, bip44.toByteArray());
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-    /**
-     * XRP 交易签名
-     *
-     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param txInfo
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString signTransaction(int contextID, CommonProtos.Bip44Path bip44, RippleProtos.TransactionXRP txInfo) {
-        try {
-            byte[] result = NativeApi.nativeXRPSignTransaction(contextID, bip44.toByteArray(), txInfo.toByteArray());
+            byte[] result = NativeApi.nativeTRXSetAddress(contextID, bip44.toByteArray());
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -143,10 +124,72 @@ public final class JuBiterXRP {
      * @param address   待检测地址
      * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultAny checkAddress(int contextID, String address) {
+    public static CommonProtos.ResultString checkAddress(int contextID, String address) {
         try {
-            byte[] result = NativeApi.nativeXRPCheckAddress(contextID, address);
-            return CommonProtos.ResultAny.parseFrom(result);
+            byte[] result = NativeApi.nativeTRXCheckAddress(contextID, address);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * TRX 交易签名
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param packedContractInPb
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString signTransaction(int contextID, CommonProtos.Bip44Path bip44,
+                                                            String packedContractInPb) {
+        try {
+            byte[] result = NativeApi.nativeTRXSignTransaction(contextID, bip44.toByteArray(), packedContractInPb);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 构建TRC20交易体
+     *
+     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenName       token名称
+     * @param unitDP          允许的小数点后位数
+     * @param contractAddress 合约地址
+     * @param address         接收地址
+     * @param amount     转账金额，
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString buildTRC20Abi(int contextID, String tokenName,
+                                                          int unitDP,
+                                                          String contractAddress,
+                                                          String address,
+                                                          String amount) {
+        try {
+            byte[] result = NativeApi.nativeTRXBuildTRC20Abi(contextID, tokenName, unitDP,
+                    contractAddress, address, amount);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * TRX 打包协议
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param transaction
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString packContract(int contextID, org.tron.protos.Protocol.Transaction transaction) {
+        try {
+            byte[] result = NativeApi.nativeTRXPackContract(contextID, transaction.toByteArray());
+            return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

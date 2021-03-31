@@ -7,6 +7,18 @@
 JavaVM *g_vm = NULL;
 
 
+
+bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path) {
+    JUB::Proto::Common::Bip44Path pbBip44Path;
+    bool rv = parseFromJbyteArray(env, jbytes, &pbBip44Path);
+    if (rv) {
+        bip44Path->addressIndex = pbBip44Path.address_index();
+        bip44Path->change = (JUB_ENUM_BOOL) pbBip44Path.change();
+    }
+    return rv;
+}
+
+
 std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes) {
     jbyte *data = (jbyte *) env->GetByteArrayElements(jbytes, 0);
     jsize size = env->GetArrayLength(jbytes);
@@ -15,7 +27,7 @@ std::string jbyteArray2stdString(JNIEnv *env, jbyteArray jbytes) {
 
 jbyteArray stdString2jbyteArray(std::string funcName, JNIEnv *env, std::string str) {
     if (funcName.length() != 0) {
-        LOG_ERR("%s value: %s", funcName.c_str(), str.c_str());
+        LOG_DEBUG("%s value: %s", funcName.c_str(), str.c_str());
     }
 
     jbyteArray jarray = env->NewByteArray(str.size());
@@ -47,7 +59,7 @@ jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHA
 }
 
 jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, std::string str) {
-    LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str.c_str());
+    LOG_DEBUG("%s rv: %d, value: %s", funcName.c_str(), rv, str.c_str());
 
     JUB::Proto::Common::ResultString resultString;
     resultString.set_state_code(rv);
@@ -61,7 +73,7 @@ jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, std::st
 }
 
 jbyteArray buildPbRvUInt(std::string funcName, JNIEnv *env, JUB_RV rv, uint32_t res) {
-    LOG_ERR("%s rv: %d, value: %d", funcName.c_str(), rv, res);
+    LOG_DEBUG("%s rv: %d, value: %d", funcName.c_str(), rv, res);
     JUB::Proto::Common::ResultInt resultInt;
     resultInt.set_state_code(rv);
     resultInt.set_value(res);

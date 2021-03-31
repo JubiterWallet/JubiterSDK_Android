@@ -8,7 +8,7 @@
 
 #include <jni.h>
 #include <JUB_SDK.h>
-#include <JUB_core.h>
+#include <JUB_CORE.h>
 #include <string>
 #include <vector>
 

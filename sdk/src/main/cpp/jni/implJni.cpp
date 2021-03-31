@@ -20,22 +20,6 @@
 #endif
 
 
-template<typename T>
-bool parseFromJbyteArray(JNIEnv *env, jbyteArray jbytes, T *pb) {
-    auto pStr = jbyteArray2stdString(env, jbytes);
-    return pb->ParseFromString(pStr);
-}
-
-bool parseBip44Path(JNIEnv *env, jbyteArray jbytes, BIP44_Path *bip44Path) {
-    JUB::Proto::Common::Bip44Path pbBip44Path;
-    bool rv = parseFromJbyteArray(env, jbytes, &pbBip44Path);
-    if (rv) {
-        bip44Path->addressIndex = pbBip44Path.address_index();
-        bip44Path->change = (JUB_ENUM_BOOL) pbBip44Path.change();
-    }
-    return rv;
-}
-
 //================================== 软件钱包 ===========================================
 
 JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jbyteArray param) {
@@ -148,10 +132,6 @@ native_SendAPDU(JNIEnv *env, jclass clz, jint deviceID, jstring jApdu) {
     return buildPbRvString("JUB_SendOneApdu", env, rv, response);
 }
 
-JNIEXPORT jboolean JNICALL native_IsInitialize(JNIEnv *env, jclass clz, jint deviceID) {
-    return (jboolean) JUB_IsInitialize((JUB_UINT16) deviceID);
-}
-
 JNIEXPORT jboolean JNICALL native_IsBootLoader(JNIEnv *env, jclass clz, jint deviceID) {
     return (jboolean) JUB_IsBootLoader((JUB_UINT16) deviceID);
 }
@@ -176,10 +156,19 @@ JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, ji
 JNIEXPORT jbyteArray JNICALL
 native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
-    JUB_CHAR_PTR appVersion = nullptr;
+    JUB_VERSION_PTR appletVersion;
     JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
-                                     &appVersion);
-    return buildPbRvString("JUB_GetAppletVersion", env, rv, appVersion);
+                                     appletVersion);
+
+    JUB::Proto::Common::Version pbVersion;
+    pbVersion.set_major(appletVersion->major);
+    pbVersion.set_minor(appletVersion->minor);
+    pbVersion.set_patch(appletVersion->patch);
+
+    std::string result;
+    pbVersion.SerializeToString(&result);
+
+    return buildPbRvString("JUB_GetAppletVersion", env, rv, result);
 }
 
 JNIEXPORT jbyteArray JNICALL native_QueryBattery(JNIEnv *env, jclass clz, jint deviceID) {
@@ -277,7 +266,7 @@ JNIEXPORT jint JNICALL
 native_CheckAddressBTC(JNIEnv *env, jclass clz, jint contextID, jstring address) {
     auto strAddress = jstring2stdString(env, address);
     JUB_RV rv = JUB_CheckAddressBTC(contextID, strAddress.c_str());
-    LOG_ERR("JUB_CheckAddressBTC rv: %d", rv);
+    LOG_DEBUG("JUB_CheckAddressBTC rv: %d", rv);
     return rv;
 }
 
@@ -303,8 +292,8 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
         JUB_UINT32 lockTime = tx.locktime();
         JUB_UINT32 version = tx.version();
 
-        LOG_ERR("lockTime： %d", lockTime);
-        LOG_ERR("version： %d", version);
+        LOG_DEBUG("lockTime： %d", lockTime);
+        LOG_DEBUG("version： %d", version);
 
         for (auto i = 0; i < tx.inputs_size(); i++) {
             INPUT_BTC input;
@@ -423,6 +412,41 @@ native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO,
     std::string result;
     resultOutputs.SerializeToString(&result);
     return stdString2jbyteArray("JUB_BuildUSDTOutputs", env, result);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_BuildQRC20Output(JNIEnv *env, jclass clz, jint contextID,
+                         jstring contractAddr, jint decimal,
+                         jstring symbol, jlong gasLimit,
+                         jlong gasPrice, jstring to,
+                         jstring amount) {
+
+    auto strContractAddr = jstring2stdString(env, contractAddr);
+    auto strSymbol = jstring2stdString(env, symbol);
+    auto strTo = jstring2stdString(env, to);
+    auto strAmount = jstring2stdString(env, amount);
+
+    JUB::Proto::Common::ResultAny resultOutputs;
+    OUTPUT_BTC QRC20_outputs[1] = {};
+    JUB_RV rv = JUB_BuildQRC20Outputs(contextID, (JUB_CHAR_PTR) strContractAddr.c_str(), decimal,
+                                      (JUB_CHAR_PTR) strSymbol.c_str(), gasLimit, gasPrice,
+                                      (JUB_CHAR_PTR) strTo.c_str(), (JUB_CHAR_PTR) strAmount.c_str(),
+                                      QRC20_outputs);
+    resultOutputs.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Bitcoin::OutputBTC output;
+        JUB::Proto::Bitcoin::QRC20Output *qrc20 = new JUB::Proto::Bitcoin::QRC20Output();
+        qrc20->set_data(CharPtr2HexStr(QRC20_outputs[0].qrc20.data,
+                                       QRC20_outputs[0].qrc20.dataLen));
+        output.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC) QRC20_outputs[0].type);
+
+        output.set_allocated_qrc20_output(qrc20);
+        resultOutputs.add_value()->PackFrom(output);
+    }
+
+    std::string result;
+    resultOutputs.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_BuildQRC20Outputs", env, result);
 }
 
 
@@ -552,6 +576,38 @@ native_SignTransactionETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
     }
     return buildPbRvString("JUB_SignTransactionETH", env, JUBR_ARGUMENTS_BAD, "");
 }
+
+JNIEXPORT jbyteArray JNICALL
+native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jstring data) {
+    BIP44_Path bip32Path;
+    auto strData = jstring2stdString(env, data);
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR signature = nullptr;
+        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR)strData.c_str(), &signature);
+        return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
+    }
+    return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+    JUB::Proto::Ethereum::TransactionETH pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        BIP44_Path bip32Path;
+        bip32Path.change = (JUB_ENUM_BOOL) pbTx.path().change();
+        bip32Path.addressIndex = pbTx.path().address_index();
+
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_RV rv = JUB_SignContractETH(contextID, bip32Path, pbTx.nonce(), pbTx.gas_limit(),
+                                           (JUB_CHAR_PTR) pbTx.gas_price_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.to().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
+                                           (JUB_CHAR_PTR) pbTx.input().c_str(), &raw);
+
+        return buildPbRvString("JUB_SignContractETH", env, rv, raw);
+    }
+    return buildPbRvString("JUB_SignContractETH", env, JUBR_ARGUMENTS_BAD, "");
+}
 //=================================== EOS Wallet =========================================
 
 JNIEXPORT jbyteArray JNICALL
@@ -590,7 +646,7 @@ native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
         JUB_RV rv = JUB_GetAddressEOS(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
-        LOG_ERR("JUB_GetAddressEOS : %s", address);
+        LOG_DEBUG("JUB_GetAddressEOS : %s", address);
         return buildPbRvString("JUB_GetAddressEOS 1", env, rv, address);
     }
     return buildPbRvString("JUB_GetAddressEOS 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -765,7 +821,7 @@ native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
         JUB_RV rv = JUB_GetAddressXRP(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
-        LOG_ERR("JUB_GetAddressXRP : %s", address);
+        LOG_DEBUG("JUB_GetAddressXRP : %s", address);
         return buildPbRvString("JUB_GetAddressXRP 1", env, rv, address);
     }
     return buildPbRvString("JUB_GetAddressXRP 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -861,7 +917,24 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
     return buildPbRvString("JUB_SignTransactionXRP 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-
+JNIEXPORT jbyteArray JNICALL
+native_CheckAddressXRP(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+    JUB::Proto::Common::ResultAny resultAddrParse;
+    auto strAddress = jstring2stdString(env, address);
+    JUB_CHAR_PTR addr = nullptr;
+    JUB_CHAR_PTR tag = nullptr;
+    JUB_RV rv = JUB_CheckAddressXRP(contextID, strAddress.c_str(), &addr, &tag);
+    resultAddrParse.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Ripple::XrpAddrParse xrpAddrParse;
+        xrpAddrParse.set_r_address(addr);
+        xrpAddrParse.set_tag(tag);
+        resultAddrParse.add_value()->PackFrom(xrpAddrParse);
+    }
+    std::string result;
+    resultAddrParse.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_CheckAddressXRP", env, result);
+}
 //=================================== HC Wallet =========================================
 
 #ifdef HC
@@ -1209,6 +1282,11 @@ JNINativeMethod gMethods[] = {
                 (void *) native_BuildUSDTOutputs
         },
         {
+                "nativeBuildQRC20Output",
+                "(ILjava/lang/String;ILjava/lang/String;JJLjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildQRC20Output
+        },
+        {
                 "nativeETHCreateContext",
                 "([BI)[B",
                 (void *) native_CreateContextETH
@@ -1249,6 +1327,16 @@ JNINativeMethod gMethods[] = {
                 (void *) native_SignTransactionETH
         },
         {
+                "nativeETHSignBytestring",
+                "(I[BLjava/lang/String;)[B",
+                (void *) native_SignBytestringETH
+        },
+        {
+                "nativeETHSignContract",
+                "(I[B)[B",
+                (void *) native_SignContractETH
+        },
+        {
                 "nativeEnumSupportCoins",
                 "(I)[B",
                 (void *) native_EnumSupportCoins
@@ -1257,11 +1345,6 @@ JNINativeMethod gMethods[] = {
                 "nativeClearContext",
                 "(I)I",
                 (void *) native_ClearContext
-        },
-        {
-                "nativeIsInitialize",
-                "(I)Z",
-                (void *) native_IsInitialize
         },
         {
                 "nativeIsBootLoader",
@@ -1421,15 +1504,15 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
 
     jint version = env->GetVersion();
-    LOG_ERR(">>> jni version: %x", version);
+    LOG_DEBUG(">>> jni version: %x", version);
 
-    // 保存全局 JVM 以便在动态注册的皆空中使用 env 环境
+    // 保存全局 JVM 以便在动态注册的接口中使用 env 环境
     ret = env->GetJavaVM(&g_vm);
     if (ret != JNI_OK) {
         LOG_ERR(">>> GetJavaVM fail");
         return ret;
     }
-    LOG_ERR(">>> GetJavaVM success");
+    LOG_DEBUG(">>> GetJavaVM success");
 
     // 获取类引用
     jclass clazz = env->FindClass(NATIVE_API_CLASS);
@@ -1437,7 +1520,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         LOG_ERR(">>> clazz == NULL");
         return ret;
     }
-    LOG_ERR(">>> FindClass success");
+    LOG_DEBUG(">>> FindClass success");
 
     std::vector<JNINativeMethod> methodList;
     for (int i = 0, count = sizeof(gMethods) / sizeof(gMethods[0]); i < count; ++i) {
@@ -1450,9 +1533,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (env->RegisterNatives(bleClazz, bleMethodList.data(), bleMethodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives BLE fail");
         return ret;
-    } else {
-        LOG_ERR(">>> RegisterNatives BLE ok");
     }
+    LOG_DEBUG(">>> RegisterNatives BLE ok");
 
     // NFC 注册
     jclass nfcClazz = getNfcClass(env);
@@ -1460,18 +1542,25 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (env->RegisterNatives(nfcClazz, nfcMethodList.data(), nfcMethodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives NFC fail");
         return ret;
-    } else {
-        LOG_ERR(">>> RegisterNatives NFC ok");
     }
+    LOG_DEBUG(">>> RegisterNatives NFC ok");
 
-    LOG_ERR(">>> method count: %d", methodList.size());
+    // TRX 注册
+    jclass trxClazz = getTrxClass(env);
+    std::vector<JNINativeMethod> trxMethodList = getTrxNativeMethods();
+    if (env->RegisterNatives(trxClazz, trxMethodList.data(), trxMethodList.size()) < JNI_OK) {
+        LOG_ERR(">>> RegisterNatives TRX fail");
+        return ret;
+    }
+    LOG_DEBUG(">>> RegisterNatives TRX ok");
+
 
     // 注册 JNI 方法
     if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
         LOG_ERR(">>> RegisterNatives fail");
         return ret;
     }
-    LOG_ERR(">>> jni onload success");
+    LOG_DEBUG(">>> jni onLoad success");
 
     // 成功
     return JNI_VERSION_1_6;

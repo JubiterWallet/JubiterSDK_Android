@@ -172,4 +172,30 @@ public final class JuBiterBitcoin {
         }
         return null;
     }
+
+    /**
+     * 构建QRC20交易输出
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param contractAddr 合约地址
+     * @param decimal 进制
+     * @param symbol token 名称
+     * @param gasLimit gasLimit
+     * @param gasPrice gasPrice
+     * @param to 接收地址
+     * @param amount 转账金额
+     * @return 若 stateCode 为0,则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultAny buildQRC20Output(int contextID, String contractAddr, int decimal,
+                                                          String symbol, long gasLimit, long gasPrice,
+                                                          String to, String amount) {
+        try {
+            byte[] result = NativeApi.nativeBuildQRC20Output(contextID, contractAddr, decimal, symbol,
+                    gasLimit, gasPrice, to, amount);
+            return CommonProtos.ResultAny.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
