@@ -21,8 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.protobuf.Any;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
 import com.jubiter.sdk.JuBiterBLEDevice;
@@ -30,7 +28,6 @@ import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterNFCWallet;
-import com.jubiter.sdk.JuBiterTRX;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.JuBiterXRP;
 import com.jubiter.sdk.ScanResultCallback;
@@ -43,9 +40,6 @@ import com.jubiter.sdk.proto.EOSProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
 import com.jubiter.sdk.proto.RippleProtos;
 
-import org.tron.protos.Protocol;
-import org.tron.protos.contract.BalanceContract;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +50,16 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private static final String TAG = "MainActivity";
 
     private final static int REQUEST_PERMISSION = 0x1001;
+
+    // 测试助记词
+    private final String MNEMONIC = "assist peace stairs six eager total tackle curve issue century fox car";
+    // 测试私钥
+    private final String ROOT_KEY = "xprv9s21ZrQH143K4SCj3zgNtP8b6RxN7GYdHfJaNesBxr9rniZG2hqqNJBAXhARG7VpxftCgso6C6F5w3RYrf5wekEPNSjBH46rX6Rsb5KXJBs";
+
+    private final String MAIN_PATH_BTC = "m/44\'/0\'/0\'";
+    private final String MAIN_PATH_ETH = "m/44\'/60\'/0\'";
+    private final String MAIN_PATH_XRP = "m/44\'/144\'/0\'";
+    private final String MAIN_PATH_TRX = "m/44\'/195\'/0\'";
 
     private String mnemonic;
     private String seed;
@@ -78,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         ETH_SignContract,
         EOS,
         XRP,
-        TRX,
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,8 +173,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     Log.d(TAG, "nfcChangePIN rv: " + changeResult.getStateCode() + ", value: " + changeResult.getValue());
                     assert (changeResult.getStateCode() == 0);
 
-                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "11111111",
-                            "payment reopen pear timber corn salon goat elephant clump company swift spare");
+                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "11111111", MNEMONIC);
                     Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
                     assert (importResult == 0);
 
@@ -320,8 +323,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 //                        return;
 //                    }
 //
-//                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(resultInt.getValue(), "5555",
-//                            "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
+//                    int importResult = JuBiterNFCWallet.nfcImportMnemonic(resultInt.getValue(), "5555", MNEMONIC);
 //                    Log.d(TAG, "nfcImportMnemonic rv: " + importResult);
 //                    if (importResult != 0) {
 //                        return;
@@ -371,6 +373,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnIsConnectedBtn();
         addListenerOnDisconnectDevice();
 
+//        addListenerOnIsInitializeBtn();
         addListenerOnIsBootloaderBtn();
         addListenerOnSetTimeoutBtn();
         addListenerOnEnumAppletsBtn();
@@ -391,7 +394,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnBTCCheckAddressBtn();
         addListenerOnBTCTransactionBtn();
         addListenerOnBuildUSDTOutputBtn();
-        addListenerOnBuildQRC20OutputBtn();
         addListenerOnSetUintBtn();
 
         addListenerOnETHCreateContext_SoftwareBtn();
@@ -425,15 +427,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         addListenerOnXRPGetHDNodeBtn();
         addListenerOnXRPGetAddressBtn();
         addListenerOnXRPTransactionBtn();
-
-        addListenerOnTRXCreateContext_SoftwareBtn();
-        addListenerOnTRXCreateContextBtn();
-        addListenerOnTRXGetMainHDNodetn();
-        addListenerOnTRXGetHDNodeBtn();
-        addListenerOnTRXGetAddressBtn();
-        addListenerOnTRXCheckAddressBtn();
-        addListenerOnBuildTRC20AbiBtn();
-        addListenerOnTRXTransactionBtn();
     }
 
     private void addListenerOnScanDeviceBtn() {
@@ -590,9 +583,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.checkMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = JuBiterWallet.checkMnemonic("payment reopen pear timber corn salon goat elephant clump company swift spare");
-//                int result = JuBiterWallet.checkMnemonic("gauge hole clog property soccer idea cycle stadium utility slice hold chief");
-//                int result = JuBiterWallet.checkMnemonic(mnemonic);
+                int result = JuBiterWallet.checkMnemonic(mnemonic);
                 Log.d(TAG, ">>> generateMnemonic - rv : " + result);
             }
         });
@@ -683,7 +674,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             }
         });
     }
-
 
     private void addListenerOnIsBootloaderBtn() {
         findViewById(R.id.isBootLoader_btn).setOnClickListener(new View.OnClickListener() {
@@ -793,10 +783,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             public void onClick(View v) {
                 BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                         .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                        .setMainPath("m/44'/0'/0'")
+                        .setMainPath(MAIN_PATH_BTC)
                         .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                         .build();
-                CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, "xpub6CAxrkiSbwkn4LayKD6qBcZg4tQvhHBH7TofQjNV9Lb3cB5u8owxdLGfc2bKoz2McoviAMXzWHwSaqc5Sm8C9SWMsnvuBw1bjEwtWsMZ");
+                CommonProtos.ResultInt result = JuBiterBitcoin.createContext_Software(config, ROOT_KEY);
                 Log.d(TAG, ">>> rv: " + result.getStateCode() + ", value: " + result.getValue());
 
                 if (result.getStateCode() == 0) {
@@ -815,7 +805,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                                .setMainPath("m/44'/0'/0'")
+                                .setMainPath(MAIN_PATH_BTC)
                                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
@@ -905,7 +895,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
                                 .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                                .setMainPath("m/44'/0'/0'")
+                                .setMainPath(MAIN_PATH_BTC)
                                 .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterBitcoin.createContext(config, deviceID);
@@ -960,9 +950,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         break;
                     case XRP:
                         xrpTransaction(contextID);
-                        break;
-                    case TRX:
-                        trxTransaction(contextID);
                         break;
                 }
             }
@@ -1055,41 +1042,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
-    private void addListenerOnBuildQRC20OutputBtn() {
-        findViewById(R.id.buildQRC20output_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BitcoinProtos.ContextCfgBTC config = BitcoinProtos.ContextCfgBTC.newBuilder()
-                        .setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINQTUM)
-                        .setMainPath("m/44'/88'/0'")
-                        .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH)
-                        .build();
-                CommonProtos.ResultInt contextRes = JuBiterBitcoin.createContext(config, deviceID);
-
-                CommonProtos.ResultAny result = JuBiterBitcoin.buildQRC20Output(
-                        contextRes.getValue(),
-                        "Qiht6buX71CQj9nooTjZ1mpQMpC8F9Q4eE",
-                        8,
-                        "HPY",
-                        250000,
-                        40,
-                        "QfKNgG2LD854nKCLD2ArDnbJ8iY4EmWC5u",
-                        "1000");
-
-                List<BitcoinProtos.OutputBTC> outputBTCList = new ArrayList<>();
-                for (com.google.protobuf.Any res : result.getValueList()) {
-                    try {
-                        BitcoinProtos.OutputBTC output = res.unpack(BitcoinProtos.OutputBTC.class);
-                        outputBTCList.add(output);
-                    } catch (InvalidProtocolBufferException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Log.d(TAG, "rv : " + outputBTCList.toString());
-            }
-        });
-    }
-
     private void addListenerOnSetUintBtn() {
         findViewById(R.id.setUint_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1106,6 +1058,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             public void onClick(View v) {
                 EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                         .setMainPath("m/44\'/0\'/0\'")
+                        .setChainId(1)
                         .build();
                 CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config,
                         "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynr");
@@ -1125,6 +1078,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                                 .setMainPath("m/44'/60'/0'")
+                                .setChainId(1)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
                         Log.d(TAG,
@@ -1198,6 +1152,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     public void run() {
                         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                                 .setMainPath("m/44'/60'/0'")
+                                .setChainId(1)
                                 .build();
                         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config, deviceID);
                         if (0 != result.getStateCode()) {
@@ -1557,8 +1512,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         findViewById(R.id.nfcImportMnemonic_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "123456",
-                        "green trip crater bottom seat whisper dune real cruise flight nominee evoke");
+                int result = JuBiterNFCWallet.nfcImportMnemonic(deviceID, "123456", MNEMONIC);
                 Log.d(TAG, "nfcImportMnemonic rv: " + result);
             }
         });
@@ -1745,189 +1699,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 .build();
         CommonProtos.ResultString result = JuBiterXRP.signTransaction(contextID, bip32Path, transactionXRP);
         Log.d(TAG, ">>> signTransaction - rv : " + result.getStateCode() + " value: " + result.getValue());
-    }
-
-    ///////////////////////////////////////  TRX ///////////////////////////////////////////////
-
-    private void addListenerOnTRXCreateContext_SoftwareBtn() {
-        findViewById(R.id.trxCreateContext_software_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
-                        .setMainPath("m/44'/195'/0'")
-                        .build();
-                CommonProtos.ResultInt result = JuBiterTRX.createContext_Software(config,
-                        "xprv9s21ZrQH143K2Qpcfq2KcJ2XNc3NRuTiUHNxgN7xhNHwS9wQjN8F4e5pwVdwodTzh7NFoY714xztHdrJboGzhLL2yGjuXD2oXc69SGRynrz");
-                Log.d(TAG,
-                        ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
-                contextID = result.getValue();
-            }
-        });
-    }
-
-    private void addListenerOnTRXCreateContextBtn() {
-        findViewById(R.id.trxCreateContext_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
-                                .setMainPath("m/44'/195'/0'")
-                                .build();
-                        CommonProtos.ResultInt result = JuBiterTRX.createContext(config, deviceID);
-                        Log.d(TAG,
-                                ">>> rv: " + result.getStateCode() + " contextID: " + result.getValue());
-                        contextID = result.getValue();
-                    }
-                });
-            }
-        });
-    }
-
-    private void addListenerOnTRXGetMainHDNodetn() {
-        findViewById(R.id.trxGetMainHDNode_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.ResultString result = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
-                    }
-                });
-            }
-        });
-    }
-
-    private void addListenerOnTRXGetHDNodeBtn() {
-        findViewById(R.id.trxGetHDNode_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                                .setAddressIndex(0)
-                                .setChange(false)
-                                .build();
-                        CommonProtos.ResultString result = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB, bip32Path);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
-                    }
-                });
-            }
-        });
-    }
-
-    private void addListenerOnTRXGetAddressBtn() {
-        findViewById(R.id.trxGetAddress_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                                .setAddressIndex(0)
-                                .setChange(false)
-                                .build();
-                        CommonProtos.ResultString result = JuBiterTRX.getAddress(contextID, bip32Path, false);
-                        Log.d(TAG, ">>> rv: " + result.getValue());
-                    }
-                });
-            }
-        });
-    }
-
-    private void addListenerOnTRXCheckAddressBtn() {
-        findViewById(R.id.trxCheckAddress_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.ResultString result = JuBiterTRX.checkAddress(contextID, "TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc");
-                        Log.d(TAG, ">>> rv: " + result.getValue());
-                    }
-                });
-            }
-        });
-    }
-
-    private void addListenerOnBuildTRC20AbiBtn() {
-        findViewById(R.id.trxBuildTRC20Abi_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CommonProtos.ResultString result = JuBiterTRX.buildTRC20Abi(contextID, "USDT",
-                        6, "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t", "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ", "156000000");
-                Log.d(TAG, ">>> buildERC20Abi rv: " + result);
-            }
-        });
-    }
-
-    private void addListenerOnTRXTransactionBtn() {
-        findViewById(R.id.trxTransaction_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThreadUtils.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
-                                .setMainPath("m/44'/195'/0'")
-                                .build();
-                        CommonProtos.ResultInt result = JuBiterTRX.createContext(config, deviceID);
-                        if (0 != result.getStateCode()) {
-                            Log.d(TAG, "createContext : " + result.getStateCode());
-                            return;
-                        }
-
-                        final int contextID2 = result.getValue();
-                        int rv = JuBiterWallet.showVirtualPWD(contextID2);
-                        Log.d(TAG, "showVirtualPWD : " + rv);
-                        if (0 != rv) {
-                            return;
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                showPINDialog(COIN_TYPE.TRX, contextID2);
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    }
-
-    private void trxTransaction(int contextID) {
-        org.tron.protos.Protocol.Transaction transactionTrx = Protocol.Transaction.newBuilder()
-                .setRawData(Protocol.Transaction.raw.newBuilder()
-                        .addContract(Protocol.Transaction.Contract.newBuilder()
-                                .setType(Protocol.Transaction.Contract.ContractType.TransferContract)
-                                .setParameter(Any.pack(BalanceContract.TransferContract.newBuilder()
-                                        .setOwnerAddress(ByteString.copyFrom("TWqFgX6kK4WN4bzq2CySTCmP9UTYfSHRrE".getBytes()))
-                                        .setToAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
-                                        .setAmount(1)
-                                        .build()))
-                                .build())
-                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
-                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
-                        .setExpiration(1603346250000L)
-                        .setTimestamp(1603346193445L)
-                        .setFeeLimit(0)
-                        .build())
-                .build();
-        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                .setChange(false)
-                .setAddressIndex(0)
-                .build();
-        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
-        Log.d(TAG, ">>> packContract - rv : " + result.getStateCode() + " value: " + result.getValue());
-        if(result.getStateCode() != 0){
-            return;
-        }
-        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
-        Log.d(TAG, ">>> signTransaction - rv : " + signRes.getStateCode() + " value: " + signRes.getValue());
     }
 
 
