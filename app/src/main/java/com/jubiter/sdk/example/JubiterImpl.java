@@ -5,12 +5,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.google.protobuf.Any;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
 import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
+import com.jubiter.sdk.JuBiterTRX;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.JuBiterXRP;
 import com.jubiter.sdk.example.dialog.SelectDeviceDialog;
@@ -1204,5 +1207,123 @@ public class JubiterImpl {
                 }
             }
         });
+    }
+
+    //TRX
+    public void trxCreateContext(final JubCallback<Integer> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
+                        .setMainPath("m/44'/195'/0'")
+                        .build();
+                CommonProtos.ResultInt context = JuBiterTRX.createContext(contextCfg, deviceHandle);
+                if (context.getStateCode() == 0) {
+                    callback.onSuccess(context.getValue());
+                } else {
+                    callback.onFailed(context.getStateCode());
+                }
+            }
+        });
+    }
+
+    public void trxGetAddress(final int contextID, int index, final JubCallback<String> callback) {
+        final CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(index)
+                .setChange(false)
+                .build();
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess("TRXGetMainHDNode");
+                CommonProtos.ResultString mainHDNode = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+                if (mainHDNode.getStateCode() != 0) {
+                    callback.onFailed(mainHDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(mainHDNode.getValue());
+                callback.onSuccess("TRXGetHDNode");
+                CommonProtos.ResultString HDNode = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+                if (HDNode.getStateCode() != 0) {
+                    callback.onFailed(HDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(HDNode.getValue());
+                callback.onSuccess("TRXGetAddress ");
+                CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, false);
+                if (address.getStateCode() != 0) {
+                    callback.onFailed(address.getStateCode());
+                    return;
+                }
+                callback.onSuccess(address.getValue());
+            }
+        });
+    }
+
+    public void trxShowAddress(final int contextID, final JubCallback<String> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+                CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, true);
+                if (address.getStateCode() == 0) {
+                    callback.onSuccess(address.getValue());
+                } else {
+                    callback.onFailed(address.getStateCode());
+                }
+            }
+        });
+    }
+
+    public void trxSetMyAddress(final int contextID, final JubCallback<String> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+                CommonProtos.ResultString address = JuBiterTRX.setAddress(contextID, path);
+                if (address.getStateCode() == 0) {
+                    callback.onSuccess(address.getValue());
+                } else {
+                    callback.onFailed(address.getStateCode());
+                }
+            }
+        });
+    }
+
+    public void trxTransaction(final int contextID, String transferInputValue, final JubCallback<String> callback) {
+        transferInputValue = fixValueStr(transferInputValue, "", 6).replace(".", "");
+        org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
+                .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
+                                .setType(org.tron.protos.Protocol.Transaction.Contract.ContractType.TransferContract)
+                                .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.TransferContract.newBuilder()
+                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
+                                        .setToAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
+                                        .setAmount(Long.parseLong(transferInputValue))
+                                        .build()))
+                                .build())
+                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
+                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+                        .setExpiration(1603346250000L)
+                        .setTimestamp(1603346193445L)
+                        .setFeeLimit(0)
+                        .build())
+                .build();
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setChange(false)
+                .setAddressIndex(0)
+                .build();
+
+        // 无数据缓存，跳过 verifyPIN
+
+        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
     }
 }

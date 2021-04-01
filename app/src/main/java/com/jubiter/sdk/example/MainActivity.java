@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             toFingerActivity();
         } else if (id == R.id.btn_xrp) {
             toXRPActivity();
+        } else if (id == R.id.btn_trx) {
+            toTRXActivity();
         } else if (id == R.id.btn_device) {
             toDeviceActivity();
         }
@@ -223,6 +225,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void toXRPActivity() {
         if (isConnect) {
             startActivity(new Intent(mContext, XRPActivity.class));
+        }
+    }
+
+    private void toTRXActivity() {
+        if (isConnect) {
+            startActivity(new Intent(mContext, TRXActivity.class));
         }
     }
 

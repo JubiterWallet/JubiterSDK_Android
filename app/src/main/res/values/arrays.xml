@@ -27,4 +27,8 @@
     <string-array name="xrp">
         <item>XRP</item>
     </string-array>
+
+    <string-array name="trx">
+        <item>TRX</item>
+    </string-array>
 </resources>

@@ -151,6 +151,12 @@
                 android:onClick="onClick"
                 android:text="XRP" />
 
+            <Button
+                android:id="@+id/btn_trx"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="TRX" />
+
         </LinearLayout>
 
     </ScrollView>
