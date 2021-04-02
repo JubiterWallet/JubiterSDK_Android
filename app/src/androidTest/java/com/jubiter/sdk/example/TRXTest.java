@@ -218,7 +218,7 @@ public class TRXTest extends BaseTest {
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 // 资源解冻
                                 .setType(Protocol.Transaction.Contract.ContractType.UnfreezeBalanceContract)
-                                .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.FreezeBalanceContract.newBuilder()
+                                .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.UnfreezeBalanceContract.newBuilder()
                                         .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
                                         .setReceiverAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
                                         // 带宽、能量

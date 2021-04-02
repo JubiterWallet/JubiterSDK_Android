@@ -146,7 +146,7 @@ JNIEXPORT jbyteArray JNICALL
 native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
     protocol::Transaction pbTx;
     if (!parseFromJbyteArray(env, tx, &pbTx)) {
-        return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+        return buildPbRvString("JUB_PackContractTRX 1", env, JUBR_ARGUMENTS_BAD, "");
     }
 
     JUB_CHAR_PTR raw = nullptr;
@@ -226,12 +226,12 @@ native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) 
         }
         case protocol::Transaction::Contract::UnfreezeBalanceContract: {
             contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::UNFRZ_BLA_CONTRACT;
-            protocol::FreezeBalanceContract pbUnFreezeBalanceCrt;
-            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbUnFreezeBalanceCrt);
-            JUB_UNFRZ_BLA_CONTRACT_TRX unFreezeBalance;
-            unFreezeBalance.owner_address = (JUB_CHAR_PTR) pbUnFreezeBalanceCrt.owner_address().c_str();
-            unFreezeBalance.receiver_address = (JUB_CHAR_PTR) pbUnFreezeBalanceCrt.receiver_address().c_str();
-            contractTrx.unfreezeBalance = unFreezeBalance;
+            protocol::UnfreezeBalanceContract pbUnfreezeBalanceCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbUnfreezeBalanceCrt);
+            JUB_UNFRZ_BLA_CONTRACT_TRX unfreezeBalance;
+            unfreezeBalance.owner_address = (JUB_CHAR_PTR) pbUnfreezeBalanceCrt.owner_address().c_str();
+            unfreezeBalance.receiver_address = (JUB_CHAR_PTR) pbUnfreezeBalanceCrt.receiver_address().c_str();
+            contractTrx.unfreezeBalance = unfreezeBalance;
             break;
         }
         default:
@@ -245,7 +245,7 @@ native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) 
     JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), trxTx,
                                     &packedContractInPB);
 
-    return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
+    return buildPbRvString("JUB_PackContractTRX 2", env, rv, packedContractInPB);
 }
 
 
