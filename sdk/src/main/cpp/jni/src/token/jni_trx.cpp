@@ -111,6 +111,19 @@ native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
     return buildPbRvString("JUB_SignTransactionTRX 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
+
+JNIEXPORT jint JNICALL native_TRXSetTRC10Asset(JNIEnv *env, jclass clz, jint contextID,
+        jbyteArray assetName, jint unitDP, jbyteArray assetId) {
+    auto assetNameStr = jbyteArray2stdString(env, assetName);
+    auto assetIdStr = jbyteArray2stdString(env, assetName);
+    JUB_RV rv = JUB_SetTRC10Asset(contextID, assetNameStr.c_str(), unitDP, assetIdStr.c_str());
+    if (JUBR_OK != rv) {
+        LOG_ERR("JUB_SetTRC10Asset rv: %08lx", rv);
+    }
+    return rv;
+}
+
+
 JNIEXPORT jbyteArray JNICALL
 native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenName,
                         jint unitDP,
@@ -133,84 +146,107 @@ native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenNa
 JNIEXPORT jbyteArray JNICALL
 native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
     protocol::Transaction pbTx;
-    if (parseFromJbyteArray(env, tx, &pbTx)) {
-        JUB_CHAR_PTR raw = nullptr;
-        JUB_TX_TRX tx;
-        tx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
-        tx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
-        tx.ref_block_num = nullptr;
-        tx.data = nullptr;
-        tx.expiration = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().expiration()).c_str();
-        tx.timestamp = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().timestamp()).c_str();
-        tx.fee_limit = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().fee_limit()).c_str();
-
-        std::vector <JUB_CONTRACT_TRX> contractTrxs;
-        JUB_CONTRACT_TRX contractTrx;
-        contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::NS_ITEM_TRX_CONTRACT;
-        switch (pbTx.raw_data().contract(0).type()) {
-            case protocol::Transaction::Contract::TransferContract: {
-                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_CONTRACT;
-                protocol::TransferContract pbTrxCrt;
-                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTrxCrt);
-                JUB_XFER_CONTRACT_TRX transfer;
-                transfer.owner_address = (JUB_CHAR_PTR) pbTrxCrt.owner_address().c_str();
-                transfer.to_address = (JUB_CHAR_PTR) pbTrxCrt.to_address().c_str();
-                transfer.amount = pbTrxCrt.amount();
-                contractTrx.transfer = transfer;
-                break;
-            }
-            case protocol::Transaction::Contract::TransferAssetContract: {
-                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_ASSET_CONTRACT;
-                protocol::TransferAssetContract pbAssetCrt;
-                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbAssetCrt);
-                JUB_XFER_ASSET_CONTRACT_TRX transferAsset;
-                transferAsset.owner_address = (JUB_CHAR_PTR) pbAssetCrt.owner_address().c_str();
-                transferAsset.asset_name = (JUB_CHAR_PTR) pbAssetCrt.asset_name().c_str();
-                transferAsset.to_address = (JUB_CHAR_PTR) pbAssetCrt.to_address().c_str();
-                transferAsset.amount = pbAssetCrt.amount();
-                contractTrx.transferAsset = transferAsset;
-                break;
-            }
-            case protocol::Transaction::Contract::CreateSmartContract: {
-                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::CREATE_SMART_CONTRACT;
-                protocol::CreateSmartContract pbCreateCrt;
-                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbCreateCrt);
-                JUB_CREATE_SMART_CONTRACT_TRX createSmart;
-                createSmart.owner_address = (JUB_CHAR_PTR) pbCreateCrt.owner_address().c_str();
-                createSmart.call_token_value = pbCreateCrt.call_token_value();
-                createSmart.token_id = pbCreateCrt.token_id();
-                createSmart.bytecode = (JUB_CHAR_PTR) pbCreateCrt.new_contract().bytecode().c_str();
-                contractTrx.createSmart = createSmart;
-                break;
-            }
-            case protocol::Transaction::Contract::TriggerSmartContract: {
-                contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::TRIG_SMART_CONTRACT;
-                protocol::TriggerSmartContract pbTriggerCrt;
-                pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTriggerCrt);
-                JUB_TRIG_SMART_CONTRACT_TRX triggerSmart;
-                triggerSmart.owner_address = (JUB_CHAR_PTR) pbTriggerCrt.owner_address().c_str();
-                triggerSmart.contract_address = (JUB_CHAR_PTR) pbTriggerCrt.contract_address().c_str();
-                triggerSmart.call_value = pbTriggerCrt.call_value();
-                triggerSmart.data = (JUB_CHAR_PTR) pbTriggerCrt.data().c_str();
-                triggerSmart.call_token_value = pbTriggerCrt.call_token_value();
-                triggerSmart.token_id = pbTriggerCrt.token_id();
-                contractTrx.triggerSmart = triggerSmart;
-                break;
-            }
-            default:
-                break;
-        }
-        contractTrxs.push_back(contractTrx);
-        tx.contracts = &contractTrxs[0];
-        tx.contractCount = 1;
-
-        JUB_CHAR_PTR packedContractInPB = nullptr;
-        JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), tx,
-                                        &packedContractInPB);
-
-        return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
+    if (!parseFromJbyteArray(env, tx, &pbTx)) {
+        return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
     }
-    return buildPbRvString("JUB_PackContractTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+
+    JUB_CHAR_PTR raw = nullptr;
+    JUB_TX_TRX trxTx;
+    trxTx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
+    trxTx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
+    trxTx.ref_block_num = nullptr;
+    trxTx.data = nullptr;
+    trxTx.expiration = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().expiration()).c_str();
+    trxTx.timestamp = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().timestamp()).c_str();
+    trxTx.fee_limit = (JUB_CHAR_PTR) std::to_string(pbTx.raw_data().fee_limit()).c_str();
+
+    std::vector <JUB_CONTRACT_TRX> contractTrxs;
+    JUB_CONTRACT_TRX contractTrx;
+    contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::NS_ITEM_TRX_CONTRACT;
+    switch (pbTx.raw_data().contract(0).type()) {
+        case protocol::Transaction::Contract::TransferContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_CONTRACT;
+            protocol::TransferContract pbTrxCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTrxCrt);
+            JUB_XFER_CONTRACT_TRX transfer;
+            transfer.owner_address = (JUB_CHAR_PTR) pbTrxCrt.owner_address().c_str();
+            transfer.to_address = (JUB_CHAR_PTR) pbTrxCrt.to_address().c_str();
+            transfer.amount = pbTrxCrt.amount();
+            contractTrx.transfer = transfer;
+            break;
+        }
+        case protocol::Transaction::Contract::TransferAssetContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::XFER_ASSET_CONTRACT;
+            protocol::TransferAssetContract pbAssetCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbAssetCrt);
+            JUB_XFER_ASSET_CONTRACT_TRX transferAsset;
+            transferAsset.owner_address = (JUB_CHAR_PTR) pbAssetCrt.owner_address().c_str();
+            transferAsset.asset_name = (JUB_CHAR_PTR) pbAssetCrt.asset_name().c_str();
+            transferAsset.to_address = (JUB_CHAR_PTR) pbAssetCrt.to_address().c_str();
+            transferAsset.amount = pbAssetCrt.amount();
+            contractTrx.transferAsset = transferAsset;
+            break;
+        }
+        case protocol::Transaction::Contract::CreateSmartContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::CREATE_SMART_CONTRACT;
+            protocol::CreateSmartContract pbCreateCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbCreateCrt);
+            JUB_CREATE_SMART_CONTRACT_TRX createSmart;
+            createSmart.owner_address = (JUB_CHAR_PTR) pbCreateCrt.owner_address().c_str();
+            createSmart.call_token_value = pbCreateCrt.call_token_value();
+            createSmart.token_id = pbCreateCrt.token_id();
+            createSmart.bytecode = (JUB_CHAR_PTR) pbCreateCrt.new_contract().bytecode().c_str();
+            contractTrx.createSmart = createSmart;
+            break;
+        }
+        case protocol::Transaction::Contract::TriggerSmartContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::TRIG_SMART_CONTRACT;
+            protocol::TriggerSmartContract pbTriggerCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbTriggerCrt);
+            JUB_TRIG_SMART_CONTRACT_TRX triggerSmart;
+            triggerSmart.owner_address = (JUB_CHAR_PTR) pbTriggerCrt.owner_address().c_str();
+            triggerSmart.contract_address = (JUB_CHAR_PTR) pbTriggerCrt.contract_address().c_str();
+            triggerSmart.call_value = pbTriggerCrt.call_value();
+            triggerSmart.data = (JUB_CHAR_PTR) pbTriggerCrt.data().c_str();
+            triggerSmart.call_token_value = pbTriggerCrt.call_token_value();
+            triggerSmart.token_id = pbTriggerCrt.token_id();
+            contractTrx.triggerSmart = triggerSmart;
+            break;
+        }
+        case protocol::Transaction::Contract::FreezeBalanceContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::FRZ_BLA_CONTRACT;
+            protocol::FreezeBalanceContract pbFreezeBalanceCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbFreezeBalanceCrt);
+            JUB_FRZ_BLA_CONTRACT_TRX freezeBalance;
+            freezeBalance.owner_address = (JUB_CHAR_PTR) pbFreezeBalanceCrt.owner_address().c_str();
+            freezeBalance.receiver_address = (JUB_CHAR_PTR) pbFreezeBalanceCrt.receiver_address().c_str();
+            freezeBalance.frozen_balance = pbFreezeBalanceCrt.frozen_balance();
+            freezeBalance.frozen_duration = pbFreezeBalanceCrt.frozen_duration();
+            contractTrx.freezeBalance = freezeBalance;
+            break;
+        }
+        case protocol::Transaction::Contract::UnfreezeBalanceContract: {
+            contractTrx.type = JUB_ENUM_TRX_CONTRACT_TYPE::UNFRZ_BLA_CONTRACT;
+            protocol::FreezeBalanceContract pbUnFreezeBalanceCrt;
+            pbTx.raw_data().contract(0).parameter().UnpackTo(&pbUnFreezeBalanceCrt);
+            JUB_UNFRZ_BLA_CONTRACT_TRX unFreezeBalance;
+            unFreezeBalance.owner_address = (JUB_CHAR_PTR) pbUnFreezeBalanceCrt.owner_address().c_str();
+            unFreezeBalance.receiver_address = (JUB_CHAR_PTR) pbUnFreezeBalanceCrt.receiver_address().c_str();
+            contractTrx.unfreezeBalance = unFreezeBalance;
+            break;
+        }
+        default:
+            break;
+    }
+    contractTrxs.push_back(contractTrx);
+    trxTx.contracts = &contractTrxs[0];
+    trxTx.contractCount = 1;
+
+    JUB_CHAR_PTR packedContractInPB = nullptr;
+    JUB_RV rv = JUB_PackContractTRX(static_cast<JUB_UINT16>(contextID), trxTx,
+                                    &packedContractInPB);
+
+    return buildPbRvString("JUB_PackContractTRX 1", env, rv, packedContractInPB);
 }
 
 

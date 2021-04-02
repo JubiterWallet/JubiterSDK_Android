@@ -15,6 +15,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.tron.protos.Protocol;
+import org.tron.protos.contract.Common;
 
 import static org.junit.Assert.assertEquals;
 
@@ -39,7 +41,7 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step1_createContext_Software() {
+    public void step01_createContext_Software() {
         String mnemonic = BaseTest.MNEMONIC;
 
         CommonProtos.ResultString seedResult = JuBiterWallet.generateSeed(mnemonic, "");
@@ -62,14 +64,14 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step2_getMainHDNode() {
+    public void step02_getMainHDNode() {
         CommonProtos.ResultString result = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
         assertEquals(0, result.getStateCode());
         Log.d(TAG, ">>> getMainHDNode value: " + result.getValue());
     }
 
     @Test
-    public void step3_getHDNode() {
+    public void step03_getHDNode() {
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
@@ -80,7 +82,7 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step4_getAddress() {
+    public void step04_getAddress() {
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setAddressIndex(0)
                 .setChange(false)
@@ -91,13 +93,13 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step5_setAddress() {
+    public void step05_setAddress() {
 
     }
 
 
     @Test
-    public void step6_buildTRC20Abi() {
+    public void step06_buildTRC20Abi() {
         CommonProtos.ResultString result = JuBiterTRX.buildTRC20Abi(
                 contextID,
                 "USDT",
@@ -110,7 +112,7 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step7_packContract() {
+    public void step07_packContract() {
         org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
                 .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
@@ -135,7 +137,7 @@ public class TRXTest extends BaseTest {
     }
 
     @Test
-    public void step8_signTransaction() {
+    public void step08_signTransaction() {
 
         org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
                 .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
@@ -145,6 +147,82 @@ public class TRXTest extends BaseTest {
                                         .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
                                         .setToAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
                                         .setAmount(1)
+                                        .build()))
+                                .build())
+                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
+                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+                        .setExpiration(1603346250000L)
+                        .setTimestamp(1603346193445L)
+                        .setFeeLimit(0)
+                        .build())
+                .build();
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setChange(false)
+                .setAddressIndex(0)
+                .build();
+
+        // 无数据缓存，跳过 verifyPIN
+
+        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+        assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> packContract value : " + result.getValue());
+
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue().getBytes());
+
+        assertEquals(0, signRes.getStateCode());
+        Log.d(TAG, ">>> signTransaction value : " + signRes.getValue());
+    }
+
+    @Test
+    public void step09_freezeBalanceSign() {
+        org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
+                .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
+                                // 资源冻结
+                                .setType(Protocol.Transaction.Contract.ContractType.FreezeBalanceContract)
+                                .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.FreezeBalanceContract.newBuilder()
+                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
+                                        .setReceiverAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
+                                        // 带宽、能量
+                                        .setResource(Common.ResourceCode.BANDWIDTH)
+                                        .build()))
+                                .build())
+                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
+                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+                        .setExpiration(1603346250000L)
+                        .setTimestamp(1603346193445L)
+                        .setFeeLimit(0)
+                        .build())
+                .build();
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setChange(false)
+                .setAddressIndex(0)
+                .build();
+
+        // 无数据缓存，跳过 verifyPIN
+
+        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+        assertEquals(0, result.getStateCode());
+        Log.d(TAG, ">>> packContract value : " + result.getValue());
+
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue().getBytes());
+
+        assertEquals(0, signRes.getStateCode());
+        Log.d(TAG, ">>> signTransaction value : " + signRes.getValue());
+    }
+
+    @Test
+    public void step10_unfreezeBalanceSign() {
+        org.tron.protos.Protocol.Transaction transactionTrx = org.tron.protos.Protocol.Transaction.newBuilder()
+                .setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
+                                // 资源解冻
+                                .setType(Protocol.Transaction.Contract.ContractType.UnfreezeBalanceContract)
+                                .setParameter(Any.pack(org.tron.protos.contract.BalanceContract.FreezeBalanceContract.newBuilder()
+                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
+                                        .setReceiverAddress(ByteString.copyFrom("TLb2e2uRhzxvrxMcC8VkL2N7zmxYyg3Vfc".getBytes()))
+                                        // 带宽、能量
+                                        .setResource(Common.ResourceCode.BANDWIDTH)
                                         .build()))
                                 .build())
                         .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
