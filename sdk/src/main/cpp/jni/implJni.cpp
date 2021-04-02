@@ -414,6 +414,41 @@ native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO,
     return stdString2jbyteArray("JUB_BuildUSDTOutputs", env, result);
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_BuildQRC20Output(JNIEnv *env, jclass clz, jint contextID,
+                         jstring contractAddr, jint decimal,
+                         jstring symbol, jlong gasLimit,
+                         jlong gasPrice, jstring to,
+                         jstring amount) {
+
+    auto strContractAddr = jstring2stdString(env, contractAddr);
+    auto strSymbol = jstring2stdString(env, symbol);
+    auto strTo = jstring2stdString(env, to);
+    auto strAmount = jstring2stdString(env, amount);
+
+    JUB::Proto::Common::ResultAny resultOutputs;
+    OUTPUT_BTC QRC20_outputs[1] = {};
+    JUB_RV rv = JUB_BuildQRC20Outputs(contextID, (JUB_CHAR_PTR) strContractAddr.c_str(), decimal,
+                                      (JUB_CHAR_PTR) strSymbol.c_str(), gasLimit, gasPrice,
+                                      (JUB_CHAR_PTR) strTo.c_str(), (JUB_CHAR_PTR) strAmount.c_str(),
+                                      QRC20_outputs);
+    resultOutputs.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Bitcoin::OutputBTC output;
+        JUB::Proto::Bitcoin::QRC20Output *qrc20 = new JUB::Proto::Bitcoin::QRC20Output();
+        qrc20->set_data(CharPtr2HexStr(QRC20_outputs[0].qrc20.data,
+                                       QRC20_outputs[0].qrc20.dataLen));
+        output.set_type((JUB::Proto::Bitcoin::ENUM_SCRIPT_TYPE_BTC) QRC20_outputs[0].type);
+
+        output.set_allocated_qrc20_output(qrc20);
+        resultOutputs.add_value()->PackFrom(output);
+    }
+
+    std::string result;
+    resultOutputs.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_BuildQRC20Outputs", env, result);
+}
+
 
 //==================================== JUB_SDK_ETH_H ==========================================
 
@@ -882,7 +917,24 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
     return buildPbRvString("JUB_SignTransactionXRP 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-
+JNIEXPORT jbyteArray JNICALL
+native_CheckAddressXRP(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+    JUB::Proto::Common::ResultAny resultAddrParse;
+    auto strAddress = jstring2stdString(env, address);
+    JUB_CHAR_PTR addr = nullptr;
+    JUB_CHAR_PTR tag = nullptr;
+    JUB_RV rv = JUB_CheckAddressXRP(contextID, strAddress.c_str(), &addr, &tag);
+    resultAddrParse.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Ripple::XrpAddrParse xrpAddrParse;
+        xrpAddrParse.set_r_address(addr);
+        xrpAddrParse.set_tag(tag);
+        resultAddrParse.add_value()->PackFrom(xrpAddrParse);
+    }
+    std::string result;
+    resultAddrParse.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_CheckAddressXRP", env, result);
+}
 //=================================== HC Wallet =========================================
 
 #ifdef HC
@@ -1228,6 +1280,11 @@ JNINativeMethod gMethods[] = {
                 "nativeBuildUSDTOutput",
                 "(ILjava/lang/String;J)[B",
                 (void *) native_BuildUSDTOutputs
+        },
+        {
+                "nativeBuildQRC20Output",
+                "(ILjava/lang/String;ILjava/lang/String;JJLjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildQRC20Output
         },
         {
                 "nativeETHCreateContext",

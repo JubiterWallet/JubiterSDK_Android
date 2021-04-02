@@ -40,7 +40,7 @@ native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
-                          jbyteArray jPackedContractInPb);
+                          jstring jPackedContractInPb);
 
 JNIEXPORT jbyteArray JNICALL
 native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenName,

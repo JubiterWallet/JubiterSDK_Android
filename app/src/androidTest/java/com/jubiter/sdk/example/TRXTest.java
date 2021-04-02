@@ -167,7 +167,7 @@ public class TRXTest extends BaseTest {
         assertEquals(0, result.getStateCode());
         Log.d(TAG, ">>> packContract value : " + result.getValue());
 
-        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue().getBytes());
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
 
         assertEquals(0, signRes.getStateCode());
         Log.d(TAG, ">>> signTransaction value : " + signRes.getValue());

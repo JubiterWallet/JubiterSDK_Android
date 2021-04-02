@@ -96,15 +96,14 @@ native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
-                          jbyteArray jPackedContractInPb) {
+                          jstring jPackedContractInPb) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
+        auto strContract = jstring2stdString(env, jPackedContractInPb);
         JUB_CHAR_PTR raw = nullptr;
-        JUB_CHAR_PTR pPackedContractInPb = (JUB_CHAR_PTR)(env->GetByteArrayElements(
-                jPackedContractInPb, NULL));
         JUB_RV rv = JUB_SignTransactionTRX(static_cast<JUB_UINT16>(contextID),
                                            bip32Path,
-                                           pPackedContractInPb,
+                                           strContract.c_str(),
                                            &raw);
         return buildPbRvString("JUB_SignTransactionTRX 1", env, rv, raw);
     }
@@ -288,7 +287,7 @@ JNINativeMethod trxNativeMethods[] = {
         },
         {
                 "nativeTRXSignTransaction",
-                "(I[B[B)[B",
+                "(I[BLjava/lang/String;)[B",
                 (void *) native_SignTransactionTRX
         },
         {

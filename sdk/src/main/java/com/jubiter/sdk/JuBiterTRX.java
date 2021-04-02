@@ -139,13 +139,13 @@ public final class JuBiterTRX {
      * TRX 交易签名
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param packedContractBytes
+     * @param packedContractInPb
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString signTransaction(int contextID, CommonProtos.Bip44Path bip44,
-                                                            byte[] packedContractBytes) {
+                                                            String packedContractInPb) {
         try {
-            byte[] result = NativeApi.nativeTRXSignTransaction(contextID, bip44.toByteArray(), packedContractBytes);
+            byte[] result = NativeApi.nativeTRXSignTransaction(contextID, bip44.toByteArray(), packedContractInPb);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

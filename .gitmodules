@@ -1,11 +1,4 @@
-[submodule "cpp/JubiterPB"]
-	path = cpp/JubiterPB
-	url = https://github.com/JubiterWallet/JubiterSDK_Common_pb.git
-	branch = v3.9.1
-[submodule "cpp/Protobuffer"]
-	path = cpp/Protobuffer
-	url = https://github.com/protocolbuffers/protobuf.git
 [submodule "cpp/JubiterSDK"]
 	path = cpp/JubiterSDK
 	url = https://github.com/JubiterWallet/JubiterSDK_C.git
-	tag = v2.2.7
+	branch = 2.3
