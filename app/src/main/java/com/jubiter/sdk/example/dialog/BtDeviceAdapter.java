@@ -1,4 +1,4 @@
-package com.jubiter.sdk.example;
+package com.jubiter.sdk.example.dialog;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jubiter.sdk.JuBiterBLEDevice;
+import com.jubiter.sdk.example.R;
 
 import java.util.List;
 
-public class BleDeviceAdapter extends BaseAdapter {
+public class BtDeviceAdapter extends BaseAdapter {
 
     protected List<JuBiterBLEDevice> deviceNameList;
     protected Context mContext;
 
-    public BleDeviceAdapter(Context context, List<JuBiterBLEDevice> list) {
+    public BtDeviceAdapter(Context context, List<JuBiterBLEDevice> list) {
         mContext = context;
         deviceNameList = list;
     }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DeviceActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="17dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deivce options"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorLine" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="13dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/query_battery"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="QUERY_BATTERY" />
+
+            <Button
+                android:id="@+id/device_info"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="DEVICE_INFO" />
+
+            <Button
+                android:id="@+id/device_applets"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="DEVICE_APPLETS" />
+
+            <Button
+                android:id="@+id/device_cert"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="DEVICE_CERT" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorLine" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1.2"
+        android:background="@drawable/bg_log">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/txt_log"
+                android:layout_width="match_parent"
+                android:textIsSelectable="true"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:src="@drawable/ic_delete_forever_blue_400_24dp" />
+
+    </FrameLayout>
+
+
+</LinearLayout>
