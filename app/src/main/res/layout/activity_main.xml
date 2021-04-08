@@ -1,525 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            >
-            <TextView
-                android:id="@+id/state_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/scanDevice_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="Scan Device" />
-
-            <Button
-                android:id="@+id/disconnectDevice_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="Disconnect" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/cancelConnect_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="Cancel connect" />
-
-            <Button
-                android:id="@+id/isConnected_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="Is Connected?" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/getDeviceInfo_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Device Information" />
-
-        <Button
-            android:id="@+id/getDeviceCert_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Device Cert" />
-
-        <Button
-            android:id="@+id/sendApdu_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Send APDU" />
-
-
-        <Button
-            android:id="@+id/generateMnemonic_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Generate Mnemonic" />
-
-        <Button
-            android:id="@+id/checkMnemonic_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Check Mnemonic" />
-
-        <Button
-            android:id="@+id/generateSeed_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Generate Seed" />
-
-        <Button
-            android:id="@+id/seedToMasterKey_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Seed to PriKey" />
-
-
-        <Button
-            android:id="@+id/isBootLoader_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Is BootLoader?" />
-
-        <Button
-            android:id="@+id/setTimeout_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Set Timeout" />
-
-        <Button
-            android:id="@+id/enumApplets_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Enum Applets" />
-
-        <Button
-            android:id="@+id/enumSupportCoins_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Enum Coins" />
-
-        <Button
-            android:id="@+id/getAppletVersion_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Get Applet Version" />
-
-        <Button
-            android:id="@+id/queryBattery_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Query Battery" />
-
-        <Button
-            android:id="@+id/clearContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Clear Context" />
-
-        <Button
-            android:id="@+id/showVirtualPWD_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Show Virtual PWD" />
-
-        <Button
-            android:id="@+id/cancelVirtualPWD_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Cancel Virtual PWD" />
-
-        <Button
-            android:id="@+id/verifyPIN_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Verify PIN" />
-
-        <Button
-            android:id="@+id/btcCreateContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Create Context" />
-
-        <Button
-            android:id="@+id/btcCreateContext_software_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Create Context (software)" />
-
-        <Button
-            android:id="@+id/btcGetMainHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Main HD Node" />
-
-        <Button
-            android:id="@+id/btcGetHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC HD Node" />
-
-        <Button
-            android:id="@+id/btcGetAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Get Address" />
-
-        <Button
-            android:id="@+id/btcCheckAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Check Address" />
-
-        <Button
-            android:id="@+id/btcTransaction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="BTC Transaction" />
-
-        <Button
-            android:id="@+id/buildUSDToutput_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Build USDT Output"/>
-
-        <Button
-            android:id="@+id/buildQRC20output_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Build QRC20 Output"/>
-
-        <Button
-            android:id="@+id/setUint_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Set Uint"/>
-
-
-        <Button
-            android:id="@+id/ethCreateContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH Create Context" />
-
-        <Button
-            android:id="@+id/ethCreateContext_software_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH Create Context (software)" />
-
-        <Button
-            android:id="@+id/ethGetMainHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH Main HD Node" />
-
-        <Button
-            android:id="@+id/ethGetHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH HD Node" />
-
-        <Button
-            android:id="@+id/ethGetAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH Get Address" />
-
-        <Button
-            android:id="@+id/ethTransaction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH Transaction" />
-
-        <Button
-            android:id="@+id/buildErc20Abi_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Build ERC20" />
-
-        <Button
-            android:id="@+id/ethSignBytestring_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH SignBytestring" />
-
-        <Button
-            android:id="@+id/ethSignContract_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="ETH SignContract" />
-
-        <Button
-            android:id="@+id/eosCreateContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Create Context" />
-
-        <Button
-            android:id="@+id/eosCreateContext_software_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Create Context (software)" />
-
-        <Button
-            android:id="@+id/eosGetMainHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Main HD Node" />
-
-        <Button
-            android:id="@+id/eosGetHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS HD Node" />
-
-        <Button
-            android:id="@+id/eosGetAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Get Address" />
-
-        <Button
-            android:id="@+id/eosTransaction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Transaction" />
-
-        <Button
-            android:id="@+id/eosbuildAction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Build Action" />
-
-        <Button
-            android:id="@+id/eosCalculateMemoHash_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="EOS Calculate MemoHash" />
-
-        <Button
-            android:id="@+id/nfcConnect_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC Connect" />
-
-        <Button
-            android:id="@+id/nfcReset_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC Reset" />
-
-        <Button
-            android:id="@+id/nfcGenerateSeed_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC GenerateSeed" />
-
-        <Button
-            android:id="@+id/nfcImportMnemonic_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC ImportMnemonic" />
-
-        <Button
-            android:id="@+id/nfcExportMnemonic_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC ExportMnemonic" />
-
-        <Button
-            android:id="@+id/nfcChangePIN_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="NFC ChangePIN" />
-
-        <Button
-            android:id="@+id/xrpCreateContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Create Context" />
-
-        <Button
-            android:id="@+id/xrpCreateContext_software_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Create Context (software)" />
-
-        <Button
-            android:id="@+id/xrpGetMainHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Main HD Node" />
-
-        <Button
-            android:id="@+id/xrpGetHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP HD Node" />
-
-        <Button
-            android:id="@+id/xrpGetAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Get Address" />
-
-        <Button
-            android:id="@+id/xrpTransaction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Transaction" />
-
-        <Button
-            android:id="@+id/trxCreateContext_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX Create Context" />
-
-        <Button
-            android:id="@+id/trxCreateContext_software_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX Create Context (software)" />
-
-        <Button
-            android:id="@+id/trxGetMainHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX Main HD Node" />
-
-        <Button
-            android:id="@+id/trxGetHDNode_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX HD Node" />
-
-        <Button
-            android:id="@+id/trxGetAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX Get Address" />
-
-        <Button
-            android:id="@+id/trxCheckAddress_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX Check Address" />
-
-        <Button
-            android:id="@+id/trxTransaction_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="XRP Transaction" />
-
-        <Button
-            android:id="@+id/trxBuildTRC20Abi_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="TRX BuildTRC20Abi" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="17dp">
+
+        <TextView
+            android:id="@+id/txt_scan_ble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:text="Scan BLE"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="Jubiter SDK Demo"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_off_ble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:text="Off BLE"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:visibility="visible" />
 
     </LinearLayout>
 
-</ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorLine" />
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/corners_grey_bg"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <RadioButton
+            android:id="@+id/radio_soft"
+            style="@style/CustomRadioBtn"
+            android:visibility="gone"
+            android:text="Soft" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_nfc"
+            style="@style/CustomRadioBtn"
+            android:visibility="gone"
+            android:text="NFC" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_ble"
+            style="@style/CustomRadioBtn"
+            android:text="Ble" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:id="@+id/radio_bio"
+            style="@style/CustomRadioBtn"
+            android:visibility="gone"
+            android:text="Bio" />
+
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="13dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_finger"
+                style="@style/button"
+                android:onClick="onClick"
+                android:visibility="gone"
+                android:text="FingerPrint Management" />
+
+            <Button
+                android:id="@+id/btn_device"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="Device" />
+
+
+            <Button
+                android:id="@+id/btn_btc"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="BTC" />
+
+            <Button
+                android:id="@+id/btn_eth"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="ETH" />
+
+            <Button
+                android:id="@+id/btn_eos"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="EOS" />
+
+            <Button
+                android:id="@+id/btn_xrp"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="XRP" />
+
+            <Button
+                android:id="@+id/btn_trx"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="TRX" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorLine" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1.2"
+        android:background="@drawable/bg_log">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/txt_log"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:src="@drawable/ic_delete_forever_blue_400_24dp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:textAlignment="textEnd"
+        android:textSize="9sp"
+        android:textColor="@color/colorPrimary"
+        android:text="20201207+0" />
+
+
+</LinearLayout>
