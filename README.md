@@ -28,3 +28,14 @@ Download the project's dependencies libraries. Execute the following instruction
 ```bash
 git submodule update --init --recursive
 ```
+# Publish
+**Release**
++ Comment debug flag '**-DDEBUG**' in build.gradle file which is in the sdk module directory. Make sdk '**Build Variant**' to '**release**'.
+  ```bash
+  cppFlags "",
+        "-std=c++11",
+        // "-DDEBUG",
+        "-DHAVE_ENDIAN_H"
+  ```
+**Debug**
++ '**-DDEBUG**' flag controls sdk's log, please ensure it is open.
