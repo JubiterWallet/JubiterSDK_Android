@@ -9,6 +9,13 @@ Consistent with what is supported by the [JuBiter SDK](https://github.com/Jubite
 | ---- | ---- | ---- |
 | **JubiterSDK_C** | https://github.com/JubiterWallet/JubiterSDK_C.git | JuBiter SDK is what the demo tests. |
 
+# Branch
++ **master**
+  + Stable branch. If you are JuBiter SDK users, we recommend you to use this branch.
++ **2.3** and **dev_3.0**
+  + Develop branch. JuBiter SDK developers use this branch.
+
+
 # Requirements
 + Android Studio
 + CMake 3.0.0+
