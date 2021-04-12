@@ -10,15 +10,15 @@
 
 #include <JUB_CORE.h>
 #include <Jub_Common.pb.h>
-#include <Jub_Bitcoin.pb.h>
-#include <Jub_Ethereum.pb.h>
-#include <Jub_EOS.pb.h>
-#include <Jub_Ripple.pb.h>
 
 #include "include/jni_ble.h"
 #include "include/jni_nfc.h"
 #include "include/jni_comm.h"
 
+#include "include/token/jni_btc.h"
+#include "include/token/jni_eth.h"
+#include "include/token/jni_eos.h"
+#include "include/token/jni_xrp.h"
 #include "include/token/jni_trx.h"
 
 #include "utils/logUtils.h"

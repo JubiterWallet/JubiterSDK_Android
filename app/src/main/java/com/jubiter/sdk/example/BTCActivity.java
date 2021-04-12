@@ -205,7 +205,7 @@ public class BTCActivity extends AppCompatActivity {
     private void transfer() {
         setUnitExecute();
         //showSelectVerifyTypeDialog();
-        String title = "Please input value";
+        String title = "Please input transaction value";
         if (mTransType != JubiterImpl.BTC_TransType.USDT) {
             title = "Please input value (unit: " + mUnits.get(unitIndx) + ")";
         }

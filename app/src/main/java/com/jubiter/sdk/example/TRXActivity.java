@@ -102,7 +102,7 @@ public class TRXActivity extends AppCompatActivity {
     }
 
     private void transfer() {
-        InputDialog inputDialog = new InputDialog(mContext, "Please input value", new InputDialog.callback() {
+        InputDialog inputDialog = new InputDialog(mContext, "Please input transaction value", new InputDialog.callback() {
             @Override
             public void onClickListener(String value) {
                 if (TextUtils.isEmpty(value)) {
