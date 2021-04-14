@@ -30,7 +30,7 @@ git submodule update --init --recursive
 ```
 # Publish
 **Release**
-+ Comment debug flag '**-DDEBUG**' in build.gradle file which is in the sdk module directory. Make sdk '**Build Variant**' to '**release**'.
++ Disable debug flag '**-DDEBUG**' in build.gradle file which is in the sdk module directory. Make sdk '**Build Variant**' to '**release**'.
   ```bash
   cppFlags "",
         "-std=c++11",
@@ -38,4 +38,4 @@ git submodule update --init --recursive
         "-DHAVE_ENDIAN_H"
   ```
 **Debug**
-+ '**-DDEBUG**' flag controls sdk's log, please ensure it is open.
++ '**-DDEBUG**' flag controls sdk's log, please ensure it is enable.

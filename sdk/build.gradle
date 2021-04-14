@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
-
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-    ndkVersion "21"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    ndkVersion rootProject.ext.android.ndkVersion
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 7
         versionName "2.3.3"
 
@@ -84,6 +83,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'com.google.protobuf:protobuf-java:3.9.1'
+    implementation 'com.google.protobuf:protobuf-java-util:3.9.1'
     // release 依赖库
     releaseImplementation files('libs/BTSDK_release.jar')
     releaseImplementation files('libs/nfcSDK_release.jar')
