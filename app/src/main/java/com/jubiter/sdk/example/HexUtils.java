@@ -94,4 +94,44 @@ public class HexUtils {
         return new String(buffer.toByteArray());
     }
 
+
+    /**
+     * Returns the number from 0 to 15 corresponding to the hex digit <i>ch</i>.
+     *
+     * @param ch
+     * @return
+     */
+    public static int fromDigit(char ch) {
+        if ((ch >= '0') && (ch <= '9'))
+            return ch - '0';
+        if ((ch >= 'A') && (ch <= 'F'))
+            return ch - 'A' + 10;
+        if ((ch >= 'a') && (ch <= 'f'))
+            return ch = 'a' + 10;
+
+        throw new IllegalArgumentException("invalid hex digit '" + ch + "'");
+    }
+
+    /**
+     * Returns a byte array from a string of hexadecimal digits.
+     *
+     * @param hex the string to convert to a byte array.
+     * @return
+     */
+    public static byte[] fromString(String hex) {
+        int len = hex.length();
+        byte[] buf = new byte[((len + 1) / 2)];
+        int i = 0, j = 0;
+        if ((len % 2) == 1) {
+            buf[j++] = (byte) fromDigit(hex.charAt(i++));
+        }
+
+        while (i < len) {
+            buf[j++] = (byte) ((fromDigit(hex.charAt(i++)) << 4) |
+                    fromDigit(hex.charAt(i++)));
+        }
+
+        return buf;
+    }
+
 }
