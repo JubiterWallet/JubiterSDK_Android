@@ -821,7 +821,7 @@ public class JubiterImpl {
             @Override
             public void run() {
                 callback.onSuccess("EOSGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterEOS.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+                CommonProtos.ResultString mainHDNode = JuBiterEOS.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
                 if (mainHDNode.getStateCode() != 0) {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;
@@ -1102,7 +1102,7 @@ public class JubiterImpl {
             @Override
             public void run() {
                 callback.onSuccess("XRPGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterXRP.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+                CommonProtos.ResultString mainHDNode = JuBiterXRP.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
                 if (mainHDNode.getStateCode() != 0) {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;
@@ -1236,7 +1236,7 @@ public class JubiterImpl {
             @Override
             public void run() {
                 callback.onSuccess("TRXGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+                CommonProtos.ResultString mainHDNode = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
                 if (mainHDNode.getStateCode() != 0) {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;

@@ -38,7 +38,7 @@ jbyteArray stdString2jbyteArray(std::string funcName, JNIEnv *env, std::string s
 
 
 jbyteArray buildPbRvString(std::string funcName, JNIEnv *env, JUB_RV rv, JUB_CHAR_PTR str) {
-    if (str == nullptr) {
+    if (rv != JUBR_OK) {
         LOG_ERR("%s rv: %d", funcName.c_str(), rv);
     } else {
         LOG_ERR("%s rv: %d, value: %s", funcName.c_str(), rv, str);
