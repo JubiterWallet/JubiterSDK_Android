@@ -9,8 +9,8 @@ android {
         applicationId "com.jubiter.sdk.example"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -19,6 +19,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "jubiter-${defaultConfig.versionName}-${buildType.name}.apk"
         }
     }
 
