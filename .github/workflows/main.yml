@@ -34,7 +34,7 @@ jobs:
       uses: nttld/setup-ndk@v1
       id: setup-ndk
       with:
-        ndk-version: 21.1.6352462
+        ndk-version: r21e
         add-to-path: false
         
     - name: Setup cmake
