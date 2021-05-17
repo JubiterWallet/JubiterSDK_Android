@@ -28,11 +28,23 @@ jobs:
       run: |
         sudo chmod 777 ./gradlew
         sudo chmod 777 ./ActionBuild.sh
+        
+    - name: Setup NDK
+      uses: nttld/setup-ndk@v1
+      id: setup-ndk
+      with:
+        ndk-version: 21.1.6352462
+        add-to-path: false
+        
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.9
+      with:
+        cmake-version: '3.10.2.4988404'
 
-    - name: Android Build env
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      with: 
-         args: "./ActionBuild.sh"
+#     - name: Android Build env
+#       uses: vgaidarji/android-github-actions-build@v1.0.1
+#       with: 
+#          args: "./ActionBuild.sh"
 
     - name: Create Release
       id: create_release
