@@ -1325,5 +1325,10 @@ public class JubiterImpl {
         CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
 
         CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
+        if (signRes.getStateCode() == 0) {
+            callback.onSuccess(signRes.getValue());
+        } else {
+            callback.onFailed(signRes.getStateCode());
+        }
     }
 }

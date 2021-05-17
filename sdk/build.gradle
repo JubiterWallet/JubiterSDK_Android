@@ -9,7 +9,7 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 10
-        versionName "2.3.7"
+        versionName "2.3.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -18,7 +18,7 @@ android {
             cmake {
                 cppFlags "",
                         "-std=c++11",
-                        "-DDEBUG",
+//                        "-DDEBUG",
                         "-DHAVE_ENDIAN_H"
 
                 arguments "-DANDROID_TOOLCHAIN=clang",
