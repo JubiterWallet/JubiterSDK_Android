@@ -6,7 +6,7 @@ name: Release
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ '2.3' ]
 #     tags:
 #     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
