@@ -52,6 +52,7 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
+        body_path: ./release_logs/${{github.ref}}.md
         
 #     - name: Build aar
 #       run: |
