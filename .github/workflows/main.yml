@@ -10,8 +10,8 @@ on:
     # 语义化版本号限制
     # https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
     tags:
-      - '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)' 
-#       - '*.*.*' # Push events to matching *.*.*, i.e. 1.0, 20.15.10
+#       - '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)' 
+      - '*.*.*' # Push events to matching *.*.*, i.e. 1.0, 20.15.10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
