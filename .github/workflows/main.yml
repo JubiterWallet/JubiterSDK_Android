@@ -8,7 +8,7 @@ on:
   push:
     branches: [ '2.3' ]
     tags:
-    - '*.*.*' # Push events to matching *.*.*, i.e. 1.0, 20.15.10
+      - '*.*.*' # Push events to matching *.*.*, i.e. 1.0, 20.15.10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -53,19 +53,10 @@ jobs:
         draft: false
         prerelease: false
         
-    - name: Build aar
-      run: |
-            ./gradlew :sdk:assembleDebug
-            ./gradlew :sdk:assembleRelease
-
-
-    # 上传 app 文件
-    - name: Upload AAR
-      uses: softprops/action-gh-release@v1
-      with:
-        files: ./sdk/build/outputs/aar/*.aar
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Build aar
+#       run: |
+#             ./gradlew :sdk:assembleDebug
+#             ./gradlew :sdk:assembleRelease
 
 #     - name: Upload AAR
 #       uses: actions/upload-release-asset@v1
@@ -88,6 +79,16 @@ jobs:
         files: ./app/build/outputs/apk/release/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+        
+        # 上传 app 文件
+    - name: Upload AAR
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./sdk/build/outputs/aar/*.aar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
 
 #     - name: Upload APK
 #       uses: actions/upload-release-asset@v1
