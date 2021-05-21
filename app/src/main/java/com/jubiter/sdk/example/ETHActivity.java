@@ -1,5 +1,6 @@
 package com.jubiter.sdk.example;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -7,6 +8,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class ETHActivity extends AppCompatActivity {
     private String transferInputValue;
     private JubiterImpl.ETH_TransType mTransType;
     private SelectDialog mSelectDialog;
+    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +50,20 @@ public class ETHActivity extends AppCompatActivity {
     }
 
     private void createETHContext() {
+        mProgress.setMessage("Create context in progress....");
+        mProgress.show();
         mJubiter.ethCreateContext(new JubCallback<Integer>() {
             @Override
             public void onSuccess(Integer integer) {
                 showLog("ethCreateContext success " + integer);
                 mEthContextID = integer;
+                mProgress.dismiss();
             }
 
             @Override
             public void onFailed(long errorCode) {
                 showLog("ethCreateContext error" + errorCode);
+                mProgress.dismiss();
             }
         });
     }
@@ -97,6 +104,8 @@ public class ETHActivity extends AppCompatActivity {
                         mSelectDialog.dismiss();
                     }
                 });
+        mProgress = new ProgressDialog(mContext);
+        mProgress.setCancelable(false);
     }
 
     public void onClick(View view) {

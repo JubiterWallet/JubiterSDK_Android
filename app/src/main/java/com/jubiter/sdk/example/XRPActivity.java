@@ -1,5 +1,6 @@
 package com.jubiter.sdk.example;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -33,6 +34,8 @@ public class XRPActivity extends AppCompatActivity {
     private String transferInputValue;
     private SelectDialog mSelectDialog;
 
+    private ProgressDialog mProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +47,20 @@ public class XRPActivity extends AppCompatActivity {
     }
 
     private void createXRPContext() {
+        mProgress.setMessage("Create context in progress....");
+        mProgress.show();
         mJubiter.xrpCreateContext(new JubCallback<Integer>() {
             @Override
             public void onSuccess(Integer integer) {
                 showLog("xrpCreateContext success " + integer);
                 mXRPhContextID = integer;
+                mProgress.dismiss();
             }
 
             @Override
             public void onFailed(long errorCode) {
                 showLog("xrpCreateContext error" + errorCode);
+                mProgress.dismiss();
             }
         });
     }
@@ -61,6 +68,9 @@ public class XRPActivity extends AppCompatActivity {
     private void initView() {
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
+
+        mProgress = new ProgressDialog(mContext);
+        mProgress.setCancelable(false);
 
         ArrayList<String> strings = new ArrayList<>();
         strings.add("Use virtual keyboard");

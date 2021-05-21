@@ -1,5 +1,6 @@
 package com.jubiter.sdk.example;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +27,16 @@ public class TRXActivity extends AppCompatActivity {
 
     private ScrollView mScrollView;
     private TextView mTxtLog;
+    private Spinner mSpinner;
 
     private Context mContext;
     private JubiterImpl mJubiter;
     private Integer mTRXhContextID = -1;
     private String transferInputValue;
     private SelectDialog mSelectDialog;
+    private JubiterImpl.TRX_TransType mTransType;
+
+    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +49,20 @@ public class TRXActivity extends AppCompatActivity {
     }
 
     private void createTRXContext() {
+        mProgress.setMessage("Create context in progress....");
+        mProgress.show();
         mJubiter.trxCreateContext(new JubCallback<Integer>() {
             @Override
             public void onSuccess(Integer integer) {
                 showLog("trxCreateContext success " + integer);
                 mTRXhContextID = integer;
+                mProgress.dismiss();
             }
 
             @Override
             public void onFailed(long errorCode) {
                 showLog("trxCreateContext error" + errorCode);
+                mProgress.dismiss();
             }
         });
     }
@@ -60,6 +70,41 @@ public class TRXActivity extends AppCompatActivity {
     private void initView() {
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
+
+        mProgress = new ProgressDialog(mContext);
+        mProgress.setCancelable(false);
+
+        mSpinner = findViewById(R.id.spinner_trx);
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        mTransType = JubiterImpl.TRX_TransType.TRX;
+                        break;
+                    case 1:
+                        mTransType = JubiterImpl.TRX_TransType.TRC10;
+                        break;
+                    case 2:
+                        mTransType = JubiterImpl.TRX_TransType.TRCFree;
+                        break;
+                    case 3:
+                        mTransType = JubiterImpl.TRX_TransType.TRCUnfreeze;
+                        break;
+                    case 4:
+                        mTransType = JubiterImpl.TRX_TransType.TRC20;
+                        break;
+                    case 5:
+                        mTransType = JubiterImpl.TRX_TransType.TRC20_TRANSFER;
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         ArrayList<String> strings = new ArrayList<>();
         strings.add("Use virtual keyboard");
@@ -187,7 +232,7 @@ public class TRXActivity extends AppCompatActivity {
     }
 
     private void executeTrans() {
-        mJubiter.trxTransaction(mTRXhContextID, transferInputValue, new JubCallback<String>() {
+        mJubiter.trxTransaction(mTRXhContextID, mTransType, transferInputValue,new JubCallback<String>() {
             @Override
             public void onSuccess(String s) {
                 showLog("trxTransaction " + s);
