@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.6.0)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 
 # 编译器编译时产生调试信息(保证 RELEASE 版中没有 -g，否则会让最终的库变大)
-#set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_DEBUG "-DDEBUG")
 
 
 # 只有在 RELEASE 版时才有效
