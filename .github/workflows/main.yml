@@ -17,7 +17,7 @@ on:
 jobs:
 
   # 检测语义化版本号
-  change_tag:
+  verify_tag:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     outputs:
@@ -36,7 +36,7 @@ jobs:
 
   # This workflow contains a single job called "build"
   build:
-    needs: [change_tag]
+    needs: [verify_tag]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
