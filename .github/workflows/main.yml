@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # 检测 tag 验证结果
-    if: ${{ needs.change_tag.outputs.match_value }}
+    if: ${{ needs.verify_tag.outputs.match_value }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
