@@ -30,5 +30,10 @@
 
     <string-array name="trx">
         <item>TRX</item>
+        <item>TRC10</item>
+        <item>TRCFree</item>
+        <item>TRCUnfreeze</item>
+        <item>TRC20</item>
+<!--        <item>TRC20_TRANSFER</item>-->
     </string-array>
 </resources>

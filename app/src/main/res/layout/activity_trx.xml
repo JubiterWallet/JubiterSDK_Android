@@ -82,12 +82,6 @@
                 android:onClick="onClick"
                 android:text="SET_TIMEOUT" />
 
-            <Button
-                android:id="@+id/trx_build_trc20"
-                style="@style/button"
-                android:onClick="onClick"
-                android:text="SET_TIMEOUT" />
-
 
         </LinearLayout>
 

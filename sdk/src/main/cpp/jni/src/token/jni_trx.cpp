@@ -114,7 +114,7 @@ native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
 JNIEXPORT jint JNICALL native_TRXSetTRC10Asset(JNIEnv *env, jclass clz, jint contextID,
         jbyteArray assetName, jint unitDP, jbyteArray assetId) {
     auto assetNameStr = jbyteArray2stdString(env, assetName);
-    auto assetIdStr = jbyteArray2stdString(env, assetName);
+    auto assetIdStr = jbyteArray2stdString(env, assetId);
     JUB_RV rv = JUB_SetTRC10Asset(contextID, assetNameStr.c_str(), unitDP, assetIdStr.c_str());
     if (JUBR_OK != rv) {
         LOG_ERR("JUB_SetTRC10Asset rv: %08lx", rv);
@@ -294,6 +294,11 @@ JNINativeMethod trxNativeMethods[] = {
                 "nativeTRXBuildTRC20Abi",
                 "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
                 (void *) native_TRXBuildTRC20Abi
+        },
+        {
+                "nativeTRXSetTRC10Asset",
+                "(I[BI[B)I",
+                (void *) native_TRXSetTRC10Asset
         },
         {
                 "nativeTRXPackContract",

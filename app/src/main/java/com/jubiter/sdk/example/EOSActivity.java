@@ -1,5 +1,6 @@
 package com.jubiter.sdk.example;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -35,6 +36,7 @@ public class EOSActivity extends AppCompatActivity {
     private String transferInputValue;
     private JubiterImpl.EOS_TransType mTransType;
     private SelectDialog mSelectDialog;
+    private ProgressDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +49,20 @@ public class EOSActivity extends AppCompatActivity {
     }
 
     private void createEOSContext() {
+        mDialog.setMessage("Create context in progress....");
+        mDialog.show();
         mJubiter.eosCreateContext(new JubCallback<Integer>() {
             @Override
             public void onSuccess(Integer integer) {
                 showLog("eosCreateContext success " + integer);
                 mEosContextID = integer;
+                mDialog.dismiss();
             }
 
             @Override
             public void onFailed(long errorCode) {
                 showLog("eosCreateContext error" + errorCode);
+                mDialog.dismiss();
             }
         });
     }
@@ -65,6 +71,7 @@ public class EOSActivity extends AppCompatActivity {
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
         mSpinner = findViewById(R.id.spinner_eos);
+        mDialog = new ProgressDialog(this);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

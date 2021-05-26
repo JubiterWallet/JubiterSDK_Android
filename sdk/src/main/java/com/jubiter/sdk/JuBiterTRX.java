@@ -180,6 +180,21 @@ public final class JuBiterTRX {
     }
 
     /**
+     * 设置TRC10 Asset
+     *
+     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param assetName       asset名称
+     * @param unitDP          允许的小数点后位数
+     * @param assetId asset ID
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static int SetTRC10Asset(int contextID, byte[] assetName,
+                                                          int unitDP, byte[] assetId) {
+        return NativeApi.nativeTRXSetTRC10Asset(contextID, assetName, unitDP,
+                assetId);
+    }
+
+    /**
      * TRX 打包协议
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回

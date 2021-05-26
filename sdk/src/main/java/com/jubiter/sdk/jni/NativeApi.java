@@ -168,6 +168,9 @@ public class NativeApi {
     public static native byte[] nativeTRXSignTransaction(int contextID, byte[] bip32,
                                                          String jPackedContractInPb);
 
+    public static native int nativeTRXSetTRC10Asset(int contextID, byte[] assetName,
+                                                         int unitDP, byte[] assetId);
+
     public static native byte[] nativeTRXBuildTRC20Abi(int contextID, String tokenName,
                                                         int unitDP,
                                                         String contractAddress,
