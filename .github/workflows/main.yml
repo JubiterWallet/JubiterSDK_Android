@@ -15,10 +15,33 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
+  # 检测语义化版本号
+  verify_tag:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    outputs:
+      # 对外返回值，true: 正则匹配符合，false: 不符合
+      match_value: ${{ steps.regex-match.outputs.match != '' }}
+    steps:
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1.0.0
+
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ steps.tag.outputs.tag }}
+          regex: '^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$'
+
   # This workflow contains a single job called "build"
   build:
+    needs: [verify_tag]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # 检测 tag 验证结果
+    if: ${{ needs.verify_tag.outputs.match_value }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -56,26 +79,12 @@ jobs:
         draft: false
         prerelease: false
         body_path: ./release_logs/${{github.ref}}.md
-        
-#     - name: Build aar
-#       run: |
-#             ./gradlew :sdk:assembleDebug
-#             ./gradlew :sdk:assembleRelease
 
-#     - name: Upload AAR
-#       uses: actions/upload-release-asset@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-#         asset_path: ./sdk/build/outputs/aar/*.aar 
-#         asset_content_type: application/vnd.android.package-archive
-        
+    # 构建 apk
     - name: Build apk
       run: |
             ./gradlew assembleDebug
             ./gradlew assembleRelease
-
     # 上传 app 文件
     - name: Upload APK
       uses: softprops/action-gh-release@v1
@@ -83,8 +92,7 @@ jobs:
         files: ./app/build/outputs/apk/release/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-        
+
         # 上传 app 文件
     - name: Upload AAR
       uses: softprops/action-gh-release@v1
@@ -92,13 +100,3 @@ jobs:
         files: ./sdk/build/outputs/aar/*.aar
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-
-#     - name: Upload APK
-#       uses: actions/upload-release-asset@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-#         asset_path: ./app/build/outputs/apk/release/*.apk 
-#         asset_content_type: application/vnd.android.package-archive
