@@ -601,68 +601,38 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         methodList.push_back(gMethods[i]);
     }
 
-    // BLE 注册
-    jclass bleClazz = getBleClass(env);
-    std::vector<JNINativeMethod> bleMethodList = getBleNativeMethods();
-    if (env->RegisterNatives(bleClazz, bleMethodList.data(), bleMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives BLE fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives BLE ok");
+    // 注册函数列表
+    std::map<jclass, std::vector<JNINativeMethod>> nativeMethodMap;
+    // device
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBleClass(env), getBleNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getNfcClass(env), getNfcNativeMethods()));
+    // coin
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBtcClass(env), getBtcNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getEthClass(env), getEthNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getEosClass(env), getEosNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getXrpClass(env), getXrpNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getTrxClass(env), getTrxNativeMethods()));
 
-    // NFC 注册
-    jclass nfcClazz = getNfcClass(env);
-    std::vector<JNINativeMethod> nfcMethodList = getNfcNativeMethods();
-    if (env->RegisterNatives(nfcClazz, nfcMethodList.data(), nfcMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives NFC fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives NFC ok");
+    for (auto iterator = nativeMethodMap.begin(); iterator != nativeMethodMap.end(); ++iterator) {
+        jclass tmpClazz = iterator->first;
+        std::vector<JNINativeMethod> tmpMethodList = iterator->second;
 
-    // BTC 注册
-    jclass btcClazz = getBtcClass(env);
-    std::vector<JNINativeMethod> btcMethodList = getBtcNativeMethods();
-    if (env->RegisterNatives(btcClazz, btcMethodList.data(), btcMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives BTC fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives BTC ok");
+        const char* localName = "";
 
-    // ETH 注册
-    jclass ethClazz = getEthClass(env);
-    std::vector<JNINativeMethod> ethMethodList = getEthNativeMethods();
-    if (env->RegisterNatives(ethClazz, ethMethodList.data(), ethMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives ETH fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives ETH ok");
+#ifdef DEBUG
+        jclass cls_clazz = env->GetObjectClass(tmpClazz);
+        jmethodID methodId = env->GetMethodID(cls_clazz, "getSimpleName", "()Ljava/lang/String;");
+        jstring methodName = (jstring) env->CallObjectMethod(tmpClazz, methodId);
+        localName = env->GetStringUTFChars(methodName, JNI_FALSE);
+#endif
 
-    // EOS 注册
-    jclass eosClazz = getEosClass(env);
-    std::vector<JNINativeMethod> eosMethodList = getEosNativeMethods();
-    if (env->RegisterNatives(eosClazz, eosMethodList.data(), eosMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives EOS fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives EOS ok");
+        if (env->RegisterNatives(tmpClazz, tmpMethodList.data(), tmpMethodList.size()) < JNI_OK) {
+            LOG_ERR(">>> RegisterNatives %s fail", localName);
+            return ret;
+        }
 
-    // XRP 注册
-    jclass xrpClazz = getXrpClass(env);
-    std::vector<JNINativeMethod> xrpMethodList = getXrpNativeMethods();
-    if (env->RegisterNatives(xrpClazz, xrpMethodList.data(), xrpMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives XRP fail");
-        return ret;
+        LOG_DEBUG(">>> RegisterNatives %s ok", localName);
     }
-    LOG_DEBUG(">>> RegisterNatives XRP ok");
-
-    // TRX 注册
-    jclass trxClazz = getTrxClass(env);
-    std::vector<JNINativeMethod> trxMethodList = getTrxNativeMethods();
-    if (env->RegisterNatives(trxClazz, trxMethodList.data(), trxMethodList.size()) < JNI_OK) {
-        LOG_ERR(">>> RegisterNatives TRX fail");
-        return ret;
-    }
-    LOG_DEBUG(">>> RegisterNatives TRX ok");
 
     // 注册 JNI 方法
     if (env->RegisterNatives(clazz, methodList.data(), methodList.size()) < JNI_OK) {
