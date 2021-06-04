@@ -95,8 +95,11 @@ public class TRXActivity extends AppCompatActivity {
                         mTransType = JubiterImpl.TRX_TransType.TRC20;
                         break;
                     case 5:
-                        mTransType = JubiterImpl.TRX_TransType.TRC20_TRANSFER;
+                        mTransType = JubiterImpl.TRX_TransType.TRC721;
                         break;
+//                    case 5:
+//                        mTransType = JubiterImpl.TRX_TransType.TRC20_TRANSFER;
+//                        break;
                 }
             }
 

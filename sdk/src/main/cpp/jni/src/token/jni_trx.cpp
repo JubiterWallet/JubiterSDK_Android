@@ -248,6 +248,32 @@ native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) 
     return buildPbRvString("JUB_PackContractTRX 2", env, rv, packedContractInPB);
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_TRXBuildTRC721Abi(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jstring tokenName,
+                         jstring contractAddress,
+                         jstring tokenFrom,
+                         jstring tokenTo,
+                         jstring tokenID) {
+    auto strTokenName = jstring2stdString(env, tokenName);
+    auto strContractAddress = jstring2stdString(env, contractAddress);
+    auto strTokenFrom = jstring2stdString(env, tokenFrom);
+    auto strTokenTo = jstring2stdString(env, tokenTo);
+    auto strTokenID = jstring2stdString(env, tokenID);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_BuildTRC721Abi(contextID,
+                                   (JUB_CHAR_PTR) strTokenName.c_str(),
+                                   (JUB_CHAR_PTR) strContractAddress.c_str(),
+                                   (JUB_CHAR_PTR) strTokenFrom.c_str(),
+                                   (JUB_CHAR_PTR) strTokenTo.c_str(),
+                                   (JUB_CHAR_PTR) strTokenID.c_str(),
+                                   &abi);
+
+    return buildPbRvString("JUB_BuildTRC721Abi", env, rv, abi);
+}
+
 
 JNINativeMethod trxNativeMethods[] = {
         {
@@ -304,6 +330,11 @@ JNINativeMethod trxNativeMethods[] = {
                 "nativeTRXPackContract",
                 "(I[B)[B",
                 (void *) native_TRXPackContract
+        },
+        {
+                "nativeTRXBuildTRC721Abi",
+                "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_TRXBuildTRC721Abi
         },
 };
 

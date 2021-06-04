@@ -160,6 +160,33 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
     return buildPbRvString("JUB_SignContractETH", env, JUBR_ARGUMENTS_BAD, "");
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC721AbiETH(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jstring tokenName,
+                         jstring contractAddress,
+                         jstring tokenFrom,
+                         jstring tokenTo,
+                         jstring tokenID) {
+    auto strTokenName = jstring2stdString(env, tokenName);
+    auto strContractAddress = jstring2stdString(env, contractAddress);
+    auto strTokenFrom = jstring2stdString(env, tokenFrom);
+    auto strTokenTo = jstring2stdString(env, tokenTo);
+    auto strTokenID = jstring2stdString(env, tokenID);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_BuildERC721AbiETH(contextID,
+                                      (JUB_CHAR_PTR) strTokenName.c_str(),
+                                      (JUB_CHAR_PTR) strContractAddress.c_str(),
+                                      (JUB_CHAR_PTR) strTokenFrom.c_str(),
+                                      (JUB_CHAR_PTR) strTokenTo.c_str(),
+                                      (JUB_CHAR_PTR) strTokenID.c_str(),
+                                      &abi);
+
+    return buildPbRvString("JUB_BuildERC721AbiETH", env, rv, abi);
+}
+
+
 JNINativeMethod ethNativeMethods[] = {
 
         {
@@ -211,6 +238,11 @@ JNINativeMethod ethNativeMethods[] = {
                 "nativeETHSignContract",
                 "(I[B)[B",
                 (void *) native_SignContractETH
+        },
+        {
+            "nativeETHBuildERC721Abi",
+            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+            (void *) native_BuildERC721AbiETH
         },
 };
 

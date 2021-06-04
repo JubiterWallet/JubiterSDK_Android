@@ -52,6 +52,15 @@ native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenNa
 JNIEXPORT jbyteArray JNICALL
 native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx);
 
+JNIEXPORT jbyteArray JNICALL
+native_TRXBuildTRC721Abi(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jstring tokenName,
+                         jstring contractAddress,
+                         jstring tokenFrom,
+                         jstring tokenTo,
+                         jstring tokenID);
 
 jclass getTrxClass(JNIEnv *env);
 

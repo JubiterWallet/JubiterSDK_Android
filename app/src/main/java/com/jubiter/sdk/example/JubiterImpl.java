@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -26,8 +25,6 @@ import com.jubiter.sdk.proto.EthereumProtos;
 import com.jubiter.sdk.proto.RippleProtos;
 
 import org.tron.protos.Protocol;
-import org.tron.protos.contract.AssetIssueContractOuterClass;
-import org.tron.protos.contract.SmartContractOuterClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +48,11 @@ public class JubiterImpl {
     }
 
     public enum ETH_TransType {
-        ETH, ETH_ERC20,
+        ETH, ETH_ERC20, ETH_ERC721
     }
 
     public enum TRX_TransType {
-        TRX, TRC10, TRCFree, TRCUnfreeze, TRC20, TRC20_TRANSFER
+        TRX, TRC10, TRCFree, TRCUnfreeze, TRC20, TRC20_TRANSFER, TRC721
     }
 
     private Context mContext;
@@ -780,6 +777,38 @@ public class JubiterImpl {
                     }
                 }
             });
+        } else if (transType == ETH_TransType.ETH_ERC721) {
+
+            ThreadUtils.execute(new Runnable() {
+                @Override
+                public void run() {
+                    CommonProtos.ResultString erc721Abi = JuBiterEthereum.buildERC721Abi(
+                            contextID,
+                            "Meebits",
+                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7",
+                            "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
+                            "0xbb11ddc26f4e55475775310e5cbe188650e75212",
+                            "14973"
+                    );
+                    if (erc721Abi.getStateCode() != 0) {
+                        callback.onFailed(erc721Abi.getStateCode());
+                        return;
+                    }
+                    EthereumProtos.TransactionETH erc721Tx = builder.setNonce(12)
+                            .setGasLimit(96000)
+                            .setValueInWei("0")
+                            .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
+                            .setInput(erc721Abi.getValue())
+                            .build();
+                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc721Tx);
+                    if (resultString.getStateCode() == 0) {
+                        callback.onSuccess(resultString.getValue());
+                    } else {
+                        callback.onFailed(resultString.getStateCode());
+                    }
+                }
+            });
+
         } else {
             final EthereumProtos.TransactionETH transactionETH = builder.setNonce(13)
                     .setGasLimit(310000)
@@ -1413,10 +1442,42 @@ public class JubiterImpl {
                         .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
                         .setExpiration(1603346250000L)
                         .setTimestamp(1603346193445L)
-                        .setFeeLimit(0)
+                        .setFeeLimit(120000)
                         .build());
                 break;
             case TRC20_TRANSFER:
+
+                break;
+
+            case TRC721:
+                CommonProtos.ResultString trc721AbiRes = JuBiterTRX.buildTRC721Abi(
+                        contextID,
+                        "DWARFDWARFDWARF",
+                        "TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6",
+                        "TR1D93WMkqjhFSxDsLTedzXVPHQXsGdGQi",
+                        "TV6tnwwWAbRxnYZ5TnSdLbibznWZLY4vXf",
+                        "7600000000000000");
+                if (trc721AbiRes.getStateCode() != 0) {
+                    callback.onFailed(trc721AbiRes.getStateCode());
+                    return;
+                }
+
+                builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
+                                .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
+                                .setParameter(Any.pack(org.tron.protos.contract.SmartContractOuterClass.TriggerSmartContract.newBuilder()
+                                        .setOwnerAddress(ByteString.copyFrom("TR1D93WMkqjhFSxDsLTedzXVPHQXsGdGQi".getBytes()))
+                                        .setContractAddress(ByteString.copyFrom("TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6".getBytes()))
+                                        .setData(ByteString.copyFrom(trc721AbiRes.getValue().getBytes()))
+                                        .build()))
+                                .build())
+                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
+                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+                        .setExpiration(1603346250000L)
+                        .setTimestamp(1603346193445L)
+                        .setFeeLimit(120000)
+                        .build());
+                break;
             default:
                 break;
         }
@@ -1430,6 +1491,7 @@ public class JubiterImpl {
 
         CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
 
+//        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, transactionTrx.toString());
         CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
         if (signRes.getStateCode() == 0) {
             callback.onSuccess(signRes.getValue());

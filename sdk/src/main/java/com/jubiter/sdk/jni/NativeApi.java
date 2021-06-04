@@ -104,6 +104,13 @@ public class NativeApi {
                                                        String address,
                                                        String amountInWei);
 
+    public static native byte[] nativeETHBuildERC721Abi(int contextID,
+                                                        String tokenName,
+                                                        String contractAddress,
+                                                        String tokenFrom,
+                                                        String tokenTo,
+                                                        String tokenID);
+
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 
     public static native byte[] nativeETHSignBytestring(int contextID, byte[] bip32, String data);
@@ -169,13 +176,20 @@ public class NativeApi {
                                                          String jPackedContractInPb);
 
     public static native int nativeTRXSetTRC10Asset(int contextID, byte[] assetName,
-                                                         int unitDP, byte[] assetId);
+                                                    int unitDP, byte[] assetId);
 
     public static native byte[] nativeTRXBuildTRC20Abi(int contextID, String tokenName,
-                                                        int unitDP,
+                                                       int unitDP,
+                                                       String contractAddress,
+                                                       String address,
+                                                       String amount);
+
+    public static native byte[] nativeTRXBuildTRC721Abi(int contextID,
+                                                        String tokenName,
                                                         String contractAddress,
-                                                        String address,
-                                                        String amount);
+                                                        String tokenFrom,
+                                                        String tokenTo,
+                                                        String tokenID);
 
     public static native byte[] nativeTRXPackContract(int contextID, byte[] tx);
 

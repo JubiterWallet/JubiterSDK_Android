@@ -630,7 +630,6 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
             LOG_ERR(">>> RegisterNatives %s fail", localName);
             return ret;
         }
-
         LOG_DEBUG(">>> RegisterNatives %s ok", localName);
     }
 

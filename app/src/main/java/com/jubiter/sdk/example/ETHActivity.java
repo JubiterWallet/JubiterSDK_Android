@@ -8,13 +8,11 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.jubiter.sdk.example.dialog.InputDialog;
 import com.jubiter.sdk.example.dialog.PathDialog;
@@ -81,6 +79,9 @@ public class ETHActivity extends AppCompatActivity {
                         break;
                     case 1:
                         mTransType = JubiterImpl.ETH_TransType.ETH_ERC20;
+                        break;
+                    case 2:
+                        mTransType = JubiterImpl.ETH_TransType.ETH_ERC721;
                         break;
                 }
             }

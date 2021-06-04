@@ -48,6 +48,16 @@ native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip
 JNIEXPORT jbyteArray JNICALL
 native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx);
 
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC721AbiETH(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jstring tokenName,
+                         jstring contractAddress,
+                         jstring tokenFrom,
+                         jstring tokenTo,
+                         jstring tokenID);
+
 
 jclass getEthClass(JNIEnv *env);
 
