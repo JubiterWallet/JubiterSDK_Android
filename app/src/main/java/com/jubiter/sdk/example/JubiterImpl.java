@@ -1338,6 +1338,9 @@ public class JubiterImpl {
                                String transferInputValue, final JubCallback<String> callback) {
         transferInputValue = fixValueStr(transferInputValue, "", 6).replace(".", "");
         org.tron.protos.Protocol.Transaction.Builder builder = org.tron.protos.Protocol.Transaction.newBuilder();
+
+        String unsignedData = "";
+
         switch (transType) {
             case TRX:
                 builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
@@ -1461,22 +1464,32 @@ public class JubiterImpl {
                     callback.onFailed(trc721AbiRes.getStateCode());
                     return;
                 }
+                Log.d(TAG, "build trc721 (String) >>>" + trc721AbiRes.getValue());
 
-                builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+                // todo: TRC721 地址前缀 PREFIX 不确定，TRX 为 0x41，trc20 未检查，TRC721 待定（测试上链情况）
+                Protocol.Transaction.raw raw = org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
                                 .setParameter(Any.pack(org.tron.protos.contract.SmartContractOuterClass.TriggerSmartContract.newBuilder()
-                                        .setOwnerAddress(ByteString.copyFrom("TR1D93WMkqjhFSxDsLTedzXVPHQXsGdGQi".getBytes()))
-                                        .setContractAddress(ByteString.copyFrom("TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6".getBytes()))
-                                        .setData(ByteString.copyFrom(trc721AbiRes.getValue().getBytes()))
+                                        // TR1D93WMkqjhFSxDsLTedzXVPHQXsGdGQi
+                                        .setOwnerAddress(ByteString.copyFrom(HexUtils.fromString("41A4EAD5670E9CCBB14B6FE39F38AD77D7A81D34E0")))
+                                        // TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6
+                                        .setContractAddress(ByteString.copyFrom(HexUtils.fromString("41786A052D68171D0DFEE36D3C440968FCFE3906BA")))
+                                        // warning: 不能用 trc721AbiRes.getValueBytes() ，虽然数据类型一致，但是内容不对
+                                        .setData(ByteString.copyFrom(HexUtils.fromString(trc721AbiRes.getValue())))
                                         .build()))
                                 .build())
-                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
-                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+                        .setRefBlockBytes(ByteString.copyFrom(HexUtils.fromString("8610")))
+                        .setRefBlockHash(ByteString.copyFrom(HexUtils.fromString("6a630e523f995e67")))
                         .setExpiration(1603346250000L)
                         .setTimestamp(1603346193445L)
-                        .setFeeLimit(120000)
-                        .build());
+                        .setFeeLimit(12000000)
+                        .build();
+
+                byte[] array = raw.toByteArray();
+                unsignedData = HexUtils.convertBytesToString(array);
+                Log.d(TAG, "trc721 unsigned data >>>" + unsignedData);
+
                 break;
             default:
                 break;
@@ -1489,10 +1502,10 @@ public class JubiterImpl {
 
         // 无数据缓存，跳过 verifyPIN
 
-        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+//        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
 
-//        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, transactionTrx.toString());
-        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
+        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, unsignedData);
+//        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
         if (signRes.getStateCode() == 0) {
             callback.onSuccess(signRes.getValue());
         } else {

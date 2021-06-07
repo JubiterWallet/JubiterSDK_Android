@@ -1,7 +1,6 @@
 package com.jubiter.sdk.example;
 
 
-import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
 
 /**
@@ -76,62 +75,60 @@ public class HexUtils {
         return lp.add(rp).mod(new BigInteger("18446744073709551616"));
     }
 
+    public static String byteToHex(byte num) {
+        char[] hexDigits = new char[2];
+        hexDigits[0] = Character.forDigit((num >> 4) & 0xF, 16);
+        hexDigits[1] = Character.forDigit((num & 0xF), 16);
+        return new String(hexDigits);
+    }
+
     /**
      * Convert bytes to string.
      *
-     * @param data bytes array
+     * @param byteArray bytes array
      * @return string
      */
-    public static String convertBytesToString(final byte[] data) {
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        for (int i = 0; i < data.length; i++) {
-            int uVal = data[i] & 0xFF;
-
-            buffer.write(ENCODE_BYTE_TABLE[(uVal >>> 4)]);
-            buffer.write(ENCODE_BYTE_TABLE[uVal & 0xF]);
+    public static String convertBytesToString(final byte[] byteArray) {
+        StringBuffer hexStringBuffer = new StringBuffer();
+        for (int i = 0; i < byteArray.length; i++) {
+            hexStringBuffer.append(byteToHex(byteArray[i]));
         }
-
-        return new String(buffer.toByteArray());
+        return hexStringBuffer.toString();
     }
 
 
-    /**
-     * Returns the number from 0 to 15 corresponding to the hex digit <i>ch</i>.
-     *
-     * @param ch
-     * @return
-     */
-    public static int fromDigit(char ch) {
-        if ((ch >= '0') && (ch <= '9'))
-            return ch - '0';
-        if ((ch >= 'A') && (ch <= 'F'))
-            return ch - 'A' + 10;
-        if ((ch >= 'a') && (ch <= 'f'))
-            return ch = 'a' + 10;
+    public static byte hexToByte(String hexString) {
+        int firstDigit = toDigit(hexString.charAt(0));
+        int secondDigit = toDigit(hexString.charAt(1));
+        return (byte) ((firstDigit << 4) + secondDigit);
+    }
 
-        throw new IllegalArgumentException("invalid hex digit '" + ch + "'");
+    private static int toDigit(char hexChar) {
+        int digit = Character.digit(hexChar, 16);
+        if(digit == -1) {
+            throw new IllegalArgumentException(
+                    "Invalid Hexadecimal Character: "+ hexChar);
+        }
+        return digit;
     }
 
     /**
      * Returns a byte array from a string of hexadecimal digits.
      *
-     * @param hex the string to convert to a byte array.
+     * @param hexString the string to convert to a byte array.
      * @return
      */
-    public static byte[] fromString(String hex) {
-        int len = hex.length();
-        byte[] buf = new byte[((len + 1) / 2)];
-        int i = 0, j = 0;
-        if ((len % 2) == 1) {
-            buf[j++] = (byte) fromDigit(hex.charAt(i++));
+    public static byte[] fromString(String hexString) {
+        if (hexString.length() % 2 == 1) {
+            throw new IllegalArgumentException(
+                    "Invalid hexadecimal String supplied.");
         }
 
-        while (i < len) {
-            buf[j++] = (byte) ((fromDigit(hex.charAt(i++)) << 4) |
-                    fromDigit(hex.charAt(i++)));
+        byte[] bytes = new byte[hexString.length() / 2];
+        for (int i = 0; i < hexString.length(); i += 2) {
+            bytes[i / 2] = hexToByte(hexString.substring(i, i + 2));
         }
-
-        return buf;
+        return bytes;
     }
 
 }
