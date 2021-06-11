@@ -97,19 +97,23 @@ public class NativeApi {
 
     public static native byte[] nativeETHSetAddress(int contextID, byte[] bip32);
 
-    public static native byte[] nativeETHBuildERC20Abi(int contextID,
+    public static native byte[] nativeETHSetERC20Token(int contextID,
                                                        String tokenName,
                                                        int unitDP,
-                                                       String contractAddress,
-                                                       String address,
-                                                       String amountInWei);
+                                                       String contractAddress);
 
-    public static native byte[] nativeETHBuildERC721Abi(int contextID,
+    public static native byte[] nativeETHBuildERC20TransferAbi(int contextID,
+                                                               String address,
+                                                               String amountInWei);
+
+    public static native byte[] nativeETHSetERC721Token(int contextID,
                                                         String tokenName,
-                                                        String contractAddress,
-                                                        String tokenFrom,
-                                                        String tokenTo,
-                                                        String tokenID);
+                                                        String contractAddress);
+
+    public static native byte[] nativeETHBuildERC721TransferAbi(int contextID,
+                                                                String tokenFrom,
+                                                                String tokenTo,
+                                                                String tokenID);
 
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 
@@ -178,18 +182,23 @@ public class NativeApi {
     public static native int nativeTRXSetTRC10Asset(int contextID, byte[] assetName,
                                                     int unitDP, byte[] assetId);
 
-    public static native byte[] nativeTRXBuildTRC20Abi(int contextID, String tokenName,
+    public static native byte[] nativeTRXSetTRC20Token(int contextID,
+                                                       String tokenName,
                                                        int unitDP,
-                                                       String contractAddress,
-                                                       String address,
-                                                       String amount);
+                                                       String contractAddress);
 
-    public static native byte[] nativeTRXBuildTRC721Abi(int contextID,
+    public static native byte[] nativeTRXBuildTRC20TransferAbi(int contextID,
+                                                               String address,
+                                                               String amount);
+
+    public static native byte[] nativeTRXSetTRC721Token(int contextID,
                                                         String tokenName,
-                                                        String contractAddress,
-                                                        String tokenFrom,
-                                                        String tokenTo,
-                                                        String tokenID);
+                                                        String contractAddress);
+
+    public static native byte[] nativeTRXBuildTRC721TransferAbi(int contextID,
+                                                                String tokenFrom,
+                                                                String tokenTo,
+                                                                String tokenID);
 
     public static native byte[] nativeTRXPackContract(int contextID, byte[] tx);
 

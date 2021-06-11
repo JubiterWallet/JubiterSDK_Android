@@ -90,22 +90,38 @@ native_SetMyAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 
 
 JNIEXPORT jbyteArray JNICALL
-native_BuildERC20AbiETH(JNIEnv *env, jclass clz, jint contextID, jstring tokenName,
-                        jint unitDP,
-                        jstring contractAddress,
-                        jstring address,
-                        jstring amountInWei) {
-    auto strAddress = jstring2stdString(env, address);
-    auto strAmount = jstring2stdString(env, amountInWei);
+native_SetERC20TokenETH(JNIEnv *env,
+                                jclass clz,
+                                jint contextID,
+                                jstring tokenName,
+                                jint unitDP,
+                                jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
     JUB_CHAR_PTR abi = nullptr;
-    JUB_RV rv = JUB_BuildERC20AbiETH(contextID, (JUB_CHAR_PTR) strTokenName.c_str(), unitDP,
-                                     (JUB_CHAR_PTR) strContractAddress.c_str(),
-                                     (JUB_CHAR_PTR) strAddress.c_str(),
-                                     (JUB_CHAR_PTR) strAmount.c_str(), &abi);
+    JUB_RV rv = JUB_SetERC20TokenETH(contextID,
+                                     (JUB_CHAR_PTR) strTokenName.c_str(),
+                                     unitDP,
+                                     (JUB_CHAR_PTR) strContractAddress.c_str());
 
-    return buildPbRvString("JUB_BuildERC20AbiETH 1", env, rv, abi);
+    return buildPbRvString("JUB_SetERC20TokenETH", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC20TransferAbiETH(JNIEnv *env,
+                                jclass clz,
+                                jint contextID,
+                                jstring address,
+                                jstring amountInWei) {
+    auto strAddress = jstring2stdString(env, address);
+    auto strAmount = jstring2stdString(env, amountInWei);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_BuildERC20TransferAbiETH(contextID,
+                                             (JUB_CHAR_PTR) strAddress.c_str(),
+                                             (JUB_CHAR_PTR) strAmount.c_str(),
+                                             &abi);
+
+    return buildPbRvString("JUB_BuildERC20TransferAbiETH", env, rv, abi);
 }
 
 JNIEXPORT jbyteArray JNICALL
@@ -161,29 +177,45 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_BuildERC721AbiETH(JNIEnv *env,
+native_SetERC721TokenETH(JNIEnv *env,
                          jclass clz,
                          jint contextID,
                          jstring tokenName,
-                         jstring contractAddress,
-                         jstring tokenFrom,
-                         jstring tokenTo,
-                         jstring tokenID) {
+                         jstring contractAddress) {
+    auto strTokenName = jstring2stdString(env, tokenName);
+    auto strContractAddress = jstring2stdString(env, contractAddress);
+    JUB_CHAR_PTR abi = nullptr;
+
+    JUB_RV rv = JUB_SetERC721TokenETH(contextID,
+                                      (JUB_CHAR_PTR) strTokenName.c_str(),
+                                      (JUB_CHAR_PTR) strContractAddress.c_str());
+
+    return buildPbRvString("JUB_SetERC721TokenETH", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC721TransferAbiETH(JNIEnv *env,
+                                 jclass clz,
+                                 jint contextID,
+                                 jstring tokenName,
+                                 jstring contractAddress,
+                                 jstring tokenFrom,
+                                 jstring tokenTo,
+                                 jstring tokenID) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
     auto strTokenFrom = jstring2stdString(env, tokenFrom);
     auto strTokenTo = jstring2stdString(env, tokenTo);
     auto strTokenID = jstring2stdString(env, tokenID);
     JUB_CHAR_PTR abi = nullptr;
-    JUB_RV rv = JUB_BuildERC721AbiETH(contextID,
-                                      (JUB_CHAR_PTR) strTokenName.c_str(),
-                                      (JUB_CHAR_PTR) strContractAddress.c_str(),
-                                      (JUB_CHAR_PTR) strTokenFrom.c_str(),
-                                      (JUB_CHAR_PTR) strTokenTo.c_str(),
-                                      (JUB_CHAR_PTR) strTokenID.c_str(),
-                                      &abi);
 
-    return buildPbRvString("JUB_BuildERC721AbiETH", env, rv, abi);
+    JUB_RV rv = JUB_BuildERC721TransferAbiETH(contextID,
+                                              (JUB_CHAR_PTR) strTokenFrom.c_str(),
+                                              (JUB_CHAR_PTR) strTokenTo.c_str(),
+                                              (JUB_CHAR_PTR) strTokenID.c_str(),
+                                              &abi);
+
+    return buildPbRvString("JUB_BuildERC721TransferAbiETH", env, rv, abi);
 }
 
 
@@ -220,9 +252,14 @@ JNINativeMethod ethNativeMethods[] = {
                 (void *) native_SetMyAddressETH
         },
         {
-                "nativeETHBuildERC20Abi",
-                "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-                (void *) native_BuildERC20AbiETH
+                "nativeETHSetERC20Token",
+                "(ILjava/lang/String;ILjava/lang/String;)[B",
+                (void *) native_SetERC20TokenETH
+        },
+        {
+                "nativeETHBuildERC20TransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildERC20TransferAbiETH
         },
         {
                 "nativeETHSignTransaction",
@@ -240,9 +277,14 @@ JNINativeMethod ethNativeMethods[] = {
                 (void *) native_SignContractETH
         },
         {
-            "nativeETHBuildERC721Abi",
-            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-            (void *) native_BuildERC721AbiETH
+            "nativeETHSetERC721Token",
+            "(ILjava/lang/String;Ljava/lang/String;)[B",
+            (void *) native_SetERC721TokenETH
+        },
+        {
+            "nativeETHBuildERC721TransferAbi",
+            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+            (void *) native_BuildERC721TransferAbiETH
         },
 };
 

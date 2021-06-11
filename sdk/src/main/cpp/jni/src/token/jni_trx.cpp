@@ -122,22 +122,36 @@ JNIEXPORT jint JNICALL native_TRXSetTRC10Asset(JNIEnv *env, jclass clz, jint con
     return rv;
 }
 
-
 JNIEXPORT jbyteArray JNICALL
-native_TRXBuildTRC20Abi(JNIEnv *env, jclass clz, jint contextID, jstring tokenName,
+native_TRXSetTRC20Token(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jstring tokenName,
                         jint unitDP,
-                        jstring contractAddress,
-                        jstring address,
-                        jstring amount) {
-    auto strAddress = jstring2stdString(env, address);
-    auto strAmount = jstring2stdString(env, amount);
+                        jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
     JUB_CHAR_PTR abi = nullptr;
-    JUB_RV rv = JUB_BuildTRC20Abi(contextID, (JUB_CHAR_PTR) strTokenName.c_str(), unitDP,
-                                  (JUB_CHAR_PTR) strContractAddress.c_str(),
-                                  (JUB_CHAR_PTR) strAddress.c_str(),
-                                  (JUB_CHAR_PTR) strAmount.c_str(), &abi);
+    JUB_RV rv = JUB_SetTRC20Token(contextID,
+                                  (JUB_CHAR_PTR) strTokenName.c_str(),
+                                  unitDP,
+                                  (JUB_CHAR_PTR) strContractAddress.c_str());
+
+    return buildPbRvString("JUB_BuildTRC20Abi 1", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_TRXBuildTRC20TransferAbi(JNIEnv *env,
+                                jclass clz,
+                                jint contextID,
+                                jstring address,
+                                jstring amount) {
+    auto strAddress = jstring2stdString(env, address);
+    auto strAmount = jstring2stdString(env, amount);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_BuildTRC20TransferAbi(contextID,
+                                          (JUB_CHAR_PTR) strAddress.c_str(),
+                                          (JUB_CHAR_PTR) strAmount.c_str(), &abi);
 
     return buildPbRvString("JUB_BuildTRC20Abi 1", env, rv, abi);
 }
@@ -249,27 +263,37 @@ native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_TRXBuildTRC721Abi(JNIEnv *env,
+native_TRXSetTRC721Token(JNIEnv *env,
                          jclass clz,
                          jint contextID,
                          jstring tokenName,
-                         jstring contractAddress,
-                         jstring tokenFrom,
-                         jstring tokenTo,
-                         jstring tokenID) {
+                         jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
+    JUB_CHAR_PTR abi = nullptr;
+    JUB_RV rv = JUB_SetTRC721Token(contextID,
+                                   (JUB_CHAR_PTR) strTokenName.c_str(),
+                                   (JUB_CHAR_PTR) strContractAddress.c_str());
+
+    return buildPbRvString("JUB_SetTRC721Token", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_TRXBuildTRC721TransferAbi(JNIEnv *env,
+                                 jclass clz,
+                                 jint contextID,
+                                 jstring tokenFrom,
+                                 jstring tokenTo,
+                                 jstring tokenID) {
     auto strTokenFrom = jstring2stdString(env, tokenFrom);
     auto strTokenTo = jstring2stdString(env, tokenTo);
     auto strTokenID = jstring2stdString(env, tokenID);
     JUB_CHAR_PTR abi = nullptr;
-    JUB_RV rv = JUB_BuildTRC721Abi(contextID,
-                                   (JUB_CHAR_PTR) strTokenName.c_str(),
-                                   (JUB_CHAR_PTR) strContractAddress.c_str(),
-                                   (JUB_CHAR_PTR) strTokenFrom.c_str(),
-                                   (JUB_CHAR_PTR) strTokenTo.c_str(),
-                                   (JUB_CHAR_PTR) strTokenID.c_str(),
-                                   &abi);
+    JUB_RV rv = JUB_BuildTRC721TransferAbi(contextID,
+                                           (JUB_CHAR_PTR) strTokenFrom.c_str(),
+                                           (JUB_CHAR_PTR) strTokenTo.c_str(),
+                                           (JUB_CHAR_PTR) strTokenID.c_str(),
+                                           &abi);
 
     return buildPbRvString("JUB_BuildTRC721Abi", env, rv, abi);
 }
@@ -317,9 +341,14 @@ JNINativeMethod trxNativeMethods[] = {
                 (void *) native_SignTransactionTRX
         },
         {
-                "nativeTRXBuildTRC20Abi",
-                "(ILjava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-                (void *) native_TRXBuildTRC20Abi
+                "nativeTRXSetTRC20Token",
+                "(ILjava/lang/String;ILjava/lang/String;)[B",
+                (void *) native_TRXSetTRC20Token
+        },
+        {
+                "nativeTRXBuildTRC20TransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_TRXBuildTRC20TransferAbi
         },
         {
                 "nativeTRXSetTRC10Asset",
@@ -332,9 +361,14 @@ JNINativeMethod trxNativeMethods[] = {
                 (void *) native_TRXPackContract
         },
         {
-                "nativeTRXBuildTRC721Abi",
-                "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-                (void *) native_TRXBuildTRC721Abi
+                "nativeTRXSetTRC721Token",
+                "(ILjava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_TRXSetTRC721Token
+        },
+        {
+                "nativeTRXBuildTRC721TransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_TRXBuildTRC721TransferAbi
         },
 };
 

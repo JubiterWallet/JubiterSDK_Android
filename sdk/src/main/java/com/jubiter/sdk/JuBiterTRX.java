@@ -160,18 +160,35 @@ public final class JuBiterTRX {
      * @param tokenName       token名称
      * @param unitDP          允许的小数点后位数
      * @param contractAddress 合约地址
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString setTRC20Token(int contextID,
+                                                          String tokenName,
+                                                          int unitDP,
+                                                          String contractAddress) {
+        try {
+            byte[] result = NativeApi.nativeTRXSetTRC20Token(contextID, tokenName, unitDP,
+                    contractAddress);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 构建TRC20交易体
+     *
+     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param address         接收地址
      * @param amount     转账金额，
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString buildTRC20Abi(int contextID, String tokenName,
-                                                          int unitDP,
-                                                          String contractAddress,
-                                                          String address,
-                                                          String amount) {
+    public static CommonProtos.ResultString buildTRC20TransferAbi(int contextID,
+                                                                  String address,
+                                                                  String amount) {
         try {
-            byte[] result = NativeApi.nativeTRXBuildTRC20Abi(contextID, tokenName, unitDP,
-                    contractAddress, address, amount);
+            byte[] result = NativeApi.nativeTRXBuildTRC20TransferAbi(contextID, address, amount);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -185,20 +202,35 @@ public final class JuBiterTRX {
      * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param tokenName       币种名称
      * @param contractAddress 合约地址
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString setTRC721Token(int contextID,
+                                                           String tokenName,
+                                                           String contractAddress) {
+        try {
+            byte[] result = NativeApi.nativeTRXSetTRC721Token(contextID, tokenName, contractAddress);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 构建 TRC721 交易体
+     *
+     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param tokenFrom       转出地址
      * @param tokenTo         接收地址
      * @param tokenID         资源 ID
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString buildTRC721Abi(int contextID,
-                                                           String tokenName,
-                                                           String contractAddress,
+    public static CommonProtos.ResultString buildTRC721TransferAbi(int contextID,
                                                            String tokenFrom,
                                                            String tokenTo,
                                                            String tokenID) {
         try {
-            byte[] result = NativeApi.nativeTRXBuildTRC721Abi(contextID, tokenName,
-                    contractAddress, tokenFrom, tokenTo, tokenID);
+            byte[] result = NativeApi.nativeTRXBuildTRC721TransferAbi(contextID, tokenFrom, tokenTo, tokenID);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

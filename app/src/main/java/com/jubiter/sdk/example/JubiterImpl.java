@@ -751,11 +751,18 @@ public class JubiterImpl {
             ThreadUtils.execute(new Runnable() {
                 @Override
                 public void run() {
-                    CommonProtos.ResultString erc20Abi = JuBiterEthereum.buildERC20Abi(
+                    CommonProtos.ResultString setErc20Abi = JuBiterEthereum.setERC20Token(
                             contextID,
                             "mfcc",
                             18,
-                            "0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891",
+                            "0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891");
+                    if (setErc20Abi.getStateCode() != 0) {
+                        callback.onFailed(setErc20Abi.getStateCode());
+                        return;
+                    }
+
+                    CommonProtos.ResultString erc20Abi = JuBiterEthereum.buildERC20TransferAbi(
+                            contextID,
                             "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9",
                             valueStr
                     );
@@ -782,10 +789,18 @@ public class JubiterImpl {
             ThreadUtils.execute(new Runnable() {
                 @Override
                 public void run() {
-                    CommonProtos.ResultString erc721Abi = JuBiterEthereum.buildERC721Abi(
+                    CommonProtos.ResultString setErc721Abi = JuBiterEthereum.setERC721Token(
                             contextID,
                             "Meebits",
-                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7",
+                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
+                    );
+                    if (setErc721Abi.getStateCode() != 0) {
+                        callback.onFailed(setErc721Abi.getStateCode());
+                        return;
+                    }
+
+                    CommonProtos.ResultString erc721Abi = JuBiterEthereum.buildERC721TransferAbi(
+                            contextID,
                             "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
                             "0xbb11ddc26f4e55475775310e5cbe188650e75212",
                             "14973"
@@ -1421,10 +1436,16 @@ public class JubiterImpl {
                         .build());
                 break;
             case TRC20:
-                CommonProtos.ResultString abiRes = JuBiterTRX.buildTRC20Abi(contextID,
+                CommonProtos.ResultString setAbiRes = JuBiterTRX.setTRC20Token(contextID,
                         "USDT",
                         6,
-                        "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                        "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t");
+                if (setAbiRes.getStateCode() != 0) {
+                    callback.onFailed(setAbiRes.getStateCode());
+                    return;
+                }
+
+                CommonProtos.ResultString abiRes = JuBiterTRX.buildTRC20TransferAbi(contextID,
                         "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ",
                         "156000000");
                 if (abiRes.getStateCode() != 0) {
@@ -1453,10 +1474,17 @@ public class JubiterImpl {
                 break;
 
             case TRC721:
-                CommonProtos.ResultString trc721AbiRes = JuBiterTRX.buildTRC721Abi(
+                CommonProtos.ResultString setTrc721AbiRes = JuBiterTRX.setTRC721Token(
                         contextID,
                         "DWARFDWARFDWARF",
-                        "TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6",
+                        "TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6");
+                if (setTrc721AbiRes.getStateCode() != 0) {
+                    callback.onFailed(setTrc721AbiRes.getStateCode());
+                    return;
+                }
+
+                CommonProtos.ResultString trc721AbiRes = JuBiterTRX.buildTRC721TransferAbi(
+                        contextID,
                         "TR1D93WMkqjhFSxDsLTedzXVPHQXsGdGQi",
                         "TV6tnwwWAbRxnYZ5TnSdLbibznWZLY4vXf",
                         "7600000000000000");
