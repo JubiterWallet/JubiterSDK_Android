@@ -127,17 +127,11 @@ public final class JuBiterEthereum {
      * @param contractAddress 合约地址
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString setERC20Token(int contextID,
-                                                          String tokenName,
-                                                          int unitDP,
-                                                          String contractAddress) {
-        try {
-            byte[] result = NativeApi.nativeETHSetERC20Token(contextID, tokenName, unitDP, contractAddress);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static int setERC20Token(int contextID,
+                                    String tokenName,
+                                    int unitDP,
+                                    String contractAddress) {
+        return NativeApi.nativeETHSetERC20Token(contextID, tokenName, unitDP, contractAddress);
     }
 
     /**
@@ -168,16 +162,10 @@ public final class JuBiterEthereum {
      * @param contractAddress 合约地址
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString setERC721Token(int contextID,
-                                                           String tokenName,
-                                                           String contractAddress) {
-        try {
-            byte[] result = NativeApi.nativeETHSetERC721Token(contextID, tokenName, contractAddress);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static int setERC721Token(int contextID,
+                                     String tokenName,
+                                     String contractAddress) {
+        return NativeApi.nativeETHSetERC721Token(contextID, tokenName, contractAddress);
     }
 
     /**

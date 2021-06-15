@@ -89,7 +89,7 @@ native_SetMyAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 
-JNIEXPORT jbyteArray JNICALL
+JNIEXPORT jint JNICALL
 native_SetERC20TokenETH(JNIEnv *env,
                                 jclass clz,
                                 jint contextID,
@@ -98,13 +98,12 @@ native_SetERC20TokenETH(JNIEnv *env,
                                 jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
-    JUB_CHAR_PTR abi = nullptr;
     JUB_RV rv = JUB_SetERC20TokenETH(contextID,
                                      (JUB_CHAR_PTR) strTokenName.c_str(),
                                      unitDP,
                                      (JUB_CHAR_PTR) strContractAddress.c_str());
-
-    return buildPbRvString("JUB_SetERC20TokenETH", env, rv, abi);
+    LOG_DEBUG("JUB_SetERC20TokenETH rv: %d", rv);
+    return rv;
 }
 
 JNIEXPORT jbyteArray JNICALL
@@ -176,7 +175,7 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
     return buildPbRvString("JUB_SignContractETH", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jbyteArray JNICALL
+JNIEXPORT jint JNICALL
 native_SetERC721TokenETH(JNIEnv *env,
                          jclass clz,
                          jint contextID,
@@ -184,26 +183,21 @@ native_SetERC721TokenETH(JNIEnv *env,
                          jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
-    JUB_CHAR_PTR abi = nullptr;
 
     JUB_RV rv = JUB_SetERC721TokenETH(contextID,
                                       (JUB_CHAR_PTR) strTokenName.c_str(),
                                       (JUB_CHAR_PTR) strContractAddress.c_str());
-
-    return buildPbRvString("JUB_SetERC721TokenETH", env, rv, abi);
+    LOG_DEBUG("JUB_SetERC721TokenETH rv: %d", rv);
+    return rv;
 }
 
 JNIEXPORT jbyteArray JNICALL
 native_BuildERC721TransferAbiETH(JNIEnv *env,
                                  jclass clz,
                                  jint contextID,
-                                 jstring tokenName,
-                                 jstring contractAddress,
                                  jstring tokenFrom,
                                  jstring tokenTo,
                                  jstring tokenID) {
-    auto strTokenName = jstring2stdString(env, tokenName);
-    auto strContractAddress = jstring2stdString(env, contractAddress);
     auto strTokenFrom = jstring2stdString(env, tokenFrom);
     auto strTokenTo = jstring2stdString(env, tokenTo);
     auto strTokenID = jstring2stdString(env, tokenID);
@@ -253,7 +247,7 @@ JNINativeMethod ethNativeMethods[] = {
         },
         {
                 "nativeETHSetERC20Token",
-                "(ILjava/lang/String;ILjava/lang/String;)[B",
+                "(ILjava/lang/String;ILjava/lang/String;)I",
                 (void *) native_SetERC20TokenETH
         },
         {
@@ -278,7 +272,7 @@ JNINativeMethod ethNativeMethods[] = {
         },
         {
             "nativeETHSetERC721Token",
-            "(ILjava/lang/String;Ljava/lang/String;)[B",
+            "(ILjava/lang/String;Ljava/lang/String;)I",
             (void *) native_SetERC721TokenETH
         },
         {

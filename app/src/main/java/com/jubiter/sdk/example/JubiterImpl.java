@@ -751,13 +751,13 @@ public class JubiterImpl {
             ThreadUtils.execute(new Runnable() {
                 @Override
                 public void run() {
-                    CommonProtos.ResultString setErc20Abi = JuBiterEthereum.setERC20Token(
+                    int setErc20Token = JuBiterEthereum.setERC20Token(
                             contextID,
                             "mfcc",
                             18,
                             "0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891");
-                    if (setErc20Abi.getStateCode() != 0) {
-                        callback.onFailed(setErc20Abi.getStateCode());
+                    if (setErc20Token != 0) {
+                        callback.onFailed(setErc20Token);
                         return;
                     }
 
@@ -789,13 +789,13 @@ public class JubiterImpl {
             ThreadUtils.execute(new Runnable() {
                 @Override
                 public void run() {
-                    CommonProtos.ResultString setErc721Abi = JuBiterEthereum.setERC721Token(
+                    int setErc721Token = JuBiterEthereum.setERC721Token(
                             contextID,
                             "Meebits",
                             "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
                     );
-                    if (setErc721Abi.getStateCode() != 0) {
-                        callback.onFailed(setErc721Abi.getStateCode());
+                    if (setErc721Token != 0) {
+                        callback.onFailed(setErc721Token);
                         return;
                     }
 
@@ -1435,31 +1435,51 @@ public class JubiterImpl {
                         .setFeeLimit(0)
                         .build());
                 break;
-            case TRC20:
-                CommonProtos.ResultString setAbiRes = JuBiterTRX.setTRC20Token(contextID,
-                        "USDT",
-                        6,
+            case TRC20: {
+                int setTrc20Token = JuBiterTRX.setTRC20Token(contextID,
+                        "JST",
+                        18,
                         "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t");
-                if (setAbiRes.getStateCode() != 0) {
-                    callback.onFailed(setAbiRes.getStateCode());
+                if (setTrc20Token != 0) {
+                    callback.onFailed(setTrc20Token);
                     return;
                 }
 
                 CommonProtos.ResultString abiRes = JuBiterTRX.buildTRC20TransferAbi(contextID,
                         "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ",
-                        "156000000");
+                        "1000000000000000000");
                 if (abiRes.getStateCode() != 0) {
                     callback.onFailed(abiRes.getStateCode());
                     return;
                 }
 
-                builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+//                builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
+//                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
+//                                .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
+//                                .setParameter(Any.pack(org.tron.protos.contract.SmartContractOuterClass.TriggerSmartContract.newBuilder()
+//                                        // TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG
+//                                        .setOwnerAddress(ByteString.copyFrom(HexUtils.fromString("41E193FE01FBD5B5FE3CFD74E21B153DC2AA93C010")))
+//                                        // TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+//                                        .setContractAddress(ByteString.copyFrom(HexUtils.fromString("41A614F803B6FD780986A42C78EC9C7F77E6DED13C")))
+//                                        .setData(ByteString.copyFrom(HexUtils.fromString(abiRes.getValue())))
+//                                        .build()))
+//                                .build())
+//                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
+//                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
+//                        .setExpiration(1603346250000L)
+//                        .setTimestamp(1603346193445L)
+//                        .setFeeLimit(120000)
+//                        .build());
+
+                Protocol.Transaction.raw raw = org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
                                 .setParameter(Any.pack(org.tron.protos.contract.SmartContractOuterClass.TriggerSmartContract.newBuilder()
-                                        .setOwnerAddress(ByteString.copyFrom("TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG".getBytes()))
-                                        .setContractAddress(ByteString.copyFrom("TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t".getBytes()))
-                                        .setData(ByteString.copyFrom(abiRes.getValue().getBytes()))
+                                        // TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG
+                                        .setOwnerAddress(ByteString.copyFrom(HexUtils.fromString("41E193FE01FBD5B5FE3CFD74E21B153DC2AA93C010")))
+                                        // TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+                                        .setContractAddress(ByteString.copyFrom(HexUtils.fromString("41A614F803B6FD780986A42C78EC9C7F77E6DED13C")))
+                                        .setData(ByteString.copyFrom(HexUtils.fromString(abiRes.getValue())))
                                         .build()))
                                 .build())
                         .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
@@ -1467,19 +1487,24 @@ public class JubiterImpl {
                         .setExpiration(1603346250000L)
                         .setTimestamp(1603346193445L)
                         .setFeeLimit(120000)
-                        .build());
+                        .build();
+
+                byte[] array = raw.toByteArray();
+                unsignedData = HexUtils.convertBytesToString(array);
+                Log.d(TAG, "trc721 unsigned data >>>" + unsignedData);
                 break;
+            }
             case TRC20_TRANSFER:
 
                 break;
 
-            case TRC721:
-                CommonProtos.ResultString setTrc721AbiRes = JuBiterTRX.setTRC721Token(
+            case TRC721: {
+                int setTrc721Token = JuBiterTRX.setTRC721Token(
                         contextID,
                         "DWARFDWARFDWARF",
                         "TLwu6VYaVBc5fsaTCWRHSdk71DNrZ6Vsj6");
-                if (setTrc721AbiRes.getStateCode() != 0) {
-                    callback.onFailed(setTrc721AbiRes.getStateCode());
+                if (setTrc721Token != 0) {
+                    callback.onFailed(setTrc721Token);
                     return;
                 }
 
@@ -1519,10 +1544,12 @@ public class JubiterImpl {
                 Log.d(TAG, "trc721 unsigned data >>>" + unsignedData);
 
                 break;
+            }
             default:
                 break;
         }
         org.tron.protos.Protocol.Transaction transactionTrx = builder.build();
+
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setChange(false)
                 .setAddressIndex(0)
