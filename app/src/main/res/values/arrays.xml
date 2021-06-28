@@ -36,6 +36,9 @@
         <item>TRCUnfreeze</item>
         <item>TRC20</item>
         <item>TRC721</item>
-<!--        <item>TRC20_TRANSFER</item>-->
+    </string-array>
+
+    <string-array name="fil">
+        <item>FIL</item>
     </string-array>
 </resources>

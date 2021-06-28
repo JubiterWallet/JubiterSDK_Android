@@ -12,6 +12,7 @@ import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
+import com.jubiter.sdk.JuBiterFilecoin;
 import com.jubiter.sdk.JuBiterTRX;
 import com.jubiter.sdk.JuBiterWallet;
 import com.jubiter.sdk.JuBiterXRP;
@@ -22,6 +23,7 @@ import com.jubiter.sdk.proto.BitcoinProtos;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EOSProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
+import com.jubiter.sdk.proto.FilecoinProtos;
 import com.jubiter.sdk.proto.RippleProtos;
 
 import org.tron.protos.Protocol;
@@ -53,6 +55,10 @@ public class JubiterImpl {
 
     public enum TRX_TransType {
         TRX, TRC10, TRCFree, TRCUnfreeze, TRC20, TRC20_TRANSFER, TRC721
+    }
+
+    public enum FIL_TransType {
+        FIL
     }
 
     private Context mContext;
@@ -1565,6 +1571,135 @@ public class JubiterImpl {
             callback.onSuccess(signRes.getValue());
         } else {
             callback.onFailed(signRes.getStateCode());
+        }
+    }
+
+
+    /**
+     * FIL
+     * @param callback
+     */
+    public void filCreateContext(final JubCallback<Integer> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                FilecoinProtos.ContextCfgFIL contextCfgFIL = FilecoinProtos.ContextCfgFIL.newBuilder()
+                        .setMainPath("m/44'/461'/0'")
+                        .build();
+
+                CommonProtos.ResultInt context = JuBiterFilecoin.createContext(contextCfgFIL, deviceHandle);
+                if (context.getStateCode() == 0) {
+                    callback.onSuccess(context.getValue());
+                } else {
+                    callback.onFailed(context.getStateCode());
+                }
+            }
+        });
+    }
+
+    public void filSetMyAddress(final int contextID, final JubCallback<String> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+                CommonProtos.ResultString address = JuBiterFilecoin.setAddress(contextID, path);
+                if (address.getStateCode() == 0) {
+                    callback.onSuccess(address.getValue());
+                } else {
+                    callback.onFailed(address.getStateCode());
+                }
+            }
+        });
+    }
+
+    public void filGetAddress(final int contextID, final int index, final JubCallback<String> callback) {
+        final CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(index)
+                .setChange(false)
+                .build();
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                callback.onSuccess("FILGetMainHDNode");
+                CommonProtos.ResultString mainHDNode = JuBiterFilecoin.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+                if (mainHDNode.getStateCode() != 0) {
+                    callback.onFailed(mainHDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(mainHDNode.getValue());
+                callback.onSuccess("FILGetHDNode");
+                CommonProtos.ResultString HDNode = JuBiterFilecoin.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+                if (HDNode.getStateCode() != 0) {
+                    callback.onFailed(HDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(HDNode.getValue());
+                callback.onSuccess("FILGetAddress ");
+                CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, false);
+                if (address.getStateCode() != 0) {
+                    callback.onFailed(address.getStateCode());
+                    return;
+                }
+                callback.onSuccess(address.getValue());
+            }
+        });
+    }
+
+    public void filShowAddress(final int contextID, final JubCallback<String> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+                CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, true);
+                if (address.getStateCode() == 0) {
+                    callback.onSuccess(address.getValue());
+                } else {
+                    callback.onFailed(address.getStateCode());
+                }
+            }
+        });
+    }
+
+
+
+    public void filTransaction(final int contextID, FIL_TransType transType, String transferInputValue, final JubCallback<String> callback) {
+        final String valueStr = fixValueStr(transferInputValue, "", 18).replace(".", "");
+
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(0)
+                .setChange(false)
+                .build();
+
+        final FilecoinProtos.TransactionFIL.Builder builder = FilecoinProtos.TransactionFIL.newBuilder();
+        if (transType == FIL_TransType.FIL) {
+            final FilecoinProtos.TransactionFIL transactionFIL = builder.setNonce(3)
+                    .setPath(bip32Path)
+                    .setGasFeeCapInAtto("31492978632")
+                    .setGasPremiumInAtto("151239")
+                    .setGasLimit(611585)
+                    .setTo("f1susdjal2rogayvfr6m7wypfhawcmuc3ny7v7osi")
+                    .setValueInAtto(valueStr)
+                    .build();
+
+            ThreadUtils.execute(new Runnable() {
+                @Override
+                public void run() {
+                    CommonProtos.ResultString resultString = JuBiterFilecoin.signTransaction(contextID, transactionFIL);
+                    if (resultString.getStateCode() == 0) {
+                        callback.onSuccess(resultString.getValue());
+                    } else {
+                        callback.onFailed(resultString.getStateCode());
+                    }
+                }
+            });
+
         }
     }
 }

@@ -202,4 +202,21 @@ public class NativeApi {
 
     public static native byte[] nativeTRXPackContract(int contextID, byte[] tx);
 
+
+    //********************************* SDK FIL ************************************
+
+    public static native byte[] nativeFILCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeFILCreateContext_Software(byte[] config, String xPriKey);
+
+    public static native byte[] nativeFILGetMainHDNode(int contextID, byte[] format);
+
+    public static native byte[] nativeFILGetHDNode(int contextID, byte[] format, byte[] bip32);
+
+    public static native byte[] nativeFILGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native byte[] nativeFILSetAddress(int contextID, byte[] bip32);
+
+    public static native byte[] nativeFILSignTransaction(int contextID, byte[] txInfo);
+
 }

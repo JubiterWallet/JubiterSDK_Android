@@ -30,6 +30,7 @@
         <activity android:name=".EOSActivity" />
         <activity android:name=".FingerPrintManagerActivity" />
         <activity android:name=".BTCActivity" />
+        <activity android:name=".FILActivity" />
     </application>
 
 </manifest>
