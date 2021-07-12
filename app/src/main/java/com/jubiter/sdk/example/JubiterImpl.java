@@ -780,7 +780,7 @@ public class JubiterImpl {
                         callback.onFailed(fees.getCode());
                         return;
                     }
-                    Long fee = fees.getData().getFastestFee();
+                    long fee = fees.getData().getFastestFee().longValue();
 
                     CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
                     PreTransactionBean preTransactionBean = btcModel.getPreTransaction(
@@ -1187,7 +1187,7 @@ public class JubiterImpl {
                         callback.onFailed(fees.getCode());
                         return;
                     }
-                    Long fee = fees.getData().getFastestFee();
+                    long fee = fees.getData().getFastestFee().longValue();
 
                     CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                             .setAddressIndex(0)

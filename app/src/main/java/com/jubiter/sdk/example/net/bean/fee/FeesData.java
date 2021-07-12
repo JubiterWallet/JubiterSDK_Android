@@ -6,33 +6,33 @@ import com.google.gson.annotations.SerializedName;
 public class FeesData {
 
     @SerializedName("fastestFee")
-    private Long mFastestFee;
+    private Double mFastestFee;
     @SerializedName("halfHourFee")
-    private Long mHalfHourFee;
+    private Double mHalfHourFee;
     @SerializedName("hourFee")
-    private Long mHourFee;
+    private Double mHourFee;
 
-    public Long getFastestFee() {
+    public Double getFastestFee() {
         return mFastestFee;
     }
 
-    public void setFastestFee(Long fastestFee) {
+    public void setFastestFee(Double fastestFee) {
         mFastestFee = fastestFee;
     }
 
-    public Long getHalfHourFee() {
+    public Double getHalfHourFee() {
         return mHalfHourFee;
     }
 
-    public void setHalfHourFee(Long halfHourFee) {
+    public void setHalfHourFee(Double halfHourFee) {
         mHalfHourFee = halfHourFee;
     }
 
-    public Long getHourFee() {
+    public Double getHourFee() {
         return mHourFee;
     }
 
-    public void setHourFee(Long hourFee) {
+    public void setHourFee(Double hourFee) {
         mHourFee = hourFee;
     }
 
