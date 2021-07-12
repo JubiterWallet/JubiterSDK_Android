@@ -12,22 +12,6 @@ import com.jubiter.sdk.proto.CommonProtos;
  */
 public final class JuBiterBitcoin {
 
-    /**
-     * 创建软件钱包上下文
-     *
-     * @param config  上下文配置信息
-     * @param xPrikey 待使用钱包对应的主私钥
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultInt createContext_Software(BitcoinProtos.ContextCfgBTC config, String xPrikey) {
-        try {
-            byte[] result = NativeApi.nativeBTCCreateContext_Software(config.toByteArray(), xPrikey);
-            return CommonProtos.ResultInt.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     /**
      * 创建硬件钱包上下文

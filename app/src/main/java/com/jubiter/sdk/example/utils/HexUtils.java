@@ -1,4 +1,4 @@
-package com.jubiter.sdk.example;
+package com.jubiter.sdk.example.utils;
 
 
 import java.math.BigInteger;

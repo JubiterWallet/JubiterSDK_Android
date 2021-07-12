@@ -13,6 +13,7 @@
 
 #include "include/jni_ble.h"
 #include "include/jni_nfc.h"
+#include "include/jni_swi.h"
 #include "include/jni_comm.h"
 
 #include "include/token/jni_btc.h"

@@ -21,9 +21,6 @@ JNIEXPORT jbyteArray JNICALL
 native_CreateContextTRX(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextTRX_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow);
 
 JNIEXPORT jbyteArray JNICALL

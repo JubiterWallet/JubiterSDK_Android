@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.jubiter.sdk.JuBiterEthereum;
+import com.jubiter.sdk.JuBiterSWIWallet;
 import com.jubiter.sdk.JuBiterTRX;
 import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
@@ -44,11 +45,17 @@ public class ETHTest extends BaseTest {
     @Test
     public void step1_createContext_Software() {
 //        init();
-
+        CommonProtos.ResultInt device = JuBiterSWIWallet.swiConnectDevice();
+        int deviceID = device.getValue();
+        JuBiterSWIWallet.swiBuildFromMasterPrivateKey(
+                deviceID,
+                CommonProtos.CURVES.SECP256K1,
+                BaseTest.ROOT_KEY
+        );
         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                 .setMainPath(MAIN_PATH)
                 .build();
-        CommonProtos.ResultInt result = JuBiterEthereum.createContext_Software(config, BaseTest.ROOT_KEY);
+        CommonProtos.ResultInt result = JuBiterEthereum.createContext(config,deviceID);
         assertEquals(0, result.getStateCode());
 
         contextID = result.getValue();
@@ -93,15 +100,14 @@ public class ETHTest extends BaseTest {
 
     @Test
     public void step6_buildERC20Abi() {
-        CommonProtos.ResultString result = JuBiterTRX.buildTRC20Abi(
+        JuBiterEthereum.setERC20Token(contextID, "USDT", 6, "TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG");
+
+        CommonProtos.ResultString result = JuBiterEthereum.buildERC20TransferAbi(
                 contextID,
-                "USDT",
-                6,
-                "TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG",
                 "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ",
                 "156000000");
         assertEquals(0, result.getStateCode());
-        Log.d(TAG, ">>> buildERC20Abi value: " + result.getValue());
+        Log.d(TAG, ">>> buildERC20TransferAbi value: " + result.getValue());
     }
 
     @Test

@@ -2,9 +2,19 @@ package com.jubiter.sdk.example.utils;
 
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,5 +48,41 @@ public class Utils {
         logView.append("Time:\t" + mFormat.format(new Date(currentTimeMillis)) + "\n");
         logView.append(Html.fromHtml("<p><font color=\"#85d46f\">" + s + "</p>"));
         scrollBottom(scrollView, logView);
+    }
+
+
+//    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+//
+//    public static String formatJson(String msg) {
+//
+//        String message;
+//
+//        try {
+//            if (msg.startsWith("{")) {
+//                JSONObject jsonObject = new JSONObject(msg);
+//                message = jsonObject.toString(4);//最重要的方法，就一行，返回格式化的json字符串，其中的数字4是缩进字符数
+//            } else if (msg.startsWith("[")) {
+//                JSONArray jsonArray = new JSONArray(msg);
+//                message = jsonArray.toString(4);
+//            } else {
+//                message = msg;
+//            }
+//        } catch (JSONException e) {
+//            message = msg;
+//        }
+//        StringBuilder stringBuilder = new StringBuilder();
+//        message = LINE_SEPARATOR + message;
+//        String[] lines = message.split(LINE_SEPARATOR);
+//        for (String line : lines) {
+//            stringBuilder.append(line).append("\n");
+//        }
+//        return stringBuilder.toString();
+//    }
+
+    public static String formatJson(String uglyJSONString){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement je = jp.parse(uglyJSONString);
+        return gson.toJson(je);
     }
 }

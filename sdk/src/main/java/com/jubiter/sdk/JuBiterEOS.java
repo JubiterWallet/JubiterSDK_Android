@@ -31,23 +31,6 @@ public final class JuBiterEOS {
     }
 
     /**
-     * 创建软件钱包上下文
-     *
-     * @param config  上下文配置信息
-     * @param xPrikey 待使用钱包对应的主私钥
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultInt createContext_Software(CommonProtos.ContextCfg config, String xPrikey) {
-        try {
-            byte[] result = NativeApi.nativeEOSCreateContext_Software(config.toByteArray(), xPrikey);
-            return CommonProtos.ResultInt.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
      * 获取主公钥
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
@@ -101,23 +84,23 @@ public final class JuBiterEOS {
         return null;
     }
 
-    /**
-     * 设置EOS快捷收款地址
-     *
-     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param bip44     符合bip44格式的分层路径
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString setAddress(int contextID,
-                                                       CommonProtos.Bip44Path bip44) {
-        try {
-            byte[] result = NativeApi.nativeEOSSetAddress(contextID, bip44.toByteArray());
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    /**
+//     * 设置EOS快捷收款地址
+//     *
+//     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+//     * @param bip44     符合bip44格式的分层路径
+//     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+//     */
+//    public static CommonProtos.ResultString setAddress(int contextID,
+//                                                       CommonProtos.Bip44Path bip44) {
+//        try {
+//            byte[] result = NativeApi.nativeEOSSetAddress(contextID, bip44.toByteArray());
+//            return CommonProtos.ResultString.parseFrom(result);
+//        } catch (InvalidProtocolBufferException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     /**
      * 构建action

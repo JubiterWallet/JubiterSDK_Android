@@ -43,40 +43,6 @@ public final class JuBiterWallet {
     }
 
     /**
-     * 根据助记词生成种子
-     *
-     * @param mnemonic 助记词
-     * @param passphrase 盐值
-     * @return
-     */
-    public static CommonProtos.ResultString generateSeed(String mnemonic, String passphrase) {
-        try {
-            byte[] result = NativeApi.nativeGenerateSeed(mnemonic, passphrase);
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 生成主私钥
-     *
-     * @param seed  密钥种子
-     * @param curve 密钥曲线算法
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
-     */
-    public static CommonProtos.ResultString seedToMasterPrivateKey(String seed, CommonProtos.CURVES curve) {
-        try {
-            byte[] result = NativeApi.nativeSeedToMasterPrivateKey(seed, curve.toString().getBytes());
-            return CommonProtos.ResultString.parseFrom(result);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
      * 获取硬件设备信息
      *
      * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回

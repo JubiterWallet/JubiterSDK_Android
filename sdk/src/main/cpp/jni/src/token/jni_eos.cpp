@@ -18,21 +18,6 @@ native_CreateContextEOS(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextEOS_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-    auto strXPRV = jstring2stdString(env, xprv);
-    JUB::Proto::Common::ContextCfg pbCfg;
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_EOS cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextEOS_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextEOS_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextEOS_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    }
-}
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
 
     BIP44_Path bip32Path;
@@ -72,16 +57,16 @@ native_GetMainHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
     return buildPbRvString("JUB_GetMainHDNodeEOS", env, rv, xpub);
 }
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
-    BIP44_Path bip32Path;
-    if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address = nullptr;
-        JUB_RV rv = JUB_SetMyAddressEOS(contextID, bip32Path, &address);
-        return buildPbRvString("JUB_SetMyAddressEOS 1", env, rv, address);
-    }
-    return buildPbRvString("JUB_SetMyAddressEOS 2", env, JUBR_ARGUMENTS_BAD, "");
-}
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+//    BIP44_Path bip32Path;
+//    if (parseBip44Path(env, bip32, &bip32Path)) {
+//        JUB_CHAR_PTR address = nullptr;
+//        JUB_RV rv = JUB_SetMyAddressEOS(contextID, bip32Path, &address);
+//        return buildPbRvString("JUB_SetMyAddressEOS 1", env, rv, address);
+//    }
+//    return buildPbRvString("JUB_SetMyAddressEOS 2", env, JUBR_ARGUMENTS_BAD, "");
+//}
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
@@ -184,11 +169,6 @@ JNINativeMethod eosNativeMethods[] = {
                 (void *) native_CreateContextEOS
         },
         {
-                "nativeEOSCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextEOS_soft
-        },
-        {
                 "nativeEOSGetAddress",
                 "(I[BZ)[B",
                 (void *) native_GetAddressEOS
@@ -203,11 +183,11 @@ JNINativeMethod eosNativeMethods[] = {
                 "(I[B)[B",
                 (void *) native_GetMainHDNodeEOS
         },
-        {
-                "nativeEOSSetAddress",
-                "(I[B)[B",
-                (void *) native_SetMyAddressEOS
-        },
+//        {
+//                "nativeEOSSetAddress",
+//                "(I[B)[B",
+//                (void *) native_SetMyAddressEOS
+//        },
         {
                 "nativeEOSSignTransaction",
                 "(I[B)[B",

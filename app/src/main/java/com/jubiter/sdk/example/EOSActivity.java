@@ -132,9 +132,9 @@ public class EOSActivity extends AppCompatActivity {
             case R.id.eos_show_address:
                 showAddress();
                 break;
-            case R.id.eos_set_my_address:
-                setMyAddress();
-                break;
+//            case R.id.eos_set_my_address:
+//                setMyAddress();
+//                break;
             case R.id.eos_set_timeout:
                 setTimeout();
                 break;
@@ -170,11 +170,12 @@ public class EOSActivity extends AppCompatActivity {
     }
 
     private void showSelectVerifyTypeDialog() {
-//        DeviceType deviceType = mJubiter.getDeviceType();
-//        if (deviceType.getDEVICE() == 0) {
+        JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
+        if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-//            return;
-//        }
+        } else if(deviceType == JubiterImpl.DeviceType.SWI){
+            executeTrans();
+        }
 //        mSelectDialog.show();
     }
 
@@ -276,54 +277,54 @@ public class EOSActivity extends AppCompatActivity {
         }).show();
     }
 
-    private void setMyAddress() {
-        mJubiter.showVirtualPwd(mEosContextID, new JubCallback<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                showLog("showVirtualPwd success");
-                new InputDialog(mContext, new InputDialog.callback() {
-                    @Override
-                    public void onClickListener(String value) {
-                        if (TextUtils.isEmpty(value)) {
-                            return;
-                        }
-                        mJubiter.verifyPIN(mEosContextID, value, new JubCallback<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                showLog("verifyPIN success");
-                                mJubiter.eosSetMyAddress(mEosContextID, new JubCallback<String>() {
-                                    @Override
-                                    public void onSuccess(String s) {
-                                        showLog("eosSetMyAddress " + s);
-                                    }
-
-                                    @Override
-                                    public void onFailed(long errorCode) {
-                                        showLog("eosShowAddress " + errorCode);
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void onFailed(long errorCode) {
-                                showLog("verifyPIN " + errorCode);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        mJubiter.cancelVirtualPwd(mEosContextID, null);
-                    }
-                }).show();
-            }
-
-            @Override
-            public void onFailed(long errorCode) {
-                showLog("showVirtualPwd " + errorCode);
-            }
-        });
-    }
+//    private void setMyAddress() {
+//        mJubiter.showVirtualPwd(mEosContextID, new JubCallback<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                showLog("showVirtualPwd success");
+//                new InputDialog(mContext, new InputDialog.callback() {
+//                    @Override
+//                    public void onClickListener(String value) {
+//                        if (TextUtils.isEmpty(value)) {
+//                            return;
+//                        }
+//                        mJubiter.verifyPIN(mEosContextID, value, new JubCallback<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                showLog("verifyPIN success");
+//                                mJubiter.eosSetMyAddress(mEosContextID, new JubCallback<String>() {
+//                                    @Override
+//                                    public void onSuccess(String s) {
+//                                        showLog("eosSetMyAddress " + s);
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailed(long errorCode) {
+//                                        showLog("eosShowAddress " + errorCode);
+//                                    }
+//                                });
+//                            }
+//
+//                            @Override
+//                            public void onFailed(long errorCode) {
+//                                showLog("verifyPIN " + errorCode);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        mJubiter.cancelVirtualPwd(mEosContextID, null);
+//                    }
+//                }).show();
+//            }
+//
+//            @Override
+//            public void onFailed(long errorCode) {
+//                showLog("showVirtualPwd " + errorCode);
+//            }
+//        });
+//    }
 
     private void showAddress() {
         mJubiter.eosShowAddress(mEosContextID, new JubCallback<String>() {

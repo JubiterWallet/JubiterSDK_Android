@@ -15,9 +15,6 @@ extern "C" {
 #endif // #ifdef __cplusplus
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextBTC_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_CreateContextBTC(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL native_GetMainHDNodeBTC(JNIEnv *env, jclass clz, jint contextID);

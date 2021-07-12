@@ -17,9 +17,6 @@ JNIEXPORT jbyteArray JNICALL
 native_CreateContextXRP(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextXRP_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow);
 
 JNIEXPORT jbyteArray JNICALL
@@ -28,8 +25,8 @@ native_GetHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray format);
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jbyteArray tx);

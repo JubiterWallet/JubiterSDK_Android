@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="btc">
+        <item>BTC_TEST</item>
         <item>BTC_P2PKH</item>
         <item>BTC_P2WPKH</item>
         <item>LTC</item>
@@ -20,6 +21,7 @@
     </string-array>
 
     <string-array name="eth">
+        <item>ETH_TEST</item>
         <item>ETH</item>
         <item>ETH_ERC20</item>
         <item>ETH_ERC721</item>

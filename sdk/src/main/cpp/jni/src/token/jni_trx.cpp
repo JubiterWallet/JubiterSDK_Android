@@ -20,21 +20,6 @@ native_CreateContextTRX(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextTRX_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-    auto strXPRV = jstring2stdString(env, xprv);
-    JUB::Proto::Common::ContextCfg pbCfg;
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_TRX cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextTRX_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextTRX_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextTRX_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    }
-}
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
 
     BIP44_Path bip32Path;
@@ -83,16 +68,16 @@ native_GetMainHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
     return buildPbRvString("JUB_GetMainHDNodeTRX", env, rv, xpub);
 }
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
-    BIP44_Path bip32Path;
-    if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address = nullptr;
-        JUB_RV rv = JUB_SetMyAddressTRX(contextID, bip32Path, &address);
-        return buildPbRvString("JUB_SetMyAddressTRX 1", env, rv, address);
-    }
-    return buildPbRvString("JUB_SetMyAddressTRX 2", env, JUBR_ARGUMENTS_BAD, "");
-}
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+//    BIP44_Path bip32Path;
+//    if (parseBip44Path(env, bip32, &bip32Path)) {
+//        JUB_CHAR_PTR address = nullptr;
+//        JUB_RV rv = JUB_SetMyAddressTRX(contextID, bip32Path, &address);
+//        return buildPbRvString("JUB_SetMyAddressTRX 1", env, rv, address);
+//    }
+//    return buildPbRvString("JUB_SetMyAddressTRX 2", env, JUBR_ARGUMENTS_BAD, "");
+//}
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
@@ -306,11 +291,6 @@ JNINativeMethod trxNativeMethods[] = {
                 (void *) native_CreateContextTRX
         },
         {
-                "nativeTRXCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextTRX_soft
-        },
-        {
                 "nativeTRXGetAddress",
                 "(I[BZ)[B",
                 (void *) native_GetAddressTRX
@@ -330,11 +310,11 @@ JNINativeMethod trxNativeMethods[] = {
                 "(I[B)[B",
                 (void *) native_GetMainHDNodeTRX
         },
-        {
-                "nativeTRXSetAddress",
-                "(I[B)[B",
-                (void *) native_SetMyAddressTRX
-        },
+//        {
+//                "nativeTRXSetAddress",
+//                "(I[B)[B",
+//                (void *) native_SetMyAddressTRX
+//        },
         {
                 "nativeTRXSignTransaction",
                 "(I[BLjava/lang/String;)[B",

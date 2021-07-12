@@ -70,11 +70,11 @@
                 android:onClick="onClick"
                 android:text="SHOW_ADDRESS" />
 
-            <Button
-                android:id="@+id/xrp_set_my_address"
-                style="@style/button"
-                android:onClick="onClick"
-                android:text="SET_MY_ADDRESS" />
+<!--            <Button-->
+<!--                android:id="@+id/xrp_set_my_address"-->
+<!--                style="@style/button"-->
+<!--                android:onClick="onClick"-->
+<!--                android:text="SET_MY_ADDRESS" />-->
 
             <Button
                 android:id="@+id/xrp_set_timeout"

@@ -19,21 +19,6 @@ native_CreateContextXRP(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextXRP_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-    auto strXPRV = jstring2stdString(env, xprv);
-    JUB::Proto::Common::ContextCfg pbCfg;
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_XRP cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextXRP_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextXRP_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextXRP_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    }
-}
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
 
     BIP44_Path bip32Path;
@@ -73,16 +58,16 @@ native_GetMainHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
     return buildPbRvString("JUB_GetMainHDNodeXRP", env, rv, xpub);
 }
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
-    BIP44_Path bip32Path;
-    if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address = nullptr;
-        JUB_RV rv = JUB_SetMyAddressXRP(contextID, bip32Path, &address);
-        return buildPbRvString("JUB_SetMyAddressXRP 1", env, rv, address);
-    }
-    return buildPbRvString("JUB_SetMyAddressXRP 2", env, JUBR_ARGUMENTS_BAD, "");
-}
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+//    BIP44_Path bip32Path;
+//    if (parseBip44Path(env, bip32, &bip32Path)) {
+//        JUB_CHAR_PTR address = nullptr;
+//        JUB_RV rv = JUB_SetMyAddressXRP(contextID, bip32Path, &address);
+//        return buildPbRvString("JUB_SetMyAddressXRP 1", env, rv, address);
+//    }
+//    return buildPbRvString("JUB_SetMyAddressXRP 2", env, JUBR_ARGUMENTS_BAD, "");
+//}
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jbyteArray tx) {
@@ -164,11 +149,6 @@ JNINativeMethod xrpNativeMethods[] = {
                 (void *) native_CreateContextXRP
         },
         {
-                "nativeXRPCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextXRP_soft
-        },
-        {
                 "nativeXRPGetAddress",
                 "(I[BZ)[B",
                 (void *) native_GetAddressXRP
@@ -183,11 +163,11 @@ JNINativeMethod xrpNativeMethods[] = {
                 "(I[B)[B",
                 (void *) native_GetMainHDNodeXRP
         },
-        {
-                "nativeXRPSetAddress",
-                "(I[B)[B",
-                (void *) native_SetMyAddressXRP
-        },
+//        {
+//                "nativeXRPSetAddress",
+//                "(I[B)[B",
+//                (void *) native_SetMyAddressXRP
+//        },
         {
                 "nativeXRPSignTransaction",
                 "(I[B[B)[B",

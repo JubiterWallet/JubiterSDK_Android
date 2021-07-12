@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class ETHActivity extends AppCompatActivity {
     private ScrollView mScrollView;
     private TextView mTxtLog;
     private Spinner mSpinner;
+    private LinearLayout mLayoutETH;
 
     private Context mContext;
     private JubiterImpl mJubiter;
@@ -44,13 +46,33 @@ public class ETHActivity extends AppCompatActivity {
         mContext = this;
         initView();
         mJubiter = JubiterImpl.getInstance(mContext);
-        createETHContext();
+    }
+
+    private void rebuildContext() {
+        mProgress.setMessage("Create context in progress....");
+        mProgress.show();
+        if (mEthContextID != -1) {
+            mJubiter.clearContext(mEthContextID, new JubCallback<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    showLog("clearContext success");
+                    createETHContext();
+                }
+
+                @Override
+                public void onFailed(long errorCode) {
+                    showLog("clearContext " + errorCode);
+                }
+            });
+        } else {
+            createETHContext();
+        }
     }
 
     private void createETHContext() {
         mProgress.setMessage("Create context in progress....");
         mProgress.show();
-        mJubiter.ethCreateContext(new JubCallback<Integer>() {
+        mJubiter.ethCreateContext(mTransType, new JubCallback<Integer>() {
             @Override
             public void onSuccess(Integer integer) {
                 showLog("ethCreateContext success " + integer);
@@ -70,20 +92,27 @@ public class ETHActivity extends AppCompatActivity {
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
         mSpinner = findViewById(R.id.spinner_eth);
+        mLayoutETH = findViewById(R.id.layout_eth);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mLayoutETH.setVisibility(View.GONE);
                 switch (i) {
                     case 0:
-                        mTransType = JubiterImpl.ETH_TransType.ETH;
+                        mTransType = JubiterImpl.ETH_TransType.ETH_TEST;
+                        mLayoutETH.setVisibility(View.VISIBLE);
                         break;
                     case 1:
-                        mTransType = JubiterImpl.ETH_TransType.ETH_ERC20;
+                        mTransType = JubiterImpl.ETH_TransType.ETH;
                         break;
                     case 2:
+                        mTransType = JubiterImpl.ETH_TransType.ETH_ERC20;
+                        break;
+                    case 3:
                         mTransType = JubiterImpl.ETH_TransType.ETH_ERC721;
                         break;
                 }
+                rebuildContext();
             }
 
             @Override
@@ -115,6 +144,7 @@ public class ETHActivity extends AppCompatActivity {
                 mTxtLog.setText("");
                 break;
             case R.id.eth_trans:
+            case R.id.eth_broadcast:
                 transfer();
                 break;
             case R.id.eth_get_address:
@@ -129,9 +159,75 @@ public class ETHActivity extends AppCompatActivity {
             case R.id.eth_set_timeout:
                 setTimeout();
                 break;
+            case R.id.eth_get_history:
+                queryHistory();
+                break;
+            case R.id.eth_query_transaction:
+                queryTransactionById();
+                break;
+            case R.id.eth_get_account_info:
+                queryAccountInfo();
+                break;
             default:
                 break;
         }
+    }
+
+    private void queryTransactionById() {
+        mJubiter.ethQueryTransactionById(new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
+    }
+
+    private void queryHistory() {
+        mJubiter.ethQueryHistory(mEthContextID, new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
+    }
+
+    private void queryAccountInfo() {
+        mJubiter.ethQueryAccountInfo(mEthContextID, new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
     }
 
     private void transfer() {
@@ -157,11 +253,12 @@ public class ETHActivity extends AppCompatActivity {
     }
 
     private void showSelectVerifyTypeDialog() {
-//        DeviceType deviceType = mJubiter.getDeviceType();
-//        if (deviceType.getDEVICE() == 0) {
+        JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
+        if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-//            return;
-//        }
+        } else if (deviceType == JubiterImpl.DeviceType.SWI) {
+            executeTrans();
+        }
 //        mSelectDialog.show();
     }
 
@@ -220,6 +317,8 @@ public class ETHActivity extends AppCompatActivity {
     }
 
     private void executeTrans() {
+        mProgress.setMessage("Transaction in progress....");
+        mProgress.show();
         mJubiter.ethTransaction(mEthContextID, mTransType, transferInputValue, new JubCallback<String>() {
             @Override
             public void onSuccess(String s) {
@@ -228,7 +327,7 @@ public class ETHActivity extends AppCompatActivity {
 
             @Override
             public void onFailed(long errorCode) {
-                showLog("" + errorCode);
+                mProgress.dismiss();
             }
         });
     }
@@ -358,6 +457,9 @@ public class ETHActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Utils.parseLog(tip, mScrollView, mTxtLog);
+                if (mProgress.isShowing()) {
+                    mProgress.dismiss();
+                }
             }
         });
     }

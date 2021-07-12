@@ -20,24 +20,6 @@ native_CreateContextETH(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextETH_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-
-    auto strXPRV = jstring2stdString(env, xprv);
-    JUB::Proto::Ethereum::ContextCfgETH pbCfg;
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_ETH cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        cfg.chainID = pbCfg.chain_id();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextETH_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextETH_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextETH_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    };
-}
-
-
-JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -219,11 +201,6 @@ JNINativeMethod ethNativeMethods[] = {
                 "nativeETHCreateContext",
                 "([BI)[B",
                 (void *) native_CreateContextETH
-        },
-        {
-                "nativeETHCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextETH_soft
         },
         {
                 "nativeETHGetMainHDNode",

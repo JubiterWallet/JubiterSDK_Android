@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class BTCActivity extends AppCompatActivity {
     private ScrollView mScrollView;
     private TextView mTxtLog;
     private Spinner mSpinner;
+    private LinearLayout mLayoutBTC;
 
     private Context mContext;
     private JubiterImpl mJubiter;
@@ -57,36 +59,43 @@ public class BTCActivity extends AppCompatActivity {
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
         mSpinner = findViewById(R.id.spinner_btc);
+        mLayoutBTC = findViewById(R.id.layout_btc);
         mDialog = new ProgressDialog(this);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mLayoutBTC.setVisibility(View.GONE);
                 switch (i) {
                     case 0:
+                        mTransType = JubiterImpl.BTC_TransType.BTC_TEST;
+                        mCoinTypeMsg = "BTC";
+                        mLayoutBTC.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
                         mTransType = JubiterImpl.BTC_TransType.BTC_P2PKH;
                         mCoinTypeMsg = "BTC";
                         break;
-                    case 1:
+                    case 2:
                         mTransType = JubiterImpl.BTC_TransType.BTC_P2WPKH;
                         mCoinTypeMsg = "BTC";
                         break;
-                    case 2:
+                    case 3:
                         mTransType = JubiterImpl.BTC_TransType.LTC;
                         mCoinTypeMsg = "LTC";
                         break;
-                    case 3:
+                    case 4:
                         mTransType = JubiterImpl.BTC_TransType.DASH;
                         mCoinTypeMsg = "DASH";
                         break;
-                    case 4:
+                    case 5:
                         mTransType = JubiterImpl.BTC_TransType.BCH;
                         mCoinTypeMsg = "BCH";
                         break;
-                    case 5:
+                    case 6:
                         mTransType = JubiterImpl.BTC_TransType.QTUM;
                         mCoinTypeMsg = "QTUM";
                         break;
-                    case 6:
+                    case 7:
                         mTransType = JubiterImpl.BTC_TransType.USDT;
                         mCoinTypeMsg = "USDT";
                         break;
@@ -138,6 +147,7 @@ public class BTCActivity extends AppCompatActivity {
                 mTxtLog.setText("");
                 break;
             case R.id.btc_trans:
+            case R.id.btc_broadcast:
                 transfer();
                 break;
             case R.id.btc_get_address:
@@ -155,9 +165,53 @@ public class BTCActivity extends AppCompatActivity {
             case R.id.txt_set_unit:
                 setUnit();
                 break;
+            case R.id.btc_get_history:
+                queryHistory();
+                break;
+            case R.id.btc_query_transaction:
+                queryTransactionById();
+                break;
             default:
                 break;
         }
+    }
+
+    private void queryTransactionById() {
+        mJubiter.btcQueryTransactionById(new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
+    }
+
+    private void queryHistory() {
+        mJubiter.btcQueryHistory(mBtcContextID, new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+               runOnUiThread(new Runnable() {
+                   @Override
+                   public void run() {
+                       mTxtLog.setText(s);
+                   }
+               });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
     }
 
     private void setUnit() {
@@ -261,11 +315,12 @@ public class BTCActivity extends AppCompatActivity {
     }
 
     private void showSelectVerifyTypeDialog() {
-//        DeviceType deviceType = mJubiter.getDeviceType();
-//        if (deviceType.getDEVICE() == 0) {
+        JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
+        if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-//            return;
-//        }
+        } else if(deviceType == JubiterImpl.DeviceType.SWI){
+            executeTrans();
+        }
 //        mSelectDialog.show();
     }
 

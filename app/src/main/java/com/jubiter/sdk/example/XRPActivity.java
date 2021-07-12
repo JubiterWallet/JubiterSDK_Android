@@ -101,9 +101,9 @@ public class XRPActivity extends AppCompatActivity {
             case R.id.xrp_show_address:
                 showAddress();
                 break;
-            case R.id.xrp_set_my_address:
-                setMyAddress();
-                break;
+//            case R.id.xrp_set_my_address:
+//                setMyAddress();
+//                break;
             case R.id.xrp_set_timeout:
                 setTimeout();
                 break;
@@ -135,11 +135,12 @@ public class XRPActivity extends AppCompatActivity {
     }
 
     private void showSelectVerifyTypeDialog() {
-//        DeviceType deviceType = mJubiter.getDeviceType();
-//        if (deviceType.getDEVICE() == 0) {
+        JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
+        if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-//            return;
-//        }
+        } else if(deviceType == JubiterImpl.DeviceType.SWI){
+            executeTrans();
+        }
 //        mSelectDialog.show();
     }
 
@@ -241,54 +242,54 @@ public class XRPActivity extends AppCompatActivity {
         }).show();
     }
 
-    private void setMyAddress() {
-        mJubiter.showVirtualPwd(mXRPhContextID, new JubCallback<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                showLog("showVirtualPwd success");
-                new InputDialog(mContext, new InputDialog.callback() {
-                    @Override
-                    public void onClickListener(String value) {
-                        if (TextUtils.isEmpty(value)) {
-                            return;
-                        }
-                        mJubiter.verifyPIN(mXRPhContextID, value, new JubCallback<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                showLog("verifyPIN success");
-                                mJubiter.xrpSetMyAddress(mXRPhContextID, new JubCallback<String>() {
-                                    @Override
-                                    public void onSuccess(String s) {
-                                        showLog("xrpSetMyAddress " + s);
-                                    }
-
-                                    @Override
-                                    public void onFailed(long errorCode) {
-                                        showLog("xrpSetMyAddress " + errorCode);
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void onFailed(long errorCode) {
-                                showLog("verifyPIN " + errorCode);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        mJubiter.cancelVirtualPwd(mXRPhContextID, null);
-                    }
-                }).show();
-            }
-
-            @Override
-            public void onFailed(long errorCode) {
-                showLog("showVirtualPwd " + errorCode);
-            }
-        });
-    }
+//    private void setMyAddress() {
+//        mJubiter.showVirtualPwd(mXRPhContextID, new JubCallback<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                showLog("showVirtualPwd success");
+//                new InputDialog(mContext, new InputDialog.callback() {
+//                    @Override
+//                    public void onClickListener(String value) {
+//                        if (TextUtils.isEmpty(value)) {
+//                            return;
+//                        }
+//                        mJubiter.verifyPIN(mXRPhContextID, value, new JubCallback<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                showLog("verifyPIN success");
+//                                mJubiter.xrpSetMyAddress(mXRPhContextID, new JubCallback<String>() {
+//                                    @Override
+//                                    public void onSuccess(String s) {
+//                                        showLog("xrpSetMyAddress " + s);
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailed(long errorCode) {
+//                                        showLog("xrpSetMyAddress " + errorCode);
+//                                    }
+//                                });
+//                            }
+//
+//                            @Override
+//                            public void onFailed(long errorCode) {
+//                                showLog("verifyPIN " + errorCode);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        mJubiter.cancelVirtualPwd(mXRPhContextID, null);
+//                    }
+//                }).show();
+//            }
+//
+//            @Override
+//            public void onFailed(long errorCode) {
+//                showLog("showVirtualPwd " + errorCode);
+//            }
+//        });
+//    }
 
     private void showAddress() {
         mJubiter.xrpShowAddress(mXRPhContextID, new JubCallback<String>() {

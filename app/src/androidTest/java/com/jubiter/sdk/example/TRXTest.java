@@ -6,8 +6,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
+import com.jubiter.sdk.JuBiterSWIWallet;
 import com.jubiter.sdk.JuBiterTRX;
-import com.jubiter.sdk.JuBiterWallet;
+import com.jubiter.sdk.example.utils.HexUtils;
 import com.jubiter.sdk.proto.CommonProtos;
 
 import org.junit.Before;
@@ -42,21 +43,19 @@ public class TRXTest extends BaseTest {
 
     @Test
     public void step01_createContext_Software() {
-        String mnemonic = BaseTest.MNEMONIC;
+        CommonProtos.ResultInt device = JuBiterSWIWallet.swiConnectDevice();
+        int deviceID = device.getValue();
+        JuBiterSWIWallet.swiBuildFromMasterPrivateKey(
+                deviceID,
+                CommonProtos.CURVES.SECP256K1,
+                BaseTest.ROOT_KEY
+        );
 
-        CommonProtos.ResultString seedResult = JuBiterWallet.generateSeed(mnemonic, "");
-        assertEquals(0, seedResult.getStateCode());
-        Log.d(TAG, ">>> generateSeed value: " + seedResult.getValue());
 
-        CommonProtos.ResultString priKeyResult = JuBiterWallet.seedToMasterPrivateKey(seedResult.getValue(), CommonProtos.CURVES.SECP256K1);
-        assertEquals(0, priKeyResult.getStateCode());
-        Log.d(TAG, ">>> seedToMasterPrivateKey value: " + priKeyResult.getValue());
-
-        String priKey = priKeyResult.getValue();
         CommonProtos.ContextCfg config = CommonProtos.ContextCfg.newBuilder()
                 .setMainPath(MAIN_PATH)
                 .build();
-        CommonProtos.ResultInt result = JuBiterTRX.createContext_Software(config, priKey);
+        CommonProtos.ResultInt result = JuBiterTRX.createContext(config,deviceID);
         assertEquals(0, result.getStateCode());
 
         contextID = result.getValue();
@@ -100,15 +99,14 @@ public class TRXTest extends BaseTest {
 
     @Test
     public void step06_buildTRC20Abi() {
-        CommonProtos.ResultString result = JuBiterTRX.buildTRC20Abi(
+        JuBiterTRX.setTRC20Token(contextID, "USDT", 6, "TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG");
+
+        CommonProtos.ResultString result = JuBiterTRX.buildTRC20TransferAbi(
                 contextID,
-                "USDT",
-                6,
-                "TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG",
                 "TX8K7GXogXRPZnUsxmQrM3ZyHKXQwd93ZQ",
                 "156000000");
         assertEquals(0, result.getStateCode());
-        Log.d(TAG, ">>> buildERC20Abi value: " + result.getValue());
+        Log.d(TAG, ">>> buildTRC20TransferAbi value: " + result.getValue());
     }
 
     @Test

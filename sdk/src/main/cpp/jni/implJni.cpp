@@ -44,8 +44,8 @@ JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jb
     }
 
     JUB_CHAR_PTR pMnemonic = nullptr;
-    JUB_RV rv = JUB_GenerateMnemonic_soft(jubStrength, &pMnemonic);
-    return buildPbRvString("JUB_GenerateMnemonic_soft", env, rv, pMnemonic);
+    JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &pMnemonic);
+    return buildPbRvString("JUB_GenerateMnemonic", env, rv, pMnemonic);
 }
 
 
@@ -59,34 +59,6 @@ JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jclass clz, jstring mne
     return rv;
 }
 
-
-JNIEXPORT jbyteArray JNICALL
-native_GenerateSeed(JNIEnv *env, jclass clz, jstring mnemonic, jstring passphrase) {
-    std::string strMnemonic = jstring2stdString(env, mnemonic);
-    std::string strPassphrase = jstring2stdString(env, passphrase);
-    JUB_BYTE seed[64] = {0,};
-    JUB_RV rv = JUB_GenerateSeed_soft(strMnemonic.c_str(), strPassphrase.c_str(), seed, nullptr);
-    std::string strSeed = CharPtr2HexStr(seed, 64);
-    return buildPbRvString("JUB_GenerateSeed_soft", env, rv, strSeed);
-
-}
-
-JNIEXPORT jbyteArray JNICALL
-native_SeedToMasterPrivateKey(JNIEnv *env, jclass clz, jstring seed, jbyteArray curve) {
-    std::string strCurve = jbyteArray2stdString(env, curve);
-    std::string strSeed = jstring2stdString(env, seed);
-
-    JUB::Proto::Common::CURVES enum_curve;
-    JUB::Proto::Common::CURVES_Parse(strCurve, &enum_curve);
-
-    std::vector<unsigned char> vSeed = HexStr2CharPtr(strSeed);
-
-    JUB_CHAR_PTR xprv = nullptr;
-    JUB_RV rv = JUB_SeedToMasterPrivateKey_soft(&vSeed[0], vSeed.size(),
-                                                (JUB_ENUM_CURVES) enum_curve,
-                                                &xprv);
-    return buildPbRvString("JUB_SeedToMasterPrivateKey_soft", env, rv, xprv);
-}
 
 //================================= JUB_SDK_DEV_h ================================================
 
@@ -521,16 +493,6 @@ JNINativeMethod gMethods[] = {
                 "(Ljava/lang/String;)I",
                 (void *) native_CheckMnemonic
         },
-        {
-                "nativeGenerateSeed",
-                "(Ljava/lang/String;Ljava/lang/String;)[B",
-                (void *) native_GenerateSeed
-        },
-        {
-                "nativeSeedToMasterPrivateKey",
-                "(Ljava/lang/String;[B)[B",
-                (void *) native_SeedToMasterPrivateKey
-        },
 
 #ifdef HC
         {
@@ -606,6 +568,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     // device
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBleClass(env), getBleNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getNfcClass(env), getNfcNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getSwiClass(env), getSwiNativeMethods()));
     // coin
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBtcClass(env), getBtcNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getEthClass(env), getEthNativeMethods()));

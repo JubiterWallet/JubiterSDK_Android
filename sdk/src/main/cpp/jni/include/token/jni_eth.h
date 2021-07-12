@@ -18,9 +18,6 @@ JNIEXPORT jbyteArray JNICALL
 native_CreateContextETH(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextETH_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format);
 
 JNIEXPORT jbyteArray JNICALL

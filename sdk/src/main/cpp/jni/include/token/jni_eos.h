@@ -17,9 +17,6 @@ JNIEXPORT jbyteArray JNICALL
 native_CreateContextEOS(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextEOS_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow);
 
 JNIEXPORT jbyteArray JNICALL
@@ -28,8 +25,8 @@ native_GetHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format);
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTransactionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx);

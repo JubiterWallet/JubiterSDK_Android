@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mTxtScanBle.setVisibility(View.GONE);
                 mTxtOffBle.setVisibility(View.GONE);
                 disconnectBle();
+                connectSwi();
             }
         });
         mRadioBle.performClick();
@@ -160,14 +161,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    private void toDeviceActivity() {
-        if (isConnect) {
-            startActivity(new Intent(mContext, DeviceActivity.class));
-        }
-    }
 
     private void scanBle() {
-        mJubiter.connect(new ConnectionStateCallback() {
+        mJubiter.connectBt(new ConnectionStateCallback() {
             @Override
             public void onConnected(String mac, int handle) {
                 isConnect = true;
@@ -188,6 +184,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
     }
 
+    private void connectSwi() {
+        mJubiter.connectSwi();
+        isConnect = true;
+    }
+
     private void getDeviceType() {
         mJubiter.getDeviceType(new JubCallback<String>() {
             @Override
@@ -205,8 +206,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void disconnectBle() {
         if (isConnect) {
             mJubiter.disConnectBt();
+            mJubiter.disconnectSwi();
             isConnect = false;
-            showLog("disConnectBt");
+            showLog("disConnect");
         }
     }
 
@@ -241,8 +243,20 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void toFingerActivity() {
+        if(mRadioSoft.isChecked()){
+            return;
+        }
         if (isConnect) {
             startActivity(new Intent(mContext, FingerPrintManagerActivity.class));
+        }
+    }
+
+    private void toDeviceActivity() {
+        if(mRadioSoft.isChecked()){
+            return;
+        }
+        if (isConnect) {
+            startActivity(new Intent(mContext, DeviceActivity.class));
         }
     }
 

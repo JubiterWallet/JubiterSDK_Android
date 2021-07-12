@@ -82,6 +82,50 @@
                 android:onClick="onClick"
                 android:text="SET_TIMEOUT" />
 
+            <LinearLayout
+                android:id="@+id/layout_eth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:background="@color/cardview_dark_background" />
+
+                <Button
+                    android:id="@+id/eth_get_account_info"
+                    style="@style/button"
+                    android:onClick="onClick"
+                    android:text="Query AccountInfo by Addr" />
+
+                <Button
+                    android:id="@+id/eth_get_history"
+                    style="@style/button"
+                    android:onClick="onClick"
+                    android:text="Query Transactions by Addr" />
+
+                <Button
+                    android:id="@+id/eth_broadcast"
+                    style="@style/button"
+                    android:onClick="onClick"
+                    android:text="Transaction and Broadcast" />
+
+<!--                <Button-->
+<!--                    android:id="@+id/erc20_broadcast"-->
+<!--                    style="@style/button"-->
+<!--                    android:onClick="onClick"-->
+<!--                    android:text="ERC20 Transaction and Broadcast" />-->
+
+                <Button
+                    android:id="@+id/eth_query_transaction"
+                    style="@style/button"
+                    android:onClick="onClick"
+                    android:text="Query Transaction by Txid" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

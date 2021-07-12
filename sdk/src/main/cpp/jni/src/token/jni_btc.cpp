@@ -3,25 +3,6 @@
 //
 #include "jni_btc.h"
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_CreateContextBTC_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-    JUB::Proto::Bitcoin::ContextCfgBTC pbCfg;
-    auto strXprv = jstring2stdString(env, xprv);
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_BTC cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        cfg.coinType = (JUB_ENUM_COINTYPE_BTC) pbCfg.coin_type();
-        cfg.transType = (JUB_ENUM_BTC_TRANS_TYPE) pbCfg.trans_type();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextBTC_soft(cfg, (JUB_CHAR_PTR) strXprv.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextBTC_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextBTC_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    };
-}
-
 
 JNIEXPORT jbyteArray
 
@@ -282,11 +263,6 @@ JNINativeMethod btcNativeMethods[] = {
                 "nativeBTCCreateContext",
                 "([BI)[B",
                 (void *) native_CreateContextBTC
-        },
-        {
-                "nativeBTCCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextBTC_soft
         },
         {
                 "nativeBTCGetAddress",

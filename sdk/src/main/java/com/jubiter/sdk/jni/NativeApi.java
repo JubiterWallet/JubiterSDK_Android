@@ -17,10 +17,6 @@ public class NativeApi {
 
     public static native int nativeCheckMnemonic(String param);
 
-    public static native byte[] nativeGenerateSeed(String mnemonic, String passphrase);
-
-    public static native byte[] nativeSeedToMasterPrivateKey(String seed, byte[] curve);
-
 
     //********************************* 硬件钱包 ************************************
 
@@ -133,7 +129,7 @@ public class NativeApi {
 
     public static native byte[] nativeEOSGetMainHDNode(int contextID, byte[] format);
 
-    public static native byte[] nativeEOSSetAddress(int contextID, byte[] bip32);
+    //public static native byte[] nativeEOSSetAddress(int contextID, byte[] bip32);
 
     public static native byte[] nativeEOSSignTransaction(int contextID, byte[] txInfo);
 
@@ -154,7 +150,7 @@ public class NativeApi {
 
     public static native byte[] nativeXRPGetMainHDNode(int contextID, byte[] format);
 
-    public static native byte[] nativeXRPSetAddress(int contextID, byte[] bip32);
+    //public static native byte[] nativeXRPSetAddress(int contextID, byte[] bip32);
 
     public static native byte[] nativeXRPSignTransaction(int contextID, byte[] bip32, byte[] txInfo);
 
@@ -174,7 +170,7 @@ public class NativeApi {
 
     public static native byte[] nativeTRXGetMainHDNode(int contextID, byte[] format);
 
-    public static native byte[] nativeTRXSetAddress(int contextID, byte[] bip32);
+    //public static native byte[] nativeTRXSetAddress(int contextID, byte[] bip32);
 
     public static native byte[] nativeTRXSignTransaction(int contextID, byte[] bip32,
                                                          String jPackedContractInPb);
