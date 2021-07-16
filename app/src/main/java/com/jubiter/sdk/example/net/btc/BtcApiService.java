@@ -1,6 +1,6 @@
 package com.jubiter.sdk.example.net.btc;
 
-import com.jubiter.sdk.example.net.bean.broadcast.Broadcast;
+import com.jubiter.sdk.example.net.bean.SimpleBean;
 import com.jubiter.sdk.example.net.bean.fee.Fees;
 import com.jubiter.sdk.example.net.bean.btchisory.BtcHistory;
 import com.jubiter.sdk.example.net.bean.btctransaction.PreTransactionBean;
@@ -35,6 +35,14 @@ public interface BtcApiService {
     @POST("/api/v2/getMinerFeeEstimations")
     Call<Fees> getMinerFeeEstimations();
 
+    /**
+     * queryBalanceByAccount
+     * @return
+     */
+    @POST("/api/v2/queryBalanceByAccount")
+    @FormUrlEncoded
+    Call<SimpleBean> queryBalanceByAccount(@Field("account") String account);
+
 
     /**
      *
@@ -65,7 +73,7 @@ public interface BtcApiService {
      */
     @POST("/api/v2/broadcastTransaction")
     @FormUrlEncoded
-    Call<Broadcast> broadcastTransaction(@Field("rawtx") String rawtx);
+    Call<SimpleBean> broadcastTransaction(@Field("rawtx") String rawtx);
 
     /**
      *

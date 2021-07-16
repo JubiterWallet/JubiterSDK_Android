@@ -1,21 +1,15 @@
 package com.jubiter.sdk.example.net.eth;
 
-import android.util.Log;
-
 import com.jubiter.sdk.example.net.RetrofitManager;
-import com.jubiter.sdk.example.net.bean.broadcast.Broadcast;
-import com.jubiter.sdk.example.net.bean.btchisory.BtcHistory;
-import com.jubiter.sdk.example.net.bean.btctransaction.PreTransactionBean;
+import com.jubiter.sdk.example.net.bean.SimpleBean;
 import com.jubiter.sdk.example.net.bean.ethhistory.EthHistory;
 import com.jubiter.sdk.example.net.bean.ethinfo.EthAccountInfo;
 import com.jubiter.sdk.example.net.bean.fee.Fees;
 import com.jubiter.sdk.example.net.bean.txid.TxStatus;
-import com.jubiter.sdk.example.net.btc.BtcApiService;
 
 import java.io.IOException;
 
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 /**
  * @Date 2021-07-08  10:21
@@ -64,8 +58,8 @@ public class EthModel {
     }
 
 
-    public Broadcast broadcastTransaction(String rawtx) throws IOException {
-        Response<Broadcast> response =
+    public SimpleBean broadcastTransaction(String rawtx) throws IOException {
+        Response<SimpleBean> response =
                 mEthService.broadcastTransaction(
                         rawtx
                 ).execute();

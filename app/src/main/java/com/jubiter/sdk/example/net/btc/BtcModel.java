@@ -1,9 +1,7 @@
 package com.jubiter.sdk.example.net.btc;
 
-import android.util.Log;
-
 import com.jubiter.sdk.example.net.RetrofitManager;
-import com.jubiter.sdk.example.net.bean.broadcast.Broadcast;
+import com.jubiter.sdk.example.net.bean.SimpleBean;
 import com.jubiter.sdk.example.net.bean.fee.Fees;
 import com.jubiter.sdk.example.net.bean.btchisory.BtcHistory;
 import com.jubiter.sdk.example.net.bean.btctransaction.PreTransactionBean;
@@ -28,6 +26,15 @@ public class BtcModel {
 
     private BtcModel() {
         mBtcService = RetrofitManager.createBTC(BtcApiService.class);
+    }
+
+    public SimpleBean queryBalanceByAccount(String account) throws IOException {
+        Response<SimpleBean> response =
+                mBtcService.queryBalanceByAccount(account).execute();
+        if (response.isSuccessful() && response.code() == 200 && response.body() != null) {
+            return response.body();
+        }
+        return null;
     }
 
     public BtcHistory queryTransactionByAccount(String account, int page) throws IOException {
@@ -70,8 +77,8 @@ public class BtcModel {
         return null;
     }
 
-    public Broadcast broadcastTransaction(String rawtx) throws IOException {
-        Response<Broadcast> response =
+    public SimpleBean broadcastTransaction(String rawtx) throws IOException {
+        Response<SimpleBean> response =
                 mBtcService.broadcastTransaction(
                         rawtx
                 ).execute();

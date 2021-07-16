@@ -1,7 +1,6 @@
 package com.jubiter.sdk.example.net.eth;
 
-import com.google.gson.JsonObject;
-import com.jubiter.sdk.example.net.bean.broadcast.Broadcast;
+import com.jubiter.sdk.example.net.bean.SimpleBean;
 import com.jubiter.sdk.example.net.bean.ethhistory.EthHistory;
 import com.jubiter.sdk.example.net.bean.ethinfo.EthAccountInfo;
 import com.jubiter.sdk.example.net.bean.fee.Fees;
@@ -64,7 +63,7 @@ public interface EthApiService {
      */
     @POST("/api/v2/broadcastTransaction")
     @FormUrlEncoded
-    Call<Broadcast> broadcastTransaction(@Field("rawtx") String rawtx);
+    Call<SimpleBean> broadcastTransaction(@Field("rawtx") String rawtx);
 
     /**
      *

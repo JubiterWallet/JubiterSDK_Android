@@ -168,6 +168,9 @@ public class BTCActivity extends AppCompatActivity {
             case R.id.btc_get_history:
                 queryHistory();
                 break;
+            case R.id.btc_get_balance:
+                queryBalance();
+                break;
             case R.id.btc_query_transaction:
                 queryTransactionById();
                 break;
@@ -199,12 +202,31 @@ public class BTCActivity extends AppCompatActivity {
         mJubiter.btcQueryHistory(mBtcContextID, new JubCallback<String>() {
             @Override
             public void onSuccess(String s) {
-               runOnUiThread(new Runnable() {
-                   @Override
-                   public void run() {
-                       mTxtLog.setText(s);
-                   }
-               });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("" + errorCode);
+            }
+        });
+    }
+
+    private void queryBalance() {
+        mJubiter.btcQueryBalanceByAccount(mBtcContextID, new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTxtLog.setText(s);
+                    }
+                });
             }
 
             @Override
@@ -318,7 +340,7 @@ public class BTCActivity extends AppCompatActivity {
         JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
         if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-        } else if(deviceType == JubiterImpl.DeviceType.SWI){
+        } else if (deviceType == JubiterImpl.DeviceType.SWI) {
             executeTrans();
         }
 //        mSelectDialog.show();

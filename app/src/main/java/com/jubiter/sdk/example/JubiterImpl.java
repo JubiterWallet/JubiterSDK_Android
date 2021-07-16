@@ -21,7 +21,7 @@ import com.jubiter.sdk.example.dialog.SelectDeviceDialog;
 import com.jubiter.sdk.example.net.bean.ethhistory.EthHistory;
 import com.jubiter.sdk.example.net.bean.ethinfo.EthAccountInfo;
 import com.jubiter.sdk.example.net.btc.BtcModel;
-import com.jubiter.sdk.example.net.bean.broadcast.Broadcast;
+import com.jubiter.sdk.example.net.bean.SimpleBean;
 import com.jubiter.sdk.example.net.bean.fee.Fees;
 import com.jubiter.sdk.example.net.bean.btchisory.BtcHistory;
 import com.jubiter.sdk.example.net.bean.btctransaction.Input;
@@ -462,13 +462,14 @@ public class JubiterImpl {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;
                 }
+                callback.onSuccess(mainHDNode.getValue());
                 callback.onSuccess("BTCGetHDNode");
                 CommonProtos.ResultString HDNode = JuBiterBitcoin.getHDNode(contextID, path);
                 if (HDNode.getStateCode() != 0) {
                     callback.onFailed(HDNode.getStateCode());
                     return;
                 }
-                callback.onSuccess(mainHDNode.getValue());
+                callback.onSuccess(HDNode.getValue());
                 callback.onSuccess("BTCGetAddress ");
                 CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, false);
                 if (address.getStateCode() != 0) {
@@ -761,6 +762,34 @@ public class JubiterImpl {
         });
     }
 
+    public void btcQueryBalanceByAccount(final int contextID, JubCallback<String> callback) {
+        Log.d("context: ",contextID+"");
+        if(contextID == -1){
+            callback.onFailed(-1);
+            return;
+        }
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+                try {
+                    SimpleBean balance = BtcModel.getInstance().queryBalanceByAccount(
+                            address.getValue());
+                    if (TextUtils.isEmpty(balance.getData())) {
+                        callback.onFailed(balance.getCode());
+                        return;
+                    }
+                    Gson gson = new Gson();
+                    String formatJson = Utils.formatJson(gson.toJson(balance));
+                    Log.d("JSON", formatJson);
+                    callback.onSuccess(formatJson);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     private String btcTxid;
 
     // BTC交易全流程
@@ -791,6 +820,10 @@ public class JubiterImpl {
                     );
                     if (preTransactionBean.getPreTransaction() == null) {
                         Log.e("btcP2pkhTransactionTest", preTransactionBean.getMsg());
+                        callback.onFailed(preTransactionBean.getCode());
+                        return;
+                    }
+                    if( preTransactionBean.getCode() != 0){
                         callback.onFailed(preTransactionBean.getCode());
                         return;
                     }
@@ -845,7 +878,7 @@ public class JubiterImpl {
                         return;
                     }
 
-                    Broadcast broadcast = btcModel.broadcastTransaction(resultString.getValue());
+                    SimpleBean broadcast = btcModel.broadcastTransaction(resultString.getValue());
                     btcTxid = broadcast.getData();
                     if (TextUtils.isEmpty(btcTxid)) {
                         callback.onFailed(broadcast.getCode());
@@ -1220,7 +1253,7 @@ public class JubiterImpl {
                         return;
                     }
 
-                    Broadcast broadcast = ethModel.broadcastTransaction(resultString.getValue());
+                    SimpleBean broadcast = ethModel.broadcastTransaction(resultString.getValue());
                     ethTxid = broadcast.getData();
                     if (TextUtils.isEmpty(ethTxid)) {
                         callback.onFailed(broadcast.getCode());

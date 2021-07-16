@@ -1,9 +1,9 @@
 
-package com.jubiter.sdk.example.net.bean.broadcast;
+package com.jubiter.sdk.example.net.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Broadcast {
+public class SimpleBean {
 
     @SerializedName("code")
     private Long mCode;
