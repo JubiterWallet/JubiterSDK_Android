@@ -11,6 +11,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.mediaparkpk.base58android.Base58;
+import com.mediaparkpk.base58android.Base58Exception;
+import com.mediaparkpk.base58android.Base58Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,5 +87,21 @@ public class Utils {
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(uglyJSONString);
         return gson.toJson(je);
+    }
+
+    public static String xpub2tpub(String xpub){
+        try {
+            byte[] decode = Base58.decode(xpub);
+            String re = HexUtils.convertBytesToString(decode);
+            if(re.toUpperCase().startsWith("0488B21E")){
+                re = re.replace("0488b21e","043587cf");
+                return Base58.encode(HexUtils.fromString(re));
+            } else {
+                return xpub;
+            }
+        } catch (Base58Exception e) {
+            e.printStackTrace();
+        }
+        return xpub;
     }
 }

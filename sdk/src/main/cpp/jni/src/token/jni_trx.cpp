@@ -148,7 +148,6 @@ native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) 
         return buildPbRvString("JUB_PackContractTRX 1", env, JUBR_ARGUMENTS_BAD, "");
     }
 
-    JUB_CHAR_PTR raw = nullptr;
     JUB_TX_TRX trxTx;
     trxTx.ref_block_bytes = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_bytes().c_str();
     trxTx.ref_block_hash = (JUB_CHAR_PTR) pbTx.raw_data().ref_block_hash().c_str();
@@ -255,7 +254,6 @@ native_TRXSetTRC721Token(JNIEnv *env,
                          jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
-    JUB_CHAR_PTR abi = nullptr;
     JUB_RV rv = JUB_SetTRC721Token(contextID,
                                    (JUB_CHAR_PTR) strTokenName.c_str(),
                                    (JUB_CHAR_PTR) strContractAddress.c_str());

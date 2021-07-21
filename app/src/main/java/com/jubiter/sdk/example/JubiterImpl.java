@@ -444,7 +444,7 @@ public class JubiterImpl {
         });
     }
 
-    public void btcGetAddress(final int contextID, final long index, final JubCallback<String> callback) {
+    public void btcGetAddress(final BTC_TransType transType, final int contextID, final long index, final JubCallback<String> callback) {
         if(contextID == -1){
             callback.onFailed(-1);
             return;
@@ -462,14 +462,22 @@ public class JubiterImpl {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;
                 }
-                callback.onSuccess(mainHDNode.getValue());
+                if(transType == BTC_TransType.BTC_TEST){
+                    callback.onSuccess(Utils.xpub2tpub(mainHDNode.getValue()));
+                } else {
+                    callback.onSuccess(mainHDNode.getValue());
+                }
                 callback.onSuccess("BTCGetHDNode");
                 CommonProtos.ResultString HDNode = JuBiterBitcoin.getHDNode(contextID, path);
                 if (HDNode.getStateCode() != 0) {
                     callback.onFailed(HDNode.getStateCode());
                     return;
                 }
-                callback.onSuccess(HDNode.getValue());
+                if(transType == BTC_TransType.BTC_TEST){
+                    callback.onSuccess(Utils.xpub2tpub(HDNode.getValue()));
+                } else {
+                    callback.onSuccess(HDNode.getValue());
+                }
                 callback.onSuccess("BTCGetAddress ");
                 CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, false);
                 if (address.getStateCode() != 0) {
@@ -744,9 +752,10 @@ public class JubiterImpl {
             @Override
             public void run() {
                 CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+                String addressStr = Utils.xpub2tpub(address.getValue());
                 try {
                     BtcHistory btcHistory = BtcModel.getInstance().queryTransactionByAccount(
-                            address.getValue(), 1);
+                            addressStr, 1);
                     if (btcHistory.getData() == null) {
                         callback.onFailed(btcHistory.getCode());
                         return;
@@ -772,9 +781,10 @@ public class JubiterImpl {
             @Override
             public void run() {
                 CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+                String addressStr = Utils.xpub2tpub(address.getValue());
                 try {
                     SimpleBean balance = BtcModel.getInstance().queryBalanceByAccount(
-                            address.getValue());
+                            addressStr);
                     if (TextUtils.isEmpty(balance.getData())) {
                         callback.onFailed(balance.getCode());
                         return;
@@ -794,10 +804,6 @@ public class JubiterImpl {
 
     // BTC交易全流程
     private void btcP2pkhTransactionTest(final int contextID, String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
-            callback.onFailed(-1);
-            return;
-        }
         long inputValue = Long.parseLong(transferInputValue);
         ThreadUtils.execute(new Runnable() {
             @Override
@@ -807,13 +813,20 @@ public class JubiterImpl {
                     Fees fees = btcModel.getMinerFeeEstimations();
                     if (fees.getData() == null) {
                         callback.onFailed(fees.getCode());
+                        callback.onSuccess("getMinerFeeEstimations error");
                         return;
                     }
                     long fee = fees.getData().getFastestFee().longValue();
 
                     CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+                    if (address.getStateCode() != 0 || TextUtils.isEmpty(address.getValue())) {
+                        callback.onSuccess("getMainHDNode error");
+                        callback.onFailed(address.getStateCode());
+                        return;
+                    }
+                    String addressStr = Utils.xpub2tpub(address.getValue());
                     PreTransactionBean preTransactionBean = btcModel.getPreTransaction(
-                            address.getValue(),
+                            addressStr,
                             fee + "",
                             inputValue,
                             "n2LPmFxg9hRZgAg89sG4HWyEM5GM1SAmud"
@@ -821,10 +834,12 @@ public class JubiterImpl {
                     if (preTransactionBean.getPreTransaction() == null) {
                         Log.e("btcP2pkhTransactionTest", preTransactionBean.getMsg());
                         callback.onFailed(preTransactionBean.getCode());
+                        callback.onSuccess("getPreTransaction error");
                         return;
                     }
                     if( preTransactionBean.getCode() != 0){
                         callback.onFailed(preTransactionBean.getCode());
+                        callback.onSuccess("getPreTransaction error 2 "+preTransactionBean.getMsg());
                         return;
                     }
                     PreTransaction transaction = preTransactionBean.getPreTransaction();
@@ -875,6 +890,7 @@ public class JubiterImpl {
                         callback.onSuccess("raw: " + resultString.getValue());
                     } else {
                         callback.onFailed(resultString.getStateCode());
+                        callback.onSuccess("signTransaction error");
                         return;
                     }
 
@@ -1945,24 +1961,6 @@ public class JubiterImpl {
                     return;
                 }
 
-//                builder.setRawData(org.tron.protos.Protocol.Transaction.raw.newBuilder()
-//                        .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
-//                                .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
-//                                .setParameter(Any.pack(org.tron.protos.contract.SmartContractOuterClass.TriggerSmartContract.newBuilder()
-//                                        // TWXxKuBCstP1mxnErRxUNCnthkpT6W5KgG
-//                                        .setOwnerAddress(ByteString.copyFrom(HexUtils.fromString("41E193FE01FBD5B5FE3CFD74E21B153DC2AA93C010")))
-//                                        // TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
-//                                        .setContractAddress(ByteString.copyFrom(HexUtils.fromString("41A614F803B6FD780986A42C78EC9C7F77E6DED13C")))
-//                                        .setData(ByteString.copyFrom(HexUtils.fromString(abiRes.getValue())))
-//                                        .build()))
-//                                .build())
-//                        .setRefBlockBytes(ByteString.copyFrom("8610".getBytes()))
-//                        .setRefBlockHash(ByteString.copyFrom("6a630e523f995e67".getBytes()))
-//                        .setExpiration(1603346250000L)
-//                        .setTimestamp(1603346193445L)
-//                        .setFeeLimit(120000)
-//                        .build());
-
                 Protocol.Transaction.raw raw = org.tron.protos.Protocol.Transaction.raw.newBuilder()
                         .addContract(org.tron.protos.Protocol.Transaction.Contract.newBuilder()
                                 .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
@@ -2040,19 +2038,21 @@ public class JubiterImpl {
             default:
                 break;
         }
-        org.tron.protos.Protocol.Transaction transactionTrx = builder.build();
+
 
         CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
                 .setChange(false)
                 .setAddressIndex(0)
                 .build();
 
-        // 无数据缓存，跳过 verifyPIN
-
-//        CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+        if(TextUtils.isEmpty(unsignedData)){
+            org.tron.protos.Protocol.Transaction transactionTrx = builder.build();
+            CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+            unsignedData = result.getValue();
+        }
 
         CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, unsignedData);
-//        CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, result.getValue());
+
         if (signRes.getStateCode() == 0) {
             callback.onSuccess(signRes.getValue());
         } else {

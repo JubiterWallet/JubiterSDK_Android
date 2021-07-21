@@ -512,7 +512,7 @@ public class BTCActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(value)) {
                     return;
                 }
-                mJubiter.btcGetAddress(mBtcContextID, Integer.parseInt(value), new JubCallback<String>() {
+                mJubiter.btcGetAddress(mTransType, mBtcContextID, Integer.parseInt(value), new JubCallback<String>() {
                     @Override
                     public void onSuccess(String s) {
                         showLog(s);
