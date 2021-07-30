@@ -23,7 +23,7 @@ public interface EthApiService {
      * @param coinType
      * @return
      */
-    @POST("/api/v2/queryTransactionsByAddrs/breif")
+    @POST("api/v2/queryTransactionsByAddrs/breif")
     @FormUrlEncoded
     Call<EthHistory> queryTransactionsByAddrs(@Field("account") String address,
                                               @Field("contractAddress") String contractAddress,
@@ -37,7 +37,7 @@ public interface EthApiService {
      * @param contractAddress
      * @return
      */
-    @POST("/api/v2/queryAccountInfoByAddr")
+    @POST("api/v2/queryAccountInfoByAddr")
     @FormUrlEncoded
     Call<EthAccountInfo> queryAccountInfoByAddr(@Field("address") String address,
                                                 @Field("contractAddress") String contractAddress);
@@ -45,14 +45,14 @@ public interface EthApiService {
      * getMinerFeeEstimations
      * @return
      */
-    @POST("/api/v2/getMinerFeeEstimations")
+    @POST("api/v2/getMinerFeeEstimations")
     Call<Fees> getMinerFeeEstimations();
 
     /**
      * queryTokenGasUsed
      * @return
      */
-    @POST("/api/queryTokenGasUsed")
+    @POST("api/queryTokenGasUsed")
     Call<Fees> queryTokenGasUsed();
 
     /**
@@ -61,7 +61,7 @@ public interface EthApiService {
      * @param rawtx
      * @return
      */
-    @POST("/api/v2/broadcastTransaction")
+    @POST("api/v2/broadcastTransaction")
     @FormUrlEncoded
     Call<SimpleBean> broadcastTransaction(@Field("rawtx") String rawtx);
 
@@ -70,7 +70,7 @@ public interface EthApiService {
      * @param txid
      * @return
      */
-    @POST("/api/queryTransactionById")
+    @POST("api/v2/queryTransactionById")
     @FormUrlEncoded
     Call<TxStatus> queryTransactionById(@Field("txid") String txid);
 

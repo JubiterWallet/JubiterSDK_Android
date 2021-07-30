@@ -21,15 +21,17 @@ public class RetrofitManager {
     @StringDef({RELEASE_SERVER.BTC_SERVICE, RELEASE_SERVER.ETH_SERVICE})
     @Retention(RetentionPolicy.SOURCE)
     public @interface RELEASE_SERVER {
-        public static final String BTC_SERVICE = "https://wxotp.ftsafe.cn:3003";
-        public static final String ETH_SERVICE = "https://wxotp.ftsafe.cn";
+//        public static final String BTC_SERVICE = "https://wxotp.ftsafe.cn:3003/";
+//        public static final String ETH_SERVICE = "https://wxotp.ftsafe.cn/";
+        public static final String BTC_SERVICE = "https://wxotp.ftsafe.cn:3003/";
+        public static final String ETH_SERVICE = "https://eth.jubiterwallet.com.cn/rinkeby/";
     }
 
     @StringDef({DEBUG_SERVER.BTC_DEBUG, DEBUG_SERVER.ETH_DEBUG})
     @Retention(RetentionPolicy.SOURCE)
     public @interface DEBUG_SERVER {
         public static final String BTC_DEBUG = "http://192.168.22.98:3003";
-        public static final String ETH_DEBUG = "http://192.168.22.98:3009";
+        public static final String ETH_DEBUG = "http://192.168.22.98:3009/";
     }
 
     private static final long CONNECT_TIMEOUT = 40L;

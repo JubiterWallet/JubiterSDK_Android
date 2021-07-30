@@ -21,7 +21,7 @@ public interface BtcApiService {
      * @param account
      * @return
      */
-    @POST("/api/v2/queryTransactionsByAccount")
+    @POST("api/v2/queryTransactionsByAccount")
     @FormUrlEncoded
     Call<BtcHistory> queryTransactionByAccount(@Field("account") String account,
                                                @Field("upordown") String upordown,
@@ -32,14 +32,14 @@ public interface BtcApiService {
      * getMinerFeeEstimations
      * @return
      */
-    @POST("/api/v2/getMinerFeeEstimations")
+    @POST("api/v2/getMinerFeeEstimations")
     Call<Fees> getMinerFeeEstimations();
 
     /**
      * queryBalanceByAccount
      * @return
      */
-    @POST("/api/v2/queryBalanceByAccount")
+    @POST("api/v2/queryBalanceByAccount")
     @FormUrlEncoded
     Call<SimpleBean> queryBalanceByAccount(@Field("account") String account);
 
@@ -55,7 +55,7 @@ public interface BtcApiService {
      * @param selectionType
      * @return
      */
-    @POST("/api/v2/getPreTransaction")
+    @POST("api/v2/getPreTransaction")
     @FormUrlEncoded
     Call<PreTransactionBean> getPreTransaction(@Field("account") String account,
                                                @Field("fee") String feeRate,
@@ -71,7 +71,7 @@ public interface BtcApiService {
      * @param rawtx
      * @return
      */
-    @POST("/api/v2/broadcastTransaction")
+    @POST("api/v2/broadcastTransaction")
     @FormUrlEncoded
     Call<SimpleBean> broadcastTransaction(@Field("rawtx") String rawtx);
 
@@ -80,7 +80,7 @@ public interface BtcApiService {
      * @param txid
      * @return
      */
-    @POST("/api/queryTransactionById")
+    @POST("api/queryTransactionById")
     @FormUrlEncoded
     Call<TxStatus> queryTransactionById(@Field("txid") String txid);
 

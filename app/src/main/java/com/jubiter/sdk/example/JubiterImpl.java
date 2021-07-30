@@ -943,7 +943,8 @@ public class JubiterImpl {
             public void run() {
                 EthereumProtos.ContextCfgETH contextCfgETH = EthereumProtos.ContextCfgETH.newBuilder()
                         .setMainPath("m/44'/60'/0'")
-                        .setChainId(transType == ETH_TransType.ETH_TEST ? 42 : 1)
+                        //.setChainId(transType == ETH_TransType.ETH_TEST ? 42 : 1)
+                        .setChainId(transType == ETH_TransType.ETH_TEST ? 4 : 1)
                         .build();
 
                 CommonProtos.ResultInt context = JuBiterEthereum.createContext(contextCfgETH, deviceHandle);
@@ -2045,11 +2046,11 @@ public class JubiterImpl {
                 .setAddressIndex(0)
                 .build();
 
-        if(TextUtils.isEmpty(unsignedData)){
-            org.tron.protos.Protocol.Transaction transactionTrx = builder.build();
-            CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
-            unsignedData = result.getValue();
-        }
+//        if(TextUtils.isEmpty(unsignedData)){
+//            org.tron.protos.Protocol.Transaction transactionTrx = builder.build();
+//            CommonProtos.ResultString result = JuBiterTRX.packContract(contextID, transactionTrx);
+//            unsignedData = result.getValue();
+//        }
 
         CommonProtos.ResultString signRes = JuBiterTRX.signTransaction(contextID, bip32Path, unsignedData);
 
