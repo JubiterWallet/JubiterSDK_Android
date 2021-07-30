@@ -17,9 +17,6 @@ JNIEXPORT jbyteArray JNICALL
 native_CreateContextFIL(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID);
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextFIL_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv);
-
-JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray format);
 
 JNIEXPORT jbyteArray JNICALL

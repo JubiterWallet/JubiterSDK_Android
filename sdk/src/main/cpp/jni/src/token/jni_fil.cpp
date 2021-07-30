@@ -19,22 +19,6 @@ native_CreateContextFIL(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextFIL_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
-
-    auto strXPRV = jstring2stdString(env, xprv);
-    JUB::Proto::Common::ContextCfg pbCfg;
-    if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
-        CONTEXT_CONFIG_FIL cfg;
-        cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
-        JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextFIL_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
-        return buildPbRvUInt("JUB_CreateContextFIL_soft 1", env, rv, contextID);
-    } else {
-        return buildPbRvUInt("JUB_CreateContextFIL_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
-    };
-}
-
-JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -73,16 +57,16 @@ native_GetAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     return buildPbRvString("JUB_GetAddressFIL 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
-    BIP44_Path bip32Path;
-    if (parseBip44Path(env, bip32, &bip32Path)) {
-        JUB_CHAR_PTR address = nullptr;
-        JUB_RV rv = JUB_SetMyAddressFIL(contextID, bip32Path, &address);
-        return buildPbRvString("JUB_SetMyAddressFIL 1", env, rv, address);
-    }
-    return buildPbRvString("JUB_SetMyAddressFIL 2", env, JUBR_ARGUMENTS_BAD, "");
-}
+//JNIEXPORT jbyteArray JNICALL
+//native_SetMyAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+//    BIP44_Path bip32Path;
+//    if (parseBip44Path(env, bip32, &bip32Path)) {
+//        JUB_CHAR_PTR address = nullptr;
+//        JUB_RV rv = JUB_SetMyAddressFIL(contextID, bip32Path, &address);
+//        return buildPbRvString("JUB_SetMyAddressFIL 1", env, rv, address);
+//    }
+//    return buildPbRvString("JUB_SetMyAddressFIL 2", env, JUBR_ARGUMENTS_BAD, "");
+//}
 
 
 JNIEXPORT jbyteArray JNICALL
@@ -120,11 +104,6 @@ JNINativeMethod filNativeMethods[] = {
                 (void *) native_CreateContextFIL
         },
         {
-                "nativeFILCreateContext_Software",
-                "([BLjava/lang/String;)[B",
-                (void *) native_CreateContextFIL_soft
-        },
-        {
                 "nativeFILGetMainHDNode",
                 "(I[B)[B",
                 (void *) native_GetMainHDNodeFIL
@@ -139,11 +118,11 @@ JNINativeMethod filNativeMethods[] = {
                 "(I[BZ)[B",
                 (void *) native_GetAddressFIL
         },
-        {
-                "nativeFILSetAddress",
-                "(I[B)[B",
-                (void *) native_SetMyAddressFIL
-        },
+//        {
+//                "nativeFILSetAddress",
+//                "(I[B)[B",
+//                (void *) native_SetMyAddressFIL
+//        },
 //        {
 //                "nativeETHSetERC20Token",
 //                "(ILjava/lang/String;ILjava/lang/String;)I",

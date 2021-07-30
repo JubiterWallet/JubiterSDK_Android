@@ -117,9 +117,9 @@ public class FILActivity extends AppCompatActivity {
             case R.id.fil_show_address:
                 showAddress();
                 break;
-            case R.id.fil_set_my_address:
-                setMyAddress();
-                break;
+//            case R.id.fil_set_my_address:
+//                setMyAddress();
+//                break;
             case R.id.fil_set_timeout:
                 setTimeout();
                 break;
@@ -151,11 +151,12 @@ public class FILActivity extends AppCompatActivity {
     }
 
     private void showSelectVerifyTypeDialog() {
-//        DeviceType deviceType = mJubiter.getDeviceType();
-//        if (deviceType.getDEVICE() == 0) {
+        JubiterImpl.DeviceType deviceType = mJubiter.getDeviceType();
+        if (deviceType == JubiterImpl.DeviceType.BLE) {
             showVirtualPwd(0);
-//            return;
-//        }
+        } else if(deviceType == JubiterImpl.DeviceType.SWI){
+            executeTrans();
+        }
 //        mSelectDialog.show();
     }
 
@@ -257,54 +258,54 @@ public class FILActivity extends AppCompatActivity {
         }).show();
     }
 
-    private void setMyAddress() {
-        mJubiter.showVirtualPwd(mFilContextID, new JubCallback<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                showLog("showVirtualPwd success");
-                new InputDialog(mContext, new InputDialog.callback() {
-                    @Override
-                    public void onClickListener(String value) {
-                        if (TextUtils.isEmpty(value)) {
-                            return;
-                        }
-                        mJubiter.verifyPIN(mFilContextID, value, new JubCallback<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                showLog("verifyPIN success");
-                                mJubiter.filSetMyAddress(mFilContextID, new JubCallback<String>() {
-                                    @Override
-                                    public void onSuccess(String s) {
-                                        showLog("filSetMyAddress " + s);
-                                    }
-
-                                    @Override
-                                    public void onFailed(long errorCode) {
-                                        showLog("filSetMyAddress " + errorCode);
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void onFailed(long errorCode) {
-                                showLog("verifyPIN " + errorCode);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        mJubiter.cancelVirtualPwd(mFilContextID, null);
-                    }
-                }).show();
-            }
-
-            @Override
-            public void onFailed(long errorCode) {
-                showLog("showVirtualPwd " + errorCode);
-            }
-        });
-    }
+//    private void setMyAddress() {
+//        mJubiter.showVirtualPwd(mFilContextID, new JubCallback<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                showLog("showVirtualPwd success");
+//                new InputDialog(mContext, new InputDialog.callback() {
+//                    @Override
+//                    public void onClickListener(String value) {
+//                        if (TextUtils.isEmpty(value)) {
+//                            return;
+//                        }
+//                        mJubiter.verifyPIN(mFilContextID, value, new JubCallback<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                showLog("verifyPIN success");
+//                                mJubiter.filSetMyAddress(mFilContextID, new JubCallback<String>() {
+//                                    @Override
+//                                    public void onSuccess(String s) {
+//                                        showLog("filSetMyAddress " + s);
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailed(long errorCode) {
+//                                        showLog("filSetMyAddress " + errorCode);
+//                                    }
+//                                });
+//                            }
+//
+//                            @Override
+//                            public void onFailed(long errorCode) {
+//                                showLog("verifyPIN " + errorCode);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        mJubiter.cancelVirtualPwd(mFilContextID, null);
+//                    }
+//                }).show();
+//            }
+//
+//            @Override
+//            public void onFailed(long errorCode) {
+//                showLog("showVirtualPwd " + errorCode);
+//            }
+//        });
+//    }
 
     private void showAddress() {
         mJubiter.filShowAddress(mFilContextID, new JubCallback<String>() {

@@ -2217,23 +2217,23 @@ public class JubiterImpl {
         });
     }
 
-    public void filSetMyAddress(final int contextID, final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterFilecoin.setAddress(contextID, path);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
-            }
-        });
-    }
+//    public void filSetMyAddress(final int contextID, final JubCallback<String> callback) {
+//        ThreadUtils.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+//                        .setAddressIndex(0)
+//                        .setChange(false)
+//                        .build();
+//                CommonProtos.ResultString address = JuBiterFilecoin.setAddress(contextID, path);
+//                if (address.getStateCode() == 0) {
+//                    callback.onSuccess(address.getValue());
+//                } else {
+//                    callback.onFailed(address.getStateCode());
+//                }
+//            }
+//        });
+//    }
 
     public void filGetAddress(final int contextID, final int index, final JubCallback<String> callback) {
         final CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
