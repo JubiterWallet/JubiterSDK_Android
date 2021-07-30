@@ -158,6 +158,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             toTRXActivity();
         } else if (id == R.id.btn_device) {
             toDeviceActivity();
+        } else if (id == R.id.btn_fil) {
+            toFILActivity();
         }
     }
 
@@ -248,6 +250,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
         if (isConnect) {
             startActivity(new Intent(mContext, FingerPrintManagerActivity.class));
+        }
+    }
+
+    private void toFILActivity() {
+        if (isConnect) {
+            startActivity(new Intent(mContext, FILActivity.class));
         }
     }
 
