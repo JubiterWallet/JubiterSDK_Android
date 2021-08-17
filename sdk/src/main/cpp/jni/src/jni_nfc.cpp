@@ -46,7 +46,11 @@ native_NFCReset(JNIEnv *env, jclass clz, jint contextID) {
 }
 
 JNIEXPORT jint JNICALL
-native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jbyteArray curve) {
+native_NFCGenerateSeed(JNIEnv *env,
+                       jclass clz,
+                       jint deviceID,
+                       jstring jPin,
+                       jbyteArray curve) {
     std::string strCurve = jbyteArray2stdString(env, curve);
     auto strPin = jstring2stdString(env, jPin);
 
@@ -59,7 +63,11 @@ native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jby
 }
 
 JNIEXPORT jint
-native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jstring jMnemonic) {
+native_NFCImportMnemonic(JNIEnv *env,
+                         jclass clz,
+                         jint deviceID,
+                         jstring jPin,
+                         jstring jMnemonic) {
     auto strPin = jstring2stdString(env, jPin);
     auto strMnemonic = jstring2stdString(env, jMnemonic);
     JUB_RV rv = JUB_ImportMnemonic(deviceID, strPin.c_str(), strMnemonic.c_str());
@@ -68,7 +76,10 @@ native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, j
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
+native_NFCExportMnemonic(JNIEnv *env,
+                         jclass clz,
+                         jint deviceID,
+                         jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
     JUB_CHAR_PTR mnemonic;
 
@@ -77,7 +88,11 @@ native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin) {
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin) {
+native_NFCChangePIN(JNIEnv *env,
+                    jclass clz,
+                    jint deviceID,
+                    jstring jOriginPin,
+                    jstring jNewPin) {
     auto strOriginPin = jstring2stdString(env, jOriginPin);
     auto strNewPin = jstring2stdString(env, jNewPin);
     JUB_ULONG retry = 0;
@@ -86,7 +101,9 @@ native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
+native_NFCHasRootKey(JNIEnv *env,
+                     jclass clz,
+                     jint deviceID) {
     JUB_ENUM_DEVICE_ROOT_KEY_STATUS status;
     JUB_RV rv = JUB_GetDeviceRootKeyStatus(deviceID, &status);
 
@@ -111,7 +128,10 @@ native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID) {
 }
 
 JNIEXPORT jint JNICALL
-native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel) {
+native_NFCSetLabel(JNIEnv *env,
+                   jclass clz,
+                   jint deviceID,
+                   jstring jLabel) {
     auto label = jstring2stdString(env, jLabel);
     JUB_RV rv = JUB_SetLabel(deviceID, label.c_str());
     LOG_DEBUG("JUB_SetLabel rv: %d", rv);

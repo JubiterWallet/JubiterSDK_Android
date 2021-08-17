@@ -21,8 +21,9 @@
 
     <string-array name="eth">
         <item>ETH</item>
-        <item>ETH_ERC20</item>
-        <item>ETH_ERC721</item>
+        <item>ERC20</item>
+        <item>ERC721</item>
+        <item>ERC1155</item>
     </string-array>
 
     <string-array name="xrp">

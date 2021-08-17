@@ -155,12 +155,12 @@ public final class JuBiterEthereum {
     }
 
     /**
-     * 构建ERC721交易体
+     * 构建 ERC721 交易体
      *
-     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
      * @param tokenName       币种名称
      * @param contractAddress 合约地址
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
      */
     public static int setERC721Token(int contextID,
                                      String tokenName,
@@ -169,20 +169,89 @@ public final class JuBiterEthereum {
     }
 
     /**
-     * 构建ERC721交易体
+     * 构建 ERC721 交易体
      *
-     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
      * @param tokenFrom       转出地址
      * @param tokenTo         接收地址
      * @param tokenID         资源 ID
-     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString buildERC721TransferAbi(int contextID,
                                                                    String tokenFrom,
                                                                    String tokenTo,
                                                                    String tokenID) {
         try {
-            byte[] result = NativeApi.nativeETHBuildERC721TransferAbi(contextID, tokenFrom, tokenTo, tokenID);
+            byte[] result = NativeApi.nativeETHBuildERC721TransferAbi(
+                    contextID,
+                    tokenFrom,
+                    tokenTo,
+                    tokenID);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 构建 ERC1155 交易体
+     *
+     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenFrom       转出地址
+     * @param tokenTo         接收地址
+     * @param tokenID         资源 ID
+     * @param tokenValue      资源值
+     * @param data            个人 data
+     * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString buildERC1155TransferAbi(int contextID,
+                                                                    String tokenFrom,
+                                                                    String tokenTo,
+                                                                    String tokenID,
+                                                                    String tokenValue,
+                                                                    String data) {
+        try {
+            byte[] result = NativeApi.nativeETHBuildERC1155TransferAbi(
+                    contextID,
+                    tokenFrom,
+                    tokenTo,
+                    tokenID,
+                    tokenValue,
+                    data);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 构建 ERC1155 交易体
+     *
+     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenFrom       转出地址
+     * @param tokenTo         接收地址
+     * @param tokenIDArray    资源 ID 数组。长度必须与 tokenValueArray 一致。
+     * @param tokenValueArray 资源值数组。长度必须与 tokenIDArray 一致。
+     * @param data            个人 data
+     * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString buildERC1155BatchTransferAbi(int contextID,
+                                                                         String tokenFrom,
+                                                                         String tokenTo,
+                                                                         String[] tokenIDArray,
+                                                                         String[] tokenValueArray,
+                                                                         String data) {
+        try {
+            byte[] result = NativeApi.nativeETHBuildERC1155BatchTransferAbi(
+                    contextID,
+                    tokenFrom,
+                    tokenTo,
+                    tokenIDArray,
+                    tokenValueArray,
+                    data);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

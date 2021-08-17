@@ -6,7 +6,10 @@
 
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextTRX(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+native_CreateContextTRX(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_TRX cfg;
@@ -20,7 +23,10 @@ native_CreateContextTRX(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextTRX_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+native_CreateContextTRX_soft(JNIEnv *env,
+                             jclass clz,
+                             jbyteArray jcfg,
+                             jstring xprv) {
     auto strXPRV = jstring2stdString(env, xprv);
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
@@ -35,7 +41,11 @@ native_CreateContextTRX_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring x
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+native_GetAddressTRX(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -48,7 +58,10 @@ native_GetAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CheckAddressTRX(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+native_CheckAddressTRX(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jstring address) {
     auto strAddress = jstring2stdString(env, address);
     JUB_CHAR_PTR addrInHex;
     JUB_RV rv = JUB_CheckAddressTRX(contextID, strAddress.c_str(), &addrInHex);
@@ -57,7 +70,11 @@ native_CheckAddressTRX(JNIEnv *env, jclass clz, jint contextID, jstring address)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+native_GetHDNodeTRX(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray format,
+                    jbyteArray bip32) {
 
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -73,7 +90,10 @@ native_GetHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetMainHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
+native_GetMainHDNodeTRX(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
@@ -84,7 +104,10 @@ native_GetMainHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+native_SetMyAddressTRX(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -95,7 +118,10 @@ native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
+native_SignTransactionTRX(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray bip32,
                           jstring jPackedContractInPb) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -110,9 +136,13 @@ native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
     return buildPbRvString("JUB_SignTransactionTRX 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-
-JNIEXPORT jint JNICALL native_TRXSetTRC10Asset(JNIEnv *env, jclass clz, jint contextID,
-        jbyteArray assetName, jint unitDP, jbyteArray assetId) {
+JNIEXPORT jint JNICALL
+native_TRXSetTRC10Asset(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray assetName,
+                        jint unitDP,
+                        jbyteArray assetId) {
     auto assetNameStr = jbyteArray2stdString(env, assetName);
     auto assetIdStr = jbyteArray2stdString(env, assetId);
     JUB_RV rv = JUB_SetTRC10Asset(contextID, assetNameStr.c_str(), unitDP, assetIdStr.c_str());
@@ -157,7 +187,10 @@ native_TRXBuildTRC20TransferAbi(JNIEnv *env,
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_TRXPackContract(JNIEnv *env, jclass obj, jlong contextID, jbyteArray tx) {
+native_TRXPackContract(JNIEnv *env,
+                       jclass obj,
+                       jlong contextID,
+                       jbyteArray tx) {
     protocol::Transaction pbTx;
     if (!parseFromJbyteArray(env, tx, &pbTx)) {
         return buildPbRvString("JUB_PackContractTRX 1", env, JUBR_ARGUMENTS_BAD, "");

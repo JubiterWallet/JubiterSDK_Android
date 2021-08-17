@@ -115,6 +115,23 @@ public class NativeApi {
                                                                 String tokenTo,
                                                                 String tokenID);
 
+    public static native byte[] nativeETHBuildERC1155TransferAbi(int contextID,
+                                                                 String tokenFrom,
+                                                                 String tokenTo,
+                                                                 String tokenID,
+                                                                 String tokenValue,
+                                                                 String data);
+
+
+    public static native byte[] nativeETHBuildERC1155BatchTransferAbi(int contextID,
+                                                                      String tokenFrom,
+                                                                      String tokenTo,
+                                                                      String[] tokenIDArray,
+                                                                      String[] tokenValueArray,
+                                                                      String data);
+
+
+
     public static native byte[] nativeETHSignTransaction(int contextID, byte[] txInfo);
 
     public static native byte[] nativeETHSignBytestring(int contextID, byte[] bip32, String data);

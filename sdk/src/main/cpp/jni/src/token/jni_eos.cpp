@@ -4,7 +4,10 @@
 #include "jni_eos.h"
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextEOS(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+native_CreateContextEOS(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_EOS cfg;
@@ -18,7 +21,10 @@ native_CreateContextEOS(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextEOS_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+native_CreateContextEOS_soft(JNIEnv *env,
+                             jclass clz,
+                             jbyteArray jcfg,
+                             jstring xprv) {
     auto strXPRV = jstring2stdString(env, xprv);
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
@@ -33,7 +39,11 @@ native_CreateContextEOS_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring x
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+native_GetAddressEOS(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -46,7 +56,11 @@ native_GetAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+native_GetHDNodeEOS(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray format,
+                    jbyteArray bip32) {
 
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -62,7 +76,10 @@ native_GetHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetMainHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
+native_GetMainHDNodeEOS(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
@@ -73,7 +90,10 @@ native_GetMainHDNodeEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+native_SetMyAddressEOS(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -84,7 +104,10 @@ native_SetMyAddressEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+native_SignTransactionEOS(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray tx) {
     JUB::Proto::EOS::TransactionEOS pbTx;
     if (parseFromJbyteArray(env, tx, &pbTx)) {
         BIP44_Path bip32Path;
@@ -105,7 +128,10 @@ native_SignTransactionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_BuildActionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+native_BuildActionEOS(JNIEnv *env,
+                      jclass clz,
+                      jint contextID,
+                      jbyteArray tx) {
     JUB::Proto::EOS::ActionListEOS pbAcList;
     if (parseFromJbyteArray(env, tx, &pbAcList)) {
 
@@ -169,7 +195,9 @@ native_BuildActionEOS(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CalculateMemoHashEOS(JNIEnv *env, jclass clz, jstring memo) {
+native_CalculateMemoHashEOS(JNIEnv *env,
+                            jclass clz,
+                            jstring memo) {
     auto strMemo = jstring2stdString(env, memo);
     JUB_CHAR_PTR memoHash = nullptr;
     JUB_RV rv = JUB_CalculateMemoHash((JUB_CHAR_PTR) strMemo.c_str(), &memoHash);

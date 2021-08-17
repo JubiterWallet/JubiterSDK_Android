@@ -5,7 +5,10 @@
 
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextXRP(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+native_CreateContextXRP(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_XRP cfg;
@@ -19,14 +22,19 @@ native_CreateContextXRP(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextXRP_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+native_CreateContextXRP_soft(JNIEnv *env,
+                             jclass clz,
+                             jbyteArray jcfg,
+                             jstring xprv) {
     auto strXPRV = jstring2stdString(env, xprv);
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_XRP cfg;
         cfg.mainPath = (JUB_CHAR_PTR) pbCfg.main_path().c_str();
         JUB_UINT16 contextID;
-        JUB_RV rv = JUB_CreateContextXRP_soft(cfg, (JUB_CHAR_PTR) strXPRV.c_str(), &contextID);
+        JUB_RV rv = JUB_CreateContextXRP_soft(cfg,
+                                              (JUB_CHAR_PTR) strXPRV.c_str(),
+                                              &contextID);
         return buildPbRvUInt("JUB_CreateContextXRP_soft 1", env, rv, contextID);
     } else {
         return buildPbRvUInt("JUB_CreateContextXRP_soft 2", env, JUBR_ARGUMENTS_BAD, 0);
@@ -34,12 +42,19 @@ native_CreateContextXRP_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring x
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+native_GetAddressXRP(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address;
-        JUB_RV rv = JUB_GetAddressXRP(contextID, bip32Path, (JUB_ENUM_BOOL) bShow, &address);
+        JUB_RV rv = JUB_GetAddressXRP(contextID,
+                                      bip32Path,
+                                      (JUB_ENUM_BOOL) bShow,
+                                      &address);
         LOG_DEBUG("JUB_GetAddressXRP : %s", address);
         return buildPbRvString("JUB_GetAddressXRP 1", env, rv, address);
     }
@@ -47,7 +62,11 @@ native_GetAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+native_GetHDNodeXRP(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray format,
+                    jbyteArray bip32) {
 
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -56,25 +75,36 @@ native_GetHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
     BIP44_Path bip44Path;
     if (parseBip44Path(env, bip32, &bip44Path)) {
         JUB_CHAR_PTR xpub;
-        JUB_RV rv = JUB_GetHDNodeXRP(contextID, (JUB_ENUM_PUB_FORMAT) _format, bip44Path, &xpub);
+        JUB_RV rv = JUB_GetHDNodeXRP(contextID,
+                                     (JUB_ENUM_PUB_FORMAT) _format,
+                                     bip44Path,
+                                     &xpub);
         return buildPbRvString("JUB_GetHDNodeXRP 1", env, rv, xpub);
     }
     return buildPbRvString("JUB_GetHDNodeXRP 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetMainHDNodeXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
+native_GetMainHDNodeXRP(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
 
     JUB_CHAR_PTR xpub;
-    JUB_RV rv = JUB_GetMainHDNodeXRP(contextID, (JUB_ENUM_PUB_FORMAT) _format, &xpub);
+    JUB_RV rv = JUB_GetMainHDNodeXRP(contextID,
+                                     (JUB_ENUM_PUB_FORMAT) _format,
+                                     &xpub);
     return buildPbRvString("JUB_GetMainHDNodeXRP", env, rv, xpub);
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+native_SetMyAddressXRP(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -85,7 +115,11 @@ native_SetMyAddressXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jbyteArray tx) {
+native_SignTransactionXRP(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray bip32,
+                          jbyteArray tx) {
     JUB::Proto::Ripple::TransactionXRP pbTx;
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -137,12 +171,18 @@ native_SignTransactionXRP(JNIEnv *env, jclass clz, jint contextID, jbyteArray bi
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CheckAddressXRP(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+native_CheckAddressXRP(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jstring address) {
     JUB::Proto::Common::ResultAny resultAddrParse;
     auto strAddress = jstring2stdString(env, address);
     JUB_CHAR_PTR addr = nullptr;
     JUB_CHAR_PTR tag = nullptr;
-    JUB_RV rv = JUB_CheckAddressXRP(contextID, strAddress.c_str(), &addr, &tag);
+    JUB_RV rv = JUB_CheckAddressXRP(contextID,
+                                    strAddress.c_str(),
+                                    &addr,
+                                    &tag);
     resultAddrParse.set_state_code(rv);
     if (rv == JUBR_OK) {
         JUB::Proto::Ripple::XrpAddrParse xrpAddrParse;
@@ -154,7 +194,6 @@ native_CheckAddressXRP(JNIEnv *env, jclass clz, jint contextID, jstring address)
     resultAddrParse.SerializeToString(&result);
     return stdString2jbyteArray("JUB_CheckAddressXRP", env, result);
 }
-
 
 
 JNINativeMethod xrpNativeMethods[] = {

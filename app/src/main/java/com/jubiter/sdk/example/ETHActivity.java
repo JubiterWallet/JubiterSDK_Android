@@ -78,10 +78,13 @@ public class ETHActivity extends AppCompatActivity {
                         mTransType = JubiterImpl.ETH_TransType.ETH;
                         break;
                     case 1:
-                        mTransType = JubiterImpl.ETH_TransType.ETH_ERC20;
+                        mTransType = JubiterImpl.ETH_TransType.ERC20;
                         break;
                     case 2:
-                        mTransType = JubiterImpl.ETH_TransType.ETH_ERC721;
+                        mTransType = JubiterImpl.ETH_TransType.ERC721;
+                        break;
+                    case 3:
+                        mTransType = JubiterImpl.ETH_TransType.ERC1155;
                         break;
                 }
             }

@@ -5,7 +5,8 @@
 
 #define BLE_NATIVE_CLASS "com/jubiter/sdk/jni/BleNativeApi"
 
-JNIEXPORT int JNICALL native_BLEInitDevice(JNIEnv *env, jclass clz) {
+JNIEXPORT int JNICALL
+native_BLEInitDevice(JNIEnv *env, jclass clz) {
     LOG_ERR(">>> in native_BLEInitDevice");
 
     DEVICE_INIT_PARAM initParam;
@@ -21,7 +22,8 @@ JNIEXPORT int JNICALL native_BLEInitDevice(JNIEnv *env, jclass clz) {
     return rv;
 }
 
-JNIEXPORT jint JNICALL native_BLEStartScan(JNIEnv *env, jclass clz, jobject scanCallback) {
+JNIEXPORT jint JNICALL
+native_BLEStartScan(JNIEnv *env, jclass clz, jobject scanCallback) {
     jobject objParam = env->NewGlobalRef(scanCallback);
     setBleScanCallback(g_vm, objParam);
 
@@ -33,7 +35,8 @@ JNIEXPORT jint JNICALL native_BLEStartScan(JNIEnv *env, jclass clz, jobject scan
     return rv;
 }
 
-JNIEXPORT jint JNICALL native_BLEStopScan(JNIEnv *env, jclass clz) {
+JNIEXPORT jint JNICALL
+native_BLEStopScan(JNIEnv *env, jclass clz) {
     JUB_RV rv = JUB_stopEnumDevices();
     if (rv != JUBR_OK) {
         LOG_ERR("JUB_stopEnumDevices rv: %08lx", rv);
@@ -42,9 +45,14 @@ JNIEXPORT jint JNICALL native_BLEStopScan(JNIEnv *env, jclass clz) {
     return rv;
 }
 
-JNIEXPORT jint JNICALL native_BLEConnectDevice(JNIEnv *env, jclass clz, jstring name,
-                                               jstring deviceMAC, jintArray handle, jint timeout,
-                                               jobject disCallback) {
+JNIEXPORT jint JNICALL
+native_BLEConnectDevice(JNIEnv *env,
+                        jclass clz,
+                        jstring name,
+                        jstring deviceMAC,
+                        jintArray handle,
+                        jint timeout,
+                        jobject disCallback) {
     JUB_BYTE_PTR pName = (JUB_BYTE_PTR) (env->GetStringUTFChars(name, NULL));
     JUB_BYTE_PTR pAddress = (JUB_BYTE_PTR) (env->GetStringUTFChars(deviceMAC, NULL));
     JUB_UINT16 *pHandle = reinterpret_cast<JUB_UINT16 *>(env->GetIntArrayElements(handle, NULL));
@@ -66,9 +74,11 @@ JNIEXPORT jint JNICALL native_BLEConnectDevice(JNIEnv *env, jclass clz, jstring 
     return rv;
 }
 
-
 JNIEXPORT jint JNICALL
-native_BLECancelConnect(JNIEnv *env, jclass clz, jstring name, jstring address) {
+native_BLECancelConnect(JNIEnv *env,
+                        jclass clz,
+                        jstring name,
+                        jstring address) {
     JUB_BYTE_PTR pName = (JUB_BYTE_PTR) env->GetStringUTFChars(name, NULL);
     JUB_BYTE_PTR pAddress = (JUB_BYTE_PTR) env->GetStringUTFChars(address, NULL);
 
@@ -84,7 +94,8 @@ native_BLECancelConnect(JNIEnv *env, jclass clz, jstring name, jstring address) 
 }
 
 
-JNIEXPORT jint JNICALL native_BLEDisconnectDevice(JNIEnv *env, jclass clz, jint deviceHandle) {
+JNIEXPORT jint JNICALL
+native_BLEDisconnectDevice(JNIEnv *env, jclass clz, jint deviceHandle) {
     JUB_RV rv = JUB_disconnectDevice(deviceHandle);
     if (rv != JUBR_OK) {
         LOG_ERR("JUB_disconnectDevice rv: %08lx", rv);
@@ -93,7 +104,10 @@ JNIEXPORT jint JNICALL native_BLEDisconnectDevice(JNIEnv *env, jclass clz, jint 
 }
 
 
-JNIEXPORT jint JNICALL native_BLEIsConnectDevice(JNIEnv *env, jclass clz, jint deviceHandle) {
+JNIEXPORT jint JNICALL
+native_BLEIsConnectDevice(JNIEnv *env,
+                          jclass clz,
+                          jint deviceHandle) {
     JUB_RV rv = JUB_isDeviceConnect(deviceHandle);
     if (rv != JUBR_OK) {
         LOG_ERR("JUB_isDeviceConnect rv: %08lx", rv);

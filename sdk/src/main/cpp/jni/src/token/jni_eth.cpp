@@ -4,7 +4,10 @@
 #include "jni_eth.h"
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextETH(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+native_CreateContextETH(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
 
     JUB::Proto::Ethereum::ContextCfgETH pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
@@ -20,7 +23,10 @@ native_CreateContextETH(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextETH_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+native_CreateContextETH_soft(JNIEnv *env,
+                             jclass clz,
+                             jbyteArray jcfg,
+                             jstring xprv) {
 
     auto strXPRV = jstring2stdString(env, xprv);
     JUB::Proto::Ethereum::ContextCfgETH pbCfg;
@@ -36,7 +42,6 @@ native_CreateContextETH_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring x
     };
 }
 
-
 JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
@@ -49,7 +54,11 @@ native_GetMainHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+native_GetHDNodeETH(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray format,
+                    jbyteArray bip32) {
 
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -65,7 +74,11 @@ native_GetHDNodeETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+native_GetAddressETH(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -76,9 +89,11 @@ native_GetAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     return buildPbRvString("JUB_GetAddressETH 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+native_SetMyAddressETH(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -88,14 +103,13 @@ native_SetMyAddressETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
     return buildPbRvString("JUB_SetMyAddressETH 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-
 JNIEXPORT jint JNICALL
 native_SetERC20TokenETH(JNIEnv *env,
-                                jclass clz,
-                                jint contextID,
-                                jstring tokenName,
-                                jint unitDP,
-                                jstring contractAddress) {
+                        jclass clz,
+                        jint contextID,
+                        jstring tokenName,
+                        jint unitDP,
+                        jstring contractAddress) {
     auto strTokenName = jstring2stdString(env, tokenName);
     auto strContractAddress = jstring2stdString(env, contractAddress);
     JUB_RV rv = JUB_SetERC20TokenETH(contextID,
@@ -124,7 +138,10 @@ native_BuildERC20TransferAbiETH(JNIEnv *env,
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+native_SignTransactionETH(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray tx) {
     JUB::Proto::Ethereum::TransactionETH pbTx;
     if (parseFromJbyteArray(env, tx, &pbTx)) {
         BIP44_Path bip32Path;
@@ -144,7 +161,11 @@ native_SignTransactionETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jstring data) {
+native_SignBytestringETH(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jbyteArray bip32,
+                         jstring data) {
     BIP44_Path bip32Path;
     auto strData = jstring2stdString(env, data);
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -156,7 +177,10 @@ native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+native_SignContractETH(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray tx) {
     JUB::Proto::Ethereum::TransactionETH pbTx;
     if (parseFromJbyteArray(env, tx, &pbTx)) {
         BIP44_Path bip32Path;
@@ -175,6 +199,15 @@ native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
     return buildPbRvString("JUB_SignContractETH", env, JUBR_ARGUMENTS_BAD, "");
 }
 
+///
+/// EIP-721、EIP-1155 共用 SetERC721TokenETH 接口
+///
+/// \param env
+/// \param clz
+/// \param contextID
+/// \param tokenName
+/// \param contractAddress
+/// \return
 JNIEXPORT jint JNICALL
 native_SetERC721TokenETH(JNIEnv *env,
                          jclass clz,
@@ -212,9 +245,78 @@ native_BuildERC721TransferAbiETH(JNIEnv *env,
     return buildPbRvString("JUB_BuildERC721TransferAbiETH", env, rv, abi);
 }
 
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC1155TransferAbiETH(JNIEnv *env,
+                                  jclass clz,
+                                  jint contextID,
+                                  jstring tokenFrom,
+                                  jstring tokenTo,
+                                  jstring tokenID,
+                                  jstring tokenValue,
+                                  jstring data) {
+    auto strTokenFrom = jstring2stdString(env, tokenFrom);
+    auto strTokenTo = jstring2stdString(env, tokenTo);
+    auto strTokenID = jstring2stdString(env, tokenID);
+    auto strTokenValue = jstring2stdString(env, tokenValue);
+    auto strData = jstring2stdString(env, data);
+    JUB_CHAR_PTR abi = nullptr;
+
+    JUB_RV rv = JUB_BuildERC1155TransferAbiETH(contextID,
+                                              (JUB_CHAR_CPTR) strTokenFrom.c_str(),
+                                              (JUB_CHAR_CPTR) strTokenTo.c_str(),
+                                              (JUB_CHAR_CPTR) strTokenID.c_str(),
+                                              (JUB_CHAR_CPTR) strTokenValue.c_str(),
+                                              (JUB_CHAR_CPTR) strData.c_str(),
+                                              &abi);
+
+    return buildPbRvString("JUB_BuildERC1155TransferAbiETH", env, rv, abi);
+}
+
+
+JNIEXPORT jbyteArray JNICALL
+native_BuildERC1155BatchTransferAbiETH(JNIEnv *env,
+                                       jclass clz,
+                                       jint contextID,
+                                       jstring tokenFrom,
+                                       jstring tokenTo,
+                                       jobjectArray tokenIDArray,
+                                       jobjectArray tokenValueArray,
+                                       jstring data
+) {
+    auto strTokenFrom = jstring2stdString(env, tokenFrom);
+    auto strTokenTo = jstring2stdString(env, tokenTo);
+    auto strData = jstring2stdString(env, data);
+
+    std::vector<JUB_CHAR_CPTR> tokenIDs;
+    std::vector<JUB_CHAR_CPTR> tokenValues;
+
+    int arraySize = env->GetArrayLength(tokenIDArray);
+    for (int i = 0; i < arraySize; i++) {
+        jstring tokenID = (jstring) env->GetObjectArrayElement(tokenIDArray, i);
+        jstring tokenValue = (jstring) env->GetObjectArrayElement(tokenValueArray, i);
+
+        auto strTokenID = jstring2stdString(env, tokenID);
+        auto strTokenValue = jstring2stdString(env, tokenValue);
+
+        tokenIDs.push_back(strTokenID.c_str());
+        tokenIDs.push_back(strTokenValue.c_str());
+    }
+
+    JUB_CHAR_PTR abi = nullptr;
+
+    JUB_RV rv = JUB_BuildERC1155BatchTransferAbiETH(contextID,
+                                                    (JUB_CHAR_CPTR) strTokenFrom.c_str(),
+                                                    (JUB_CHAR_CPTR) strTokenTo.c_str(),
+                                                    &tokenIDs[0], arraySize,
+                                                    &tokenValues[0], arraySize,
+                                                    (JUB_CHAR_CPTR) strData.c_str(),
+                                                    &abi);
+
+    return buildPbRvString("JUB_BuildERC1155BatchTransferAbiETH", env, rv, abi);
+}
+
 
 JNINativeMethod ethNativeMethods[] = {
-
         {
                 "nativeETHCreateContext",
                 "([BI)[B",
@@ -279,6 +381,16 @@ JNINativeMethod ethNativeMethods[] = {
             "nativeETHBuildERC721TransferAbi",
             "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
             (void *) native_BuildERC721TransferAbiETH
+        },
+        {
+            "nativeETHBuildERC1155TransferAbi",
+            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+            (void *) native_BuildERC1155TransferAbiETH
+        },
+        {
+            "nativeETHBuildERC1155BatchTransferAbi",
+            "(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)[B",
+            (void *) native_BuildERC1155BatchTransferAbiETH
         },
 };
 

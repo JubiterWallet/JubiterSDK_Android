@@ -17,8 +17,8 @@ extern "C" {
 JNIEXPORT jint JNICALL
 native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam);
 
-JNIEXPORT jbyteArray
-JNICALL native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID);
+JNIEXPORT jbyteArray JNICALL
+native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID);
 
 JNIEXPORT jint JNICALL
 native_NFCDisconnectDevice(JNIEnv *env, jclass clz, jint deviceID);
@@ -30,22 +30,40 @@ JNIEXPORT jint JNICALL
 native_NFCReset(JNIEnv *env, jclass clz, jint contextID);
 
 JNIEXPORT jint JNICALL
-native_NFCGenerateSeed(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jbyteArray curve);
+native_NFCGenerateSeed(JNIEnv *env,
+                       jclass clz,
+                       jint deviceID,
+                       jstring jPin,
+                       jbyteArray curve);
 
 JNIEXPORT jint JNICALL
-native_NFCImportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin, jstring jMnemonic);
+native_NFCImportMnemonic(JNIEnv *env,
+                         jclass clz,
+                         jint deviceID,
+                         jstring jPin,
+                         jstring jMnemonic);
 
 JNIEXPORT jbyteArray JNICALL
-native_NFCExportMnemonic(JNIEnv *env, jclass clz, jint deviceID, jstring jPin);
+native_NFCExportMnemonic(JNIEnv *env,
+                         jclass clz,
+                         jint deviceID,
+                         jstring jPin);
 
 JNIEXPORT jbyteArray JNICALL
-native_NFCChangePIN(JNIEnv *env, jclass clz, jint deviceID, jstring jOriginPin, jstring jNewPin);
+native_NFCChangePIN(JNIEnv *env,
+                    jclass clz,
+                    jint deviceID,
+                    jstring jOriginPin,
+                    jstring jNewPin);
 
 JNIEXPORT jbyteArray JNICALL
 native_NFCHasRootKey(JNIEnv *env, jclass clz, jint deviceID);
 
 JNIEXPORT jint JNICALL
-native_NFCSetLabel(JNIEnv *env, jclass clz, jint deviceID, jstring jLabel);
+native_NFCSetLabel(JNIEnv *env,
+                   jclass clz,
+                   jint deviceID,
+                   jstring jLabel);
 
 JNIEXPORT jbyteArray JNICALL
 native_NFCGetPinRetries(JNIEnv *env, jclass clz, jint deviceID);

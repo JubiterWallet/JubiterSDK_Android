@@ -3,10 +3,11 @@
 //
 #include "jni_btc.h"
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_CreateContextBTC_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring xprv) {
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextBTC_soft(JNIEnv *env,
+                             jclass clz,
+                             jbyteArray jcfg,
+                             jstring xprv) {
     JUB::Proto::Bitcoin::ContextCfgBTC pbCfg;
     auto strXprv = jstring2stdString(env, xprv);
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
@@ -23,10 +24,11 @@ native_CreateContextBTC_soft(JNIEnv *env, jclass clz, jbyteArray jcfg, jstring x
 }
 
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_CreateContextBTC(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_CreateContextBTC(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
     JUB::Proto::Bitcoin::ContextCfgBTC pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_BTC cfg;
@@ -41,18 +43,20 @@ native_CreateContextBTC(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
     };
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL native_GetMainHDNodeBTC(JNIEnv *env, jclass clz, jint contextID) {
+JNIEXPORT jbyteArray JNICALL
+native_GetMainHDNodeBTC(JNIEnv *env,
+                        jclass clz,
+                        jint contextID) {
     JUB_CHAR_PTR xpub = nullptr;
     JUB_RV rv = JUB_GetMainHDNodeBTC(contextID, &xpub);
     return buildPbRvString("JUB_GetMainHDNodeBTC", env, rv, xpub);
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_GetHDNodeBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+JNIEXPORT jbyteArray JNICALL
+native_GetHDNodeBTC(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray bip32) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -63,10 +67,12 @@ native_GetHDNodeBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
     return buildPbRvString("JUB_GetHDNodeBTC 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_GetAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+JNIEXPORT jbyteArray JNICALL
+native_GetAddressBTC(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -76,10 +82,11 @@ native_GetAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
     return buildPbRvString("JUB_GetAddressBTC 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jint
-
-JNICALL
-native_CheckAddressBTC(JNIEnv *env, jclass clz, jint contextID, jstring address) {
+JNIEXPORT jint JNICALL
+native_CheckAddressBTC(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jstring address) {
     auto strAddress = jstring2stdString(env, address);
     JUB_RV rv = JUB_CheckAddressBTC(contextID, strAddress.c_str());
     LOG_DEBUG("JUB_CheckAddressBTC rv: %d", rv);
@@ -87,10 +94,11 @@ native_CheckAddressBTC(JNIEnv *env, jclass clz, jint contextID, jstring address)
 }
 
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_SetMyAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32) {
+JNIEXPORT jbyteArray JNICALL
+native_SetMyAddressBTC(JNIEnv *env,
+                       jclass clz,
+                       jint contextID,
+                       jbyteArray bip32) {
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR address = nullptr;
@@ -100,10 +108,11 @@ native_SetMyAddressBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32
     return buildPbRvString("JUB_SetMyAddressBTC 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jTX) {
+JNIEXPORT jbyteArray JNICALL
+native_SignTransactionBTC(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray jTX) {
 
     JUB::Proto::Bitcoin::TransactionBTC tx;
     if (parseFromJbyteArray(env, jTX, &tx)) {
@@ -132,7 +141,9 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
             switch (output.type) {
                 case P2PKH:
                     if (!tx.outputs(i).has_std_output())
-                        return buildPbRvString("JUB_SignTransactionBTC 1", env, JUBR_ARGUMENTS_BAD,
+                        return buildPbRvString("JUB_SignTransactionBTC 1",
+                                               env,
+                                               JUBR_ARGUMENTS_BAD,
                                                "");
                     output.stdOutput.amount = tx.outputs(i).std_output().amount();
                     output.stdOutput.address = (JUB_CHAR_PTR) tx.outputs(
@@ -146,10 +157,14 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
                     break;
                 case RETURN0:
                     if (!tx.outputs(i).has_return0_output())
-                        return buildPbRvString("JUB_SignTransactionBTC 2", env, JUBR_ARGUMENTS_BAD,
+                        return buildPbRvString("JUB_SignTransactionBTC 2",
+                                               env,
+                                               JUBR_ARGUMENTS_BAD,
                                                "");
                     if (tx.outputs(i).return0_output().data().size() > 40)
-                        return buildPbRvString("JUB_SignTransactionBTC 3", env, JUBR_ARGUMENTS_BAD,
+                        return buildPbRvString("JUB_SignTransactionBTC 3",
+                                               env,
+                                               JUBR_ARGUMENTS_BAD,
                                                "");
                     output.return0.amount = tx.outputs(i).return0_output().amount();
                     {
@@ -159,7 +174,10 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
                     }
                     break;
                 default:
-                    return buildPbRvString("JUB_SignTransactionBTC 4", env, JUBR_ARGUMENTS_BAD, "");
+                    return buildPbRvString("JUB_SignTransactionBTC 4",
+                                           env,
+                                           JUBR_ARGUMENTS_BAD,
+                                           "");
             }
             outputs.emplace_back(output);
         }
@@ -182,10 +200,11 @@ native_SignTransactionBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray jT
     return buildPbRvString("JUB_SignTransactionBTC 6", env, JUBR_ARGUMENTS_BAD, "");
 }
 
-JNIEXPORT jint
-
-JNICALL
-native_SetUnitBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray junit) {
+JNIEXPORT jint JNICALL
+native_SetUnitBTC(JNIEnv *env,
+                  jclass clz,
+                  jint contextID,
+                  jbyteArray junit) {
 
     auto strUnit = jbyteArray2stdString(env, junit);
 
@@ -195,10 +214,12 @@ native_SetUnitBTC(JNIEnv *env, jclass clz, jint contextID, jbyteArray junit) {
     return rv;
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO, jlong amount) {
+JNIEXPORT jbyteArray JNICALL
+native_BuildUSDTOutputs(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jstring USDTTO,
+                        jlong amount) {
 
     auto strUSDTTO = jstring2stdString(env, USDTTO);
 
@@ -238,13 +259,16 @@ native_BuildUSDTOutputs(JNIEnv *env, jclass clz, jint contextID, jstring USDTTO,
     return stdString2jbyteArray("JUB_BuildUSDTOutputs", env, result);
 }
 
-JNIEXPORT jbyteArray
-
-JNICALL
-native_BuildQRC20Output(JNIEnv *env, jclass clz, jint contextID,
-                        jstring contractAddr, jint decimal,
-                        jstring symbol, jlong gasLimit,
-                        jlong gasPrice, jstring to,
+JNIEXPORT jbyteArray JNICALL
+native_BuildQRC20Output(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jstring contractAddr,
+                        jint decimal,
+                        jstring symbol,
+                        jlong gasLimit,
+                        jlong gasPrice,
+                        jstring to,
                         jstring amount) {
 
     auto strContractAddr = jstring2stdString(env, contractAddr);
@@ -254,8 +278,12 @@ native_BuildQRC20Output(JNIEnv *env, jclass clz, jint contextID,
 
     JUB::Proto::Common::ResultAny resultOutputs;
     OUTPUT_BTC QRC20_outputs[1] = {};
-    JUB_RV rv = JUB_BuildQRC20Outputs(contextID, (JUB_CHAR_PTR) strContractAddr.c_str(), decimal,
-                                      (JUB_CHAR_PTR) strSymbol.c_str(), gasLimit, gasPrice,
+    JUB_RV rv = JUB_BuildQRC20Outputs(contextID,
+                                      (JUB_CHAR_PTR) strContractAddr.c_str(),
+                                      decimal,
+                                      (JUB_CHAR_PTR) strSymbol.c_str(),
+                                      gasLimit,
+                                      gasPrice,
                                       (JUB_CHAR_PTR) strTo.c_str(),
                                       (JUB_CHAR_PTR) strAmount.c_str(),
                                       QRC20_outputs);
