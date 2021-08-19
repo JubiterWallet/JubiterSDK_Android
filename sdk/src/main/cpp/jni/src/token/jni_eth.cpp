@@ -299,7 +299,7 @@ native_BuildERC1155BatchTransferAbiETH(JNIEnv *env,
         auto strTokenValue = jstring2stdString(env, tokenValue);
 
         tokenIDs.push_back(strTokenID.c_str());
-        tokenIDs.push_back(strTokenValue.c_str());
+        tokenValues.push_back(strTokenValue.c_str());
     }
 
     JUB_CHAR_PTR abi = nullptr;
