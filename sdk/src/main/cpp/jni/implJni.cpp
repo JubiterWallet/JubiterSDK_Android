@@ -22,7 +22,10 @@
 
 //================================== 软件钱包 ===========================================
 
-JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jbyteArray param) {
+JNIEXPORT jbyteArray JNICALL
+native_GenerateMnemonic(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray param) {
     std::string paramString = jbyteArray2stdString(env, param);
 
     JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
@@ -49,7 +52,10 @@ JNIEXPORT jbyteArray JNICALL native_GenerateMnemonic(JNIEnv *env, jclass clz, jb
 }
 
 
-JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jclass clz, jstring mnemonic) {
+JNIEXPORT jint JNICALL
+native_CheckMnemonic(JNIEnv *env,
+                     jclass clz,
+                     jstring mnemonic) {
     std::string strMnemonic = jstring2stdString(env, mnemonic);
     JUB_RV rv = JUB_CheckMnemonic(strMnemonic.c_str());
     if (JUBR_OK != rv) {
@@ -62,7 +68,10 @@ JNIEXPORT jint JNICALL native_CheckMnemonic(JNIEnv *env, jclass clz, jstring mne
 
 //================================= JUB_SDK_DEV_h ================================================
 
-JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_GetDeviceInfo(JNIEnv *env,
+                     jclass clz,
+                     jint deviceID) {
 
     JUB_DEVICE_INFO info;
     JUB_RV rv = JUB_GetDeviceInfo((JUB_UINT16) deviceID, &info);
@@ -89,46 +98,69 @@ JNIEXPORT jbyteArray JNICALL native_GetDeviceInfo(JNIEnv *env, jclass clz, jint 
     return stdString2jbyteArray("JUB_GetDeviceInfo", env, result);
 };
 
-JNIEXPORT jbyteArray JNICALL native_GetDeviceCert(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_GetDeviceCert(JNIEnv *env,
+                     jclass clz,
+                     jint deviceID) {
     JUB_CHAR_PTR cert = nullptr;
     JUB_RV rv = JUB_GetDeviceCert((JUB_UINT16) deviceID, &cert);
     return buildPbRvString("JUB_GetDeviceCert", env, rv, cert);
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SendAPDU(JNIEnv *env, jclass clz, jint deviceID, jstring jApdu) {
+native_SendAPDU(JNIEnv *env,
+                jclass clz,
+                jint deviceID,
+                jstring jApdu) {
     auto strAPDU = jstring2stdString(env, jApdu);
     JUB_CHAR_PTR response = nullptr;
     JUB_RV rv = JUB_SendOneApdu((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAPDU.c_str(), &response);
     return buildPbRvString("JUB_SendOneApdu", env, rv, response);
 }
 
-JNIEXPORT jboolean JNICALL native_IsBootLoader(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jboolean JNICALL
+native_IsBootLoader(JNIEnv *env,
+                    jclass clz,
+                    jint deviceID) {
     return (jboolean) JUB_IsBootLoader((JUB_UINT16) deviceID);
 }
 
-JNIEXPORT jint JNICALL native_SetTimeOut(JNIEnv *env, jclass clz, jint contextID, jint jTimeOut) {
+JNIEXPORT jint JNICALL
+native_SetTimeOut(JNIEnv *env,
+                  jclass clz,
+                  jint contextID,
+                  jint jTimeOut) {
     return static_cast<jint>(JUB_SetTimeOut(static_cast<JUB_UINT16>(contextID),
                                             static_cast<JUB_UINT16>(jTimeOut)));
 }
 
-JNIEXPORT jbyteArray JNICALL native_EnumApplets(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_EnumApplets(JNIEnv *env,
+                   jclass clz,
+                   jint deviceID) {
     JUB_CHAR_PTR appList = nullptr;
     JUB_RV rv = JUB_EnumApplets((JUB_UINT16) deviceID, &appList);
     return buildPbRvString("JUB_EnumApplets", env, rv, appList);
 }
 
-JNIEXPORT jbyteArray JNICALL native_EnumSupportCoins(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_EnumSupportCoins(JNIEnv *env,
+                        jclass clz,
+                        jint deviceID) {
     JUB_CHAR_PTR appList = nullptr;
     JUB_RV rv = JUB_EnumSupportCoins((JUB_UINT16) deviceID, &appList);
     return buildPbRvString("JUB_EnumSupportCoins", env, rv, appList);
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
+native_GetAppletVersion(JNIEnv *env,
+                        jclass clz,
+                        jint deviceID,
+                        jstring appID) {
     auto strAppID = jstring2stdString(env, appID);
     JUB_VERSION_PTR appletVersion;
-    JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID, (JUB_CHAR_PTR) strAppID.c_str(),
+    JUB_RV rv = JUB_GetAppletVersion((JUB_UINT16) deviceID,
+                                     (JUB_CHAR_PTR) strAppID.c_str(),
                                      appletVersion);
 
     JUB::Proto::Common::Version pbVersion;
@@ -142,7 +174,10 @@ native_GetAppletVersion(JNIEnv *env, jclass clz, jint deviceID, jstring appID) {
     return buildPbRvString("JUB_GetAppletVersion", env, rv, result);
 }
 
-JNIEXPORT jbyteArray JNICALL native_QueryBattery(JNIEnv *env, jclass clz, jint deviceID) {
+JNIEXPORT jbyteArray JNICALL
+native_QueryBattery(JNIEnv *env,
+                    jclass clz,
+                    jint deviceID) {
     JUB_BYTE battery = 0;
     JUB_RV rv = JUB_QueryBattery(deviceID, &battery);
     return buildPbRvUInt("JUB_QueryBattery", env, rv, battery & 0xFF);
@@ -150,20 +185,32 @@ JNIEXPORT jbyteArray JNICALL native_QueryBattery(JNIEnv *env, jclass clz, jint d
 
 //===================================== JUB_SDK_COMM_H ============================================
 
-JNIEXPORT jint JNICALL native_ClearContext(JNIEnv *env, jclass clz, jint contextID) {
+JNIEXPORT jint JNICALL
+native_ClearContext(JNIEnv *env,
+                    jclass clz,
+                    jint contextID) {
     return (jint) JUB_ClearContext(contextID);
 }
 
-JNIEXPORT jint JNICALL native_ShowVirtualPwd(JNIEnv *env, jclass clz, jint contextID) {
+JNIEXPORT jint JNICALL
+native_ShowVirtualPwd(JNIEnv *env,
+                      jclass clz,
+                      jint contextID) {
     return (jint) JUB_ShowVirtualPwd(contextID);
 }
 
-JNIEXPORT jint JNICALL native_CancelVirtualPwd(JNIEnv *env, jclass clz, jint contextID) {
+JNIEXPORT jint JNICALL
+native_CancelVirtualPwd(JNIEnv *env,
+                        jclass clz,
+                        jint contextID) {
     return (jint) JUB_CancelVirtualPwd(contextID);
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_VerifyPIN(JNIEnv *env, jclass clz, jint contextID, jstring jPin) {
+native_VerifyPIN(JNIEnv *env,
+                 jclass clz,
+                 jint contextID,
+                 jstring jPin) {
     auto strPin = jstring2stdString(env, jPin);
     JUB_ULONG retry = 0;
     JUB_RV rv = JUB_VerifyPIN(contextID, (JUB_CHAR_PTR) strPin.c_str(), &retry);

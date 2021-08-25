@@ -69,7 +69,7 @@ public class JubiterImpl {
     }
 
     public enum ETH_TransType {
-        ETH_TEST, ETH, ETH_ERC20, ETH_ERC721
+        ETH_TEST, ETH, ERC20, ERC721, ERC1155
     }
 
     public enum TRX_TransType {
@@ -1059,7 +1059,7 @@ public class JubiterImpl {
                 .build();
         builder.setPath(bip32Path)
                 .setGasPriceInWei("10000000000");
-        if (transType == ETH_TransType.ETH_ERC20) {
+        if (transType == ETH_TransType.ERC20) {
             ThreadUtils.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -1096,7 +1096,7 @@ public class JubiterImpl {
                     }
                 }
             });
-        } else if (transType == ETH_TransType.ETH_ERC721) {
+        } else if (transType == ETH_TransType.ERC721) {
 
             ThreadUtils.execute(new Runnable() {
                 @Override
@@ -1128,6 +1128,48 @@ public class JubiterImpl {
                             .setInput(erc721Abi.getValue())
                             .build();
                     CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc721Tx);
+                    if (resultString.getStateCode() == 0) {
+                        callback.onSuccess(resultString.getValue());
+                    } else {
+                        callback.onFailed(resultString.getStateCode());
+                    }
+                }
+            });
+
+        } else if (transType == ETH_TransType.ERC1155) {
+
+            ThreadUtils.execute(new Runnable() {
+                @Override
+                public void run() {
+                    int setErc1155Token = JuBiterEthereum.setERC721Token(
+                            contextID,
+                            "Meebits",
+                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
+                    );
+                    if (setErc1155Token != 0) {
+                        callback.onFailed(setErc1155Token);
+                        return;
+                    }
+
+                    CommonProtos.ResultString erc1155Abi = JuBiterEthereum.buildERC1155TransferAbi(
+                            contextID,
+                            "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
+                            "0xbb11ddc26f4e55475775310e5cbe188650e75212",
+                            "14973",
+                            "1",
+                            ""
+                    );
+                    if (erc1155Abi.getStateCode() != 0) {
+                        callback.onFailed(erc1155Abi.getStateCode());
+                        return;
+                    }
+                    EthereumProtos.TransactionETH erc1155Tx = builder.setNonce(12)
+                            .setGasLimit(96000)
+                            .setValueInWei("0")
+                            .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
+                            .setInput(erc1155Abi.getValue())
+                            .build();
+                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc1155Tx);
                     if (resultString.getStateCode() == 0) {
                         callback.onSuccess(resultString.getValue());
                     } else {

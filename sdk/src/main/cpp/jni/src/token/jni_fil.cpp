@@ -5,7 +5,10 @@
 #include "jni_fil.h"
 
 JNIEXPORT jbyteArray JNICALL
-native_CreateContextFIL(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID) {
+native_CreateContextFIL(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray jcfg,
+                        jint deviceID) {
     JUB::Proto::Common::ContextCfg pbCfg;
     if (parseFromJbyteArray(env, jcfg, &pbCfg)) {
         CONTEXT_CONFIG_FIL cfg;
@@ -19,7 +22,10 @@ native_CreateContextFIL(JNIEnv *env, jclass clz, jbyteArray jcfg, jint deviceID)
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetMainHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray format) {
+native_GetMainHDNodeFIL(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray format) {
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
     JUB::Proto::Common::ENUM_PUB_FORMAT_Parse(strFormat, &_format);
@@ -30,7 +36,11 @@ native_GetMainHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray form
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, jbyteArray bip32) {
+native_GetHDNodeFIL(JNIEnv *env,
+                    jclass clz,
+                    jint contextID,
+                    jbyteArray format,
+                    jbyteArray bip32) {
 
     auto strFormat = jbyteArray2stdString(env, format);
     JUB::Proto::Common::ENUM_PUB_FORMAT _format;
@@ -46,7 +56,11 @@ native_GetHDNodeFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray format, 
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_GetAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow) {
+native_GetAddressFIL(JNIEnv *env,
+                     jclass clz,
+                     jint contextID,
+                     jbyteArray bip32,
+                     jboolean bShow) {
 
     BIP44_Path bip32Path;
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -68,9 +82,11 @@ native_GetAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, 
 //    return buildPbRvString("JUB_SetMyAddressFIL 2", env, JUBR_ARGUMENTS_BAD, "");
 //}
 
-
 JNIEXPORT jbyteArray JNICALL
-native_SignTransactionFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx) {
+native_SignTransactionFIL(JNIEnv *env,
+                          jclass clz,
+                          jint contextID,
+                          jbyteArray tx) {
     JUB::Proto::Filecoin::TransactionFIL pbTx;
     if (parseFromJbyteArray(env, tx, &pbTx)) {
         BIP44_Path bip32Path;
@@ -93,8 +109,6 @@ native_SignTransactionFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
     }
     return buildPbRvString("JUB_SignTransactionFIL", env, JUBR_ARGUMENTS_BAD, "");
 }
-
-
 
 
 JNINativeMethod filNativeMethods[] = {
@@ -122,16 +136,6 @@ JNINativeMethod filNativeMethods[] = {
 //                "nativeFILSetAddress",
 //                "(I[B)[B",
 //                (void *) native_SetMyAddressFIL
-//        },
-//        {
-//                "nativeETHSetERC20Token",
-//                "(ILjava/lang/String;ILjava/lang/String;)I",
-//                (void *) native_SetERC20TokenETH
-//        },
-//        {
-//                "nativeETHBuildERC20TransferAbi",
-//                "(ILjava/lang/String;Ljava/lang/String;)[B",
-//                (void *) native_BuildERC20TransferAbiETH
 //        },
         {
                 "nativeFILSignTransaction",
