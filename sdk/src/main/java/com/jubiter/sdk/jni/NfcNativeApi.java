@@ -11,6 +11,8 @@ public class NfcNativeApi extends NativeApi {
 
     public static native int nativeNFCInitDevice(NFCInitParam param);
 
+    public static native int nativeNFCSetParam(int deviceID);
+
     public static native byte[] nativeNFCConnectDevice(String deviceUUID);
 
     public static native int nativeNFCDisconnectDevice(int deviceID);
@@ -30,4 +32,6 @@ public class NfcNativeApi extends NativeApi {
     public static native byte[] nativeNFCHasRootKey(int deviceID);
 
     public static native int nativeNFCSetLabel(int deviceID, String label);
+
+    public static native int nativeNFCSetAlertMessage(int deviceID, String msg);
 }

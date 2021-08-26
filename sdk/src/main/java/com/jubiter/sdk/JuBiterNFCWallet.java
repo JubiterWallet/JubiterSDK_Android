@@ -27,6 +27,15 @@ public class JuBiterNFCWallet {
     }
 
     /**
+     * 设置NFC参数
+     *
+     * @return
+     */
+    public static int nfcSetParam(int deviceID) {
+        return NfcNativeApi.nativeNFCSetParam(deviceID);
+    }
+
+    /**
      * NFC 连接
      *
      * @param deviceUUID
@@ -159,6 +168,16 @@ public class JuBiterNFCWallet {
      */
     public static int nfcSetLabel(int deviceID, String label) {
         return NfcNativeApi.nativeNFCSetLabel(deviceID, label);
+    }
+
+    /**
+     * 设置 NFC 警告信息
+     * @param deviceID
+     * @param msg
+     * @return
+     */
+    public static int nfcSetAlertMessage(int deviceID, String msg) {
+        return NfcNativeApi.nativeNFCSetAlertMessage(deviceID, msg);
     }
 
 }

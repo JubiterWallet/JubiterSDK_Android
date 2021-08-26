@@ -17,6 +17,9 @@ extern "C" {
 JNIEXPORT jint JNICALL
 native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam);
 
+JNIEXPORT jint JNICALL
+native_NFCSetParam(JNIEnv *env, jclass clz, jint deviceID);
+
 JNIEXPORT jbyteArray JNICALL
 native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID);
 
@@ -64,6 +67,17 @@ native_NFCSetLabel(JNIEnv *env,
                    jclass clz,
                    jint deviceID,
                    jstring jLabel);
+
+JNIEXPORT jint JNICALL
+native_NFCSetDeviceParam(JNIEnv *env,
+                         jclass clz,
+                         jobject setParam);
+
+JNIEXPORT jint JNICALL
+native_NFCSetAlertMessage(JNIEnv *env,
+                          jclass clz,
+                          jint deviceID,
+                          jstring jMsg);
 
 JNIEXPORT jbyteArray JNICALL
 native_NFCGetPinRetries(JNIEnv *env, jclass clz, jint deviceID);

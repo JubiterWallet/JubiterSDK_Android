@@ -16,6 +16,40 @@ native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
     return rv;
 }
 
+JNIEXPORT jint JNICALL
+native_NFCSetParam(JNIEnv *env, jclass clz, jint deviceID) {
+    // 初始化参数转换
+    NFC_DEVICE_SET_PARAM nfcSetParam;
+    nfcSetParam.crt = "7F2181ED93104A754269746572323031323134536572420F7777772E6674736166652E636F6D305F200E7777772E6674736166652E636F6D950200805F2504202012145F2404209905245300BF200EEF0C8D0A820182028203820582047F4946B0410496C6464CC6037C7286C5D5A52B5A82A9C789C21D8857CCCF8AF96D4239A892D19C14FB8EC8BDF6288FD84E4C0BC0647B0933A4EA3982B9F21B653BB38B9834BEF001005F37483046022100F019E2E9EE44F26FA81FE539C5D1EDEFCDD0FF79CB8F5F28125C981ABD72A8EB022100E02B4CDB580310C3F3BD2A2504129772C34BF36A8FF42A0DB78B7B6CA13B6B6A";
+    nfcSetParam.sk = "AB8A335B0F57115B85218CF6B2662D1C07A65DC929BF54B47A45DBFA8175345E";
+    nfcSetParam.keyLength = 16;
+    nfcSetParam.hostID = "8080808080808080";
+    nfcSetParam.cardGroupID = "";
+
+    if(deviceID > 0){
+        JUB_CHAR_PTR cert;
+        JUB_RV rv = JUB_GetDeviceCert(deviceID, &cert);
+        LOG_DEBUG("JUB_GetDeviceCert rv: %d", rv);
+        if(rv != JUBR_OK){
+            return rv;
+        }
+
+        JUB_CHAR_PTR sn;
+        JUB_CHAR_PTR subjectID;
+        rv = JUB_ParseDeviceCert(cert, &sn, &subjectID);
+        LOG_DEBUG("JUB_ParseDeviceCert rv: %d", rv);
+        if(rv != JUBR_OK){
+            return rv;
+        }
+        nfcSetParam.cardGroupID = subjectID;
+    }
+
+    JUB_RV rv = JUB_setNFCDeviceParam(nfcSetParam);
+    LOG_DEBUG("JUB_setNFCDeviceParam rv: %d", rv);
+    return rv;
+}
+
+
 JNIEXPORT jbyteArray JNICALL
 native_NFCConnectDevice(JNIEnv *env, jclass clz, jstring deviceUUID) {
     auto strDeviceUUID = jstring2stdString(env, deviceUUID);
@@ -138,11 +172,28 @@ native_NFCSetLabel(JNIEnv *env,
     return rv;
 }
 
+
+JNIEXPORT jint JNICALL
+native_NFCSetAlertMessage(JNIEnv *env,
+                          jclass clz,
+                          jint deviceID,
+                          jstring jMsg) {
+    auto msg = jstring2stdString(env, jMsg);
+    JUB_RV rv = JUB_setNFCAlertMessage(deviceID, msg.c_str());
+    LOG_DEBUG("JUB_setNFCAlertMessage rv: %d", rv);
+    return rv;
+}
+
 JNINativeMethod nfcNativeMethods[] = {
         {
                 "nativeNFCInitDevice",
                 "(Lcom/jubiter/sdk/jni/nfc/NFCInitParam;)I",
                 (void *) native_NFCInitDevice
+        },
+        {
+                "nativeNFCSetParam",
+                "(I)I",
+                (void *) native_NFCSetParam
         },
         {
                 "nativeNFCConnectDevice",
@@ -190,9 +241,14 @@ JNINativeMethod nfcNativeMethods[] = {
                 (void *) native_NFCHasRootKey
         },
         {
-            "nativeNFCSetLabel",
-            "(ILjava/lang/String;)I",
-            (void *) native_NFCSetLabel
+               "nativeNFCSetLabel",
+               "(ILjava/lang/String;)I",
+               (void *) native_NFCSetLabel
+        },
+        {
+                "nativeNFCSetAlertMessage",
+                "(ILjava/lang/String;)I",
+                (void *) native_NFCSetAlertMessage
         }
 };
 
