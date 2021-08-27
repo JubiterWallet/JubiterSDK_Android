@@ -58,11 +58,11 @@ public class JuBiterSWIWallet {
      * BuildFromMnemonic
      *
      * @param deviceID
-     * @param passphrase
      * @param mnemonic
+     * @param passphrase
      * @return
      */
-    public static int swiBuildFromMnemonic(int deviceID, String passphrase, String mnemonic) {
+    public static int swiBuildFromMnemonic(int deviceID, String mnemonic, String passphrase) {
         return SwiNativeApi.nativeSWIBuildFromMnemonic(deviceID, passphrase, mnemonic);
     }
 
