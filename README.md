@@ -12,7 +12,7 @@ Consistent with what is supported by the [JuBiter SDK](https://github.com/Jubite
 # Branch
 + **master**
   + Stable branch. If you are JuBiter SDK users, we recommend you to use this branch.
-+ **2.3** and **dev_3.0**
++ **2.3** and **dev_3.0** **2.4**
   + Develop branch. JuBiter SDK developers use this branch.
 
 

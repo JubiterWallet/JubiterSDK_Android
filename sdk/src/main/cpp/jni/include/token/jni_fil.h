@@ -26,9 +26,6 @@ JNIEXPORT jbyteArray JNICALL
 native_GetAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jboolean bShow);
 
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
-
-JNIEXPORT jbyteArray JNICALL
 native_SignTransactionFIL(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx);
 
 //JNIEXPORT jbyteArray JNICALL

@@ -230,4 +230,18 @@ public class NativeApi {
 
     public static native byte[] nativeFILSignTransaction(int contextID, byte[] txInfo);
 
+    //********************************* SDK CKB ************************************
+
+    public static native byte[] nativeCKBCreateContext(byte[] config, int deviceID);
+
+    public static native byte[] nativeCKBGetMainHDNode(int contextID);
+
+    public static native byte[] nativeCKBGetHDNode(int contextID, byte[] bip32);
+
+    public static native byte[] nativeCKBGetAddress(int contextID, byte[] bip32, boolean isShow);
+
+    public static native int nativeCKBCheckAddress(int contextID, String address);
+
+    public static native byte[] nativeCKBSignTransaction(int contextID, byte[] txInfo);
+
 }

@@ -22,6 +22,7 @@
 #include "include/token/jni_xrp.h"
 #include "include/token/jni_trx.h"
 #include "include/token/jni_fil.h"
+#include "include/token/jni_ckb.h"
 
 #include "utils/logUtils.h"
 #include "utils/utils.h"

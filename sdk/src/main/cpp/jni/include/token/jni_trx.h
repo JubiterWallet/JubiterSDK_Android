@@ -33,9 +33,6 @@ JNIEXPORT jbyteArray JNICALL
 native_GetMainHDNodeTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray format);
 
 JNIEXPORT jbyteArray JNICALL
-native_SetMyAddressTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32);
-
-JNIEXPORT jbyteArray JNICALL
 native_SignTransactionTRX(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32,
                           jstring jPackedContractInPb);
 

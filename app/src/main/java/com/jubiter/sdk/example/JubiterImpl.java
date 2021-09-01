@@ -11,6 +11,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
 import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
+import com.jubiter.sdk.JuBiterCKB;
 import com.jubiter.sdk.JuBiterEOS;
 import com.jubiter.sdk.JuBiterEthereum;
 import com.jubiter.sdk.JuBiterSWIWallet;
@@ -41,6 +42,7 @@ import com.jubiter.sdk.proto.CommonProtos;
 import com.jubiter.sdk.proto.EOSProtos;
 import com.jubiter.sdk.proto.EthereumProtos;
 import com.jubiter.sdk.proto.FilecoinProtos;
+import com.jubiter.sdk.proto.NervosCKBProtos;
 import com.jubiter.sdk.proto.RippleProtos;
 
 import org.tron.protos.Protocol;
@@ -82,6 +84,10 @@ public class JubiterImpl {
 
     public enum FIL_TransType {
         FIL
+    }
+
+    public enum CKB_TransType {
+        CKB
     }
 
     private Context mContext;
@@ -143,7 +149,7 @@ public class JubiterImpl {
         deviceHandle = resultInt.getValue();
         mDeviceType = DeviceType.SWI;
         JuBiterSWIWallet.swiBuildFromMnemonic(deviceHandle,
-                "", "convince stove grab pink educate chapter march hood neglect sphere walnut unfair");
+                "convince stove grab pink educate chapter march hood neglect sphere walnut unfair", "");
     }
 
     public void disconnectSwi() {
@@ -2354,6 +2360,159 @@ public class JubiterImpl {
                 @Override
                 public void run() {
                     CommonProtos.ResultString resultString = JuBiterFilecoin.signTransaction(contextID, transactionFIL);
+                    if (resultString.getStateCode() == 0) {
+                        callback.onSuccess(resultString.getValue());
+                    } else {
+                        callback.onFailed(resultString.getStateCode());
+                    }
+                }
+            });
+
+        }
+    }
+
+    /**
+     * CKB
+     */
+
+    public void ckbCreateContext(final JubCallback<Integer> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                NervosCKBProtos.ContextCfgCKB contextCfgCKB = NervosCKBProtos.ContextCfgCKB.newBuilder()
+                        .setMainPath("m/44'/309'/0'")
+                        .setMainNet(true)
+                        .build();
+
+                CommonProtos.ResultInt context = JuBiterCKB.createContext(contextCfgCKB, deviceHandle);
+                if (context.getStateCode() == 0) {
+                    callback.onSuccess(context.getValue());
+                } else {
+                    callback.onFailed(context.getStateCode());
+                }
+            }
+        });
+    }
+
+
+    public void ckbGetAddress(final int contextID, final int index, final JubCallback<String> callback) {
+        final CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(index)
+                .setChange(false)
+                .build();
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                callback.onSuccess("CKBGetMainHDNode");
+                CommonProtos.ResultString mainHDNode = JuBiterCKB.getMainHDNode(contextID);
+                if (mainHDNode.getStateCode() != 0) {
+                    callback.onFailed(mainHDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(mainHDNode.getValue());
+                callback.onSuccess("CKBGetHDNode");
+                CommonProtos.ResultString HDNode = JuBiterCKB.getHDNode(contextID, path);
+                if (HDNode.getStateCode() != 0) {
+                    callback.onFailed(HDNode.getStateCode());
+                    return;
+                }
+                callback.onSuccess(HDNode.getValue());
+                callback.onSuccess("CKBGetAddress ");
+                CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, false);
+                if (address.getStateCode() != 0) {
+                    callback.onFailed(address.getStateCode());
+                    return;
+                }
+                callback.onSuccess(address.getValue());
+            }
+        });
+    }
+
+    public void ckbShowAddress(final int contextID, final JubCallback<String> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+                CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, true);
+                if (address.getStateCode() == 0) {
+                    callback.onSuccess(address.getValue());
+                } else {
+                    callback.onFailed(address.getStateCode());
+                }
+            }
+        });
+    }
+
+
+
+    public void ckbTransaction(final int contextID, CKB_TransType transType, String transferInputValue, final JubCallback<String> callback) {
+        final String valueStr = fixValueStr(transferInputValue, "", 8).replace(".", "");
+
+        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                .setAddressIndex(0)
+                .setChange(false)
+                .build();
+
+        // cell
+        NervosCKBProtos.CellDepCKB cellDep = NervosCKBProtos.CellDepCKB.newBuilder()
+                .setTxHash("71a7ba8fc96349fea0ed3a5c47992e3b4084b031a42264a018e0072e8172e46c")
+                .setIndex(0)
+                .setType(1)
+                .build();
+
+        // inputs
+        NervosCKBProtos.InputCKB inputCKB_0 = NervosCKBProtos.InputCKB.newBuilder()
+                .setCapacity(18313283863090L)
+                .setPreHash("eb1d0f933a44f5a58eeed77d3ecdeeccbeaf65fe37d4947b481b308f359912a2")
+                .setPreIndex(0)
+                .setLock(NervosCKBProtos.CellScriptCKB.newBuilder()
+                        .setCodeHash("9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8")
+                        .setHashType(1)
+                        .setArgs("9ed8a7e8142d50a02ed423e8b37b8ada98b893b0")
+                        .build())
+                .setSince(0x0)
+                .setPath(bip32Path)
+                .build();
+
+        NervosCKBProtos.InputCKB inputCKB_1 = NervosCKBProtos.InputCKB.newBuilder()
+                .setCapacity(18313283863090L)
+                .setPreHash("60a2cf0d25ec2781437e363132f943a41d093056a9f80248e4ba07237729c213")
+                .setPreIndex(0)
+                .setLock(NervosCKBProtos.CellScriptCKB.newBuilder()
+                        .setCodeHash("9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8")
+                        .setHashType(1)
+                        .setArgs("ae8a1ce685370033fa394a75d2368348256589a3")
+                        .build())
+                .setSince(0x0)
+                .setPath(bip32Path)
+                .build();
+
+        // outputs
+        NervosCKBProtos.OutputCKB outputCKB_1 = NervosCKBProtos.OutputCKB.newBuilder()
+                .setCapacity(36626567706510L)
+                .setLock(NervosCKBProtos.CellScriptCKB.newBuilder()
+                        .setCodeHash("9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8")
+                        .setHashType(1)
+                        .setArgs("d2536aeb80d32b0f4c1151d1a8cbcfae7dcf4284")
+                        .build())
+                .setData("")
+                .build();
+
+        final NervosCKBProtos.TransactionCKB.Builder builder = NervosCKBProtos.TransactionCKB.newBuilder()
+                .addDeps(cellDep)
+                .addInputs(inputCKB_0)
+                .addInputs(inputCKB_1)
+                .addOutputs(outputCKB_1)
+                .setVersion(0);
+        if (transType == CKB_TransType.CKB) {
+            ThreadUtils.execute(new Runnable() {
+                @Override
+                public void run() {
+                    CommonProtos.ResultString resultString = JuBiterCKB.signTransaction(contextID, builder.build());
                     if (resultString.getStateCode() == 0) {
                         callback.onSuccess(resultString.getValue());
                     } else {

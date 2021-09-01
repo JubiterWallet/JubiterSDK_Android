@@ -162,6 +162,12 @@
                 android:onClick="onClick"
                 android:text="FIL" />
 
+            <Button
+                android:id="@+id/btn_ckb"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="CKB" />
+
         </LinearLayout>
 
     </ScrollView>

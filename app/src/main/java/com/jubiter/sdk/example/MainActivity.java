@@ -1,6 +1,7 @@
 package com.jubiter.sdk.example;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -160,6 +161,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             toDeviceActivity();
         } else if (id == R.id.btn_fil) {
             toFILActivity();
+        } else if (id == R.id.btn_ckb) {
+            toCKBActivity();
         }
     }
 
@@ -256,6 +259,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void toFILActivity() {
         if (isConnect) {
             startActivity(new Intent(mContext, FILActivity.class));
+        }
+    }
+
+    private void toCKBActivity() {
+        if (isConnect) {
+            startActivity(new Intent(mContext, CKBActivity.class));
         }
     }
 

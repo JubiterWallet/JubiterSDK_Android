@@ -44,4 +44,8 @@
     <string-array name="fil">
         <item>FIL</item>
     </string-array>
+
+    <string-array name="ckb">
+        <item>CKB</item>
+    </string-array>
 </resources>
