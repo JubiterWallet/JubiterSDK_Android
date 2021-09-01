@@ -6,7 +6,7 @@ name: Release
 # events but only for the master branch
 on:
   push:
-    branches: [ '2.3' ]
+    branches: [ '2.4' ]
     # 语义化版本号限制
     # https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
     tags:
