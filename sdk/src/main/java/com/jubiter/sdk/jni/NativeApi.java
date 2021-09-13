@@ -22,6 +22,8 @@ public class NativeApi {
 
     public static native byte[] nativeGetDeviceInfo(int deviceID);
 
+    public static native byte[] nativeGetDeviceType(int deviceID);
+
     public static native byte[] nativeGetDeviceCert(int deviceID);
 
     public static native byte[] nativeSendAPDU(int deviceID, String apdu);

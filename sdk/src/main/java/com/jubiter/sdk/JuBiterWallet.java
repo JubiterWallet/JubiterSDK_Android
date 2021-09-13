@@ -59,6 +59,22 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 获取硬件设备信息
+     *
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultAny getDeviceType(int deviceID) {
+        try {
+            byte[] result = NativeApi.nativeGetDeviceType(deviceID);
+            return CommonProtos.ResultAny.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * 获取硬件设备整数
      *
      * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回

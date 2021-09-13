@@ -9,6 +9,7 @@ import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.ConnectionStateCallback;
+import com.jubiter.sdk.JuBiterBIOWallet;
 import com.jubiter.sdk.JuBiterBLEDevice;
 import com.jubiter.sdk.JuBiterBitcoin;
 import com.jubiter.sdk.JuBiterCKB;
@@ -44,11 +45,13 @@ import com.jubiter.sdk.proto.EthereumProtos;
 import com.jubiter.sdk.proto.FilecoinProtos;
 import com.jubiter.sdk.proto.NervosCKBProtos;
 import com.jubiter.sdk.proto.RippleProtos;
+import com.jubiter.plugin.protos.JuBiterBlueProtos;
 
 import org.tron.protos.Protocol;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -121,6 +124,7 @@ public class JubiterImpl {
                     public void onConnected(final String mac, final int handle) {
                         deviceHandle = handle;
                         mDeviceType = DeviceType.BLE;
+                        getBleDeviceType();
                         callback.onConnected(mac, handle);
                     }
 
@@ -180,9 +184,30 @@ public class JubiterImpl {
         });
     }
 
-    public void getDeviceType(final JubCallback<String> callback) {
 
+    private void getBleDeviceType() {
+        mDeviceType = DeviceType.BLE;
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultAny resultAny = JuBiterWallet.getDeviceType(deviceHandle);
+                if(resultAny.getStateCode() == 0){
+                    Any detail = resultAny.getValueList().get(0);
+                    try {
+                        CommonProtos.DeviceType type = detail.unpack(CommonProtos.DeviceType.class);
+                        if (type.getPrdsClass() == CommonProtos.DeviceType.PrdsClass.PRDS_CLASS_BIO) {
+                            mDeviceType = DeviceType.BIO;
+                        } else {
+                            mDeviceType = DeviceType.BLE;
+                        }
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
+
 
     public DeviceType getDeviceType() {
         return mDeviceType;
@@ -254,7 +279,7 @@ public class JubiterImpl {
 
     //comm
     public void showVirtualPwd(final int contextID, final JubCallback<Void> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -277,7 +302,7 @@ public class JubiterImpl {
     }
 
     public void cancelVirtualPwd(final int contextID, final JubCallback<Void> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -297,7 +322,7 @@ public class JubiterImpl {
     }
 
     public void verifyPIN(final int contextID, final String pin, final JubCallback<Void> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -320,7 +345,7 @@ public class JubiterImpl {
     }
 
     public void clearContext(final int contextID, final JubCallback<Void> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -341,40 +366,199 @@ public class JubiterImpl {
 
     // Bio
     public void enumFingerprint(JubCallback<List<String>> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultString resultString = JuBiterBIOWallet.enumFingerprint(deviceHandle);
 
+                if (resultString.getStateCode() != 0 && !TextUtils.isEmpty(resultString.getValue())) {
+                    String fingerList = resultString.getValue();
+                    String[] split = fingerList.split(" ");
+                    final List<String> list = new ArrayList<>(Arrays.asList(split));
+                    ThreadUtils.toMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onSuccess(list);
+                        }
+                    });
+                    return;
+                }
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onFailed(resultString.getStateCode());
+                    }
+                });
+            }
+        });
     }
 
     public void identityVerify(int mode, JubCallback<Void> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerify(deviceHandle, mode);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (resultInt.getStateCode() == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(resultInt.getValue());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void identityVerifyPIN(int mode, String pin, JubCallback<Void> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerifyPIN(deviceHandle, mode, pin);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (resultInt.getStateCode() == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(resultInt.getValue());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void identityShowNineGrids(JubCallback<Void> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                final int ret = JuBiterBIOWallet.identityShowNineGrids(deviceHandle);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ret == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(ret);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void identityCancelNineGrids(JubCallback<Void> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                final int ret = JuBiterBIOWallet.identityCancelNineGrids(deviceHandle);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ret == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(ret);
+                        }
+                    }
+                });
+            }
+        });
     }
 
 
     public void enrollFingerprint(JubCallback<String> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                int fgptIndex = 0;
+                while (true) {
+                    CommonProtos.ResultAny enrollStateResult = JuBiterBIOWallet.enrollFingerprint(deviceHandle, 30, fgptIndex);
+                    if (enrollStateResult.getStateCode() == 0) {
+                        Any detail = enrollStateResult.getValueList().get(0);
+                        try {
+                            JuBiterBlueProtos.EnrollFpState state = detail.unpack(JuBiterBlueProtos.EnrollFpState.class);
+                            callback.onSuccess(state.toString());
+                            Log.d(TAG, "rv : " + state.toString());
+                            if (state.getRemainingTimes() == state.getNextIndex()) {
+                                break;
+                            }
+                        } catch (InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                    } else {
+                        ThreadUtils.toMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onFailed(enrollStateResult.getStateCode());
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+        });
     }
 
-    public void deleteFingerprint(byte id, JubCallback<Void> callback) {
-
+    public void deleteFingerprint(int id, JubCallback<Void> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                final int ret = JuBiterBIOWallet.deleteFingerprint(deviceHandle, 30, id);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ret == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(ret);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void eraseFingerprint(JubCallback<Void> callback) {
-
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                final int ret = JuBiterBIOWallet.eraseFingerprint(deviceHandle, 30);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ret == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(ret);
+                        }
+                    }
+                });
+            }
+        });
     }
 
-    public void verifyFingerprint(long contextID, JubCallback<Void> callback) {
-
+    public void verifyFingerprint(int contextID, JubCallback<Void> callback) {
+        ThreadUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.verifyFingerprint(contextID);
+                ThreadUtils.toMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (resultInt.getStateCode() == 0) {
+                            callback.onSuccess(null);
+                        } else {
+                            callback.onFailed(resultInt.getStateCode());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     //BTC
@@ -439,7 +623,7 @@ public class JubiterImpl {
     }
 
     public void setBTCUnit(final int contextID, final BitcoinProtos.BTC_UNIT_TYPE unit, final JubCallback<Void> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -457,7 +641,7 @@ public class JubiterImpl {
     }
 
     public void btcGetAddress(final BTC_TransType transType, final int contextID, final long index, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -474,7 +658,7 @@ public class JubiterImpl {
                     callback.onFailed(mainHDNode.getStateCode());
                     return;
                 }
-                if(transType == BTC_TransType.BTC_TEST){
+                if (transType == BTC_TransType.BTC_TEST) {
                     callback.onSuccess(Utils.xpub2tpub(mainHDNode.getValue()));
                 } else {
                     callback.onSuccess(mainHDNode.getValue());
@@ -485,7 +669,7 @@ public class JubiterImpl {
                     callback.onFailed(HDNode.getStateCode());
                     return;
                 }
-                if(transType == BTC_TransType.BTC_TEST){
+                if (transType == BTC_TransType.BTC_TEST) {
                     callback.onSuccess(Utils.xpub2tpub(HDNode.getValue()));
                 } else {
                     callback.onSuccess(HDNode.getValue());
@@ -502,7 +686,7 @@ public class JubiterImpl {
     }
 
     public void btcShowAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -524,7 +708,7 @@ public class JubiterImpl {
     }
 
     public void btcSetMyAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -546,7 +730,7 @@ public class JubiterImpl {
     }
 
     public void btcTransaction(int contextID, BTC_TransType transType, int decimal, String transferInputValue, JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -570,7 +754,7 @@ public class JubiterImpl {
     }
 
     private void btcP2pkhTransaction(final int contextID, String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -669,7 +853,7 @@ public class JubiterImpl {
     }
 
     private void usdtTransaction(final int contextID, String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -755,8 +939,8 @@ public class JubiterImpl {
 
     // BTC 后台
     public void btcQueryHistory(final int contextID, JubCallback<String> callback) {
-        Log.d("context: ",contextID+"");
-        if(contextID == -1){
+        Log.d("context: ", contextID + "");
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -784,8 +968,8 @@ public class JubiterImpl {
     }
 
     public void btcQueryBalanceByAccount(final int contextID, JubCallback<String> callback) {
-        Log.d("context: ",contextID+"");
-        if(contextID == -1){
+        Log.d("context: ", contextID + "");
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -849,9 +1033,9 @@ public class JubiterImpl {
                         callback.onSuccess("getPreTransaction error");
                         return;
                     }
-                    if( preTransactionBean.getCode() != 0){
+                    if (preTransactionBean.getCode() != 0) {
                         callback.onFailed(preTransactionBean.getCode());
-                        callback.onSuccess("getPreTransaction error 2 "+preTransactionBean.getMsg());
+                        callback.onSuccess("getPreTransaction error 2 " + preTransactionBean.getMsg());
                         return;
                     }
                     PreTransaction transaction = preTransactionBean.getPreTransaction();
@@ -970,7 +1154,7 @@ public class JubiterImpl {
     }
 
     public void ethGetAddress(final int contextID, final int index, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1008,7 +1192,7 @@ public class JubiterImpl {
     }
 
     public void ethShowAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1030,7 +1214,7 @@ public class JubiterImpl {
     }
 
     public void ethSetMyAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1052,7 +1236,7 @@ public class JubiterImpl {
     }
 
     public void ethTransaction(final int contextID, ETH_TransType transType, String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1210,7 +1394,7 @@ public class JubiterImpl {
 
     // ETH 后台
     public void ethQueryHistory(final int contextID, JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1242,7 +1426,7 @@ public class JubiterImpl {
     }
 
     public void ethQueryAccountInfo(final int contextID, JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1257,7 +1441,7 @@ public class JubiterImpl {
 
                 try {
                     EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
-                            address.getValue(),"");
+                            address.getValue(), "");
                     if (accountInfo.getData() == null) {
                         callback.onFailed(accountInfo.getStatusCode());
                         return;
@@ -1277,7 +1461,7 @@ public class JubiterImpl {
 
     // eth 交易全流程
     private void ethTransactionTest(final int contextID, String valueStr, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1301,7 +1485,7 @@ public class JubiterImpl {
                     CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, bip32Path, false);
 
                     EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
-                            address.getValue(),"");
+                            address.getValue(), "");
                     if (accountInfo.getData() == null) {
                         callback.onFailed(accountInfo.getStatusCode());
                         return;
@@ -1384,7 +1568,7 @@ public class JubiterImpl {
     }
 
     public void eosGetAddress(final int contextID, int index, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1421,7 +1605,7 @@ public class JubiterImpl {
     }
 
     public void eosShowAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1462,7 +1646,7 @@ public class JubiterImpl {
 
 
     public void eosTransaction(final int contextID, final EOS_TransType transType, String value, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1571,7 +1755,7 @@ public class JubiterImpl {
 
 
     private void eosBuildActions(final int contextID, final EOSProtos.ActionListEOS list, final EOS_TransType transType, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1591,7 +1775,7 @@ public class JubiterImpl {
     }
 
     private void eosExecuteTransaction(final int contextID, String actions, EOS_TransType transType, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1685,7 +1869,7 @@ public class JubiterImpl {
     }
 
     public void xrpGetAddress(final int contextID, int index, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1722,7 +1906,7 @@ public class JubiterImpl {
     }
 
     public void xrpShowAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1762,7 +1946,7 @@ public class JubiterImpl {
 //    }
 
     public void xrpTransaction(final int contextID, String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1831,7 +2015,7 @@ public class JubiterImpl {
     }
 
     public void trxGetAddress(final int contextID, int index, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1868,7 +2052,7 @@ public class JubiterImpl {
     }
 
     public void trxShowAddress(final int contextID, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -1910,7 +2094,7 @@ public class JubiterImpl {
     public void trxTransaction(final int contextID,
                                TRX_TransType transType,
                                String transferInputValue, final JubCallback<String> callback) {
-        if(contextID == -1){
+        if (contextID == -1) {
             callback.onFailed(-1);
             return;
         }
@@ -2245,6 +2429,7 @@ public class JubiterImpl {
 
     /**
      * FIL
+     *
      * @param callback
      */
     public void filCreateContext(final JubCallback<Integer> callback) {
@@ -2334,7 +2519,6 @@ public class JubiterImpl {
             }
         });
     }
-
 
 
     public void filTransaction(final int contextID, FIL_TransType transType, String transferInputValue, final JubCallback<String> callback) {
@@ -2446,7 +2630,6 @@ public class JubiterImpl {
             }
         });
     }
-
 
 
     public void ckbTransaction(final int contextID, CKB_TransType transType, String transferInputValue, final JubCallback<String> callback) {

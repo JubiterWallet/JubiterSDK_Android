@@ -94,7 +94,6 @@
         <RadioButton
             android:id="@+id/radio_bio"
             style="@style/CustomRadioBtn"
-            android:visibility="gone"
             android:text="Bio" />
 
     </RadioGroup>

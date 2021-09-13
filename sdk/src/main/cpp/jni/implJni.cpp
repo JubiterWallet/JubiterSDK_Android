@@ -2,6 +2,7 @@
 // Created by FT on 2018/4/16.
 //
 
+#include <jni_bio.h>
 #include "implJni.h"
 
 #ifdef HC
@@ -96,6 +97,29 @@ native_GetDeviceInfo(JNIEnv *env,
     std::string result;
     resultDeviceInfo.SerializeToString(&result);
     return stdString2jbyteArray("JUB_GetDeviceInfo", env, result);
+};
+
+JNIEXPORT jbyteArray JNICALL
+native_GetDeviceType(JNIEnv *env,
+                     jclass clz,
+                     jint deviceID) {
+
+    JUB_ENUM_COMMODE commMode;
+    JUB_ENUM_DEVICE device;
+    JUB_RV rv = JUB_GetDeviceType((JUB_UINT16) deviceID, &commMode, &device);
+
+    JUB::Proto::Common::ResultAny resultDeviceType;
+    resultDeviceType.set_state_code(rv);
+    if (rv == JUBR_OK) {
+        JUB::Proto::Common::DeviceType deviceType;
+        deviceType.set_com_mode(static_cast<JUB::Proto::Common::DeviceType_ComMode>(commMode));
+        deviceType.set_prds_class(static_cast<JUB::Proto::Common::DeviceType_PrdsClass>(device));
+        resultDeviceType.add_value()->PackFrom(deviceType);
+    }
+
+    std::string result;
+    resultDeviceType.SerializeToString(&result);
+    return stdString2jbyteArray("JUB_GetDeviceType", env, result);
 };
 
 JNIEXPORT jbyteArray JNICALL
@@ -486,6 +510,11 @@ JNINativeMethod gMethods[] = {
                 (void *) native_GetDeviceInfo
         },
         {
+                "nativeGetDeviceType",
+                "(I)[B",
+                (void *) native_GetDeviceType
+        },
+        {
                 "nativeSendAPDU",
                 "(ILjava/lang/String;)[B",
                 (void *) native_SendAPDU
@@ -616,6 +645,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBleClass(env), getBleNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getNfcClass(env), getNfcNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getSwiClass(env), getSwiNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBioClass(env), getBioNativeMethods()));
     // coin
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getBtcClass(env), getBtcNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getEthClass(env), getEthNativeMethods()));

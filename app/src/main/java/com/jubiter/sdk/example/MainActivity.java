@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private TextView mTxtScanBle, mTxtOffBle, mTxtLog;
     private RadioButton mRadioBle, mRadioNFC, mRadioBio, mRadioSoft;
     private ScrollView mScrollView;
+    private Button mBtnFingerprint;
 
     private Context mContext;
     private final static int REQUEST_PERMISSION = 0x1001;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         mRadioSoft = findViewById(R.id.radio_soft);
         mScrollView = findViewById(R.id.scrollView);
         mTxtLog = findViewById(R.id.txt_log);
+        mBtnFingerprint = findViewById(R.id.btn_finger);
         mDialog = new ProgressDialog(this);
 
         mRadioBle.setOnClickListener(new View.OnClickListener() {
@@ -67,23 +70,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mRadioSoft.setChecked(false);
                 mTxtScanBle.setVisibility(View.VISIBLE);
                 mTxtOffBle.setVisibility(View.VISIBLE);
-                disconnectBle();
-                if (!hasPermissions()) {
-                    requestPermissions("Permission request", REQUEST_PERMISSION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
-                } else {
-                    mJubiter = JubiterImpl.getInstance(mContext);
-                }
-            }
-        });
-        mRadioBle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRadioBle.setChecked(true);
-                mRadioNFC.setChecked(false);
-                mRadioBio.setChecked(false);
-                mRadioSoft.setChecked(false);
-                mTxtScanBle.setVisibility(View.VISIBLE);
-                mTxtOffBle.setVisibility(View.VISIBLE);
+                mBtnFingerprint.setVisibility(View.GONE);
                 disconnectBle();
                 if (!hasPermissions()) {
                     requestPermissions("Permission request", REQUEST_PERMISSION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
@@ -101,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mRadioSoft.setChecked(false);
                 mTxtScanBle.setVisibility(View.VISIBLE);
                 mTxtOffBle.setVisibility(View.VISIBLE);
+                mBtnFingerprint.setVisibility(View.VISIBLE);
                 disconnectBle();
                 if (!hasPermissions()) {
                     requestPermissions("Permission request", REQUEST_PERMISSION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
@@ -118,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mRadioNFC.setChecked(true);
                 mTxtScanBle.setVisibility(View.GONE);
                 mTxtOffBle.setVisibility(View.GONE);
+                mBtnFingerprint.setVisibility(View.GONE);
                 disconnectBle();
             }
         });
@@ -130,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 mRadioSoft.setChecked(true);
                 mTxtScanBle.setVisibility(View.GONE);
                 mTxtOffBle.setVisibility(View.GONE);
+                mBtnFingerprint.setVisibility(View.GONE);
                 disconnectBle();
                 connectSwi();
             }
@@ -173,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             public void onConnected(String mac, int handle) {
                 isConnect = true;
                 showLog("DeviceMac:" + mac);
-                getDeviceType();
             }
 
             @Override
@@ -192,20 +181,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void connectSwi() {
         mJubiter.connectSwi();
         isConnect = true;
-    }
-
-    private void getDeviceType() {
-        mJubiter.getDeviceType(new JubCallback<String>() {
-            @Override
-            public void onSuccess(String s) {
-                showLog("getDeviceType:" + s);
-            }
-
-            @Override
-            public void onFailed(long errorCode) {
-
-            }
-        });
     }
 
     private void disconnectBle() {

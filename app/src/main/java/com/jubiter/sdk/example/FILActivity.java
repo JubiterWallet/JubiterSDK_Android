@@ -156,8 +156,9 @@ public class FILActivity extends AppCompatActivity {
             showVirtualPwd(0);
         } else if(deviceType == JubiterImpl.DeviceType.SWI){
             executeTrans();
+        } else if (deviceType == JubiterImpl.DeviceType.BIO) {
+            showVirtualPwd(1);
         }
-//        mSelectDialog.show();
     }
 
     private void showVirtualPwd(int type) {
