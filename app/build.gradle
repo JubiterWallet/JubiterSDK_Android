@@ -49,15 +49,8 @@ android {
     }
 
     configurations.all {
+        // gradle 默认使用高版本解决依赖冲突，所以需要显式限定版本
         resolutionStrategy.force "androidx.appcompat:appcompat:1.3.1"
-//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-//            def requested = details.requested
-//            if (requested.group == "androidx.appcompat") {
-//                if (!requested.name.startsWith("multidex")) {
-//                    details.useVersion "1.+"
-//                }
-//            }
-//        }
     }
 }
 
