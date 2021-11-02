@@ -31,7 +31,7 @@ native_SignTransactionCKB(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx
 
 jclass getCKBClass(JNIEnv *env);
 
-std::vector<JNINativeMethod> getCkbNativeMethods();
+std::vector<JNINativeMethod> getCKBNativeMethods();
 
 #ifdef __cplusplus
 }

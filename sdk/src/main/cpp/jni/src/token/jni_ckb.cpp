@@ -149,7 +149,7 @@ native_SignTransactionCKB(JNIEnv *env,
 }
 
 
-JNINativeMethod CKBNativeMethods[] = {
+JNINativeMethod ckbNativeMethods[] = {
         {
                 "nativeCKBCreateContext",
                 "([BI)[B",
@@ -189,11 +189,11 @@ jclass getCKBClass(JNIEnv *env) {
     return env->FindClass(CKB_NATIVE_CLASS);
 }
 
-std::vector <JNINativeMethod> getCkbNativeMethods() {
+std::vector <JNINativeMethod> getCKBNativeMethods() {
     std::vector <JNINativeMethod> methodList;
-    for (int i = 0, count = sizeof(CKBNativeMethods) / sizeof(CKBNativeMethods[0]);
+    for (int i = 0, count = sizeof(ckbNativeMethods) / sizeof(ckbNativeMethods[0]);
          i < count; ++i) {
-        methodList.push_back(CKBNativeMethods[i]);
+        methodList.push_back(ckbNativeMethods[i]);
     }
     return methodList;
 }

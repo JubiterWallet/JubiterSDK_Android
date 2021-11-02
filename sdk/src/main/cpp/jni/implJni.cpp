@@ -653,7 +653,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getXrpClass(env), getXrpNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getTrxClass(env), getTrxNativeMethods()));
     nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getFilClass(env), getFilNativeMethods()));
-    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getFilClass(env), getCkbNativeMethods()));
+    nativeMethodMap.insert(std::pair<jclass, std::vector<JNINativeMethod>> (getCKBClass(env), getCKBNativeMethods()));
 
     for (auto iterator = nativeMethodMap.begin(); iterator != nativeMethodMap.end(); ++iterator) {
         jclass tmpClazz = iterator->first;
