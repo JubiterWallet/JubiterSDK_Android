@@ -23,7 +23,7 @@ android {
                 arguments "-DANDROID_TOOLCHAIN=clang",
                         "-DANDROID_STL=c++_static",
                         "-DANDROID_ARM_MODE=arm",
-                        "-DANDROID_PLATFORM=android-19"
+                        "-DANDROID_PLATFORM=android-21"
             }
 
             ndk {
