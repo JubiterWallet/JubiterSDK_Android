@@ -1,4 +1,4 @@
-#include "include/jni_swi.h"
+#include "jni_swi.h"
 
 #define SWI_NATIVE_CLASS "com/jubiter/sdk/jni/SwiNativeApi"
 

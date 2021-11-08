@@ -1,6 +1,7 @@
 
 #include "jni_ckb.h"
 
+
 JNIEXPORT jbyteArray JNICALL
 native_CreateContextCKB(JNIEnv *env,
                         jclass clz,

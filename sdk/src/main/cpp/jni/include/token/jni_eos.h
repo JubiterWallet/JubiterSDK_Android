@@ -8,6 +8,7 @@
 #include <jni.h>
 #include "jni_comm.h"
 #include <Jub_EOS.pb.h>
+#include "JUB_SDK_EOS.h"
 
 #ifdef __cplusplus
 extern "C" {

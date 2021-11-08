@@ -8,6 +8,7 @@
 #include <jni.h>
 #include "jni_comm.h"
 #include "Jub_Filecoin.pb.h"
+#include "JUB_SDK_FIL.h"
 
 #ifdef __cplusplus
 extern "C" {

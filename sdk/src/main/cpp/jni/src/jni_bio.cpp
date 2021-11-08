@@ -1,6 +1,6 @@
 
 
-#include "include/jni_bio.h"
+#include "jni_bio.h"
 
 #define BIO_NATIVE_CLASS "com/jubiter/sdk/jni/BioNativeApi"
 

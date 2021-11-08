@@ -2,7 +2,6 @@
 // Created by FT on 2018/4/16.
 //
 
-#include <jni_bio.h>
 #include "implJni.h"
 
 #ifdef HC

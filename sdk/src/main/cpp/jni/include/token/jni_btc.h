@@ -9,6 +9,7 @@
 #include <jni.h>
 #include "jni_comm.h"
 #include <Jub_Bitcoin.pb.h>
+#include "JUB_SDK_BTC.h"
 
 #ifdef __cplusplus
 extern "C" {

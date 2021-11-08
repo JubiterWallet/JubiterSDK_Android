@@ -2,7 +2,7 @@
 // Created by Journey on 2020/9/14.
 //
 
-#include "include/jni_nfc.h"
+#include "jni_nfc.h"
 
 #define NFC_NATIVE_CLASS "com/jubiter/sdk/jni/NfcNativeApi"
 

@@ -3,7 +3,6 @@
 //
 #include "jni_btc.h"
 
-
 JNIEXPORT jbyteArray JNICALL
 native_CreateContextBTC(JNIEnv *env,
                         jclass clz,

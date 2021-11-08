@@ -1,7 +1,7 @@
 //
 // Created by Journey on 2020/9/14.
 //
-#include "include/jni_ble.h"
+#include "jni_ble.h"
 
 #define BLE_NATIVE_CLASS "com/jubiter/sdk/jni/BleNativeApi"
 

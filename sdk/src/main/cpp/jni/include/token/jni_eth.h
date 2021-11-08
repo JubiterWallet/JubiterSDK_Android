@@ -8,6 +8,7 @@
 
 #include <jni.h>
 #include "jni_comm.h"
+#include "JUB_SDK_ETH.h"
 #include <Jub_Ethereum.pb.h>
 
 #ifdef __cplusplus

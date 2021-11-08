@@ -7,6 +7,7 @@
 
 #include <jni.h>
 #include "jni_comm.h"
+#include "JUB_SDK_XRP.h"
 #include <Jub_Ripple.pb.h>
 
 #ifdef __cplusplus

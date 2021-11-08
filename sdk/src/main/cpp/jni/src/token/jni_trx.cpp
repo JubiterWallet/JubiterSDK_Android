@@ -4,7 +4,6 @@
 
 #include "jni_trx.h"
 
-
 JNIEXPORT jbyteArray JNICALL
 native_CreateContextTRX(JNIEnv *env,
                         jclass clz,

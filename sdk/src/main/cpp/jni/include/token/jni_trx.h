@@ -7,6 +7,7 @@
 
 #include <jni.h>
 #include "jni_comm.h"
+#include "JUB_SDK_TRX.h"
 #include <Tron.pb.h>
 #include <Discover.pb.h>
 #include <balance_contract.pb.h>

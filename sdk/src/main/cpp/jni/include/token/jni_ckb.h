@@ -5,6 +5,7 @@
 #include <jni.h>
 #include "jni_comm.h"
 #include <Jub_NervosCKB.pb.h>
+#include "JUB_SDK_CKB.h"
 
 #ifdef __cplusplus
 extern "C" {
