@@ -3,8 +3,6 @@
 //
 #include "jni_ble.h"
 
-#define BLE_NATIVE_CLASS "com/jubiter/sdk/jni/BleNativeApi"
-
 JNIEXPORT int JNICALL
 native_BLEInitDevice(JNIEnv *env, jclass clz) {
     LOG_ERR(">>> in native_BLEInitDevice");
@@ -154,6 +152,7 @@ JNINativeMethod bleNativeMethods[] = {
         },
 };
 
+#define BLE_NATIVE_CLASS "com/jubiter/sdk/jni/BleNativeApi"
 
 jclass getBleClass(JNIEnv *env) {
     return env->FindClass(BLE_NATIVE_CLASS);

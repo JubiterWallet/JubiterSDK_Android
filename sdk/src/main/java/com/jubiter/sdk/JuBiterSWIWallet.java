@@ -15,7 +15,6 @@ import com.jubiter.sdk.proto.CommonProtos.ResultString;
  */
 public class JuBiterSWIWallet {
 
-
     /**
      * SWI 连接
      *
@@ -41,7 +40,6 @@ public class JuBiterSWIWallet {
         return SwiNativeApi.nativeSWIDisconnectDevice(deviceID);
     }
 
-
     /**
      * BuildFromMasterPrivateKey
      *
@@ -65,7 +63,4 @@ public class JuBiterSWIWallet {
     public static int swiBuildFromMnemonic(int deviceID, String mnemonic, String passphrase) {
         return SwiNativeApi.nativeSWIBuildFromMnemonic(deviceID, passphrase, mnemonic);
     }
-
-
-
 }

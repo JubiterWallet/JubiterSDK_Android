@@ -11,13 +11,6 @@ public class NativeApi {
         System.loadLibrary("coreNDK");
     }
 
-    //********************************* 软件钱包 ************************************
-
-    public static native byte[] nativeGenerateMnemonic(byte[] param);
-
-    public static native int nativeCheckMnemonic(String param);
-
-
     //********************************* 硬件钱包 ************************************
 
     public static native byte[] nativeGetDeviceInfo(int deviceID);

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.jubiter.sdk.jni.BleNativeApi;
 import com.jubiter.sdk.jni.NativeApi;
+import com.jubiter.sdk.jni.SwiNativeApi;
 import com.jubiter.sdk.jni.ble.InnerDiscCallback;
 import com.jubiter.sdk.jni.ble.InnerScanCallback;
 import com.jubiter.sdk.proto.CommonProtos;
@@ -24,7 +25,7 @@ public final class JuBiterWallet {
      */
     public static CommonProtos.ResultString generateMnemonic(CommonProtos.ENUM_MNEMONIC_STRENGTH strength) {
         try {
-            byte[] mnemonic = NativeApi.nativeGenerateMnemonic(strength.toString().getBytes());
+            byte[] mnemonic = SwiNativeApi.nativeGenerateMnemonic(strength.toString().getBytes());
             return CommonProtos.ResultString.parseFrom(mnemonic);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
@@ -39,7 +40,7 @@ public final class JuBiterWallet {
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static int checkMnemonic(String mnemonic) {
-        return NativeApi.nativeCheckMnemonic(mnemonic);
+        return SwiNativeApi.nativeCheckMnemonic(mnemonic);
     }
 
     /**

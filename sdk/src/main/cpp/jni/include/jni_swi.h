@@ -13,6 +13,16 @@ native_SWIConnectDevice(JNIEnv *env, jclass clz);
 JNIEXPORT jint JNICALL
 native_SWIDisconnectDevice(JNIEnv *env, jclass clz, jint deviceHandle);
 
+JNIEXPORT jbyteArray JNICALL
+native_GenerateMnemonic(JNIEnv *env,
+                        jclass clz,
+                        jbyteArray param);
+
+JNIEXPORT jint JNICALL
+native_CheckMnemonic(JNIEnv *env,
+                     jclass clz,
+                     jstring mnemonic);
+
 JNIEXPORT jint JNICALL
 native_SWIBuildFromMasterPrivateKey(JNIEnv *env, jclass clz,
                                     jint deviceHandle,
