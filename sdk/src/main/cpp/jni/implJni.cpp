@@ -19,53 +19,6 @@
     //#define NATIVE_API_CLASS "com/legendwd/hyperpay/main/hardwarewallet/jubnative/NativeApi"
 #endif
 
-
-//================================== 软件钱包 ===========================================
-
-JNIEXPORT jbyteArray JNICALL
-native_GenerateMnemonic(JNIEnv *env,
-                        jclass clz,
-                        jbyteArray param) {
-    std::string paramString = jbyteArray2stdString(env, param);
-
-    JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH strength;
-    JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH_Parse(paramString, &strength);
-
-    JUB_ENUM_MNEMONIC_STRENGTH jubStrength;
-    switch (strength) {
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH128:
-            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH128;
-            break;
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH192:
-            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH192;
-            break;
-        case JUB::Proto::Common::ENUM_MNEMONIC_STRENGTH::STRENGTH256:
-            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH256;
-            break;
-        default:
-            jubStrength = JUB_ENUM_MNEMONIC_STRENGTH::STRENGTH128;
-    }
-
-    JUB_CHAR_PTR pMnemonic = nullptr;
-    JUB_RV rv = JUB_GenerateMnemonic(jubStrength, &pMnemonic);
-    return buildPbRvString("JUB_GenerateMnemonic", env, rv, pMnemonic);
-}
-
-
-JNIEXPORT jint JNICALL
-native_CheckMnemonic(JNIEnv *env,
-                     jclass clz,
-                     jstring mnemonic) {
-    std::string strMnemonic = jstring2stdString(env, mnemonic);
-    JUB_RV rv = JUB_CheckMnemonic(strMnemonic.c_str());
-    if (JUBR_OK != rv) {
-        LOG_ERR("JUB_CheckMnemonic rv: %08lx", rv);
-        return rv;
-    }
-    return rv;
-}
-
-
 //================================= JUB_SDK_DEV_h ================================================
 
 JNIEXPORT jbyteArray JNICALL
@@ -557,16 +510,6 @@ JNINativeMethod gMethods[] = {
                 "nativeSetTimeout",
                 "(II)I",
                 (void *) native_SetTimeOut
-        },
-        {
-                "nativeGenerateMnemonic",
-                "([B)[B",
-                (void *) native_GenerateMnemonic
-        },
-        {
-                "nativeCheckMnemonic",
-                "(Ljava/lang/String;)I",
-                (void *) native_CheckMnemonic
         },
 
 #ifdef HC

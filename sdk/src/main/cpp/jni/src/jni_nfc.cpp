@@ -4,8 +4,6 @@
 
 #include "jni_nfc.h"
 
-#define NFC_NATIVE_CLASS "com/jubiter/sdk/jni/NfcNativeApi"
-
 JNIEXPORT jint JNICALL
 native_NFCInitDevice(JNIEnv *env, jclass clz, jobject initParam) {
     // 初始化参数转换
@@ -251,6 +249,9 @@ JNINativeMethod nfcNativeMethods[] = {
                 (void *) native_NFCSetAlertMessage
         }
 };
+
+
+#define NFC_NATIVE_CLASS "com/jubiter/sdk/jni/NfcNativeApi"
 
 jclass getNfcClass(JNIEnv *env) {
     return env->FindClass(NFC_NATIVE_CLASS);

@@ -2,9 +2,6 @@
 
 #include "jni_bio.h"
 
-#define BIO_NATIVE_CLASS "com/jubiter/sdk/jni/BioNativeApi"
-
-
 JNIEXPORT jbyteArray JNICALL
 native_BIOIdentityVerify(JNIEnv *env,
                          jclass clz,
@@ -198,6 +195,7 @@ JNINativeMethod BIONativeMethods[] = {
         },
 };
 
+#define BIO_NATIVE_CLASS "com/jubiter/sdk/jni/BioNativeApi"
 
 jclass getBioClass(JNIEnv *env) {
     return env->FindClass(BIO_NATIVE_CLASS);
