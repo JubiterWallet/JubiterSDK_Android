@@ -121,9 +121,9 @@ public final class JuBiterEthereum {
     /**
      * 构建ERC20交易体
      *
-     * @param contextID       上下文ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param address         接收地址
-     * @param amountInWei     转账金额，以 wei 为单位
+     * @param contextID   上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param address     接收地址
+     * @param amountInWei 转账金额，以 wei 为单位
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString buildERC20TransferAbi(int contextID,
@@ -155,10 +155,10 @@ public final class JuBiterEthereum {
     /**
      * 构建 ERC721 交易体
      *
-     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param tokenFrom       转出地址
-     * @param tokenTo         接收地址
-     * @param tokenID         资源 ID
+     * @param contextID 上下文 ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenFrom 转出地址
+     * @param tokenTo   接收地址
+     * @param tokenID   资源 ID
      * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString buildERC721TransferAbi(int contextID,
@@ -181,12 +181,12 @@ public final class JuBiterEthereum {
     /**
      * 构建 ERC1155 交易体
      *
-     * @param contextID       上下文 ID，该值由 createContext_Software 或 createContext 方法返回
-     * @param tokenFrom       转出地址
-     * @param tokenTo         接收地址
-     * @param tokenID         资源 ID
-     * @param tokenValue      资源值
-     * @param data            个人 data
+     * @param contextID  上下文 ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param tokenFrom  转出地址
+     * @param tokenTo    接收地址
+     * @param tokenID    资源 ID
+     * @param tokenValue 资源值
+     * @param data       个人 data
      * @return 若 stateCode 为 0, 则表示执行成功，value 即为执行结果，否则表示执行失败
      */
     public static CommonProtos.ResultString buildERC1155TransferAbi(int contextID,
@@ -261,15 +261,39 @@ public final class JuBiterEthereum {
     }
 
     /**
+     * personalSign、ethSign 签名
      *
      * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
      * @param bip44
      * @param data
      * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
      */
-    public static CommonProtos.ResultString signBytestring(int contextID, CommonProtos.Bip44Path bip44, String data) {
+    public static CommonProtos.ResultString signByteString(int contextID, CommonProtos.Bip44Path bip44, String data) {
         try {
-            byte[] result = NativeApi.nativeETHSignBytestring(contextID, bip44.toByteArray(),data);
+            byte[] result = NativeApi.nativeETHSignByteString(contextID, bip44.toByteArray(), data);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * signTypedData 签名
+     *
+     * @param contextID 上下文ID，该值由 createContext_Software 或 createContext 方法返回
+     * @param bip44
+     * @param data 待签名数据
+     * @param enableV4 是否启用 V4 签名
+     * @return 若stateCode为0, 则表示执行成功，value即为执行结果，否则表示执行失败
+     */
+    public static CommonProtos.ResultString signTypedData(
+            int contextID,
+            CommonProtos.Bip44Path bip44,
+            String data,
+            boolean enableV4) {
+        try {
+            byte[] result = NativeApi.nativeETHSignTypedData(contextID, bip44.toByteArray(), data, enableV4);
             return CommonProtos.ResultString.parseFrom(result);
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();

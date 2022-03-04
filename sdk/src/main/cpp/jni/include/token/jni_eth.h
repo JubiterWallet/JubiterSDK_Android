@@ -41,7 +41,15 @@ JNIEXPORT jbyteArray JNICALL
 native_SignTransactionETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx);
 
 JNIEXPORT jbyteArray JNICALL
-native_SignBytestringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jstring data);
+native_SignByteStringETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray bip32, jstring data);
+
+JNIEXPORT jbyteArray JNICALL
+native_SignTypedDataETH(JNIEnv *env,
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray bip32,
+                        jstring data,
+                        jboolean enableTypedData_V4);
 
 JNIEXPORT jbyteArray JNICALL
 native_SignContractETH(JNIEnv *env, jclass clz, jint contextID, jbyteArray tx);

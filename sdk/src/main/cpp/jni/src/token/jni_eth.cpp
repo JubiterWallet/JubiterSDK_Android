@@ -141,7 +141,7 @@ native_SignTransactionETH(JNIEnv *env,
 }
 
 JNIEXPORT jbyteArray JNICALL
-native_SignBytestringETH(JNIEnv *env,
+native_SignByteStringETH(JNIEnv *env,
                          jclass clz,
                          jint contextID,
                          jbyteArray bip32,
@@ -154,6 +154,29 @@ native_SignBytestringETH(JNIEnv *env,
         return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
     }
     return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignTypedDataETH(JNIEnv *env,
+                         jclass clz,
+                         jint contextID,
+                         jbyteArray bip32,
+                         jstring data,
+                         jboolean enableTypedData_V4) {
+    BIP44_Path bip32Path;
+    auto strData = jstring2stdString(env, data);
+    if (parseBip44Path(env, bip32, &bip32Path)) {
+        JUB_CHAR_PTR signature = nullptr;
+        JUB_RV rv = JUB_SignTypedDataETH(
+                contextID,
+                bip32Path,
+                (JUB_CHAR_PTR)strData.c_str(),
+                enableTypedData_V4,
+                &signature
+                );
+        return buildPbRvString("JUB_SignTypedDataETH 1", env, rv, signature);
+    }
+    return buildPbRvString("JUB_SignTypedDataETH 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
 JNIEXPORT jbyteArray JNICALL
@@ -182,12 +205,12 @@ native_SignContractETH(JNIEnv *env,
 ///
 /// EIP-721、EIP-1155 共用 SetERC721TokenETH 接口
 ///
-/// \param env
-/// \param clz
-/// \param contextID
-/// \param tokenName
-/// \param contractAddress
-/// \return
+/// param env
+/// param clz
+/// param contextID
+/// param tokenName
+/// param contractAddress
+/// return
 JNIEXPORT jint JNICALL
 native_SetERC721TokenETH(JNIEnv *env,
                          jclass clz,
@@ -338,9 +361,14 @@ JNINativeMethod ethNativeMethods[] = {
                 (void *) native_SignTransactionETH
         },
         {
-                "nativeETHSignBytestring",
+                "nativeETHSignByteString",
                 "(I[BLjava/lang/String;)[B",
-                (void *) native_SignBytestringETH
+                (void *) native_SignByteStringETH
+        },
+        {
+                "nativeETHSignTypedData",
+                "(I[BLjava/lang/String;Z)[B",
+                (void *) native_SignTypedDataETH
         },
         {
                 "nativeETHSignContract",
