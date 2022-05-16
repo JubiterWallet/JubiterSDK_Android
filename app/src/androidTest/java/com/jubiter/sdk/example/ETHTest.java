@@ -42,7 +42,7 @@ public class ETHTest extends BaseTest {
 //    }
 
     @Test
-    public void step1_createContext_Software() {
+    public void step1_createContext() {
 //        init();
         CommonProtos.ResultInt device = JuBiterSWIWallet.swiConnectDevice();
         int deviceID = device.getValue();
@@ -53,6 +53,7 @@ public class ETHTest extends BaseTest {
         );
         EthereumProtos.ContextCfgETH config = EthereumProtos.ContextCfgETH.newBuilder()
                 .setMainPath(MAIN_PATH)
+                .setChainId(1)
                 .build();
         CommonProtos.ResultInt result = JuBiterEthereum.createContext(config,deviceID);
         assertEquals(0, result.getStateCode());
