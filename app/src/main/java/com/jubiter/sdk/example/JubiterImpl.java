@@ -74,7 +74,7 @@ public class JubiterImpl {
     }
 
     public enum ETH_TransType {
-        ETH_TEST, ETH, ERC20, ERC721, ERC1155
+        ETH_TEST, ETH, ERC20, ERC721, ERC1155, ERC712, ERC1559
     }
 
     public enum TRX_TransType {
@@ -161,48 +161,37 @@ public class JubiterImpl {
     }
 
     public void queryBattery(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultInt result = JuBiterWallet.queryBattery(deviceHandle);
-                if (result.getStateCode() == 0) {
-                    callback.onSuccess(result.getValue());
-                } else {
-                    callback.onFailed(result.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultInt result = JuBiterWallet.queryBattery(deviceHandle);
+            if (result.getStateCode() == 0) {
+                callback.onSuccess(result.getValue());
+            } else {
+                callback.onFailed(result.getStateCode());
             }
         });
     }
 
     // device
     public void isBootLoader(final JubCallback<Boolean> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess(JuBiterWallet.isBootLoader(deviceHandle));
-            }
-        });
+        ThreadUtils.execute(() -> callback.onSuccess(JuBiterWallet.isBootLoader(deviceHandle)));
     }
 
 
     private void getBleDeviceType() {
         mDeviceType = DeviceType.BLE;
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultAny resultAny = JuBiterWallet.getDeviceType(deviceHandle);
-                if(resultAny.getStateCode() == 0){
-                    Any detail = resultAny.getValueList().get(0);
-                    try {
-                        CommonProtos.DeviceType type = detail.unpack(CommonProtos.DeviceType.class);
-                        if (type.getPrdsClass() == CommonProtos.DeviceType.PrdsClass.PRDS_CLASS_BIO) {
-                            mDeviceType = DeviceType.BIO;
-                        } else {
-                            mDeviceType = DeviceType.BLE;
-                        }
-                    } catch (InvalidProtocolBufferException e) {
-                        e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultAny resultAny = JuBiterWallet.getDeviceType(deviceHandle);
+            if(resultAny.getStateCode() == 0){
+                Any detail = resultAny.getValueList().get(0);
+                try {
+                    CommonProtos.DeviceType type = detail.unpack(CommonProtos.DeviceType.class);
+                    if (type.getPrdsClass() == CommonProtos.DeviceType.PrdsClass.PRDS_CLASS_BIO) {
+                        mDeviceType = DeviceType.BIO;
+                    } else {
+                        mDeviceType = DeviceType.BLE;
                     }
+                } catch (InvalidProtocolBufferException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -214,65 +203,53 @@ public class JubiterImpl {
     }
 
     public void setTimeout(final int timeout, final JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                int ret = JuBiterWallet.setTimeout(deviceHandle, timeout);
-                if (ret == 0) {
-                    callback.onSuccess(null);
-                } else {
-                    callback.onFailed(ret);
-                }
+        ThreadUtils.execute(() -> {
+            int ret = JuBiterWallet.setTimeout(deviceHandle, timeout);
+            if (ret == 0) {
+                callback.onSuccess(null);
+            } else {
+                callback.onFailed(ret);
             }
         });
     }
 
     public void getDeviceInfo(final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultAny deviceInfoResult = JuBiterWallet.getDeviceInfo(deviceHandle);
-                if (deviceInfoResult.getStateCode() == 0) {
-                    for (com.google.protobuf.Any detail : deviceInfoResult.getValueList()) {
-                        try {
-                            CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
-                            callback.onSuccess(deviceInfo.toString());
-                            Log.d(TAG, "rv : " + deviceInfo.toString());
-                        } catch (InvalidProtocolBufferException e) {
-                            e.printStackTrace();
-                        }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultAny deviceInfoResult = JuBiterWallet.getDeviceInfo(deviceHandle);
+            if (deviceInfoResult.getStateCode() == 0) {
+                for (Any detail : deviceInfoResult.getValueList()) {
+                    try {
+                        CommonProtos.DeviceInfo deviceInfo = detail.unpack(CommonProtos.DeviceInfo.class);
+                        callback.onSuccess(deviceInfo.toString());
+                        Log.d(TAG, "rv : " + deviceInfo.toString());
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
                     }
-                } else {
-                    callback.onFailed(deviceInfoResult.getStateCode());
                 }
+            } else {
+                callback.onFailed(deviceInfoResult.getStateCode());
             }
         });
     }
 
     public void enumApplets(final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString applets = JuBiterWallet.enumApplets(deviceHandle);
-                if (applets.getStateCode() == 0) {
-                    callback.onSuccess(applets.getValue());
-                } else {
-                    callback.onFailed(applets.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString applets = JuBiterWallet.enumApplets(deviceHandle);
+            if (applets.getStateCode() == 0) {
+                callback.onSuccess(applets.getValue());
+            } else {
+                callback.onFailed(applets.getStateCode());
             }
         });
     }
 
     public void getDeviceCert(final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString deviceCert = JuBiterWallet.getDeviceCert(deviceHandle);
-                if (deviceCert.getStateCode() == 0) {
-                    callback.onSuccess(deviceCert.getValue());
-                } else {
-                    callback.onFailed(deviceCert.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString deviceCert = JuBiterWallet.getDeviceCert(deviceHandle);
+            if (deviceCert.getStateCode() == 0) {
+                callback.onSuccess(deviceCert.getValue());
+            } else {
+                callback.onFailed(deviceCert.getStateCode());
             }
         });
     }
@@ -283,21 +260,15 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final int ret = JuBiterWallet.showVirtualPWD(contextID);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (ret == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(ret);
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final int ret = JuBiterWallet.showVirtualPWD(contextID);
+            ThreadUtils.toMainThread(() -> {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
+                }
+            });
         });
     }
 
@@ -306,16 +277,13 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                int ret = JuBiterWallet.cancelVirtualPWD(contextID);
-                if (callback != null) {
-                    if (ret == 0) {
-                        callback.onSuccess(null);
-                    } else {
-                        callback.onFailed(ret);
-                    }
+        ThreadUtils.execute(() -> {
+            int ret = JuBiterWallet.cancelVirtualPWD(contextID);
+            if (callback != null) {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
                 }
             }
         });
@@ -326,21 +294,15 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final CommonProtos.ResultInt resultInt = JuBiterWallet.verifyPIN(contextID, pin);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (resultInt.getStateCode() == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(resultInt.getValue());
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final CommonProtos.ResultInt resultInt = JuBiterWallet.verifyPIN(contextID, pin);
+            ThreadUtils.toMainThread(() -> {
+                if (resultInt.getStateCode() == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(resultInt.getValue());
+                }
+            });
         });
     }
 
@@ -349,16 +311,13 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                int ret = JuBiterWallet.clearContext(contextID);
-                if (callback != null) {
-                    if (ret == 0) {
-                        callback.onSuccess(null);
-                    } else {
-                        callback.onFailed(ret);
-                    }
+        ThreadUtils.execute(() -> {
+            int ret = JuBiterWallet.clearContext(contextID);
+            if (callback != null) {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
                 }
             }
         });
@@ -366,257 +325,191 @@ public class JubiterImpl {
 
     // Bio
     public void enumFingerprint(JubCallback<List<String>> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString resultString = JuBiterBIOWallet.enumFingerprint(deviceHandle);
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString resultString = JuBiterBIOWallet.enumFingerprint(deviceHandle);
 
-                if (resultString.getStateCode() != 0 && !TextUtils.isEmpty(resultString.getValue())) {
-                    String fingerList = resultString.getValue();
-                    String[] split = fingerList.split(" ");
-                    final List<String> list = new ArrayList<>(Arrays.asList(split));
-                    ThreadUtils.toMainThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            callback.onSuccess(list);
-                        }
-                    });
-                    return;
-                }
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onFailed(resultString.getStateCode());
-                    }
-                });
+            if (resultString.getStateCode() != 0 && !TextUtils.isEmpty(resultString.getValue())) {
+                String fingerList = resultString.getValue();
+                String[] split = fingerList.split(" ");
+                final List<String> list = new ArrayList<>(Arrays.asList(split));
+                ThreadUtils.toMainThread(() -> callback.onSuccess(list));
+                return;
             }
+            ThreadUtils.toMainThread(() -> callback.onFailed(resultString.getStateCode()));
         });
     }
 
     public void identityVerify(int mode, JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerify(deviceHandle, mode);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (resultInt.getStateCode() == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(resultInt.getValue());
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerify(deviceHandle, mode);
+            ThreadUtils.toMainThread(() -> {
+                if (resultInt.getStateCode() == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(resultInt.getValue());
+                }
+            });
         });
     }
 
     public void identityVerifyPIN(int mode, String pin, JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerifyPIN(deviceHandle, mode, pin);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (resultInt.getStateCode() == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(resultInt.getValue());
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultInt resultInt = JuBiterBIOWallet.identityVerifyPIN(deviceHandle, mode, pin);
+            ThreadUtils.toMainThread(() -> {
+                if (resultInt.getStateCode() == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(resultInt.getValue());
+                }
+            });
         });
     }
 
     public void identityShowNineGrids(JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final int ret = JuBiterBIOWallet.identityShowNineGrids(deviceHandle);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (ret == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(ret);
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final int ret = JuBiterBIOWallet.identityShowNineGrids(deviceHandle);
+            ThreadUtils.toMainThread(() -> {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
+                }
+            });
         });
     }
 
     public void identityCancelNineGrids(JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final int ret = JuBiterBIOWallet.identityCancelNineGrids(deviceHandle);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (ret == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(ret);
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final int ret = JuBiterBIOWallet.identityCancelNineGrids(deviceHandle);
+            ThreadUtils.toMainThread(() -> {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
+                }
+            });
         });
     }
 
 
     public void enrollFingerprint(JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                int fgptIndex = 0;
-                while (true) {
-                    CommonProtos.ResultAny enrollStateResult = JuBiterBIOWallet.enrollFingerprint(deviceHandle, 30, fgptIndex);
-                    if (enrollStateResult.getStateCode() == 0) {
-                        Any detail = enrollStateResult.getValueList().get(0);
-                        try {
-                            JuBiterBlueProtos.EnrollFpState state = detail.unpack(JuBiterBlueProtos.EnrollFpState.class);
-                            callback.onSuccess(state.toString());
-                            Log.d(TAG, "rv : " + state.toString());
-                            if (state.getRemainingTimes() == state.getNextIndex()) {
-                                break;
-                            }
-                        } catch (InvalidProtocolBufferException e) {
-                            e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            int fgptIndex = 0;
+            while (true) {
+                CommonProtos.ResultAny enrollStateResult = JuBiterBIOWallet.enrollFingerprint(deviceHandle, 30, fgptIndex);
+                if (enrollStateResult.getStateCode() == 0) {
+                    Any detail = enrollStateResult.getValueList().get(0);
+                    try {
+                        JuBiterBlueProtos.EnrollFpState state = detail.unpack(JuBiterBlueProtos.EnrollFpState.class);
+                        callback.onSuccess(state.toString());
+                        Log.d(TAG, "rv : " + state.toString());
+                        if (state.getRemainingTimes() == state.getNextIndex()) {
                             break;
                         }
-                    } else {
-                        ThreadUtils.toMainThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                callback.onFailed(enrollStateResult.getStateCode());
-                            }
-                        });
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
                         break;
                     }
+                } else {
+                    ThreadUtils.toMainThread(() -> callback.onFailed(enrollStateResult.getStateCode()));
+                    break;
                 }
             }
         });
     }
 
     public void deleteFingerprint(int id, JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final int ret = JuBiterBIOWallet.deleteFingerprint(deviceHandle, 30, id);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (ret == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(ret);
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final int ret = JuBiterBIOWallet.deleteFingerprint(deviceHandle, 30, id);
+            ThreadUtils.toMainThread(() -> {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
+                }
+            });
         });
     }
 
     public void eraseFingerprint(JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                final int ret = JuBiterBIOWallet.eraseFingerprint(deviceHandle, 30);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (ret == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(ret);
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            final int ret = JuBiterBIOWallet.eraseFingerprint(deviceHandle, 30);
+            ThreadUtils.toMainThread(() -> {
+                if (ret == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(ret);
+                }
+            });
         });
     }
 
     public void verifyFingerprint(int contextID, JubCallback<Void> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultInt resultInt = JuBiterBIOWallet.verifyFingerprint(contextID);
-                ThreadUtils.toMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (resultInt.getStateCode() == 0) {
-                            callback.onSuccess(null);
-                        } else {
-                            callback.onFailed(resultInt.getStateCode());
-                        }
-                    }
-                });
-            }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultInt resultInt = JuBiterBIOWallet.verifyFingerprint(contextID);
+            ThreadUtils.toMainThread(() -> {
+                if (resultInt.getStateCode() == 0) {
+                    callback.onSuccess(null);
+                } else {
+                    callback.onFailed(resultInt.getStateCode());
+                }
+            });
         });
     }
 
     //BTC
     public void btcCreateContext(final BTC_TransType transType, final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                BitcoinProtos.ContextCfgBTC.Builder builder = BitcoinProtos.ContextCfgBTC.newBuilder();
-                switch (transType) {
-                    case BTC_TEST:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                                .setMainPath("m/44'/1'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case BTC_P2PKH:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                                .setMainPath("m/44'/0'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case BTC_P2WPKH:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
-                                .setMainPath("m/49'/0'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2SH_P2WPKH);
-                        break;
-                    case BCH:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBCH)
-                                .setMainPath("m/44'/145'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case LTC:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINLTC)
-                                .setMainPath("m/44'/2'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case USDT:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINUSDT)
-                                .setMainPath("m/44'/0'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case DASH:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINDASH)
-                                .setMainPath("m/44'/5'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                    case QTUM:
-                        builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINQTUM)
-                                .setMainPath("m/44'/2301'/0'")
-                                .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
-                        break;
-                }
-                BitcoinProtos.ContextCfgBTC cfgBTC = builder.build();
+        ThreadUtils.execute(() -> {
+            BitcoinProtos.ContextCfgBTC.Builder builder = BitcoinProtos.ContextCfgBTC.newBuilder();
+            switch (transType) {
+                case BTC_TEST:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
+                            .setMainPath("m/44'/1'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case BTC_P2PKH:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
+                            .setMainPath("m/44'/0'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case BTC_P2WPKH:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBTC)
+                            .setMainPath("m/49'/0'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2SH_P2WPKH);
+                    break;
+                case BCH:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINBCH)
+                            .setMainPath("m/44'/145'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case LTC:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINLTC)
+                            .setMainPath("m/44'/2'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case USDT:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINUSDT)
+                            .setMainPath("m/44'/0'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case DASH:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINDASH)
+                            .setMainPath("m/44'/5'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+                case QTUM:
+                    builder.setCoinType(BitcoinProtos.ENUM_COIN_TYPE_BTC.COINQTUM)
+                            .setMainPath("m/44'/2301'/0'")
+                            .setTransType(BitcoinProtos.ENUM_TRAN_STYPE_BTC.P2PKH);
+                    break;
+            }
+            BitcoinProtos.ContextCfgBTC cfgBTC = builder.build();
 
-                CommonProtos.ResultInt context = JuBiterBitcoin.createContext(cfgBTC, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+            CommonProtos.ResultInt context = JuBiterBitcoin.createContext(cfgBTC, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
 
@@ -627,15 +520,12 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                int ret = JuBiterBitcoin.setUint(contextID, unit);
-                if (ret == 0) {
-                    callback.onSuccess(null);
-                } else {
-                    callback.onFailed(ret);
-                }
+        ThreadUtils.execute(() -> {
+            int ret = JuBiterBitcoin.setUint(contextID, unit);
+            if (ret == 0) {
+                callback.onSuccess(null);
+            } else {
+                callback.onFailed(ret);
             }
         });
     }
@@ -645,43 +535,40 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(index)
-                        .setChange(false)
-                        .build();
-                callback.onSuccess("BTCGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterBitcoin.getMainHDNode(contextID);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                if (transType == BTC_TransType.BTC_TEST) {
-                    callback.onSuccess(Utils.xpub2tpub(mainHDNode.getValue()));
-                } else {
-                    callback.onSuccess(mainHDNode.getValue());
-                }
-                callback.onSuccess("BTCGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterBitcoin.getHDNode(contextID, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                if (transType == BTC_TransType.BTC_TEST) {
-                    callback.onSuccess(Utils.xpub2tpub(HDNode.getValue()));
-                } else {
-                    callback.onSuccess(HDNode.getValue());
-                }
-                callback.onSuccess("BTCGetAddress ");
-                CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(index)
+                    .setChange(false)
+                    .build();
+            callback.onSuccess("BTCGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterBitcoin.getMainHDNode(contextID);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            if (transType == BTC_TransType.BTC_TEST) {
+                callback.onSuccess(Utils.xpub2tpub(mainHDNode.getValue()));
+            } else {
+                callback.onSuccess(mainHDNode.getValue());
+            }
+            callback.onSuccess("BTCGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterBitcoin.getHDNode(contextID, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            if (transType == BTC_TransType.BTC_TEST) {
+                callback.onSuccess(Utils.xpub2tpub(HDNode.getValue()));
+            } else {
+                callback.onSuccess(HDNode.getValue());
+            }
+            callback.onSuccess("BTCGetAddress ");
+            CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -690,20 +577,17 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, true);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterBitcoin.getAddress(contextID, path, true);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
             }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -712,20 +596,17 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterBitcoin.setAddress(contextID, path);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterBitcoin.setAddress(contextID, path);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
             }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -839,15 +720,12 @@ public class JubiterImpl {
                 .addOutputs(2, outputBTC_Self)
                 .setLocktime(0)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
-                if (resultString.getStateCode() == 0) {
-                    callback.onSuccess(resultString.getValue());
-                } else {
-                    callback.onFailed(resultString.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
+            if (resultString.getStateCode() == 0) {
+                callback.onSuccess(resultString.getValue());
+            } else {
+                callback.onFailed(resultString.getStateCode());
             }
         });
     }
@@ -924,15 +802,12 @@ public class JubiterImpl {
         final BitcoinProtos.TransactionBTC transactionBTC = builder
                 .setLocktime(0)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
-                if (resultString.getStateCode() == 0) {
-                    callback.onSuccess(resultString.getValue());
-                } else {
-                    callback.onFailed(resultString.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
+            if (resultString.getStateCode() == 0) {
+                callback.onSuccess(resultString.getValue());
+            } else {
+                callback.onFailed(resultString.getStateCode());
             }
         });
     }
@@ -944,25 +819,22 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
-                String addressStr = Utils.xpub2tpub(address.getValue());
-                try {
-                    BtcHistory btcHistory = BtcModel.getInstance().queryTransactionByAccount(
-                            addressStr, 1);
-                    if (btcHistory.getData() == null) {
-                        callback.onFailed(btcHistory.getCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(btcHistory));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+            String addressStr = Utils.xpub2tpub(address.getValue());
+            try {
+                BtcHistory btcHistory = BtcModel.getInstance().queryTransactionByAccount(
+                        addressStr, 1);
+                if (btcHistory.getData() == null) {
+                    callback.onFailed(btcHistory.getCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(btcHistory));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -973,25 +845,22 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
-                String addressStr = Utils.xpub2tpub(address.getValue());
-                try {
-                    SimpleBean balance = BtcModel.getInstance().queryBalanceByAccount(
-                            addressStr);
-                    if (TextUtils.isEmpty(balance.getData())) {
-                        callback.onFailed(balance.getCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(balance));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+            String addressStr = Utils.xpub2tpub(address.getValue());
+            try {
+                SimpleBean balance = BtcModel.getInstance().queryBalanceByAccount(
+                        addressStr);
+                if (TextUtils.isEmpty(balance.getData())) {
+                    callback.onFailed(balance.getCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(balance));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1001,106 +870,103 @@ public class JubiterImpl {
     // BTC交易全流程
     private void btcP2pkhTransactionTest(final int contextID, String transferInputValue, final JubCallback<String> callback) {
         long inputValue = Long.parseLong(transferInputValue);
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    BtcModel btcModel = BtcModel.getInstance();
-                    Fees fees = btcModel.getMinerFeeEstimations();
-                    if (fees.getData() == null) {
-                        callback.onFailed(fees.getCode());
-                        callback.onSuccess("getMinerFeeEstimations error");
-                        return;
-                    }
-                    long fee = fees.getData().getFastestFee().longValue();
-
-                    CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
-                    if (address.getStateCode() != 0 || TextUtils.isEmpty(address.getValue())) {
-                        callback.onSuccess("getMainHDNode error");
-                        callback.onFailed(address.getStateCode());
-                        return;
-                    }
-                    String addressStr = Utils.xpub2tpub(address.getValue());
-                    PreTransactionBean preTransactionBean = btcModel.getPreTransaction(
-                            addressStr,
-                            fee + "",
-                            inputValue,
-                            "n2LPmFxg9hRZgAg89sG4HWyEM5GM1SAmud"
-                    );
-                    if (preTransactionBean.getPreTransaction() == null) {
-                        Log.e("btcP2pkhTransactionTest", preTransactionBean.getMsg());
-                        callback.onFailed(preTransactionBean.getCode());
-                        callback.onSuccess("getPreTransaction error");
-                        return;
-                    }
-                    if (preTransactionBean.getCode() != 0) {
-                        callback.onFailed(preTransactionBean.getCode());
-                        callback.onSuccess("getPreTransaction error 2 " + preTransactionBean.getMsg());
-                        return;
-                    }
-                    PreTransaction transaction = preTransactionBean.getPreTransaction();
-
-
-                    BitcoinProtos.TransactionBTC.Builder builder = BitcoinProtos.TransactionBTC.newBuilder()
-                            .setVersion(1)
-                            .setLocktime(0);
-
-                    List<Input> inputs = transaction.getInputs();
-                    for (int i = 0; i < inputs.size(); i++) {
-                        Input input = inputs.get(i);
-                        Prevout prevout = input.getPrevout();
-                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                                .setAddressIndex(input.getIndex())
-                                .setChange(input.getChange() == 1)
-                                .build();
-                        BitcoinProtos.InputBTC inputBTC = BitcoinProtos.InputBTC.newBuilder()
-                                .setPath(bip32Path)
-                                .setPreHash(prevout.getHash())
-                                .setAmount(Long.parseLong(input.getAmount()))
-                                .setPreIndex(prevout.getIndex())
-                                .build();
-                        builder.addInputs(i, inputBTC);
-                    }
-
-                    List<Output> outputs = transaction.getOutputs();
-                    for (int i = 0; i < outputs.size(); i++) {
-                        Output output = outputs.get(i);
-                        CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                                .setAddressIndex(output.getIndex())
-                                .setChange(output.getChange() == 1)
-                                .build();
-                        BitcoinProtos.OutputBTC outputBTC = BitcoinProtos.OutputBTC.newBuilder()
-                                .setStdOutput(BitcoinProtos.StandardOutput.newBuilder()
-                                        .setAddress(output.getAddress())
-                                        .setAmount(Long.parseLong(output.getAmount()))
-                                        .setChangeAddress(output.getIsChange())
-                                        .setPath(bip32Path)
-                                        .build())
-                                .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.SC_P2PKH)
-                                .build();
-                        builder.addOutputs(i, outputBTC);
-                    }
-                    BitcoinProtos.TransactionBTC transactionBTC = builder.build();
-                    CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess("raw: " + resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                        callback.onSuccess("signTransaction error");
-                        return;
-                    }
-
-                    SimpleBean broadcast = btcModel.broadcastTransaction(resultString.getValue());
-                    btcTxid = broadcast.getData();
-                    if (TextUtils.isEmpty(btcTxid)) {
-                        callback.onFailed(broadcast.getCode());
-                        return;
-                    }
-                    callback.onSuccess("txid:" + btcTxid);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            try {
+                BtcModel btcModel = BtcModel.getInstance();
+                Fees fees = btcModel.getMinerFeeEstimations();
+                if (fees.getData() == null) {
+                    callback.onFailed(fees.getCode());
+                    callback.onSuccess("getMinerFeeEstimations error");
+                    return;
                 }
+                long fee = fees.getData().getFastestFee().longValue();
+
+                CommonProtos.ResultString address = JuBiterBitcoin.getMainHDNode(contextID);
+                if (address.getStateCode() != 0 || TextUtils.isEmpty(address.getValue())) {
+                    callback.onSuccess("getMainHDNode error");
+                    callback.onFailed(address.getStateCode());
+                    return;
+                }
+                String addressStr = Utils.xpub2tpub(address.getValue());
+                PreTransactionBean preTransactionBean = btcModel.getPreTransaction(
+                        addressStr,
+                        fee + "",
+                        inputValue,
+                        "n2LPmFxg9hRZgAg89sG4HWyEM5GM1SAmud"
+                );
+                if (preTransactionBean.getPreTransaction() == null) {
+                    Log.e("btcP2pkhTransactionTest", preTransactionBean.getMsg());
+                    callback.onFailed(preTransactionBean.getCode());
+                    callback.onSuccess("getPreTransaction error");
+                    return;
+                }
+                if (preTransactionBean.getCode() != 0) {
+                    callback.onFailed(preTransactionBean.getCode());
+                    callback.onSuccess("getPreTransaction error 2 " + preTransactionBean.getMsg());
+                    return;
+                }
+                PreTransaction transaction = preTransactionBean.getPreTransaction();
+
+
+                BitcoinProtos.TransactionBTC.Builder builder = BitcoinProtos.TransactionBTC.newBuilder()
+                        .setVersion(1)
+                        .setLocktime(0);
+
+                List<Input> inputs = transaction.getInputs();
+                for (int i = 0; i < inputs.size(); i++) {
+                    Input input = inputs.get(i);
+                    Prevout prevout = input.getPrevout();
+                    CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                            .setAddressIndex(input.getIndex())
+                            .setChange(input.getChange() == 1)
+                            .build();
+                    BitcoinProtos.InputBTC inputBTC = BitcoinProtos.InputBTC.newBuilder()
+                            .setPath(bip32Path)
+                            .setPreHash(prevout.getHash())
+                            .setAmount(Long.parseLong(input.getAmount()))
+                            .setPreIndex(prevout.getIndex())
+                            .build();
+                    builder.addInputs(i, inputBTC);
+                }
+
+                List<Output> outputs = transaction.getOutputs();
+                for (int i = 0; i < outputs.size(); i++) {
+                    Output output = outputs.get(i);
+                    CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                            .setAddressIndex(output.getIndex())
+                            .setChange(output.getChange() == 1)
+                            .build();
+                    BitcoinProtos.OutputBTC outputBTC = BitcoinProtos.OutputBTC.newBuilder()
+                            .setStdOutput(BitcoinProtos.StandardOutput.newBuilder()
+                                    .setAddress(output.getAddress())
+                                    .setAmount(Long.parseLong(output.getAmount()))
+                                    .setChangeAddress(output.getIsChange())
+                                    .setPath(bip32Path)
+                                    .build())
+                            .setType(BitcoinProtos.ENUM_SCRIPT_TYPE_BTC.SC_P2PKH)
+                            .build();
+                    builder.addOutputs(i, outputBTC);
+                }
+                BitcoinProtos.TransactionBTC transactionBTC = builder.build();
+                CommonProtos.ResultString resultString = JuBiterBitcoin.signTransaction(contextID, transactionBTC);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess("raw: " + resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
+                    callback.onSuccess("signTransaction error");
+                    return;
+                }
+
+                SimpleBean broadcast = btcModel.broadcastTransaction(resultString.getValue());
+                btcTxid = broadcast.getData();
+                if (TextUtils.isEmpty(btcTxid)) {
+                    callback.onFailed(broadcast.getCode());
+                    return;
+                }
+                callback.onSuccess("txid:" + btcTxid);
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1110,23 +976,20 @@ public class JubiterImpl {
         if (TextUtils.isEmpty(btcTxid)) {
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TxStatus txStatus = BtcModel.getInstance().queryTransactionById(
-                            btcTxid);
-                    if (txStatus.getData() == null) {
-                        callback.onFailed(txStatus.getStatusCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(txStatus));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            try {
+                TxStatus txStatus = BtcModel.getInstance().queryTransactionById(
+                        btcTxid);
+                if (txStatus.getData() == null) {
+                    callback.onFailed(txStatus.getStatusCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(txStatus));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1134,21 +997,17 @@ public class JubiterImpl {
 
     //ETH
     public void ethCreateContext(final ETH_TransType transType, final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                EthereumProtos.ContextCfgETH contextCfgETH = EthereumProtos.ContextCfgETH.newBuilder()
-                        .setMainPath("m/44'/60'/0'")
-                        //.setChainId(transType == ETH_TransType.ETH_TEST ? 42 : 1)
-                        .setChainId(transType == ETH_TransType.ETH_TEST ? 4 : 1)
-                        .build();
+        ThreadUtils.execute(() -> {
+            EthereumProtos.ContextCfgETH contextCfgETH = EthereumProtos.ContextCfgETH.newBuilder()
+                    .setMainPath("m/44'/60'/0'")
+                    .setChainId(transType == ETH_TransType.ETH_TEST ? 4 : 1)
+                    .build();
 
-                CommonProtos.ResultInt context = JuBiterEthereum.createContext(contextCfgETH, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+            CommonProtos.ResultInt context = JuBiterEthereum.createContext(contextCfgETH, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -1162,32 +1021,29 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
+        ThreadUtils.execute(() -> {
 
-                callback.onSuccess("ETHGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterEthereum.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("ETHGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterEthereum.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("ETHGetAddress ");
-                CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+            callback.onSuccess("ETHGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterEthereum.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("ETHGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterEthereum.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("ETHGetAddress ");
+            CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -1196,19 +1052,16 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -1218,19 +1071,16 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterEthereum.setAddress(contextID, path);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterEthereum.setAddress(contextID, path);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -1250,121 +1100,174 @@ public class JubiterImpl {
         builder.setPath(bip32Path)
                 .setGasPriceInWei("10000000000");
         if (transType == ETH_TransType.ERC20) {
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    int setErc20Token = JuBiterEthereum.setERC20Token(
-                            contextID,
-                            "mfcc",
-                            18,
-                            "0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891");
-                    if (setErc20Token != 0) {
-                        callback.onFailed(setErc20Token);
-                        return;
-                    }
+            ThreadUtils.execute(() -> {
+                int setErc20Token = JuBiterEthereum.setERC20Token(
+                        contextID,
+                        "mfcc",
+                        18,
+                        "0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891");
+                if (setErc20Token != 0) {
+                    callback.onFailed(setErc20Token);
+                    return;
+                }
 
-                    CommonProtos.ResultString erc20Abi = JuBiterEthereum.buildERC20TransferAbi(
-                            contextID,
-                            "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9",
-                            valueStr
-                    );
-                    if (erc20Abi.getStateCode() != 0) {
-                        callback.onFailed(erc20Abi.getStateCode());
-                        return;
-                    }
-                    EthereumProtos.TransactionETH erc20Tx = builder.setNonce(12)
-                            .setGasLimit(96000)
-                            .setTo("0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891")
-                            .setValueInWei("0")
-                            .setInput(erc20Abi.getValue())
-                            .build();
-                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc20Tx);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+                CommonProtos.ResultString erc20Abi = JuBiterEthereum.buildERC20TransferAbi(
+                        contextID,
+                        "0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9",
+                        valueStr
+                );
+                if (erc20Abi.getStateCode() != 0) {
+                    callback.onFailed(erc20Abi.getStateCode());
+                    return;
+                }
+                EthereumProtos.TransactionETH erc20Tx = builder.setNonce(12)
+                        .setGasLimit(96000)
+                        .setTo("0xf45b778e53d858c79bf4dfbdd5c1bfdb426bb891")
+                        .setValueInWei("0")
+                        .setInput(erc20Abi.getValue())
+                        .build();
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc20Tx);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
         } else if (transType == ETH_TransType.ERC721) {
 
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    int setErc721Token = JuBiterEthereum.setERC721Token(
-                            contextID,
-                            "Meebits",
-                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
-                    );
-                    if (setErc721Token != 0) {
-                        callback.onFailed(setErc721Token);
-                        return;
-                    }
+            ThreadUtils.execute(() -> {
+                int setErc721Token = JuBiterEthereum.setERC721Token(
+                        contextID,
+                        "Meebits",
+                        "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
+                );
+                if (setErc721Token != 0) {
+                    callback.onFailed(setErc721Token);
+                    return;
+                }
 
-                    CommonProtos.ResultString erc721Abi = JuBiterEthereum.buildERC721TransferAbi(
-                            contextID,
-                            "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
-                            "0xbb11ddc26f4e55475775310e5cbe188650e75212",
-                            "14973"
-                    );
-                    if (erc721Abi.getStateCode() != 0) {
-                        callback.onFailed(erc721Abi.getStateCode());
-                        return;
-                    }
-                    EthereumProtos.TransactionETH erc721Tx = builder.setNonce(12)
-                            .setGasLimit(96000)
-                            .setValueInWei("0")
-                            .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
-                            .setInput(erc721Abi.getValue())
-                            .build();
-                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc721Tx);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+                CommonProtos.ResultString erc721Abi = JuBiterEthereum.buildERC721TransferAbi(
+                        contextID,
+                        "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
+                        "0xbb11ddc26f4e55475775310e5cbe188650e75212",
+                        "14973"
+                );
+                if (erc721Abi.getStateCode() != 0) {
+                    callback.onFailed(erc721Abi.getStateCode());
+                    return;
+                }
+                EthereumProtos.TransactionETH erc721Tx = builder.setNonce(12)
+                        .setGasLimit(96000)
+                        .setValueInWei("0")
+                        .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
+                        .setInput(erc721Abi.getValue())
+                        .build();
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc721Tx);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
 
         } else if (transType == ETH_TransType.ERC1155) {
 
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    int setErc1155Token = JuBiterEthereum.setERC721Token(
-                            contextID,
-                            "Meebits",
-                            "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
-                    );
-                    if (setErc1155Token != 0) {
-                        callback.onFailed(setErc1155Token);
-                        return;
-                    }
+            ThreadUtils.execute(() -> {
+                int setErc1155Token = JuBiterEthereum.setERC721Token(
+                        contextID,
+                        "Meebits",
+                        "0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7"
+                );
+                if (setErc1155Token != 0) {
+                    callback.onFailed(setErc1155Token);
+                    return;
+                }
 
-                    CommonProtos.ResultString erc1155Abi = JuBiterEthereum.buildERC1155TransferAbi(
-                            contextID,
-                            "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
-                            "0xbb11ddc26f4e55475775310e5cbe188650e75212",
-                            "14973",
-                            "1",
-                            ""
-                    );
-                    if (erc1155Abi.getStateCode() != 0) {
-                        callback.onFailed(erc1155Abi.getStateCode());
-                        return;
-                    }
-                    EthereumProtos.TransactionETH erc1155Tx = builder.setNonce(12)
-                            .setGasLimit(96000)
-                            .setValueInWei("0")
-                            .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
-                            .setInput(erc1155Abi.getValue())
-                            .build();
-                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc1155Tx);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+                CommonProtos.ResultString erc1155Abi = JuBiterEthereum.buildERC1155TransferAbi(
+                        contextID,
+                        "0x0416b53d81ee3d868bbe3ce7d93980b45159b8a0",
+                        "0xbb11ddc26f4e55475775310e5cbe188650e75212",
+                        "14973",
+                        "1",
+                        ""
+                );
+                if (erc1155Abi.getStateCode() != 0) {
+                    callback.onFailed(erc1155Abi.getStateCode());
+                    return;
+                }
+                EthereumProtos.TransactionETH erc1155Tx = builder.setNonce(12)
+                        .setGasLimit(96000)
+                        .setValueInWei("0")
+                        .setTo("0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7")
+                        .setInput(erc1155Abi.getValue())
+                        .build();
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, erc1155Tx);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
+                }
+            });
+
+        } else if (transType == ETH_TransType.ERC712) {
+            String json = "{\n" +
+                    "    \"types\": {\n" +
+                    "        \"EIP712Domain\": [\n" +
+                    "            {\"name\": \"name\", \"type\": \"string\"},\n" +
+                    "            {\"name\": \"version\", \"type\": \"string\"},\n" +
+                    "            {\"name\": \"chainId\", \"type\": \"uint256\"},\n" +
+                    "            {\"name\": \"verifyingContract\", \"type\": \"address\"}\n" +
+                    "        ],\n" +
+                    "        \"Person\": [\n" +
+                    "            {\"name\": \"name\", \"type\": \"string\"},\n" +
+                    "            {\"name\": \"wallet\", \"type\": \"address\"}\n" +
+                    "        ],\n" +
+                    "        \"Mail\": [\n" +
+                    "            {\"name\": \"from\", \"type\": \"Person\"},\n" +
+                    "            {\"name\": \"to\", \"type\": \"Person\"},\n" +
+                    "            {\"name\": \"contents\", \"type\": \"string\"}\n" +
+                    "        ]\n" +
+                    "    },\n" +
+                    "    \"primaryType\": \"Mail\",\n" +
+                    "    \"domain\": {\n" +
+                    "        \"name\": \"Ether Mail\",\n" +
+                    "        \"version\": \"1\",\n" +
+                    "        \"chainId\": 1,\n" +
+                    "        \"verifyingContract\": \"0x1e0Ae8205e9726E6F296ab8869160A6423E2337E\"\n" +
+                    "    },\n" +
+                    "    \"message\": {\n" +
+                    "        \"from\": {\"name\": \"Cow\", \"wallet\": \"0xc0004B62C5A39a728e4Af5bee0c6B4a4E54b15ad\"},\n" +
+                    "        \"to\": {\"name\": \"Bob\", \"wallet\": \"0x54B0Fa66A065748C40dCA2C7Fe125A2028CF9982\"},\n" +
+                    "        \"contents\": \"Hello, Bob!\"\n" +
+                    "    }\n" +
+                    "}\n";
+
+            ThreadUtils.execute(() -> {
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTypedData(contextID, bip32Path, json, true);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
+                }
+            });
+
+        } else if (transType == ETH_TransType.ERC1559) {
+            final EthereumProtos.TypedTransaction1559ETH.Builder builder1559 = EthereumProtos.TypedTransaction1559ETH.newBuilder();
+            final EthereumProtos.TypedTransaction1559ETH tx1559 = builder1559.setNonce(13)
+                    .setGasLimit(310000)
+                    .setMaxFeePreGas("38000000000")
+                    .setMaxPriorityFeePerGas("2000000000")
+                    .setDestination("0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9")
+                    .setValueInWei(valueStr)
+                    .build();
+
+            ThreadUtils.execute(() -> {
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTypedTransaction1559(contextID, tx1559);
+                if (resultString.getStateCode() == 0) {
+                    Log.d(TAG, "1559 tx: " + resultString.getValue());
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
 
@@ -1375,15 +1278,12 @@ public class JubiterImpl {
                     .setValueInWei(valueStr)
                     .build();
 
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, transactionETH);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+            ThreadUtils.execute(() -> {
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, transactionETH);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
 
@@ -1398,29 +1298,26 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
 
-                try {
-                    EthHistory ethHistory = EthModel.getInstance().queryTransactionsByAddrs(
-                            address.getValue(), "", 1);
-                    if (ethHistory.getData() == null) {
-                        callback.onFailed(ethHistory.getCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(ethHistory));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            try {
+                EthHistory ethHistory = EthModel.getInstance().queryTransactionsByAddrs(
+                        address.getValue(), "", 1);
+                if (ethHistory.getData() == null) {
+                    callback.onFailed(ethHistory.getCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(ethHistory));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1430,29 +1327,26 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, path, false);
 
-                try {
-                    EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
-                            address.getValue(), "");
-                    if (accountInfo.getData() == null) {
-                        callback.onFailed(accountInfo.getStatusCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(accountInfo));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            try {
+                EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
+                        address.getValue(), "");
+                if (accountInfo.getData() == null) {
+                    callback.onFailed(accountInfo.getStatusCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(accountInfo));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1465,60 +1359,57 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    EthModel ethModel = EthModel.getInstance();
-                    Fees fees = ethModel.getMinerFeeEstimations();
-                    if (fees.getData() == null) {
-                        callback.onFailed(fees.getCode());
-                        return;
-                    }
-                    long fee = fees.getData().getFastestFee().longValue();
-
-                    CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
-                            .setAddressIndex(0)
-                            .setChange(false)
-                            .build();
-
-                    CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, bip32Path, false);
-
-                    EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
-                            address.getValue(), "");
-                    if (accountInfo.getData() == null) {
-                        callback.onFailed(accountInfo.getStatusCode());
-                        return;
-                    }
-                    EthereumProtos.TransactionETH transactionETH = EthereumProtos.TransactionETH
-                            .newBuilder()
-                            .setPath(bip32Path)
-                            .setGasPriceInWei(fee * 1000000000L + "")
-                            .setNonce(Integer.parseInt(accountInfo.getData().getNonce()))
-                            .setGasLimit(27800)
-                            .setTo("0xB530870a393DeE9f8D0b15160CFFbaF1f50CDEbB")
-                            .setValueInWei(valueStr)
-                            .build();
-
-                    CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, transactionETH);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                        return;
-                    }
-
-                    SimpleBean broadcast = ethModel.broadcastTransaction(resultString.getValue());
-                    ethTxid = broadcast.getData();
-                    if (TextUtils.isEmpty(ethTxid)) {
-                        callback.onFailed(broadcast.getCode());
-                        return;
-                    }
-                    callback.onSuccess("txid:" + ethTxid);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            try {
+                EthModel ethModel = EthModel.getInstance();
+                Fees fees = ethModel.getMinerFeeEstimations();
+                if (fees.getData() == null) {
+                    callback.onFailed(fees.getCode());
+                    return;
                 }
+                long fee = fees.getData().getFastestFee().longValue();
+
+                CommonProtos.Bip44Path bip32Path = CommonProtos.Bip44Path.newBuilder()
+                        .setAddressIndex(0)
+                        .setChange(false)
+                        .build();
+
+                CommonProtos.ResultString address = JuBiterEthereum.getAddress(contextID, bip32Path, false);
+
+                EthAccountInfo accountInfo = EthModel.getInstance().queryAccountInfoByAddr(
+                        address.getValue(), "");
+                if (accountInfo.getData() == null) {
+                    callback.onFailed(accountInfo.getStatusCode());
+                    return;
+                }
+                EthereumProtos.TransactionETH transactionETH = EthereumProtos.TransactionETH
+                        .newBuilder()
+                        .setPath(bip32Path)
+                        .setGasPriceInWei(fee * 1000000000L + "")
+                        .setNonce(Integer.parseInt(accountInfo.getData().getNonce()))
+                        .setGasLimit(27800)
+                        .setTo("0xB530870a393DeE9f8D0b15160CFFbaF1f50CDEbB")
+                        .setValueInWei(valueStr)
+                        .build();
+
+                CommonProtos.ResultString resultString = JuBiterEthereum.signTransaction(contextID, transactionETH);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
+                    return;
+                }
+
+                SimpleBean broadcast = ethModel.broadcastTransaction(resultString.getValue());
+                ethTxid = broadcast.getData();
+                if (TextUtils.isEmpty(ethTxid)) {
+                    callback.onFailed(broadcast.getCode());
+                    return;
+                }
+                callback.onSuccess("txid:" + ethTxid);
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -1528,41 +1419,35 @@ public class JubiterImpl {
         if (TextUtils.isEmpty(ethTxid)) {
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TxStatus txStatus = EthModel.getInstance().queryTransactionById(
-                            ethTxid);
-                    if (txStatus.getData() == null) {
-                        callback.onFailed(txStatus.getStatusCode());
-                        return;
-                    }
-                    Gson gson = new Gson();
-                    String formatJson = Utils.formatJson(gson.toJson(txStatus));
-                    Log.d("JSON", formatJson);
-                    callback.onSuccess(formatJson);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        ThreadUtils.execute(() -> {
+            try {
+                TxStatus txStatus = EthModel.getInstance().queryTransactionById(
+                        ethTxid);
+                if (txStatus.getData() == null) {
+                    callback.onFailed(txStatus.getStatusCode());
+                    return;
                 }
+                Gson gson = new Gson();
+                String formatJson = Utils.formatJson(gson.toJson(txStatus));
+                Log.d("JSON", formatJson);
+                callback.onSuccess(formatJson);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
     //EOS
     public void eosCreateContext(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ContextCfg cfg = CommonProtos.ContextCfg.newBuilder()
-                        .setMainPath("m/44'/194'/0'")
-                        .build();
-                CommonProtos.ResultInt context = JuBiterEOS.createContext(cfg, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ContextCfg cfg = CommonProtos.ContextCfg.newBuilder()
+                    .setMainPath("m/44'/194'/0'")
+                    .build();
+            CommonProtos.ResultInt context = JuBiterEOS.createContext(cfg, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -1576,31 +1461,28 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess("EOSGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterEOS.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("EOSGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterEOS.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("EOSGetAddress ");
-                CommonProtos.ResultString address = JuBiterEOS.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            callback.onSuccess("EOSGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterEOS.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("EOSGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterEOS.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("EOSGetAddress ");
+            CommonProtos.ResultString address = JuBiterEOS.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -1609,19 +1491,16 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterEOS.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterEOS.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -1734,18 +1613,15 @@ public class JubiterImpl {
         }
         actionListBuilder.addActions(actionBuilder.build());
         if (transType == EOS_TransType.EOS || transType == EOS_TransType.EOS_TOKEN) {
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    String memo = actionBuilder.getXferAction().getMemo();
-                    callback.onSuccess("calculateMemoHash");
-                    CommonProtos.ResultString resultString = JuBiterEOS.calculateMemoHash(memo);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                        eosBuildActions(contextID, actionListBuilder.build(), transType, callback);
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+            ThreadUtils.execute(() -> {
+                String memo = actionBuilder.getXferAction().getMemo();
+                callback.onSuccess("calculateMemoHash");
+                CommonProtos.ResultString resultString = JuBiterEOS.calculateMemoHash(memo);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                    eosBuildActions(contextID, actionListBuilder.build(), transType, callback);
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
         } else {
@@ -1759,17 +1635,14 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess("Eos buildAction");
-                CommonProtos.ResultString resultString = JuBiterEOS.buildAction(contextID, list);
-                if (resultString.getStateCode() == 0) {
-                    callback.onSuccess(resultString.getValue());
-                    eosExecuteTransaction(contextID, resultString.getValue(), transType, callback);
-                } else {
-                    callback.onFailed(resultString.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            callback.onSuccess("Eos buildAction");
+            CommonProtos.ResultString resultString = JuBiterEOS.buildAction(contextID, list);
+            if (resultString.getStateCode() == 0) {
+                callback.onSuccess(resultString.getValue());
+                eosExecuteTransaction(contextID, resultString.getValue(), transType, callback);
+            } else {
+                callback.onFailed(resultString.getStateCode());
             }
         });
     }
@@ -1813,15 +1686,12 @@ public class JubiterImpl {
         txBuilder.setPath(path);
 
         callback.onSuccess("EOS transaction");
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString transaction = JuBiterEOS.signTransaction(contextID, txBuilder.build());
-                if (transaction.getStateCode() == 0) {
-                    callback.onSuccess(transaction.getValue());
-                } else {
-                    callback.onFailed(transaction.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString transaction = JuBiterEOS.signTransaction(contextID, txBuilder.build());
+            if (transaction.getStateCode() == 0) {
+                callback.onSuccess(transaction.getValue());
+            } else {
+                callback.onFailed(transaction.getStateCode());
             }
         });
     }
@@ -1852,18 +1722,15 @@ public class JubiterImpl {
 
     //XRP
     public void xrpCreateContext(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
-                        .setMainPath("m/44'/144'/0'")
-                        .build();
-                CommonProtos.ResultInt context = JuBiterXRP.createContext(contextCfg, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
+                    .setMainPath("m/44'/144'/0'")
+                    .build();
+            CommonProtos.ResultInt context = JuBiterXRP.createContext(contextCfg, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -1877,31 +1744,28 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess("XRPGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterXRP.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("XRPGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterXRP.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("XRPGetAddress ");
-                CommonProtos.ResultString address = JuBiterXRP.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            callback.onSuccess("XRPGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterXRP.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("XRPGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterXRP.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("XRPGetAddress ");
+            CommonProtos.ResultString address = JuBiterXRP.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -1910,19 +1774,16 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterXRP.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterXRP.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -1983,33 +1844,27 @@ public class JubiterImpl {
                 .setChange(false)
                 .setAddressIndex(0)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ResultString result = JuBiterXRP.signTransaction(contextID, bip32Path, transactionXRP);
-                if (result.getStateCode() == 0) {
-                    callback.onSuccess(result.getValue());
-                } else {
-                    callback.onFailed(result.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString result = JuBiterXRP.signTransaction(contextID, bip32Path, transactionXRP);
+            if (result.getStateCode() == 0) {
+                callback.onSuccess(result.getValue());
+            } else {
+                callback.onFailed(result.getStateCode());
             }
         });
     }
 
     //TRX
     public void trxCreateContext(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
-                        .setMainPath("m/44'/195'/0'")
-                        .build();
-                CommonProtos.ResultInt context = JuBiterTRX.createContext(contextCfg, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.ContextCfg contextCfg = CommonProtos.ContextCfg.newBuilder()
+                    .setMainPath("m/44'/195'/0'")
+                    .build();
+            CommonProtos.ResultInt context = JuBiterTRX.createContext(contextCfg, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -2023,31 +1878,28 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess("TRXGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("TRXGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("TRXGetAddress ");
-                CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+        ThreadUtils.execute(() -> {
+            callback.onSuccess("TRXGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterTRX.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.XPUB);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("TRXGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterTRX.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("TRXGetAddress ");
+            CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
@@ -2056,19 +1908,16 @@ public class JubiterImpl {
             callback.onFailed(-1);
             return;
         }
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterTRX.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -2433,19 +2282,16 @@ public class JubiterImpl {
      * @param callback
      */
     public void filCreateContext(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                FilecoinProtos.ContextCfgFIL contextCfgFIL = FilecoinProtos.ContextCfgFIL.newBuilder()
-                        .setMainPath("m/44'/461'/0'")
-                        .build();
+        ThreadUtils.execute(() -> {
+            FilecoinProtos.ContextCfgFIL contextCfgFIL = FilecoinProtos.ContextCfgFIL.newBuilder()
+                    .setMainPath("m/44'/461'/0'")
+                    .build();
 
-                CommonProtos.ResultInt context = JuBiterFilecoin.createContext(contextCfgFIL, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+            CommonProtos.ResultInt context = JuBiterFilecoin.createContext(contextCfgFIL, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -2473,49 +2319,43 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
+        ThreadUtils.execute(() -> {
 
-                callback.onSuccess("FILGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterFilecoin.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("FILGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterFilecoin.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("FILGetAddress ");
-                CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+            callback.onSuccess("FILGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterFilecoin.getMainHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("FILGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterFilecoin.getHDNode(contextID, CommonProtos.ENUM_PUB_FORMAT.HEX, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("FILGetAddress ");
+            CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
     public void filShowAddress(final int contextID, final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterFilecoin.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -2540,15 +2380,12 @@ public class JubiterImpl {
                     .setValueInAtto(valueStr)
                     .build();
 
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    CommonProtos.ResultString resultString = JuBiterFilecoin.signTransaction(contextID, transactionFIL);
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+            ThreadUtils.execute(() -> {
+                CommonProtos.ResultString resultString = JuBiterFilecoin.signTransaction(contextID, transactionFIL);
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
 
@@ -2560,20 +2397,17 @@ public class JubiterImpl {
      */
 
     public void ckbCreateContext(final JubCallback<Integer> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                NervosCKBProtos.ContextCfgCKB contextCfgCKB = NervosCKBProtos.ContextCfgCKB.newBuilder()
-                        .setMainPath("m/44'/309'/0'")
-                        .setMainNet(true)
-                        .build();
+        ThreadUtils.execute(() -> {
+            NervosCKBProtos.ContextCfgCKB contextCfgCKB = NervosCKBProtos.ContextCfgCKB.newBuilder()
+                    .setMainPath("m/44'/309'/0'")
+                    .setMainNet(true)
+                    .build();
 
-                CommonProtos.ResultInt context = JuBiterCKB.createContext(contextCfgCKB, deviceHandle);
-                if (context.getStateCode() == 0) {
-                    callback.onSuccess(context.getValue());
-                } else {
-                    callback.onFailed(context.getStateCode());
-                }
+            CommonProtos.ResultInt context = JuBiterCKB.createContext(contextCfgCKB, deviceHandle);
+            if (context.getStateCode() == 0) {
+                callback.onSuccess(context.getValue());
+            } else {
+                callback.onFailed(context.getStateCode());
             }
         });
     }
@@ -2584,49 +2418,43 @@ public class JubiterImpl {
                 .setAddressIndex(index)
                 .setChange(false)
                 .build();
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
+        ThreadUtils.execute(() -> {
 
-                callback.onSuccess("CKBGetMainHDNode");
-                CommonProtos.ResultString mainHDNode = JuBiterCKB.getMainHDNode(contextID);
-                if (mainHDNode.getStateCode() != 0) {
-                    callback.onFailed(mainHDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(mainHDNode.getValue());
-                callback.onSuccess("CKBGetHDNode");
-                CommonProtos.ResultString HDNode = JuBiterCKB.getHDNode(contextID, path);
-                if (HDNode.getStateCode() != 0) {
-                    callback.onFailed(HDNode.getStateCode());
-                    return;
-                }
-                callback.onSuccess(HDNode.getValue());
-                callback.onSuccess("CKBGetAddress ");
-                CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, false);
-                if (address.getStateCode() != 0) {
-                    callback.onFailed(address.getStateCode());
-                    return;
-                }
-                callback.onSuccess(address.getValue());
+            callback.onSuccess("CKBGetMainHDNode");
+            CommonProtos.ResultString mainHDNode = JuBiterCKB.getMainHDNode(contextID);
+            if (mainHDNode.getStateCode() != 0) {
+                callback.onFailed(mainHDNode.getStateCode());
+                return;
             }
+            callback.onSuccess(mainHDNode.getValue());
+            callback.onSuccess("CKBGetHDNode");
+            CommonProtos.ResultString HDNode = JuBiterCKB.getHDNode(contextID, path);
+            if (HDNode.getStateCode() != 0) {
+                callback.onFailed(HDNode.getStateCode());
+                return;
+            }
+            callback.onSuccess(HDNode.getValue());
+            callback.onSuccess("CKBGetAddress ");
+            CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, false);
+            if (address.getStateCode() != 0) {
+                callback.onFailed(address.getStateCode());
+                return;
+            }
+            callback.onSuccess(address.getValue());
         });
     }
 
     public void ckbShowAddress(final int contextID, final JubCallback<String> callback) {
-        ThreadUtils.execute(new Runnable() {
-            @Override
-            public void run() {
-                CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
-                        .setAddressIndex(0)
-                        .setChange(false)
-                        .build();
-                CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, true);
-                if (address.getStateCode() == 0) {
-                    callback.onSuccess(address.getValue());
-                } else {
-                    callback.onFailed(address.getStateCode());
-                }
+        ThreadUtils.execute(() -> {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
+            CommonProtos.ResultString address = JuBiterCKB.getAddress(contextID, path, true);
+            if (address.getStateCode() == 0) {
+                callback.onSuccess(address.getValue());
+            } else {
+                callback.onFailed(address.getStateCode());
             }
         });
     }
@@ -2692,15 +2520,12 @@ public class JubiterImpl {
                 .addOutputs(outputCKB_1)
                 .setVersion(0);
         if (transType == CKB_TransType.CKB) {
-            ThreadUtils.execute(new Runnable() {
-                @Override
-                public void run() {
-                    CommonProtos.ResultString resultString = JuBiterCKB.signTransaction(contextID, builder.build());
-                    if (resultString.getStateCode() == 0) {
-                        callback.onSuccess(resultString.getValue());
-                    } else {
-                        callback.onFailed(resultString.getStateCode());
-                    }
+            ThreadUtils.execute(() -> {
+                CommonProtos.ResultString resultString = JuBiterCKB.signTransaction(contextID, builder.build());
+                if (resultString.getStateCode() == 0) {
+                    callback.onSuccess(resultString.getValue());
+                } else {
+                    callback.onFailed(resultString.getStateCode());
                 }
             });
 

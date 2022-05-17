@@ -150,7 +150,8 @@ native_SignByteStringETH(JNIEnv *env,
     auto strData = jstring2stdString(env, data);
     if (parseBip44Path(env, bip32, &bip32Path)) {
         JUB_CHAR_PTR signature = nullptr;
-        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR)strData.c_str(), &signature);
+        JUB_RV rv = JUB_SignBytestringETH(contextID, bip32Path, (JUB_CHAR_PTR) strData.c_str(),
+                                          &signature);
         return buildPbRvString("JUB_SignBytestringETH 1", env, rv, signature);
     }
     return buildPbRvString("JUB_SignBytestringETH 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -158,11 +159,11 @@ native_SignByteStringETH(JNIEnv *env,
 
 JNIEXPORT jbyteArray JNICALL
 native_SignTypedDataETH(JNIEnv *env,
-                         jclass clz,
-                         jint contextID,
-                         jbyteArray bip32,
-                         jstring data,
-                         jboolean enableTypedData_V4) {
+                        jclass clz,
+                        jint contextID,
+                        jbyteArray bip32,
+                        jstring data,
+                        jboolean enableTypedData_V4) {
     BIP44_Path bip32Path;
     auto strData = jstring2stdString(env, data);
     if (parseBip44Path(env, bip32, &bip32Path)) {
@@ -170,10 +171,10 @@ native_SignTypedDataETH(JNIEnv *env,
         JUB_RV rv = JUB_SignTypedDataETH(
                 contextID,
                 bip32Path,
-                (JUB_CHAR_PTR)strData.c_str(),
+                (JUB_CHAR_PTR) strData.c_str(),
                 enableTypedData_V4,
                 &signature
-                );
+        );
         return buildPbRvString("JUB_SignTypedDataETH 1", env, rv, signature);
     }
     return buildPbRvString("JUB_SignTypedDataETH 2", env, JUBR_ARGUMENTS_BAD, "");
@@ -265,12 +266,12 @@ native_BuildERC1155TransferAbiETH(JNIEnv *env,
     JUB_CHAR_PTR abi = nullptr;
 
     JUB_RV rv = JUB_BuildERC1155TransferAbiETH(contextID,
-                                              (JUB_CHAR_CPTR) strTokenFrom.c_str(),
-                                              (JUB_CHAR_CPTR) strTokenTo.c_str(),
-                                              (JUB_CHAR_CPTR) strTokenID.c_str(),
-                                              (JUB_CHAR_CPTR) strTokenValue.c_str(),
-                                              (JUB_CHAR_CPTR) strData.c_str(),
-                                              &abi);
+                                               (JUB_CHAR_CPTR) strTokenFrom.c_str(),
+                                               (JUB_CHAR_CPTR) strTokenTo.c_str(),
+                                               (JUB_CHAR_CPTR) strTokenID.c_str(),
+                                               (JUB_CHAR_CPTR) strTokenValue.c_str(),
+                                               (JUB_CHAR_CPTR) strData.c_str(),
+                                               &abi);
 
     return buildPbRvString("JUB_BuildERC1155TransferAbiETH", env, rv, abi);
 }
@@ -316,6 +317,34 @@ native_BuildERC1155BatchTransferAbiETH(JNIEnv *env,
                                                     &abi);
 
     return buildPbRvString("JUB_BuildERC1155BatchTransferAbiETH", env, rv, abi);
+}
+
+JNIEXPORT jbyteArray JNICALL
+native_SignTypedTransaction1559ETH(JNIEnv *env,
+                                   jclass clz,
+                                   jint contextID,
+                                   jbyteArray tx) {
+    JUB::Proto::Ethereum::TypedTransaction1559ETH pbTx;
+    if (parseFromJbyteArray(env, tx, &pbTx)) {
+        BIP44_Path bip32Path;
+        bip32Path.change = (JUB_ENUM_BOOL) pbTx.path().change();
+        bip32Path.addressIndex = pbTx.path().address_index();
+
+        JUB_CHAR_PTR raw = nullptr;
+        JUB_RV rv = JUB_SignTypedTransaction1559ETH(contextID,
+                                                    bip32Path,
+                                                    pbTx.nonce(),
+                                                    pbTx.gas_limit(),
+                                                    (JUB_CHAR_PTR) pbTx.max_priority_fee_per_gas().c_str(),
+                                                    (JUB_CHAR_PTR) pbTx.max_fee_pre_gas().c_str(),
+                                                    (JUB_CHAR_PTR) pbTx.destination().c_str(),
+                                                    (JUB_CHAR_PTR) pbTx.value_in_wei().c_str(),
+                                                    (JUB_CHAR_PTR) pbTx.input().c_str(),
+                                                    (JUB_CHAR_PTR) pbTx.access_list_in_json().c_str(),
+                                                    &raw);
+        return buildPbRvString("JUB_SignTypedTransaction1559ETH 1", env, rv, raw);
+    }
+    return buildPbRvString("JUB_SignTypedTransaction1559ETH 2", env, JUBR_ARGUMENTS_BAD, "");
 }
 
 
@@ -376,24 +405,29 @@ JNINativeMethod ethNativeMethods[] = {
                 (void *) native_SignContractETH
         },
         {
-            "nativeETHSetERC721Token",
-            "(ILjava/lang/String;Ljava/lang/String;)I",
-            (void *) native_SetERC721TokenETH
+                "nativeETHSetERC721Token",
+                "(ILjava/lang/String;Ljava/lang/String;)I",
+                (void *) native_SetERC721TokenETH
         },
         {
-            "nativeETHBuildERC721TransferAbi",
-            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-            (void *) native_BuildERC721TransferAbiETH
+                "nativeETHBuildERC721TransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildERC721TransferAbiETH
         },
         {
-            "nativeETHBuildERC1155TransferAbi",
-            "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
-            (void *) native_BuildERC1155TransferAbiETH
+                "nativeETHBuildERC1155TransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildERC1155TransferAbiETH
         },
         {
-            "nativeETHBuildERC1155BatchTransferAbi",
-            "(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)[B",
-            (void *) native_BuildERC1155BatchTransferAbiETH
+                "nativeETHBuildERC1155BatchTransferAbi",
+                "(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)[B",
+                (void *) native_BuildERC1155BatchTransferAbiETH
+        },
+        {
+                "nativeETHSignTypedTransaction1559",
+                "(I[B)[B",
+                (void *) native_SignTypedTransaction1559ETH
         },
 };
 
@@ -404,8 +438,8 @@ jclass getEthClass(JNIEnv *env) {
     return env->FindClass(ETH_NATIVE_CLASS);
 }
 
-std::vector <JNINativeMethod> getEthNativeMethods() {
-    std::vector <JNINativeMethod> methodList;
+std::vector<JNINativeMethod> getEthNativeMethods() {
+    std::vector<JNINativeMethod> methodList;
     for (int i = 0, count = sizeof(ethNativeMethods) / sizeof(ethNativeMethods[0]);
          i < count; ++i) {
         methodList.push_back(ethNativeMethods[i]);

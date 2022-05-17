@@ -26,6 +26,8 @@
         <item>ERC20</item>
         <item>ERC721</item>
         <item>ERC1155</item>
+        <item>ERC712</item>
+        <item>ERC1559</item>
     </string-array>
 
     <string-array name="xrp">

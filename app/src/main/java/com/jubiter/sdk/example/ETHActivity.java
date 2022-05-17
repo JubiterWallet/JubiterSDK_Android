@@ -103,13 +103,22 @@ public class ETHActivity extends AppCompatActivity {
                         mLayoutETH.setVisibility(View.VISIBLE);
                         break;
                     case 1:
-                        mTransType = JubiterImpl.ETH_TransType.ERC20;
+                        mTransType = JubiterImpl.ETH_TransType.ETH;
                         break;
                     case 2:
-                        mTransType = JubiterImpl.ETH_TransType.ERC721;
+                        mTransType = JubiterImpl.ETH_TransType.ERC20;
                         break;
                     case 3:
+                        mTransType = JubiterImpl.ETH_TransType.ERC721;
+                        break;
+                    case 4:
                         mTransType = JubiterImpl.ETH_TransType.ERC1155;
+                        break;
+                    case 5:
+                        mTransType = JubiterImpl.ETH_TransType.ERC712;
+                        break;
+                    case 6:
+                        mTransType = JubiterImpl.ETH_TransType.ERC1559;
                         break;
                 }
                 rebuildContext();

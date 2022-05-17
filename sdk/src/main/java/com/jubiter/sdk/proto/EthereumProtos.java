@@ -697,6 +697,16 @@ public final class EthereumProtos {
      */
     com.google.protobuf.ByteString
         getInputBytes();
+
+    /**
+     * <code>string access_list_in_JSON = 8;</code>
+     */
+    String getAccessListInJSON();
+    /**
+     * <code>string access_list_in_JSON = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccessListInJSONBytes();
   }
   /**
    * Protobuf type {@code JUB.Proto.Ethereum.TransactionETH}
@@ -715,6 +725,7 @@ public final class EthereumProtos {
       to_ = "";
       valueInWei_ = "";
       input_ = "";
+      accessListInJSON_ = "";
     }
 
     @Override
@@ -792,6 +803,12 @@ public final class EthereumProtos {
               String s = input.readStringRequireUtf8();
 
               input_ = s;
+              break;
+            }
+            case 66: {
+              String s = input.readStringRequireUtf8();
+
+              accessListInJSON_ = s;
               break;
             }
             default: {
@@ -1001,6 +1018,40 @@ public final class EthereumProtos {
       }
     }
 
+    public static final int ACCESS_LIST_IN_JSON_FIELD_NUMBER = 8;
+    private volatile Object accessListInJSON_;
+    /**
+     * <code>string access_list_in_JSON = 8;</code>
+     */
+    public String getAccessListInJSON() {
+      Object ref = accessListInJSON_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        accessListInJSON_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string access_list_in_JSON = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccessListInJSONBytes() {
+      Object ref = accessListInJSON_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        accessListInJSON_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @Override
     public final boolean isInitialized() {
@@ -1036,6 +1087,9 @@ public final class EthereumProtos {
       if (!getInputBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, input_);
       }
+      if (!getAccessListInJSONBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, accessListInJSON_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1069,6 +1123,9 @@ public final class EthereumProtos {
       if (!getInputBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, input_);
       }
+      if (!getAccessListInJSONBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, accessListInJSON_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1101,6 +1158,8 @@ public final class EthereumProtos {
           .equals(other.getValueInWei())) return false;
       if (!getInput()
           .equals(other.getInput())) return false;
+      if (!getAccessListInJSON()
+          .equals(other.getAccessListInJSON())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1128,6 +1187,8 @@ public final class EthereumProtos {
       hash = (53 * hash) + getValueInWei().hashCode();
       hash = (37 * hash) + INPUT_FIELD_NUMBER;
       hash = (53 * hash) + getInput().hashCode();
+      hash = (37 * hash) + ACCESS_LIST_IN_JSON_FIELD_NUMBER;
+      hash = (53 * hash) + getAccessListInJSON().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1279,6 +1340,8 @@ public final class EthereumProtos {
 
         input_ = "";
 
+        accessListInJSON_ = "";
+
         return this;
       }
 
@@ -1316,6 +1379,7 @@ public final class EthereumProtos {
         result.to_ = to_;
         result.valueInWei_ = valueInWei_;
         result.input_ = input_;
+        result.accessListInJSON_ = accessListInJSON_;
         onBuilt();
         return result;
       }
@@ -1387,6 +1451,10 @@ public final class EthereumProtos {
         }
         if (!other.getInput().isEmpty()) {
           input_ = other.input_;
+          onChanged();
+        }
+        if (!other.getAccessListInJSON().isEmpty()) {
+          accessListInJSON_ = other.accessListInJSON_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -1862,6 +1930,75 @@ public final class EthereumProtos {
         onChanged();
         return this;
       }
+
+      private Object accessListInJSON_ = "";
+      /**
+       * <code>string access_list_in_JSON = 8;</code>
+       */
+      public String getAccessListInJSON() {
+        Object ref = accessListInJSON_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          accessListInJSON_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string access_list_in_JSON = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccessListInJSONBytes() {
+        Object ref = accessListInJSON_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          accessListInJSON_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string access_list_in_JSON = 8;</code>
+       */
+      public Builder setAccessListInJSON(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        accessListInJSON_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string access_list_in_JSON = 8;</code>
+       */
+      public Builder clearAccessListInJSON() {
+        
+        accessListInJSON_ = getDefaultInstance().getAccessListInJSON();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string access_list_in_JSON = 8;</code>
+       */
+      public Builder setAccessListInJSONBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        accessListInJSON_ = value;
+        onChanged();
+        return this;
+      }
       @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1915,6 +2052,1564 @@ public final class EthereumProtos {
 
   }
 
+  public interface TypedTransaction1559ETHOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:JUB.Proto.Ethereum.TypedTransaction1559ETH)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    boolean hasPath();
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    CommonProtos.Bip44Path getPath();
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    CommonProtos.Bip44PathOrBuilder getPathOrBuilder();
+
+    /**
+     * <code>uint32 nonce = 2;</code>
+     */
+    int getNonce();
+
+    /**
+     * <code>uint32 gas_limit = 3;</code>
+     */
+    int getGasLimit();
+
+    /**
+     * <code>string max_priority_fee_per_gas = 4;</code>
+     */
+    String getMaxPriorityFeePerGas();
+    /**
+     * <code>string max_priority_fee_per_gas = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMaxPriorityFeePerGasBytes();
+
+    /**
+     * <code>string max_fee_pre_gas = 5;</code>
+     */
+    String getMaxFeePreGas();
+    /**
+     * <code>string max_fee_pre_gas = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMaxFeePreGasBytes();
+
+    /**
+     * <code>string destination = 6;</code>
+     */
+    String getDestination();
+    /**
+     * <code>string destination = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getDestinationBytes();
+
+    /**
+     * <code>string value_in_wei = 7;</code>
+     */
+    String getValueInWei();
+    /**
+     * <code>string value_in_wei = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getValueInWeiBytes();
+
+    /**
+     * <code>string input = 8;</code>
+     */
+    String getInput();
+    /**
+     * <code>string input = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getInputBytes();
+
+    /**
+     * <code>string access_list_in_JSON = 9;</code>
+     */
+    String getAccessListInJSON();
+    /**
+     * <code>string access_list_in_JSON = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccessListInJSONBytes();
+  }
+  /**
+   * Protobuf type {@code JUB.Proto.Ethereum.TypedTransaction1559ETH}
+   */
+  public  static final class TypedTransaction1559ETH extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:JUB.Proto.Ethereum.TypedTransaction1559ETH)
+      TypedTransaction1559ETHOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TypedTransaction1559ETH.newBuilder() to construct.
+    private TypedTransaction1559ETH(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TypedTransaction1559ETH() {
+      maxPriorityFeePerGas_ = "";
+      maxFeePreGas_ = "";
+      destination_ = "";
+      valueInWei_ = "";
+      input_ = "";
+      accessListInJSON_ = "";
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TypedTransaction1559ETH();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TypedTransaction1559ETH(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              CommonProtos.Bip44Path.Builder subBuilder = null;
+              if (path_ != null) {
+                subBuilder = path_.toBuilder();
+              }
+              path_ = input.readMessage(CommonProtos.Bip44Path.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(path_);
+                path_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 16: {
+
+              nonce_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+
+              gasLimit_ = input.readUInt32();
+              break;
+            }
+            case 34: {
+              String s = input.readStringRequireUtf8();
+
+              maxPriorityFeePerGas_ = s;
+              break;
+            }
+            case 42: {
+              String s = input.readStringRequireUtf8();
+
+              maxFeePreGas_ = s;
+              break;
+            }
+            case 50: {
+              String s = input.readStringRequireUtf8();
+
+              destination_ = s;
+              break;
+            }
+            case 58: {
+              String s = input.readStringRequireUtf8();
+
+              valueInWei_ = s;
+              break;
+            }
+            case 66: {
+              String s = input.readStringRequireUtf8();
+
+              input_ = s;
+              break;
+            }
+            case 74: {
+              String s = input.readStringRequireUtf8();
+
+              accessListInJSON_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return EthereumProtos.internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return EthereumProtos.internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TypedTransaction1559ETH.class, Builder.class);
+    }
+
+    public static final int PATH_FIELD_NUMBER = 1;
+    private CommonProtos.Bip44Path path_;
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public boolean hasPath() {
+      return path_ != null;
+    }
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public CommonProtos.Bip44Path getPath() {
+      return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+    }
+    /**
+     * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+     */
+    public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+      return getPath();
+    }
+
+    public static final int NONCE_FIELD_NUMBER = 2;
+    private int nonce_;
+    /**
+     * <code>uint32 nonce = 2;</code>
+     */
+    public int getNonce() {
+      return nonce_;
+    }
+
+    public static final int GAS_LIMIT_FIELD_NUMBER = 3;
+    private int gasLimit_;
+    /**
+     * <code>uint32 gas_limit = 3;</code>
+     */
+    public int getGasLimit() {
+      return gasLimit_;
+    }
+
+    public static final int MAX_PRIORITY_FEE_PER_GAS_FIELD_NUMBER = 4;
+    private volatile Object maxPriorityFeePerGas_;
+    /**
+     * <code>string max_priority_fee_per_gas = 4;</code>
+     */
+    public String getMaxPriorityFeePerGas() {
+      Object ref = maxPriorityFeePerGas_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        maxPriorityFeePerGas_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string max_priority_fee_per_gas = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMaxPriorityFeePerGasBytes() {
+      Object ref = maxPriorityFeePerGas_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        maxPriorityFeePerGas_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAX_FEE_PRE_GAS_FIELD_NUMBER = 5;
+    private volatile Object maxFeePreGas_;
+    /**
+     * <code>string max_fee_pre_gas = 5;</code>
+     */
+    public String getMaxFeePreGas() {
+      Object ref = maxFeePreGas_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        maxFeePreGas_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string max_fee_pre_gas = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMaxFeePreGasBytes() {
+      Object ref = maxFeePreGas_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        maxFeePreGas_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESTINATION_FIELD_NUMBER = 6;
+    private volatile Object destination_;
+    /**
+     * <code>string destination = 6;</code>
+     */
+    public String getDestination() {
+      Object ref = destination_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        destination_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string destination = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDestinationBytes() {
+      Object ref = destination_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        destination_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VALUE_IN_WEI_FIELD_NUMBER = 7;
+    private volatile Object valueInWei_;
+    /**
+     * <code>string value_in_wei = 7;</code>
+     */
+    public String getValueInWei() {
+      Object ref = valueInWei_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        valueInWei_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string value_in_wei = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getValueInWeiBytes() {
+      Object ref = valueInWei_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        valueInWei_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int INPUT_FIELD_NUMBER = 8;
+    private volatile Object input_;
+    /**
+     * <code>string input = 8;</code>
+     */
+    public String getInput() {
+      Object ref = input_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        input_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string input = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInputBytes() {
+      Object ref = input_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        input_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ACCESS_LIST_IN_JSON_FIELD_NUMBER = 9;
+    private volatile Object accessListInJSON_;
+    /**
+     * <code>string access_list_in_JSON = 9;</code>
+     */
+    public String getAccessListInJSON() {
+      Object ref = accessListInJSON_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        accessListInJSON_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string access_list_in_JSON = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccessListInJSONBytes() {
+      Object ref = accessListInJSON_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        accessListInJSON_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (path_ != null) {
+        output.writeMessage(1, getPath());
+      }
+      if (nonce_ != 0) {
+        output.writeUInt32(2, nonce_);
+      }
+      if (gasLimit_ != 0) {
+        output.writeUInt32(3, gasLimit_);
+      }
+      if (!getMaxPriorityFeePerGasBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, maxPriorityFeePerGas_);
+      }
+      if (!getMaxFeePreGasBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, maxFeePreGas_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, destination_);
+      }
+      if (!getValueInWeiBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, valueInWei_);
+      }
+      if (!getInputBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, input_);
+      }
+      if (!getAccessListInJSONBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, accessListInJSON_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (path_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getPath());
+      }
+      if (nonce_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, nonce_);
+      }
+      if (gasLimit_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, gasLimit_);
+      }
+      if (!getMaxPriorityFeePerGasBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, maxPriorityFeePerGas_);
+      }
+      if (!getMaxFeePreGasBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, maxFeePreGas_);
+      }
+      if (!getDestinationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, destination_);
+      }
+      if (!getValueInWeiBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, valueInWei_);
+      }
+      if (!getInputBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, input_);
+      }
+      if (!getAccessListInJSONBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, accessListInJSON_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TypedTransaction1559ETH)) {
+        return super.equals(obj);
+      }
+      TypedTransaction1559ETH other = (TypedTransaction1559ETH) obj;
+
+      if (hasPath() != other.hasPath()) return false;
+      if (hasPath()) {
+        if (!getPath()
+            .equals(other.getPath())) return false;
+      }
+      if (getNonce()
+          != other.getNonce()) return false;
+      if (getGasLimit()
+          != other.getGasLimit()) return false;
+      if (!getMaxPriorityFeePerGas()
+          .equals(other.getMaxPriorityFeePerGas())) return false;
+      if (!getMaxFeePreGas()
+          .equals(other.getMaxFeePreGas())) return false;
+      if (!getDestination()
+          .equals(other.getDestination())) return false;
+      if (!getValueInWei()
+          .equals(other.getValueInWei())) return false;
+      if (!getInput()
+          .equals(other.getInput())) return false;
+      if (!getAccessListInJSON()
+          .equals(other.getAccessListInJSON())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasPath()) {
+        hash = (37 * hash) + PATH_FIELD_NUMBER;
+        hash = (53 * hash) + getPath().hashCode();
+      }
+      hash = (37 * hash) + NONCE_FIELD_NUMBER;
+      hash = (53 * hash) + getNonce();
+      hash = (37 * hash) + GAS_LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getGasLimit();
+      hash = (37 * hash) + MAX_PRIORITY_FEE_PER_GAS_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxPriorityFeePerGas().hashCode();
+      hash = (37 * hash) + MAX_FEE_PRE_GAS_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxFeePreGas().hashCode();
+      hash = (37 * hash) + DESTINATION_FIELD_NUMBER;
+      hash = (53 * hash) + getDestination().hashCode();
+      hash = (37 * hash) + VALUE_IN_WEI_FIELD_NUMBER;
+      hash = (53 * hash) + getValueInWei().hashCode();
+      hash = (37 * hash) + INPUT_FIELD_NUMBER;
+      hash = (53 * hash) + getInput().hashCode();
+      hash = (37 * hash) + ACCESS_LIST_IN_JSON_FIELD_NUMBER;
+      hash = (53 * hash) + getAccessListInJSON().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static TypedTransaction1559ETH parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TypedTransaction1559ETH parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static TypedTransaction1559ETH parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static TypedTransaction1559ETH parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static TypedTransaction1559ETH parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static TypedTransaction1559ETH parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(TypedTransaction1559ETH prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code JUB.Proto.Ethereum.TypedTransaction1559ETH}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:JUB.Proto.Ethereum.TypedTransaction1559ETH)
+        TypedTransaction1559ETHOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor;
+      }
+
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TypedTransaction1559ETH.class, Builder.class);
+      }
+
+      // Construct using com.jubiter.sdk.proto.EthereumProtos.TypedTransaction1559ETH.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        if (pathBuilder_ == null) {
+          path_ = null;
+        } else {
+          path_ = null;
+          pathBuilder_ = null;
+        }
+        nonce_ = 0;
+
+        gasLimit_ = 0;
+
+        maxPriorityFeePerGas_ = "";
+
+        maxFeePreGas_ = "";
+
+        destination_ = "";
+
+        valueInWei_ = "";
+
+        input_ = "";
+
+        accessListInJSON_ = "";
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return EthereumProtos.internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor;
+      }
+
+      @Override
+      public TypedTransaction1559ETH getDefaultInstanceForType() {
+        return TypedTransaction1559ETH.getDefaultInstance();
+      }
+
+      @Override
+      public TypedTransaction1559ETH build() {
+        TypedTransaction1559ETH result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TypedTransaction1559ETH buildPartial() {
+        TypedTransaction1559ETH result = new TypedTransaction1559ETH(this);
+        if (pathBuilder_ == null) {
+          result.path_ = path_;
+        } else {
+          result.path_ = pathBuilder_.build();
+        }
+        result.nonce_ = nonce_;
+        result.gasLimit_ = gasLimit_;
+        result.maxPriorityFeePerGas_ = maxPriorityFeePerGas_;
+        result.maxFeePreGas_ = maxFeePreGas_;
+        result.destination_ = destination_;
+        result.valueInWei_ = valueInWei_;
+        result.input_ = input_;
+        result.accessListInJSON_ = accessListInJSON_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TypedTransaction1559ETH) {
+          return mergeFrom((TypedTransaction1559ETH)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TypedTransaction1559ETH other) {
+        if (other == TypedTransaction1559ETH.getDefaultInstance()) return this;
+        if (other.hasPath()) {
+          mergePath(other.getPath());
+        }
+        if (other.getNonce() != 0) {
+          setNonce(other.getNonce());
+        }
+        if (other.getGasLimit() != 0) {
+          setGasLimit(other.getGasLimit());
+        }
+        if (!other.getMaxPriorityFeePerGas().isEmpty()) {
+          maxPriorityFeePerGas_ = other.maxPriorityFeePerGas_;
+          onChanged();
+        }
+        if (!other.getMaxFeePreGas().isEmpty()) {
+          maxFeePreGas_ = other.maxFeePreGas_;
+          onChanged();
+        }
+        if (!other.getDestination().isEmpty()) {
+          destination_ = other.destination_;
+          onChanged();
+        }
+        if (!other.getValueInWei().isEmpty()) {
+          valueInWei_ = other.valueInWei_;
+          onChanged();
+        }
+        if (!other.getInput().isEmpty()) {
+          input_ = other.input_;
+          onChanged();
+        }
+        if (!other.getAccessListInJSON().isEmpty()) {
+          accessListInJSON_ = other.accessListInJSON_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TypedTransaction1559ETH parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TypedTransaction1559ETH) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private CommonProtos.Bip44Path path_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder> pathBuilder_;
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public boolean hasPath() {
+        return pathBuilder_ != null || path_ != null;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44Path getPath() {
+        if (pathBuilder_ == null) {
+          return path_ == null ? CommonProtos.Bip44Path.getDefaultInstance() : path_;
+        } else {
+          return pathBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder setPath(CommonProtos.Bip44Path value) {
+        if (pathBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          path_ = value;
+          onChanged();
+        } else {
+          pathBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder setPath(
+          CommonProtos.Bip44Path.Builder builderForValue) {
+        if (pathBuilder_ == null) {
+          path_ = builderForValue.build();
+          onChanged();
+        } else {
+          pathBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder mergePath(CommonProtos.Bip44Path value) {
+        if (pathBuilder_ == null) {
+          if (path_ != null) {
+            path_ =
+              CommonProtos.Bip44Path.newBuilder(path_).mergeFrom(value).buildPartial();
+          } else {
+            path_ = value;
+          }
+          onChanged();
+        } else {
+          pathBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public Builder clearPath() {
+        if (pathBuilder_ == null) {
+          path_ = null;
+          onChanged();
+        } else {
+          path_ = null;
+          pathBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44Path.Builder getPathBuilder() {
+        
+        onChanged();
+        return getPathFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      public CommonProtos.Bip44PathOrBuilder getPathOrBuilder() {
+        if (pathBuilder_ != null) {
+          return pathBuilder_.getMessageOrBuilder();
+        } else {
+          return path_ == null ?
+              CommonProtos.Bip44Path.getDefaultInstance() : path_;
+        }
+      }
+      /**
+       * <code>.JUB.Proto.Common.Bip44Path path = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>
+          getPathFieldBuilder() {
+        if (pathBuilder_ == null) {
+          pathBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              CommonProtos.Bip44Path, CommonProtos.Bip44Path.Builder, CommonProtos.Bip44PathOrBuilder>(
+                  getPath(),
+                  getParentForChildren(),
+                  isClean());
+          path_ = null;
+        }
+        return pathBuilder_;
+      }
+
+      private int nonce_ ;
+      /**
+       * <code>uint32 nonce = 2;</code>
+       */
+      public int getNonce() {
+        return nonce_;
+      }
+      /**
+       * <code>uint32 nonce = 2;</code>
+       */
+      public Builder setNonce(int value) {
+        
+        nonce_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 nonce = 2;</code>
+       */
+      public Builder clearNonce() {
+        
+        nonce_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int gasLimit_ ;
+      /**
+       * <code>uint32 gas_limit = 3;</code>
+       */
+      public int getGasLimit() {
+        return gasLimit_;
+      }
+      /**
+       * <code>uint32 gas_limit = 3;</code>
+       */
+      public Builder setGasLimit(int value) {
+        
+        gasLimit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 gas_limit = 3;</code>
+       */
+      public Builder clearGasLimit() {
+        
+        gasLimit_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private Object maxPriorityFeePerGas_ = "";
+      /**
+       * <code>string max_priority_fee_per_gas = 4;</code>
+       */
+      public String getMaxPriorityFeePerGas() {
+        Object ref = maxPriorityFeePerGas_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          maxPriorityFeePerGas_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string max_priority_fee_per_gas = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMaxPriorityFeePerGasBytes() {
+        Object ref = maxPriorityFeePerGas_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          maxPriorityFeePerGas_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string max_priority_fee_per_gas = 4;</code>
+       */
+      public Builder setMaxPriorityFeePerGas(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        maxPriorityFeePerGas_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string max_priority_fee_per_gas = 4;</code>
+       */
+      public Builder clearMaxPriorityFeePerGas() {
+        
+        maxPriorityFeePerGas_ = getDefaultInstance().getMaxPriorityFeePerGas();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string max_priority_fee_per_gas = 4;</code>
+       */
+      public Builder setMaxPriorityFeePerGasBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        maxPriorityFeePerGas_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object maxFeePreGas_ = "";
+      /**
+       * <code>string max_fee_pre_gas = 5;</code>
+       */
+      public String getMaxFeePreGas() {
+        Object ref = maxFeePreGas_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          maxFeePreGas_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string max_fee_pre_gas = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMaxFeePreGasBytes() {
+        Object ref = maxFeePreGas_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          maxFeePreGas_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string max_fee_pre_gas = 5;</code>
+       */
+      public Builder setMaxFeePreGas(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        maxFeePreGas_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string max_fee_pre_gas = 5;</code>
+       */
+      public Builder clearMaxFeePreGas() {
+        
+        maxFeePreGas_ = getDefaultInstance().getMaxFeePreGas();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string max_fee_pre_gas = 5;</code>
+       */
+      public Builder setMaxFeePreGasBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        maxFeePreGas_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object destination_ = "";
+      /**
+       * <code>string destination = 6;</code>
+       */
+      public String getDestination() {
+        Object ref = destination_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          destination_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string destination = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDestinationBytes() {
+        Object ref = destination_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          destination_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string destination = 6;</code>
+       */
+      public Builder setDestination(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        destination_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 6;</code>
+       */
+      public Builder clearDestination() {
+        
+        destination_ = getDefaultInstance().getDestination();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string destination = 6;</code>
+       */
+      public Builder setDestinationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        destination_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object valueInWei_ = "";
+      /**
+       * <code>string value_in_wei = 7;</code>
+       */
+      public String getValueInWei() {
+        Object ref = valueInWei_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          valueInWei_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string value_in_wei = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getValueInWeiBytes() {
+        Object ref = valueInWei_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          valueInWei_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string value_in_wei = 7;</code>
+       */
+      public Builder setValueInWei(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        valueInWei_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value_in_wei = 7;</code>
+       */
+      public Builder clearValueInWei() {
+        
+        valueInWei_ = getDefaultInstance().getValueInWei();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string value_in_wei = 7;</code>
+       */
+      public Builder setValueInWeiBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        valueInWei_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object input_ = "";
+      /**
+       * <code>string input = 8;</code>
+       */
+      public String getInput() {
+        Object ref = input_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          input_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string input = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getInputBytes() {
+        Object ref = input_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          input_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string input = 8;</code>
+       */
+      public Builder setInput(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        input_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string input = 8;</code>
+       */
+      public Builder clearInput() {
+        
+        input_ = getDefaultInstance().getInput();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string input = 8;</code>
+       */
+      public Builder setInputBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        input_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object accessListInJSON_ = "";
+      /**
+       * <code>string access_list_in_JSON = 9;</code>
+       */
+      public String getAccessListInJSON() {
+        Object ref = accessListInJSON_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          accessListInJSON_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string access_list_in_JSON = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccessListInJSONBytes() {
+        Object ref = accessListInJSON_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          accessListInJSON_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string access_list_in_JSON = 9;</code>
+       */
+      public Builder setAccessListInJSON(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        accessListInJSON_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string access_list_in_JSON = 9;</code>
+       */
+      public Builder clearAccessListInJSON() {
+        
+        accessListInJSON_ = getDefaultInstance().getAccessListInJSON();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string access_list_in_JSON = 9;</code>
+       */
+      public Builder setAccessListInJSONBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        accessListInJSON_ = value;
+        onChanged();
+        return this;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:JUB.Proto.Ethereum.TypedTransaction1559ETH)
+    }
+
+    // @@protoc_insertion_point(class_scope:JUB.Proto.Ethereum.TypedTransaction1559ETH)
+    private static final TypedTransaction1559ETH DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TypedTransaction1559ETH();
+    }
+
+    public static TypedTransaction1559ETH getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TypedTransaction1559ETH>
+        PARSER = new com.google.protobuf.AbstractParser<TypedTransaction1559ETH>() {
+      @Override
+      public TypedTransaction1559ETH parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TypedTransaction1559ETH(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TypedTransaction1559ETH> parser() {
+      return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<TypedTransaction1559ETH> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TypedTransaction1559ETH getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_JUB_Proto_Ethereum_ContextCfgETH_descriptor;
   private static final 
@@ -1925,6 +3620,11 @@ public final class EthereumProtos {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1936,11 +3636,18 @@ public final class EthereumProtos {
     String[] descriptorData = {
       "\n\022Jub_Ethereum.proto\022\022JUB.Proto.Ethereum" +
       "\032\020Jub_Common.proto\"4\n\rContextCfgETH\022\021\n\tm" +
-      "ain_path\030\001 \001(\t\022\020\n\010chain_id\030\002 \001(\r\"\250\001\n\016Tra" +
+      "ain_path\030\001 \001(\t\022\020\n\010chain_id\030\002 \001(\r\"\305\001\n\016Tra" +
       "nsactionETH\022)\n\004path\030\001 \001(\0132\033.JUB.Proto.Co" +
       "mmon.Bip44Path\022\r\n\005nonce\030\002 \001(\r\022\021\n\tgas_lim" +
       "it\030\003 \001(\r\022\030\n\020gas_price_in_wei\030\004 \001(\t\022\n\n\002to" +
       "\030\005 \001(\t\022\024\n\014value_in_wei\030\006 \001(\t\022\r\n\005input\030\007 " +
+      "\001(\t\022\033\n\023access_list_in_JSON\030\010 \001(\t\"\370\001\n\027Typ" +
+      "edTransaction1559ETH\022)\n\004path\030\001 \001(\0132\033.JUB" +
+      ".Proto.Common.Bip44Path\022\r\n\005nonce\030\002 \001(\r\022\021" +
+      "\n\tgas_limit\030\003 \001(\r\022 \n\030max_priority_fee_pe" +
+      "r_gas\030\004 \001(\t\022\027\n\017max_fee_pre_gas\030\005 \001(\t\022\023\n\013" +
+      "destination\030\006 \001(\t\022\024\n\014value_in_wei\030\007 \001(\t\022" +
+      "\r\n\005input\030\010 \001(\t\022\033\n\023access_list_in_JSON\030\t " +
       "\001(\tB8\n\025com.jubiter.sdk.protoB\016EthereumPr" +
       "otos\242\002\016EthereumProtosb\006proto3"
     };
@@ -1960,7 +3667,13 @@ public final class EthereumProtos {
     internal_static_JUB_Proto_Ethereum_TransactionETH_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JUB_Proto_Ethereum_TransactionETH_descriptor,
-        new String[] { "Path", "Nonce", "GasLimit", "GasPriceInWei", "To", "ValueInWei", "Input", });
+        new String[] { "Path", "Nonce", "GasLimit", "GasPriceInWei", "To", "ValueInWei", "Input", "AccessListInJSON", });
+    internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_JUB_Proto_Ethereum_TypedTransaction1559ETH_descriptor,
+        new String[] { "Path", "Nonce", "GasLimit", "MaxPriorityFeePerGas", "MaxFeePreGas", "Destination", "ValueInWei", "Input", "AccessListInJSON", });
     CommonProtos.getDescriptor();
   }
 
