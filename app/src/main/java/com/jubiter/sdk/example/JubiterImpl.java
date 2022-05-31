@@ -1210,37 +1210,7 @@ public class JubiterImpl {
             });
 
         } else if (transType == ETH_TransType.ERC712) {
-            String json = "{\n" +
-                    "    \"types\": {\n" +
-                    "        \"EIP712Domain\": [\n" +
-                    "            {\"name\": \"name\", \"type\": \"string\"},\n" +
-                    "            {\"name\": \"version\", \"type\": \"string\"},\n" +
-                    "            {\"name\": \"chainId\", \"type\": \"uint256\"},\n" +
-                    "            {\"name\": \"verifyingContract\", \"type\": \"address\"}\n" +
-                    "        ],\n" +
-                    "        \"Person\": [\n" +
-                    "            {\"name\": \"name\", \"type\": \"string\"},\n" +
-                    "            {\"name\": \"wallet\", \"type\": \"address\"}\n" +
-                    "        ],\n" +
-                    "        \"Mail\": [\n" +
-                    "            {\"name\": \"from\", \"type\": \"Person\"},\n" +
-                    "            {\"name\": \"to\", \"type\": \"Person\"},\n" +
-                    "            {\"name\": \"contents\", \"type\": \"string\"}\n" +
-                    "        ]\n" +
-                    "    },\n" +
-                    "    \"primaryType\": \"Mail\",\n" +
-                    "    \"domain\": {\n" +
-                    "        \"name\": \"Ether Mail\",\n" +
-                    "        \"version\": \"1\",\n" +
-                    "        \"chainId\": 1,\n" +
-                    "        \"verifyingContract\": \"0x1e0Ae8205e9726E6F296ab8869160A6423E2337E\"\n" +
-                    "    },\n" +
-                    "    \"message\": {\n" +
-                    "        \"from\": {\"name\": \"Cow\", \"wallet\": \"0xc0004B62C5A39a728e4Af5bee0c6B4a4E54b15ad\"},\n" +
-                    "        \"to\": {\"name\": \"Bob\", \"wallet\": \"0x54B0Fa66A065748C40dCA2C7Fe125A2028CF9982\"},\n" +
-                    "        \"contents\": \"Hello, Bob!\"\n" +
-                    "    }\n" +
-                    "}\n";
+            String json = "{\"domain\":{\"chainId\":\"4\",\"name\":\"Ether Mail\",\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"version\":\"1\"},\"message\":{\"contents\":\"Hello, Bob!\",\"from\":{\"name\":\"Cow\",\"wallets\":[\"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826\",\"0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF\"]},\"to\":[{\"name\":\"Bob\",\"wallets\":[\"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB\",\"0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57\",\"0xB0B0b0b0b0b0B000000000000000000000000000\"]}]},\"primaryType\":\"Mail\",\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Group\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"members\",\"type\":\"Person[]\"}],\"Mail\":[{\"name\":\"from\",\"type\":\"Person\"},{\"name\":\"to\",\"type\":\"Person[]\"},{\"name\":\"contents\",\"type\":\"string\"}],\"Person\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"wallets\",\"type\":\"address[]\"}]}}";
 
             ThreadUtils.execute(() -> {
                 CommonProtos.ResultString resultString = JuBiterEthereum.signTypedData(contextID, bip32Path, json, true);
@@ -1252,12 +1222,18 @@ public class JubiterImpl {
             });
 
         } else if (transType == ETH_TransType.ERC1559) {
+            CommonProtos.Bip44Path path = CommonProtos.Bip44Path.newBuilder()
+                    .setAddressIndex(0)
+                    .setChange(false)
+                    .build();
             final EthereumProtos.TypedTransaction1559ETH.Builder builder1559 = EthereumProtos.TypedTransaction1559ETH.newBuilder();
-            final EthereumProtos.TypedTransaction1559ETH tx1559 = builder1559.setNonce(13)
-                    .setGasLimit(310000)
-                    .setMaxFeePreGas("38000000000")
-                    .setMaxPriorityFeePerGas("2000000000")
-                    .setDestination("0xef31DEc147DCDcd64F6a0ABFA7D441B62A216BC9")
+            final EthereumProtos.TypedTransaction1559ETH tx1559 = builder1559.setNonce(21)
+                    .setPath(path)
+                    .setGasLimit(27800)
+                    .setMaxFeePreGas("47000000000")
+                    .setMaxPriorityFeePerGas("3000000000")
+                    .setDestination("0x852e7be27162dA647419B90928c74B173B5FF94F")
+//                    .setValueInWei("12340000000000000")
                     .setValueInWei(valueStr)
                     .build();
 
