@@ -6,6 +6,6 @@ ext {
             targetSdkVersion : 30,
             ndkVersion : "21.1.6352462",
             versionCode: 19,
-            versionName: "2.4.6"
+            versionName: "2.4.7"
     ]
 }
