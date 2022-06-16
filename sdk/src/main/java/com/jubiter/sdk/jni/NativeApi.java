@@ -32,6 +32,8 @@ public class NativeApi {
 
     public static native byte[] nativeEnumApplets(int deviceID);
 
+    public static native byte[] nativeEnumAppletInfo(int deviceID);
+
     public static native byte[] nativeEnumSupportCoins(int deviceID);
 
     public static native byte[] nativeGetAppletVersion(int deviceID, String appID);

@@ -119,6 +119,16 @@ native_EnumApplets(JNIEnv *env,
     return buildPbRvString("JUB_EnumApplets", env, rv, appList);
 }
 
+
+JNIEXPORT jbyteArray JNICALL
+native_EnumAppletInfo(JNIEnv *env,
+                      jclass clz,
+                      jint deviceID) {
+    JUB_CHAR_PTR appList = nullptr;
+    JUB_RV rv = JUB_EnumAppletInfo((JUB_UINT16) deviceID, &appList);
+    return buildPbRvString("JUB_EnumAppletInfo", env, rv, appList);
+}
+
 JNIEXPORT jbyteArray JNICALL
 native_EnumSupportCoins(JNIEnv *env,
                         jclass clz,
@@ -480,6 +490,11 @@ JNINativeMethod gMethods[] = {
                 "nativeEnumApplets",
                 "(I)[B",
                 (void *) native_EnumApplets
+        },
+        {
+                "nativeEnumAppletInfo",
+                "(I)[B",
+                (void *) native_EnumAppletInfo
         },
         {
                 "nativeGetAppletVersion",

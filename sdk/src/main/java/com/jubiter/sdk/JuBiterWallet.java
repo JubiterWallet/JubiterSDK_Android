@@ -149,6 +149,24 @@ public final class JuBiterWallet {
     }
 
     /**
+     * 枚举设备中的 applet 信息
+     * <p>
+     * applet ID 以空格分隔
+     *
+     * @param deviceID 已连接的硬件设备ID，该值由 connectDevice 方法返回
+     * @return
+     */
+    public static CommonProtos.ResultString enumAppletInfo(int deviceID) {
+        try {
+            byte[] result = NativeApi.nativeEnumAppletInfo(deviceID);
+            return CommonProtos.ResultString.parseFrom(result);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * 枚举设备中支持的币种
      * <p>
      * applet ID 以空格分隔

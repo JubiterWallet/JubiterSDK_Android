@@ -59,6 +59,12 @@
                 android:text="DEVICE_APPLETS" />
 
             <Button
+                android:id="@+id/device_applet_info"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="DEVICE_APPLETS INFO" />
+
+            <Button
                 android:id="@+id/device_cert"
                 style="@style/button"
                 android:onClick="onClick"

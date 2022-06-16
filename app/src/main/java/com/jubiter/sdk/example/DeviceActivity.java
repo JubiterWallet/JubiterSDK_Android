@@ -2,6 +2,7 @@ package com.jubiter.sdk.example;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -48,7 +49,9 @@ public class DeviceActivity extends AppCompatActivity {
             case R.id.device_applets:
                 getApplets();
                 break;
-
+            case R.id.device_applet_info:
+                getAppletInfo();
+                break;
             case R.id.device_cert:
                 getCert();
                 break;
@@ -81,6 +84,21 @@ public class DeviceActivity extends AppCompatActivity {
             @Override
             public void onFailed(long errorCode) {
                 showLog("enumApplets error " + errorCode);
+            }
+        });
+    }
+
+    private void getAppletInfo() {
+        mJubiter.enumAppletInfo(new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                showLog("enumAppletInfo " + s);
+                Log.d("fs", "applet info: " + s);
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("enumAppletInfo error " + errorCode);
             }
         });
     }
