@@ -55,6 +55,9 @@ public class DeviceActivity extends AppCompatActivity {
             case R.id.device_cert:
                 getCert();
                 break;
+            case R.id.support_coin:
+                getSupportCoins();
+                break;
             default:
                 break;
         }
@@ -99,6 +102,21 @@ public class DeviceActivity extends AppCompatActivity {
             @Override
             public void onFailed(long errorCode) {
                 showLog("enumAppletInfo error " + errorCode);
+            }
+        });
+    }
+
+    private void getSupportCoins() {
+        mJubiter.enumSupportCoins(new JubCallback<String>() {
+            @Override
+            public void onSuccess(String s) {
+                showLog("enumSupportCoins: " + s);
+                Log.d("fs", "coins: " + s);
+            }
+
+            @Override
+            public void onFailed(long errorCode) {
+                showLog("enumSupportCoins error " + errorCode);
             }
         });
     }

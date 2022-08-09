@@ -70,7 +70,11 @@
                 android:onClick="onClick"
                 android:text="DEVICE_CERT" />
 
-
+            <Button
+                android:id="@+id/support_coin"
+                style="@style/button"
+                android:onClick="onClick"
+                android:text="SUPPORT COIN" />
 
         </LinearLayout>
 

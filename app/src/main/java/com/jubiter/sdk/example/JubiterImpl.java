@@ -254,6 +254,17 @@ public class JubiterImpl {
         });
     }
 
+    public void enumSupportCoins(final JubCallback<String> callback) {
+        ThreadUtils.execute(() -> {
+            CommonProtos.ResultString applets = JuBiterWallet.enumSupportCoins(deviceHandle);
+            if (applets.getStateCode() == 0) {
+                callback.onSuccess(applets.getValue());
+            } else {
+                callback.onFailed(applets.getStateCode());
+            }
+        });
+    }
+
     public void getDeviceCert(final JubCallback<String> callback) {
         ThreadUtils.execute(() -> {
             CommonProtos.ResultString deviceCert = JuBiterWallet.getDeviceCert(deviceHandle);
